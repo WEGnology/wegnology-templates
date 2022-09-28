@@ -1,0 +1,9 @@
+resourceType: ExperienceView
+resources:
+  - id: ~exportplaceholderid-experienceView-tlLogo-0~
+    localFilename: ./tl-logo.hbs
+    name: tl-logo
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1
