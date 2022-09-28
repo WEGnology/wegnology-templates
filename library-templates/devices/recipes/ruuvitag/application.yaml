@@ -1,0 +1,14 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: RuuviTag open-source wireless sensor node.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryDevicesRecipesRuuviTag-0~
+    name: RuuviTag
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

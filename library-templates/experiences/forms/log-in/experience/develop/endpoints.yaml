@@ -1,0 +1,29 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: public
+    enabled: true
+    endpointTags: {}
+    id: ~exportplaceholderid-experienceEndpoint-getLogin-0~
+    method: get
+    route: /login
+    version: develop
+  - access: authenticated
+    description: Handles a user's log out request.
+    enabled: true
+    endpointTags: {}
+    id: ~exportplaceholderid-experienceEndpoint-getLogout-2~
+    method: get
+    route: /logout
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: Endpoint that accepts and verifies an experience's email and password.
+    enabled: true
+    endpointTags: {}
+    id: ~exportplaceholderid-experienceEndpoint-postLogin-1~
+    method: post
+    route: /login
+    version: develop
+version: 1

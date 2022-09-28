@@ -1,0 +1,14 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: Dynamic provisioning of devices for Experience Users or Experience Groups.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryDevicesProvisioningDynamicProvisioning-0~
+    name: Dynamic Provisioning
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

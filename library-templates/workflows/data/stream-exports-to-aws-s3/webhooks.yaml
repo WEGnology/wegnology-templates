@@ -1,0 +1,10 @@
+resourceType: Webhook
+resources:
+  - id: ~exportplaceholderid-webhook-callbackWebhook-0~
+    name: Callback Webhook
+    responseCode: 200
+    token: ~exportplaceholderid-webhookToken-callbackWebhook-0~
+    verificationCode: ''
+    verificationType: none
+    waitForReply: false
+version: 1
