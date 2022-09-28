@@ -1,0 +1,17 @@
+resourceType: ExperienceUser
+resources:
+  - email: employee@example.com
+    experienceGroupIds: []
+    firstName: John
+    id: ~exportplaceholderid-experienceUser-employeeExampleCom-0~
+    lastName: Smith
+    userTags:
+      role: employee
+  - email: manager@example.com
+    experienceGroupIds: []
+    firstName: Jane
+    id: ~exportplaceholderid-experienceUser-managerExampleCom-1~
+    lastName: Smith
+    userTags:
+      role: manager
+version: 1

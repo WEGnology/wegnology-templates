@@ -1,0 +1,17 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    id: ~exportplaceholderid-experienceView-tlDeviceList-6~
+    localFilename: ./tl-device-list.hbs
+    name: tl-device-list
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    id: ~exportplaceholderid-experienceView-tlNavBs4-7~
+    localFilename: ./tl-nav-bs4.hbs
+    name: tl-nav-bs4
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

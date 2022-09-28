@@ -1,0 +1,10 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: public
+    enabled: true
+    endpointTags: {}
+    id: ~exportplaceholderid-experienceEndpoint-getDeviceStateStreamDeviceId-0~
+    method: get
+    route: /device-state-stream/{deviceId}
+    version: develop
+version: 1

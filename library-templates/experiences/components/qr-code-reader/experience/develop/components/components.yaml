@@ -1,0 +1,10 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    id: ~exportplaceholderid-experienceView-tlQrCodeReader-0~
+    localFilename: ./tl-qr-code-reader.hbs
+    name: tl-qr-code-reader
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

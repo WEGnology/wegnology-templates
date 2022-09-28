@@ -1,0 +1,38 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: Orchestration and visualization for the EnOcean IoT Starter Kit sensors.
+    filesPath: ./files
+    globals:
+      - cloudOnly: true
+        json: '"~exportplaceholderid-deviceRecipe-f60202-3~"'
+        key: F6-02-02-recipe
+      - cloudOnly: true
+        json: '"~exportplaceholderid-dashboard-f60202EdrpuWEoDoubleRockerPad-3~"'
+        key: F6-02-02-dashboard
+      - cloudOnly: true
+        json: '"~exportplaceholderid-deviceRecipe-a50403-0~"'
+        key: A5-04-03-recipe
+      - cloudOnly: true
+        json: '"~exportplaceholderid-dashboard-a50403EhtsuTemperatureAndHumiditySensor-0~"'
+        key: A5-04-03-dashboard
+      - cloudOnly: true
+        json: '"~exportplaceholderid-deviceRecipe-d50001-2~"'
+        key: D5-00-01-recipe
+      - cloudOnly: true
+        json: '"~exportplaceholderid-dashboard-d50001EmcsuMagnetContact-2~"'
+        key: D5-00-01-dashboard
+      - cloudOnly: false
+        json: '"~exportplaceholderid-deviceRecipe-d21441-1~"'
+        key: D2-14-41-recipe
+      - cloudOnly: true
+        json: '"~exportplaceholderid-dashboard-d21441EmsiuMultiSensor-1~"'
+        key: D2-14-41-dashboard
+    id: ~exportplaceholderid-application-applicationEnOceanIoTStarterKit-0~
+    name: EnOcean IoT Starter Kit
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

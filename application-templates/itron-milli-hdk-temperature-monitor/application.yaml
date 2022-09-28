@@ -1,0 +1,29 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: An out-of-the-box temperature monitoring solution based on the
+      Itron Milli Developer Kit (Milli HDK).
+    filesPath: ./files
+    globals:
+      - cloudOnly: true
+        description: This is the Client ID received from Itron.
+        json: '"YOUR_CLIENT_ID"'
+        key: clientId
+      - cloudOnly: true
+        description: This is the Client Secret received from Itron.
+        json: '"YOUR_CLIENT_SECRET"'
+        key: clientSecret
+      - cloudOnly: true
+        description: This populates the "solutionName" parameter in the Itron Data
+          Platform API. For most users this can be left as the default value of
+          "sandbox"
+        json: '"sandbox"'
+        key: solutionName
+    id: ~exportplaceholderid-application-applicationItronMilliHdkTemperatureMonitor-0~
+    name: Itron Milli HDK Temperature Monitor
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

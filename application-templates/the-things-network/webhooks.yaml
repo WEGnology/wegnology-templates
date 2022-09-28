@@ -1,0 +1,10 @@
+resourceType: Webhook
+resources:
+  - id: ~exportplaceholderid-webhook-theThingsNetwork-0~
+    name: The Things Network
+    responseCode: 200
+    token: ~exportplaceholderid-webhookToken-theThingsNetwork-0~
+    verificationCode: ''
+    verificationType: none
+    waitForReply: false
+version: 1

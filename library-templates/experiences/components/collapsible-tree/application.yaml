@@ -1,0 +1,14 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: Displays a collapsible list of nested items as checkboxes or links.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsCollapsibleTree-0~
+    name: Collapsible Tree
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

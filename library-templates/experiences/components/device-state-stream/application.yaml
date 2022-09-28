@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: Establishes a stream of real-time state reports for a device and
+      displays the state values.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsDeviceStateStream-0~
+    name: Device State Stream
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

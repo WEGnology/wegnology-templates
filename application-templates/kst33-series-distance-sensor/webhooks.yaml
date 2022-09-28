@@ -1,0 +1,10 @@
+resourceType: Webhook
+resources:
+  - id: ~exportplaceholderid-webhook-receiveData-0~
+    name: Receive Data
+    responseCode: 200
+    token: ~exportplaceholderid-webhookToken-receiveData-0~
+    verificationCode: ''
+    verificationType: none
+    waitForReply: false
+version: 1

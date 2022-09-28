@@ -1,0 +1,27 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This template is an example implementation of SMS-based two-factor
+      authentication using Twilio Verify.
+    filesPath: ./files
+    globals:
+      - cloudOnly: false
+        json: '"YOUR_SID"'
+        key: TWILIO_ACCOUNT_SID
+      - cloudOnly: false
+        json: '"YOUR_AUTH_TOKEN"'
+        key: TWILIO_AUTH_TOKEN
+      - cloudOnly: false
+        json: '"YOUR_VERIFICATION_SID"'
+        key: VERIFICATION_SID
+      - cloudOnly: false
+        json: '"YOUR_SECRET"'
+        key: TL_VERIFY_SECRET
+    id: ~exportplaceholderid-application-libraryExperiencesPagesTwilioVerify-0~
+    name: Twilio Verify
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

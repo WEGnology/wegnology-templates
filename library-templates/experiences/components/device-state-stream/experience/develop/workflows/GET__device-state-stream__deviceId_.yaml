@@ -1,0 +1,63 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - enabled: true
+    flowId: ~exportplaceholderid-flow-getDeviceStateStreamDeviceId-0~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-getDeviceStateStreamDeviceId-0~
+    name: 'GET /device-state-stream/{deviceId}'
+    nodes:
+      - config:
+          bodyTemplate: ''
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate:
+            - 'losant/{{data.params.deviceId}}/state'
+          pageIdTemplate: ''
+          replyIdPath: ''
+          replyType: mqtt
+          responseCodeTemplate: ''
+          sameSiteTemplate: ''
+        id: QEHDKdc70m
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType:
+            - device
+          name: endpoint-reply
+          x: 40
+          'y': 140
+        outputIds:
+          - - BF6UBvdNxV
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: BF6UBvdNxV
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 240
+        outputIds: []
+        type: DebugNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-experienceEndpoint-getDeviceStateStreamDeviceId-0~
+        meta:
+          category: trigger
+          description: ''
+          label: Endpoint
+          name: endpoint
+          uiId: MshfD0HKGv
+          x: 40
+          'y': 40
+        outputIds:
+          - - QEHDKdc70m
+        type: endpoint
+    version: develop
+version: 1

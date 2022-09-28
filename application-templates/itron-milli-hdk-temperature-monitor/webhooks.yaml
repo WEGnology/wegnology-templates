@@ -1,0 +1,10 @@
+resourceType: Webhook
+resources:
+  - id: ~exportplaceholderid-webhook-milliTemperature-0~
+    name: Milli Temperature
+    responseCode: 200
+    token: ~exportplaceholderid-webhookToken-milliTemperature-0~
+    verificationCode: ''
+    verificationType: none
+    waitForReply: false
+version: 1
