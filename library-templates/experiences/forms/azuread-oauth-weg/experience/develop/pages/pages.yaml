@@ -1,0 +1,19 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    id: ~exportplaceholderid-experienceView-tlLoginPage-1~
+    layoutId: ~exportplaceholderid-experienceView-tlBaseLayout-0~
+    localFilename: ./tl-login-page.hbs
+    name: tl-login-page
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-tlUserSummaryPage-2~
+    layoutId: ~exportplaceholderid-experienceView-tlBaseLayout-0~
+    localFilename: ./tl-user-summary-page.hbs
+    name: tl-user-summary-page
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

@@ -1,0 +1,144 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - enabled: true
+    flowId: ~exportplaceholderid-flow-getOauthSignin-0~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-getOauthSignin-0~
+    name: GET /oauth/signin
+    nodes:
+      - config: {}
+        id: qW8SvRnhLt
+        meta:
+          annotationText: >-
+            ##### Microsoft authorization endpoint 
+
+
+            https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+
+
+            Required params:
+
+            - **client_id**
+
+            - **response_type**
+
+            - **scope**
+
+            - **response_mode**
+
+            - **nonce**
+
+
+            For more details, check
+            https://docs.microsoft.com/pt-br/azure/active-directory/develop/v2-oauth2-auth-code-flow
+          category: annotation
+          height: 320
+          label: Note
+          name: note
+          width: 520
+          x: 400
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          rules:
+            - destination: working.authUrl
+              type: set
+              valueTemplate: >-
+                https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id={{working.clientId}}&scope={{encodeURIComponent
+                working.scope}}&response_type={{encodeURIComponent
+                working.responseType}}&response_mode={{working.responseMode}}&nonce=1q2w3e
+              valueTemplateType: string
+        id: wuASFvvDk0
+        meta:
+          category: logic
+          description: ''
+          label: Build URL
+          name: mutate
+          x: 160
+          'y': 220
+        outputIds:
+          - - BvgvwxquOM
+        type: MutateNode
+      - config:
+          bodyTemplate: '{{working.authUrl}}'
+          bodyTemplateType: string
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+          sameSiteTemplate: ''
+        id: BvgvwxquOM
+        meta:
+          category: output
+          description: ''
+          label: Redirect to auth endpoint
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 160
+          'y': 320
+        outputIds:
+          - - 7HBbOZ_bzJ
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: 7HBbOZ_bzJ
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 160
+          'y': 400
+        outputIds: []
+        type: DebugNode
+      - config:
+          rules:
+            - destination: working.clientId
+              type: set
+              valueTemplate: '{{globals.oauth.microsoft.clientId}}'
+              valueTemplateType: string
+            - destination: working.scope
+              type: set
+              valueTemplate: >-
+                openid offline_access https://graph.microsoft.com/mail.read
+                profile
+              valueTemplateType: string
+            - destination: working.responseType
+              type: set
+              valueTemplate: code id_token
+              valueTemplateType: string
+            - destination: working.responseMode
+              type: set
+              valueTemplate: form_post
+              valueTemplateType: string
+        id: WGPVY8tkxA
+        meta:
+          category: logic
+          description: ''
+          label: Setup
+          name: mutate
+          x: 160
+          'y': 140
+        outputIds:
+          - - wuASFvvDk0
+        type: MutateNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getOauthSignin-1~
+        meta:
+          category: trigger
+          description: ''
+          label: GET
+          name: endpoint
+          uiId: PgeTN3jfnh
+          x: 160
+          'y': 40
+        outputIds:
+          - - WGPVY8tkxA
+        type: endpoint
+    version: develop
+version: 1
