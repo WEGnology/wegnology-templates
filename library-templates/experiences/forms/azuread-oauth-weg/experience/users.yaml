@@ -6,11 +6,4 @@ resources:
     id: ~exportplaceholderid-experienceUser-albecheWegNet-0~
     lastName: Martinez Albeche
     userTags: {}
-  - email: test.user.lcxzw28gkz@example.com
-    experienceGroupIds:
-      - ~exportplaceholderid-experienceGroup-myExampleGroup-0~
-    firstName: Test
-    id: ~exportplaceholderid-experienceUser-testUserLcxzw28GkzExampleCom-1~
-    lastName: User
-    userTags: {}
 version: 1
