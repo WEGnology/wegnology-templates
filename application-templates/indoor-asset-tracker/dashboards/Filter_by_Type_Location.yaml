@@ -90,8 +90,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-filterByTypeLocation-1~
     name: Filter by Type Location
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

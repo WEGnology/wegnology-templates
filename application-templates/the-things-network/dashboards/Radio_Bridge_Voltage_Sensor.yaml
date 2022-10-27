@@ -263,8 +263,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-radioBridgeVoltageSensor-0~
     name: Radio Bridge Voltage Sensor
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

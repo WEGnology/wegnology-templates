@@ -163,9 +163,11 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-f60202EdrpuWEoDoubleRockerPad-3~
     name: F6-02-02 | EDRPU-W-EO Double Rocker Pad
     public: false
     refreshRate: 5
     reportConfigs: []
+    resolution: 60000
 version: 1

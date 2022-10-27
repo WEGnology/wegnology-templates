@@ -291,8 +291,10 @@ resources:
         validationEnabled: true
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-detailDashboard-0~
     name: Detail Dashboard
     public: false
     refreshRate: 30
+    resolution: 60000
 version: 1

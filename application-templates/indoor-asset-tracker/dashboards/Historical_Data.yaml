@@ -355,8 +355,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-historicalData-2~
     name: Historical Data
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

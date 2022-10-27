@@ -172,8 +172,10 @@ resources:
     contextConfiguration: []
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-availableRooms-0~
     name: Available Rooms
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

@@ -1,9 +1,0 @@
-resourceType: ExperienceUser
-resources:
-  - email: albeche@weg.net
-    experienceGroupIds: []
-    firstName: Felipe
-    id: ~exportplaceholderid-experienceUser-albecheWegNet-0~
-    lastName: Martinez Albeche
-    userTags: {}
-version: 1

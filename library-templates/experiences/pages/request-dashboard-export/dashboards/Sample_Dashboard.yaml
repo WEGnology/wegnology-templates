@@ -126,8 +126,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-sampleDashboard-0~
     name: Sample Dashboard
     public: true
     refreshRate: 60
+    resolution: 60000
 version: 1

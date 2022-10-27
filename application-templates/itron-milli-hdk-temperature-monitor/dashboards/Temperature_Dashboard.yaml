@@ -331,8 +331,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-temperatureDashboard-0~
     name: Temperature Dashboard
     public: false
     refreshRate: 30
+    resolution: 60000
 version: 1

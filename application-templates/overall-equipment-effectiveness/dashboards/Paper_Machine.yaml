@@ -1175,9 +1175,11 @@ resources:
         validationEnabled: true
     defaultTheme: light
     description: '### {{ctx.deviceId-0.name}} '
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-paperMachine-0~
     name: Paper Machine
     public: false
     refreshRate: 60
     reportConfigs: []
+    resolution: 60000
 version: 1

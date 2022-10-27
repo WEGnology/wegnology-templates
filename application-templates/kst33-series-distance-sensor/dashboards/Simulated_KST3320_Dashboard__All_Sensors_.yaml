@@ -677,9 +677,11 @@ resources:
       [**KS Technologies**](http://kstechnologies.com) | 
       11580 Black Forest Road, Suite #60 | 
       Colorado Springs, CO. 80908
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-simulatedKst3320DashboardAllSensors-1~
     name: Simulated KST3320 Dashboard (All Sensors)
     public: false
     refreshRate: 60
     reportConfigs: []
+    resolution: 60000
 version: 1

@@ -394,8 +394,10 @@ resources:
     contextConfiguration: []
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-esp32Gpio-0~
     name: ESP32 GPIO
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

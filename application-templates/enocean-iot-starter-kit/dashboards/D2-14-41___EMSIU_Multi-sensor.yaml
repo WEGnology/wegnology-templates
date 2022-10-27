@@ -424,9 +424,11 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-d21441EmsiuMultiSensor-1~
     name: D2-14-41 | EMSIU Multi-sensor
     public: false
     refreshRate: 5
     reportConfigs: []
+    resolution: 60000
 version: 1

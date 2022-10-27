@@ -191,8 +191,10 @@ resources:
     contextConfiguration: []
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-weatherStation-0~
     name: Weather Station
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

@@ -42,8 +42,10 @@ resources:
     contextConfiguration: []
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-dashboardDisplayingBlobSimulatorOutput-0~
     name: Dashboard Displaying Blob Simulator Output
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

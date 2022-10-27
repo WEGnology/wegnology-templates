@@ -99,8 +99,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-residentLocation-3~
     name: Resident Location
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

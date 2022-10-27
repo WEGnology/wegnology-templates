@@ -376,8 +376,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-generatorDetails-0~
     name: Generator Details
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

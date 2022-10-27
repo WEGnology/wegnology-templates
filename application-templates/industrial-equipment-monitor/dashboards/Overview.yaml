@@ -338,8 +338,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-overview-1~
     name: Overview
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

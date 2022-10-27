@@ -115,8 +115,10 @@ resources:
         validationEnabled: false
     defaultTheme: light
     description: ''
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-overviewDashboard-1~
     name: Overview Dashboard
     public: false
     refreshRate: 60
+    resolution: 60000
 version: 1

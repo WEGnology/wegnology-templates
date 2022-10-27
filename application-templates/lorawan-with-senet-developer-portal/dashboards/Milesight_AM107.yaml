@@ -460,9 +460,11 @@ resources:
     description: >-
       Dashboard includes  Device Details, Office Occupancy Overlay,  and Device
       List & Summary.
+    duration: 3600000
     id: ~exportplaceholderid-dashboard-milesightAm107-0~
     name: Milesight AM107
     public: false
     refreshRate: 60
     reportConfigs: []
+    resolution: 60000
 version: 1
