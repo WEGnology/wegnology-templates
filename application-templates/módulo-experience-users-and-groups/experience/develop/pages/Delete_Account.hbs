@@ -1,0 +1,112 @@
+{{component "css-table-results"}}
+<div id="divResult">
+    <table class="rwd-table" id="users"></table>
+</div>
+<style>
+    #divResult {
+        height: 80vh;
+        margin-bottom: 2%;
+        width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+</style>
+<div id="noAccess" style="display: none;">
+    Você não possui acesso a essa página.
+</div>
+{{component 'js-import'}}
+{{component 'js-notify'}}
+{{component 'js-permission'}}
+<script>
+    if(!isAdm){
+        $('#divResult').css('display','none');
+    }
+    $(document).ready(function () {
+        //Criação da tabela
+        $('#users').bootstrapTable({
+            ajax: 'ajaxRequest',
+            columns: [{
+                field: 'firstName',
+                formatter: concatName,
+                sortable: 'true',
+                title: "Nome"
+            },
+            {
+                field: 'email',
+                sortable: 'true',
+                title: 'Email'
+            },
+            {
+                field: 'actions',
+                formatter: actionFormatter,
+                title: "Excluir"
+            }
+            ]
+        });
+    });
+
+    // retorna todos os usuários
+    function ajaxRequest(params) {
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/user',
+            success: function (data) {
+                data = JSON.parse(data);
+                if (data.count > 0) {
+                    params.success({
+                        "rows": data.items,
+                        "total": data.count
+                    },
+                        null,
+                        {});
+                } else {
+                    console.log('não foi');
+                    params.error();
+                }
+            }
+        });
+    }
+
+    // concatena o nome completo do usuário
+    function concatName(value, row) {
+        var fullName;
+        if (row.lastName == null || row.lastName == undefined) {
+            fullName = row.firstName;
+        } else {
+            fullName = row.firstName + " " + row.lastName;
+        }
+        return fullName;
+    }
+
+    // adiciona o botão excluir em todas as linhas
+    function actionFormatter(value, row) {
+        var email = row.email;
+        var group = row.experienceGroups[0].name;
+        var action = $(`<button type="button" class="btn btn-danger" onclick="deleteUser('` + email + `','` + group + `')" style="text-align: center;"><i class="far fa-trash-alt" style="color: white;"></i></button>`);
+        return action[0].outerHTML;
+    }
+
+    // ação do botão excluir
+    function deleteUser(email, group) {
+        if (group == "adm") {
+            executeNotify({ message: "Esse usuário não pode ser deletado", type: 'warning' });
+            return;
+        }
+        var data = {};
+        data.email = email;
+        $.ajax({
+            type: "DELETE",
+            url: '/api/v1/user',
+            data: data,
+            error: (e) => {
+                executeNotify({ message: "Não foi possível deletar o usuário ERRO: " + e.status, type: 'danger' });
+            },
+            success: () => {
+                executeNotify({ message: "Usuário deletado", type: 'success' });
+                setTimeout(function () { window.location.href = '/delete-account'; }, 2000);
+            }
+        });
+    }
+
+</script>
+{{component 'noAccess'}}

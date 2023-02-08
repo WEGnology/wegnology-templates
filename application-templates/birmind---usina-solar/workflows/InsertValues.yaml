@@ -1,0 +1,689 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-insertValues-2~
+    name: InsertValues
+    nodes:
+      - config:
+          message: ''
+          property: ''
+        id: xL2uNLm2GT
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 380
+          'y': 760
+        outputIds: []
+        type: DebugNode
+      - config:
+          currentItemPath: values
+          loopSourcePath: dado
+          mapResultPath: ''
+          parallel: false
+        id: e3eVVHA7us
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 200
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 380
+          'y': 680
+        outputIds:
+          - - xL2uNLm2GT
+          - - G8Tq_h5Wos
+        type: LoopNode
+      - config:
+          loopNodeId: e3eVVHA7us
+          mapValuePath: ''
+          shouldBreak: false
+        id: 2axtrbPpZO
+        meta:
+          category: loop
+          description: ''
+          groupId: e3eVVHA7us
+          label: Next
+          name: loop-next
+          x: 200
+          'y': 840
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          dataTableIdTemplate: 63e24533300a5d68a7e768c7
+          includeFieldsTemplate: ''
+          limitTemplate: ''
+          offsetTemplate: '{{aux}}'
+          queryTemplate: '{"$or":[]}'
+          resultPath: query
+          sortColumnTemplate: ''
+          sortDirectionTemplate: ''
+        id: G8Tq_h5Wos
+        meta:
+          category: data
+          description: ''
+          groupId: e3eVVHA7us
+          label: 'Table: Get Rows'
+          name: get-table-rows
+          x: 200
+          'y': 320
+        outputIds:
+          - - TFMO1wmaLw
+        type: DataTableQueryNode
+      - config:
+          action: sendState
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - name: deviceState
+              type: path
+              value: array
+          resource: device
+          responsePath: result1
+        id: aPhAu3DIp9
+        meta:
+          category: data
+          description: ''
+          groupId: e3eVVHA7us
+          label: WEGnology API
+          name: losantapi
+          x: 200
+          'y': 680
+        outputIds:
+          - - 2axtrbPpZO
+        type: LosantApiNode
+      - config: {}
+        id: SRWMRdSU1f
+        meta:
+          annotationText: Este workflow insere os dados no device desta aplicação.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 380
+          'y': 840
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          action: removeData
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - name: start
+              type: string
+              value: '1'
+            - name: end
+              type: string
+              value: '0'
+          resource: device
+          responsePath: resultdelete
+        id: d10oENSEFn
+        meta:
+          category: data
+          description: ''
+          label: WEGnology API
+          name: losantapi
+          x: 380
+          'y': 200
+        outputIds:
+          - - uNTmHrNIn7
+        type: LosantApiNode
+      - config: {}
+        id: XVLhFDCCKP
+        meta:
+          annotationText: Workflow para atualizar os dados inseridos nos devices.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 160
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          message: ''
+          property: ''
+        id: uNTmHrNIn7
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 380
+          'y': 320
+        outputIds:
+          - - SOyAg0eM9l
+        type: DebugNode
+      - config: {}
+        id: WmQ8mMl0xd
+        meta:
+          annotationText: >-
+            A lógica dentro do bloco loop, é a parte de envio dos dados para o
+            device.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 100
+          'y': 340
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 7qvI2FPC03
+        meta:
+          annotationText: >-
+            Deve ser selecionado no bloco de Storage: Set, e atribuido para a
+            variável value, o número de linhas da tabela que vai ser analisada.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 200
+          x: 700
+          'y': 320
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: '-ZOFtvcDKA'
+        meta:
+          annotationText: >-
+            Neste workflow, no bloco Table: Get deve ser selecionada a tabela a
+            qual serão coletados os dados para enviar estes dados para o device
+            selecionado através do Id atribuído no bloco. 
+          category: annotation
+          groupId: e3eVVHA7us
+          height: 260
+          label: Note
+          name: note
+          width: 200
+          x: 460
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          script: |-
+            payload.array = payload.query.items.map((item, index) => {
+                if(payload.kpis[index].data.kpi != -1){
+                return {
+                    "data":{
+                        "DC_Power":item.DC_POWER,
+                        "AC_Power":item.AC_POWER*10,
+                        "Irradiation":item.IRRADIATION,
+                        "TemperatureAmb":item.AMBIENT_TEMPERATURE,
+                        "TemperatureMod":item.MODULE_TEMPERATURE,
+                        "Daily_Yield":item.DAILY_YIELD,
+                        "Total_Yield":item.TOTAL_YIELD,
+                        "kpiInversor":payload.kpis[index].data.kpi2,
+                        "PerformanceRatio":payload.kpis[index].data.kpi
+                    },
+                    "time":item.DATE_TIME
+                }
+                }
+                else{
+                return {
+                    "data":{
+                        "DC_Power":item.DC_POWER,
+                        "AC_Power":item.AC_POWER*10,
+                        "Irradiation":item.IRRADIATION,
+                        "TemperatureAmb":item.AMBIENT_TEMPERATURE,
+                        "TemperatureMod":item.MODULE_TEMPERATURE,
+                        "Daily_Yield":item.DAILY_YIELD,
+                        "Total_Yield":item.TOTAL_YIELD
+                    },
+                    "time":item.DATE_TIME
+                }
+                }
+            })
+
+            var len = payload.array.length
+            payload.aux = payload.aux + len
+            // var auxiliar = payload.array
+            // payload.datas.push(...auxiliar)
+        id: aopUG5e6_a
+        meta:
+          category: logic
+          description: ''
+          groupId: e3eVVHA7us
+          label: Function
+          name: function
+          x: 200
+          'y': 580
+        outputIds:
+          - - aPhAu3DIp9
+        type: RawFunctionNode
+      - config:
+          keyName: value
+          resultPath: value
+          value: '3154'
+          valueType: number
+        id: SOyAg0eM9l
+        meta:
+          category: data
+          description: ''
+          label: Linhas Tabela
+          name: store-value
+          x: 380
+          'y': 420
+        outputIds:
+          - - DRRDS4si_V
+        type: StoreValueNode
+      - config:
+          script: |
+            var aux = 0
+            payload.aux = aux
+            var array = []
+
+            var dado = payload.value
+            dado = dado/1000
+            dado = Math.ceil(dado)
+            payload.dado = dado
+        id: DRRDS4si_V
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 380
+          'y': 500
+        outputIds:
+          - - Eq53oDRA0n
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: Eq53oDRA0n
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 380
+          'y': 580
+        outputIds:
+          - - e3eVVHA7us
+        type: DebugNode
+      - config:
+          script: |
+            payload.kpis = payload.query.items.map((item, index) => {
+                if (item.IRRADIATION == 0){
+                    item.IRRADIATION = 0.00001
+                }
+                if (item.DC_POWER == 0){
+                    item.DC_POWER = 0.001
+                }
+                if (item.IRRADIATION> 0.5){
+                return {
+                    "data":{
+                        "kpi":item.DC_POWER / 13500,
+                        "kpi2": (item.AC_POWER*10) / item.DC_POWER,
+                    }
+                }
+                }
+                else{
+                    return {
+                    "data":{
+                        "kpi":-1,
+                        "kpi2": -1,
+                    }
+                }
+                }
+                
+            })
+        id: TFMO1wmaLw
+        meta:
+          category: logic
+          description: ''
+          groupId: e3eVVHA7us
+          label: Function
+          name: function
+          x: 200
+          'y': 480
+        outputIds:
+          - - aopUG5e6_a
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: s4p8BD67jF
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1320
+          'y': 760
+        outputIds: []
+        type: DebugNode
+      - config:
+          currentItemPath: values
+          loopSourcePath: dado
+          mapResultPath: ''
+          parallel: false
+        id: yhkMMLCab4
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 1120
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 1320
+          'y': 680
+        outputIds:
+          - - s4p8BD67jF
+          - - boSqIk0XJm
+        type: LoopNode
+      - config:
+          loopNodeId: yhkMMLCab4
+          mapValuePath: ''
+          shouldBreak: false
+        id: GcII0NofOx
+        meta:
+          category: loop
+          description: ''
+          groupId: yhkMMLCab4
+          label: Next
+          name: loop-next
+          x: 1120
+          'y': 820
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          dataTableIdTemplate: 6116a3c582e7720006e8edae
+          includeFieldsTemplate: ''
+          limitTemplate: ''
+          offsetTemplate: '{{aux}}'
+          queryTemplate: '{"$or":[]}'
+          resultPath: query
+          sortColumnTemplate: ''
+          sortDirectionTemplate: ''
+        id: boSqIk0XJm
+        meta:
+          category: data
+          description: ''
+          groupId: yhkMMLCab4
+          label: 'Table: Get Rows'
+          name: get-table-rows
+          x: 1120
+          'y': 300
+        outputIds:
+          - - XKSPRDv3VD
+        type: DataTableQueryNode
+      - config:
+          action: sendState
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - name: deviceState
+              type: path
+              value: array
+          resource: device
+          responsePath: result1
+        id: 8LsmAGZ203
+        meta:
+          category: data
+          description: ''
+          groupId: yhkMMLCab4
+          label: WEGnology API
+          name: losantapi
+          x: 1120
+          'y': 660
+        outputIds:
+          - - GcII0NofOx
+        type: LosantApiNode
+      - config:
+          action: removeData
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - name: start
+              type: string
+              value: '1'
+            - name: end
+              type: string
+              value: '0'
+          resource: device
+          responsePath: resultdelete
+        id: P1pCFb8bAF
+        meta:
+          category: data
+          description: ''
+          label: WEGnology API
+          name: losantapi
+          x: 1320
+          'y': 200
+        outputIds:
+          - - 4RCtlG0psQ
+        type: LosantApiNode
+      - config:
+          message: ''
+          property: ''
+        id: 4RCtlG0psQ
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1320
+          'y': 320
+        outputIds:
+          - - egrbElfPY5
+        type: DebugNode
+      - config: {}
+        id: r6anvKbZ5O
+        meta:
+          annotationText: >-
+            Neste workflow, no bloco Table: Get deve ser selecionada a tabela a
+            qual serão coletados os dados para enviar estes dados para o device
+            selecionado através do Id atribuído no bloco. 
+          category: annotation
+          groupId: yhkMMLCab4
+          height: 260
+          label: Note
+          name: note
+          width: 200
+          x: 1380
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          script: |-
+            payload.array = payload.query.items.map((item, index) => {
+                if(payload.kpis[index].data.kpi != -1){
+                return {
+                    "data":{
+                        "DC_Power":item.DC_POWER,
+                        "AC_Power":item.AC_POWER*10,
+                        "Irradiation":item.IRRADIATION,
+                        "TemperatureAmb":item.AMBIENT_TEMPERATURE,
+                        "TemperatureMod":item.MODULE_TEMPERATURE,
+                        "Daily_Yield":item.DAILY_YIELD,
+                        "Total_Yield":item.TOTAL_YIELD,
+                        "kpiInversor":payload.kpis[index].data.kpi2,
+                        "PerformanceRatio":payload.kpis[index].data.kpi
+                    },
+                    "time":item.DATE_TIME
+                }
+                }
+                else{
+                return {
+                    "data":{
+                        "DC_Power":item.DC_POWER,
+                        "AC_Power":item.AC_POWER*10,
+                        "Irradiation":item.IRRADIATION,
+                        "TemperatureAmb":item.AMBIENT_TEMPERATURE,
+                        "TemperatureMod":item.MODULE_TEMPERATURE,
+                        "Daily_Yield":item.DAILY_YIELD,
+                        "Total_Yield":item.TOTAL_YIELD
+                    },
+                    "time":item.DATE_TIME
+                }
+                }
+            })
+
+            var len = payload.array.length
+            payload.aux = payload.aux + len
+            // var auxiliar = payload.array
+            // payload.datas.push(...auxiliar)
+        id: LuAbrdofjK
+        meta:
+          category: logic
+          description: ''
+          groupId: yhkMMLCab4
+          label: Function
+          name: function
+          x: 1120
+          'y': 560
+        outputIds:
+          - - Lm0WPntMKD
+        type: RawFunctionNode
+      - config:
+          keyName: value
+          resultPath: value
+          value: '3154'
+          valueType: number
+        id: egrbElfPY5
+        meta:
+          category: data
+          description: ''
+          label: Linhas Tabela
+          name: store-value
+          x: 1320
+          'y': 420
+        outputIds:
+          - - UkLHiqvNzk
+        type: StoreValueNode
+      - config:
+          script: |
+            var aux = 0
+            payload.aux = aux
+            var array = []
+
+            var dado = payload.value
+            dado = dado/1000
+            dado = Math.ceil(dado)
+            payload.dado = dado
+        id: UkLHiqvNzk
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 1320
+          'y': 500
+        outputIds:
+          - - 3bwYci_lQk
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: 3bwYci_lQk
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1320
+          'y': 580
+        outputIds:
+          - - yhkMMLCab4
+        type: DebugNode
+      - config:
+          script: |
+            payload.kpis = payload.query.items.map((item, index) => {
+                if (item.IRRADIATION == 0){
+                    item.IRRADIATION = 0.00001
+                }
+                if (item.DC_POWER == 0){
+                    item.DC_POWER = 0.001
+                }
+                if (item.IRRADIATION> 0.5){
+                return {
+                    "data":{
+                        "kpi":item.DC_POWER / 13500,
+                        "kpi2": (item.AC_POWER*10) / item.DC_POWER,
+                    }
+                }
+                }
+                else{
+                    return {
+                    "data":{
+                        "kpi":-1,
+                        "kpi2": -1,
+                    }
+                }
+                }
+                
+            })
+        id: XKSPRDv3VD
+        meta:
+          category: logic
+          description: ''
+          groupId: yhkMMLCab4
+          label: Function
+          name: function
+          x: 1100
+          'y': 440
+        outputIds:
+          - - LuAbrdofjK
+        type: RawFunctionNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: array
+          deviceId: ~exportplaceholderid-device-solarPowerGenerator-0~
+          deviceIdTemplateType: stringTemplate
+          resultPath: result1
+          timeSourceType: payloadTime
+        id: Lm0WPntMKD
+        meta:
+          category: output
+          description: ''
+          groupId: yhkMMLCab4
+          label: 'Device: State'
+          name: device-state
+          x: 1360
+          'y': 660
+        outputIds:
+          - - GcII0NofOx
+        type: DeviceChangeStateNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-insertValues-2~-wxdSQQppjT
+        meta:
+          category: trigger
+          description: ''
+          label: Atualiza Dados
+          name: virtualButton
+          payload: ''
+          uiId: QevlWg1549
+          x: 380
+          'y': 60
+        outputIds:
+          - - d10oENSEFn
+        type: virtualButton
+      - config: {}
+        key: ~exportplaceholderid-flow-insertValues-2~-I7_5DlfBTy
+        meta:
+          category: trigger
+          description: ''
+          label: Atualiza Dados
+          name: virtualButton
+          payload: ''
+          uiId: rIUpqiVxuq
+          x: 1320
+          'y': 60
+        outputIds:
+          - - P1pCFb8bAF
+        type: virtualButton
+version: 1

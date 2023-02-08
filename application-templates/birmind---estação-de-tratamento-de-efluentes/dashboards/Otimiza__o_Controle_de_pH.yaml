@@ -1,0 +1,1828 @@
+resourceType: Dashboard
+resources:
+  - blocks:
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: image
+        config:
+          bgColor: 'rgba(255, 255, 255, 0)'
+          imageSource: static
+          imageUrl: 'https://files.wnology.io/605a91b603e08900061506db/logo_birmind.png'
+        height: 0.5
+        id: envYZbROO5
+        startX: 0
+        startY: 0
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <div class="card" style="text-align: center">
+                      <div class="card-header" ><strong>
+                        Estação de Tratamento Primários de Efluentes
+                        </strong></div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <style>
+                body {
+                  padding: 10px;
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                function renderBlock(input) {
+                  document.getElementById('blockInput').innerHTML =
+                    JSON.stringify(input, undefined, 2);
+                }
+
+                /*
+                  Add listeners to your required events. These listeners invoke
+                  the functions above so that your code can handle the event
+                  as needed.
+                */
+                DashboardBlock.on('change', renderBlock);
+
+                /*
+                  Render the initial state when the block loads.
+                */
+                $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+              </script>
+          segments: []
+        height: 0.5
+        id: wfJJbeETe_
+        startX: 1
+        startY: 0
+        width: 2.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: input
+        config:
+          controls:
+            - action: workflow
+              buttonId: CDf_dxHv2A
+              color: '#8db319'
+              grid:
+                h: 1
+                w: 4
+                x: 0
+                'y': 0
+              id: button-0
+              label: Atualizar Dados
+              templateId: button-0
+              type: button
+              workflowId: ~exportplaceholderid-flow-insertValue-1~
+          defaultMode: unlocked
+        height: 0.5
+        id: A36pLobgWq
+        startX: 3.5
+        startY: 0
+        width: 0.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |2-
+                    <div class="card text-center">
+                <div class="card-header" style="background-color:steelblue"><strong style="color:#fff">Status Geral: ETE01</strong></div>
+                <div class="card-body" style="padding:10px; margin-top:10px">
+                  <figure>
+                      <img id="forno" src="https://www.saaesorocaba.com.br/wp-content/uploads/2018/03/etes1-6.jpeg" alt="Forno industrial" >
+                  </figure>
+                  
+                  <!-- <a href="#" class="btn btn-primary">Verificar</a> -->
+                </div>
+                <div class="card-footer" style="color:black">Atualizado há 2 horas</div>
+              </div>
+
+              <script>
+                var alt = DashboardBlock.input.size.height - 148
+                var alt2 = DashboardBlock.input.size.width - 28
+                $("#forno").css("height", alt);
+                $("#forno").css("width", alt2);
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <style>
+                body {
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                
+              </script>
+          segments: []
+        height: 2
+        id: MBP-hFtIP3
+        startX: 0
+        startY: 0.5
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |2-
+                <div class="card text-center">
+                  <div class="card-header" style="background-color:steelblue;width: 100%;height:100%;padding-left:0;padding-right:0">
+                    <strong style="color:#FFF">Saúde Malha PID - Controle de pH</strong>
+
+                  </div>
+                  <div class="card-body">
+                    <div id="line-chart">
+                    </div>
+
+                    <script>
+
+                    </script>
+
+                  </div>
+                </div>
+
+              <script>
+                  var drawChar = function(){
+
+                  const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultsintonia";
+                  Http.open("GET", url);
+                  Http.send();
+
+                  Http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      console.log(obj)
+                      var dados = obj.auto_tuning_result[0].pid_tuning_result.scores.score_technical
+                      console.log(dados)
+                      var value = Object.values(dados)
+                      var nomes = Object.keys(dados)
+                      nota = {
+                        type: 'scatterpolar',
+                        hoverinfo:"r+name",
+                        name:"Ideal",
+                        r: value,
+                        theta: nomes,
+                        fill: 'toself'
+                      }
+
+                      nota2 = {
+                        hoverinfo:"r+name",
+                        type: 'scatterpolar',
+                        name:"Atual",
+                        r: ['70','72','80','73','82','76','65','69','77'],
+                        theta: nomes,
+                        fill: 'toself'
+                      }
+
+                      layoutnota = {
+                        polar: {
+                            radialaxis: {
+                                visible: true,
+                                range: [0, 100]
+                            }, angularaxis: {
+                                tickfont: {
+                                color: "#000"
+                                },
+                            }
+                        },
+                        autosize: false,
+                        height: DashboardBlock.input.size.height-91,
+                        width: DashboardBlock.input.size.width-80,
+                        margin: {
+                            l: 50,
+                            r: 30,
+                            b: 25,
+                            t: 20,
+                        },
+                        paper_bgcolor: '#27272700',
+                        plot_bgcolor: '#c7c7c700',
+                        showlegend: true,
+                        }
+                        Plotly.newPlot('line-chart', [nota, nota2], layoutnota, {displayModeBar: false});
+                      }
+                  }
+                };
+                  DashboardBlock.on('change', drawChar);
+                  drawChar()
+
+                 
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.d
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+                body {
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                          /*
+                            Add listeners to your required events. These listeners invoke
+                            the functions above so that your code can handle the event
+                            as needed.
+                          */
+                DashboardBlock.on('change', renderBlock);
+                /*
+                  Render the initial state when the block loads.
+                */
+                  $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+
+
+              </script>
+          segments: []
+        description: >-
+          O gráfico em azul representa a operação ideal e o gráfico em laranja
+          representa a operação real.
+        height: 2
+        id: xEVCSMengi
+        startX: 2.5
+        startY: 0.5
+        title: ''
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |2-
+                <div class="card text-center">
+                  <div class="card-header" style="background-color:steelblue;width: 100%;height:100%">
+                    <strong style="color:#FFF">PID - Controle de pH</strong>
+                  </div>
+                  <div class="card-body" >
+                    <div id="line-chart" style="width:100%">
+                    </div>
+                
+                    <!-- <a href="#" class="btn btn-primary">Verificar</a> -->
+                  </div>
+                  <div class="card-footer" style="color:black">Atualizado há 5 minutos</div>
+              </div>
+
+              <script>
+              var drawChar = function(){
+                if(!DashboardBlock.input.queries.query) return
+                
+                      var teste = DashboardBlock.input.queries.query
+                      var realvalue = teste.map(el => el.value)
+                      var realtime = teste.map(el => el.time)
+                      var teste2 = DashboardBlock.input.queries.query2
+                      var realvalue2 = teste2.map(el => el.value)
+                      var realtime2 = teste2.map(el => el.time)
+                       var teste3 = DashboardBlock.input.queries.query3
+                      var realvalue3 = teste3.map(el => el.value)
+                      var realtime3 = teste3.map(el => el.time)
+
+                      datareal = {
+                      y: realvalue,
+                      x: realtime,
+                      fill: "tozeroy",
+                      type: 'scatter',
+                      name:'PV',
+                      mode: 'lines'
+                    };
+
+                    datapred = {
+                      y: realvalue2,
+                      x: realtime2,
+                      yaxis:'y2',
+                      type: 'scatter',
+                      fill: "tozeroy",
+                      mode: 'lines',
+                      name:'MV',
+                      line: {
+                        dash:'dashdot',
+                        shape: 'linear'
+                      }
+                    };
+
+                    data2 = {
+                      y: realvalue3,
+                      x: realtime3,
+                      type: 'scatter',
+                      fill: "tozeroy",
+                      mode: 'lines',
+                      name:'SP',
+                      line: {
+                        dash:'dashdot',
+                        shape: 'linear'
+                      }
+                    };
+
+                    layout2 = {
+                          showlegend: true,
+                          legend:{
+                            x:1.3,
+                            xanchor:'right',
+                            y:1
+                          },
+                          xaxis: {
+                            tickangle: -45,
+                            tickformat:'%H:%M',
+                            type: 'date',
+                            showgrid: true,
+                            zeroline: true,
+                            showline: false,
+                            mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#0000',
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                        },
+                        yaxis: {
+                            title: {
+                              text: 'pH',
+                              font: {
+                                family: 'sans-serif',
+                                size: 14,
+                                color: '#AAA'
+                              }
+                            },
+                            showgrid: true,
+                            zeroline: true,
+                            showline: false,
+                            mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#0003',
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                            linewidth: 1
+                        },
+                        yaxis2:{
+                            title: {
+                              text: 'Fluxo MV',
+                              font: {
+                                family: 'sans-serif',
+                                size: 13,
+                                color: '#AAA'
+                              }
+                            },
+                            overlaying:'y',
+                            side:'right',
+                            showgrid: true,
+                            zeroline: true,
+                            showline: false,
+                            mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#0003',
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                            linewidth: 1
+                            },
+                        autosize: false,
+                        width: DashboardBlock.input.size.width - 50,
+                        height:DashboardBlock.input.size.height - 142,
+                        margin: {
+                            l: 40,
+                            r: 20,
+                            b: 40,
+                            t: 20,
+                            pad: 0
+                        },
+                      };
+                          Plotly.newPlot('line-chart', [datareal,datapred,data2], layout2, {displayModeBar: false});
+                      }
+              //       }
+              // }
+              DashboardBlock.on('change', drawChar);
+
+              drawChar()
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+
+                body {
+                  background: transparent;
+                }
+              </style>
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: PV
+              deviceIds:
+                - ~exportplaceholderid-device-deviceEte-0~
+              deviceTags: []
+              duration: 259200000
+              id: query
+              queryType: time-series
+              resolution: 300000
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: MV
+              deviceIds:
+                - ~exportplaceholderid-device-deviceEte-0~
+              deviceTags: []
+              duration: 259200000
+              id: query2
+              queryType: time-series
+              resolution: 300000
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: SP
+              deviceIds:
+                - ~exportplaceholderid-device-deviceEte-0~
+              deviceTags: []
+              duration: 259200000
+              id: query3
+              queryType: time-series
+              resolution: 300000
+        height: 2
+        id: yWVp9vqHkg
+        startX: 1
+        startY: 0.5
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |2-
+                <div class="card text-center">
+                  <div class="card-header" style="background-color:steelblue;width: 100%;height:100%;padding-left:0;padding-right:0">
+                    <strong style="color:#FFF">Precisão do Modelo de Sintonia</strong>
+
+                  </div>
+                  <div class="card-body" style="padding:20px">
+                    <div id="line-chart">
+                    </div>
+
+                    <script>
+
+                    </script>
+
+                  </div>
+              </div>
+
+              <script>
+                  var drawChar = function(){
+                  const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultsintonia";
+                  Http.open("GET", url);
+                  Http.send();
+
+                  Http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      var value = obj.identifier_result.validation_score*100
+                      value = value.toFixed(2)
+                      var data = [{
+                        values: [value,100-value],
+                        labels: ['mean','rest'],
+                        hole: .8,
+                        marker: {
+                          colors: ["#357312", '#3939394d']
+                        },
+                        type: 'pie',
+                        hoverinfo: 'none',
+                        textinfo: 'none'
+                        }];
+                      if (value < 30){
+                      data[0].marker.colors[0] = "#cb1414"
+                      }else if(value< 65){
+                        data[0].marker.colors[0] = "#ffff00"
+                      }
+                      var layout = {
+                        height: DashboardBlock.input.size.height - 93,
+                        width: DashboardBlock.input.size.width - 39,
+                        paper_bgcolor: '#27272700',
+                        plot_bgcolor: '#30303000',
+                        showlegend: false,
+                        margin: {"t": 0, "b": 0, "l": 0, "r": 0},
+                        annotations: [
+                          {
+                          font: {
+                            size: 20,
+                            color:"#000"
+                          },
+                          showarrow: false,
+                          text: value + '%',
+                          x: 0.5,
+                          y: 0.5
+                          }]
+                      };
+                      Plotly.newPlot('line-chart', data, layout, {displayModeBar: false});
+                    }
+                  }
+                };
+                DashboardBlock.on('change', drawChar);
+                  drawChar()
+                
+                 
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.d
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+
+                body {
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                /*
+                  Add listeners to your required events. These listeners invoke
+                  the functions above so that your code can handle the event
+                  as needed.
+                */
+                DashboardBlock.on('change', renderBlock);
+                /*
+                  Render the initial state when the block loads.
+                */
+                  $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+
+              </script>
+          segments: []
+        height: 1.5
+        id: NWZJHWFx0a
+        startX: 0
+        startY: 2.5
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:steelblue;width: 100%;height:100%;padding-left:0;padding-right:0">
+                  <strong style="color:#FFF">Comparação de Consumo (R$/Mês)</strong>
+
+                </div>
+                <div class="card-body">
+                  <div id="line-chart">
+                  </div>
+
+                  <script>
+
+                  </script>
+
+                </div>
+              </div>
+
+              <script>
+                var drawChar = function(){
+
+                const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultsintonia";
+                  Http.open("GET", url);
+                  Http.send();
+
+                  Http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      console.log(obj)
+                      var consumo =29.0 - obj.auto_tuning_result[0].pid_tuning_result.scores.score_feasibility.flux_mv_loop_analysis
+                      consumo=consumo*1.7*160*24*30/1000
+                      var constante=29.0*1.7*160*24*30/1000
+                      constante=constante.toFixed(2)
+                      consumo=consumo.toFixed(2)
+                      var data = [{
+                      type: 'bar',
+                      x: [consumo, constante],
+                      y: ['Previsto', 'Atual'],
+                      text: [`R$ ${consumo}`, `R$ ${constante}`],
+                      orientation: 'h',
+                      textposition: 'auto',
+                      hoverinfo: 'none'
+                      }];
+
+
+                layoutnota = {
+                  xaxis:{
+                    tickformatstops: [{
+                  "dtickrange": [null, 10000],
+                  "value": "$"
+                  }]
+                  },
+                  autosize: false,
+                  height: DashboardBlock.input.size.height-93,
+                  width: DashboardBlock.input.size.width-80,
+                  margin: {
+                    l: 50,
+                    r: 30,
+                    b: 25,
+                    t: 20
+                  },
+                  paper_bgcolor: '#27272700',
+                  plot_bgcolor: '#c7c7c700',
+                  showlegend: false,      
+                  }
+                  Plotly.newPlot('line-chart', data, layoutnota, {displayModeBar: false});
+                  }
+                }
+              };
+                DashboardBlock.on('change', drawChar);
+                  drawChar()
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.d
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+                body {
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+
+              </script>
+          segments: []
+        height: 1.5
+        id: h9jEtWNJJm
+        startX: 2.5
+        startY: 2.5
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: >2
+                <div class="card text-center" style="padding-bottom:5px">
+                  <div class="card-header" style="background-color:steelblue;width: 100%;height:100%;padding-left:0;padding-right:0">
+                    <strong style="color:#FFF">Sintonias da Malha de PID - Controle de pH</strong>
+
+                  </div>
+              <div class="container-fluid">
+                <p style="margin-bottom:2px;margin-top:2px;font-size:0.8em">
+                <strong > Sintonia Anterior</strong></p>
+                <table id="table" class="table  table-sm" style="font-size:0.7em">
+                  <thead>
+                    <tr style="text-align:center">
+                      <th scope="col">Kp</th>
+                      <th scope="col">Ki</th>
+                      <th scope="col">Kd</th>
+                      <th scope="col">Consumo Atual</th>
+                      <th scope="col">Precisão</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-body">
+                    <tr style="text-align:center">
+                      <td scope="col">10</td>
+                      <td scope="col">1</td>
+                      <td scope="col">5</td>
+                      <td scope="col">29,0 Lh/dia</td>
+                      <td scope="col">--</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <p style="margin-bottom:2px;margin-top:10px;font-size:0.8em"><strong> Sintonia Encontrada</strong></p>
+                <table id="table" class="table table-sm" style="margin-bottom:5px;font-size:0.7em" >
+                  <thead>
+                    <tr style="text-align:center">
+                      <th scope="col">Kp</th>
+                      <th scope="col">Ki</th>
+                      <th scope="col">Kd</th>
+                      <th scope="col">Novo Consumo</th>
+                      <th scope="col">Precisão</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-body">
+                    <tr style="text-align:center">
+                      <td id="kp" scope="col">0</td>
+                      <td id="ki" scope="col">0</td>
+                      <td id="kd" scope="col">0</td>
+                      <td id="consumo" scope="col">0</td>
+                      <td id="score" scope="col">--</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                    <a><button id="recal" class="btn btn-primary" style="width:30%;color:white" >Recalcular</button></a>
+                    <a href="" target="_top" class="btn btn-success" style="width:30%" >Aplicar</a>
+              </div>
+
+              </div>
+
+              <div id="snackbar">Aguarde 15 minutos e depois clique no botão
+              aplicar.</div>
+
+              <script>
+                function periodicFunction() {
+                  const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultsintonia";
+                  Http.open("GET", url);
+                  Http.send();
+
+                  Http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                        console.log(obj)
+                        var score = obj.identifier_result.validation_score*100
+                        score = score.toFixed(2)
+                        var consumo =28.9 - obj.auto_tuning_result[0].pid_tuning_result.scores.score_feasibility.flux_mv_loop_analysis
+                        consumo=consumo.toFixed(2)
+                        var kp = obj.auto_tuning_result[0].pid_tuning_result.integral_gain
+                        var kd = obj.auto_tuning_result[0].pid_tuning_result.derivative_gain
+                        var ki = obj.auto_tuning_result[0].pid_tuning_result.proportional_gain
+                        kp = kp.toFixed(1)
+                        ki = ki.toFixed(1)
+                        kd = kd.toFixed(1)
+                        document.getElementById('score').innerHTML=score
+                        document.getElementById('consumo').innerHTML=`${consumo} Lh/dia`
+                        document.getElementById('kp').innerHTML=kp
+                        document.getElementById('ki').innerHTML=ki
+                        document.getElementById('kd').innerHTML=kd
+                    }
+                  }
+                  // setInterval(function(){ periodicFunction(); }, 10000)
+                };
+                  DashboardBlock.on('change', periodicFunction);
+                periodicFunction();
+                
+                var bt = document.getElementById('recal')
+                bt.addEventListener("click",trig)
+                function trig() {
+                  const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/sintoniaete";
+                  Http.open("GET", url);
+                  Http.send();
+                  $("#recal").empty()
+                  $("#recal").append("Recalculando")
+                  $("#recal").css("opacity",0.3)
+                  var x = document.getElementById("snackbar");
+
+                  // Add the "show" class to DIV
+                  x.className = "show";
+
+                  // After 3 seconds, remove the show class from DIV
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  $("#recal").attr("disabled", "disabled");
+              }
+
+              </script>
+            headContent: >
+              <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              />
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <link rel="stylesheet"
+              href="https://files.wnology.io/~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~/cssnotific.css">
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+              <style>
+                body {
+                  padding: 1px;
+                  margin: 0px;
+                  background: transparent;
+                }
+              </style>
+
+              <!-- <script type="text/javascript">
+                function renderBlock(input) {
+               
+                  if (DashboardBlock.input.queries.warnings) { // check ot see if the query was successfull
+                    $('#table-body').empty() // empty table on re-render
+                    // loop through each point and append row to table
+                    input.queries.warnings.items.forEach(function(row) {
+                      $('#table-body').append(`
+                            <tr>
+                            <td>${row.warning_or_alarm ? 'Alarm': 'Warning'}</td>
+                            <td>${row.description}</td>
+                            </tr>
+                        `)
+                    })
+                  }
+                }
+
+                DashboardBlock.on('queryChange', renderBlock)
+              </script> -->
+          segments: []
+        description: >-
+          Aqui você pode observar a última parametrização encontrada pelos
+          algoritmos da BirminD. Basta copiá-los para os parâmetros de seu
+          controlador PID ou, se habilitado, clicar no botão "Atualizar" e
+          carregar automaticamente.
+        height: 1.5
+        id: 7XLVbM6x_6
+        startX: 1
+        startY: 2.5
+        title: ''
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <div class="card" style="text-align: center">
+                      <div class="card-header"><strong>Análises de Machine Learning</strong></div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <style>
+                body {
+                  padding: 10px;
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                function renderBlock(input) {
+                  document.getElementById('blockInput').innerHTML =
+                    JSON.stringify(input, undefined, 2);
+                }
+
+                /*
+                  Add listeners to your required events. These listeners invoke
+                  the functions above so that your code can handle the event
+                  as needed.
+                */
+                DashboardBlock.on('change', renderBlock);
+
+                /*
+                  Render the initial state when the block loads.
+                */
+                $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+              </script>
+          segments: []
+        height: 0.5
+        id: spTHhW9L-N
+        startX: 0
+        startY: 4
+        width: 4
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: >-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:steelblue;width: 100%;height:100%">
+                  <strong style="font-size:1rem;color:#FFF" id="texto-header">Resultado relevância</strong>
+
+                </div>
+                <div class="card-body">
+                  <div id="line-chart">
+                  </div>
+                  <div style="margin-top:10px">
+                    <a><button id="recal" class="btn btn-primary" style="width:25%;color:white;">Recalcular</button></a>
+                    <a href="" target="_top" class="btn btn-success" style="width:25%;">Aplicar</a>
+                  </div>
+                </div>
+              </div>
+
+              <div id="snackbar">Aguarde 15 minutos e depois clique no botão
+              aplicar.</div>
+
+              <script>
+
+
+              function periodicFunction(){
+                 
+                 const Http = new XMLHttpRequest();
+                  const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultrelevancia";
+                  Http.open("GET", url);
+                  Http.send();
+
+                  Http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      var inputs = obj.inputs_relevance
+                      var saidas = obj.output
+                      var label = inputs.map(el => el[0].slice(26,el[0].length))
+                      var value = inputs.map(el => el[1]*100)
+                      var outputs = saidas[0].slice(26,saidas[0].length)
+                      var score = obj.score*100
+                      score = score.toFixed(2)
+
+                        var data = [{
+                          values: value,
+                          labels: label,
+                          name: 'Relevance',
+                          hoverinfo: 'label+percent+name',
+                          hole: .7,
+                          type: 'pie'
+                        }];
+                        var layout = {
+                          title:`Saida: ${outputs}`,
+                          autosize: false,
+                          width: DashboardBlock.input.size.width -50,
+                          height:DashboardBlock.input.size.height -139,
+                          showlegend: true,
+                          legend:{
+                            "orientation":'r'
+                          },
+                          margin: {"t": 24, "b": 0, "l": 120, "r": 0},
+                            annotations: [
+                              {
+                              font: {
+                                size: 15,
+                                color:"#000"
+                              },
+                              showarrow: false,
+                              text: `Precisão: ${score}%`,
+                              x: 0.5,
+                              y: 0.5
+                              }]
+                          }
+                          Plotly.newPlot('line-chart', data, layout, {displayModeBar: false});
+                      }
+                    }
+                };
+                 DashboardBlock.on('change', periodicFunction);
+                 
+                periodicFunction()
+
+                var bt = document.getElementById('recal')
+              bt.addEventListener("click",trig)
+
+              function trig() {
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/relevanceete";
+                Http.open("GET", url);
+                Http.send();
+                $("#recal").empty()
+                $("#recal").append("Recalculando")
+                $("#recal").css("opacity",0.3)
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                
+                $("#recal").attr("disabled", "disabled");
+              }
+
+
+              </script>
+            headContent: >
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.d
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <link rel="stylesheet"
+              href="https://files.wnology.io/~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~/cssnotific.css">
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+              <style>
+                body {
+                  /* padding: 10px; */
+                  background: transparent;
+                }
+              </style>
+          segments: []
+        height: 2
+        id: FRzjUb6F99
+        startX: 0
+        startY: 4.5
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: >2-
+                <div class="card text-center">
+                  <div class="card-header" style="background-color:steelblue;width: 100%;height:100%">
+                    <strong style="color:#FFF">Histórico e predição pH </strong>
+                    <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 400; float:right">
+                      <a style="text-decoration: none; color: black">
+                       <strong style="color:#FFF"> Predição </strong> <input id='ZC' type="checkbox" />
+                        </a>
+                    </p>
+                  </div>
+                  <div class="card-body" >
+                    <div id="line-chart">
+                    </div>
+                    <a><button id="recal" class="btn btn-primary" style="width:20%;color:white">Recalcular</button></a>
+                    <a href="" target="_top" class="btn btn-success" style="width:20%;">Aplicar</a>
+                  </div>
+              </div>
+
+              <div id="snackbar">Aguarde 15 minutos e depois clique no botão
+              aplicar.</div>
+
+              <script>
+
+              var drawChar = function(){
+                if(!DashboardBlock.input.queries.query) return
+                
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultpredicao";
+                Http.open("GET", url);
+                Http.send();
+                
+                Http.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      var time = obj.predict_timestamp
+                      var value = obj.results
+                      var teste = DashboardBlock.input.queries.query
+                      var realvalue = teste.map(el => el.value)
+                      var realtime = teste.map(el => el.time)
+
+                      datareal = {
+                      y: realvalue,
+                      x: realtime,
+                      fill: "tozeroy",
+                      type: 'scatter',
+                      name:'Real',
+                      mode: 'lines'
+                    };
+
+                    datapred = {
+                      y: value,
+                      x: time,
+                      type: 'scatter',
+                      fill: "tozeroy",
+                      mode: 'lines',
+                      name:'Predição',
+                      line: {
+                        dash:'dashdot',
+                        shape: 'linear'
+                      }
+                    };
+
+                    layout2 = {
+                          showlegend: true,
+                          xaxis: {
+                            tickangle: -35,
+                            type: 'date',
+                            showgrid: true,
+                            zeroline: true,
+                            showline: false,
+                            mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#0000',
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                        },
+                        yaxis: {
+                            title: {
+                              text: 'pH',
+                              font: {
+                                family: 'sans-serif',
+                                size: 14,
+                                color: '#AAA'
+                              }
+                            },
+                            showgrid: true,
+                            zeroline: true,
+                            showline: false,
+                            mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#0003',
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                            linewidth: 1
+                        },
+                        autosize: false,
+                        width: DashboardBlock.input.size.width - 40,
+                        height:DashboardBlock.input.size.height - 129,
+                        margin: {
+                            l: 40,
+                            r: 20,
+                            b: 60,
+                            t: 20,
+                            pad: 4
+                        },
+                      };
+                      var remember = document.getElementById('ZC');
+                        if (remember.checked){
+                              Plotly.newPlot('line-chart', [datareal,datapred], layout2, {displayModeBar: false});
+                        }else{
+                              Plotly.newPlot('line-chart', [datareal], layout2, {displayModeBar: false});
+                        }
+                      }
+                    }
+              }
+
+              DashboardBlock.on('change', drawChar);
+
+
+              drawChar()
+
+              const checkbox = document.getElementById('ZC')
+
+
+              checkbox.addEventListener('change', (event) => {
+                
+                if (event.currentTarget.checked) {
+              Plotly.newPlot('line-chart', [datareal,datapred], layout2,
+              {displayModeBar: false,responsive: true});
+
+              }else{
+
+              Plotly.newPlot('line-chart', [datareal], layout2, {displayModeBar:
+              false,responsive: true});
+
+              }
+
+              })
+
+
+              var bt = document.getElementById('recal')
+
+              bt.addEventListener("click",trig)
+
+              function trig() {
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/predictete";
+                Http.open("GET", url);
+                Http.send();
+                $("#recal").empty()
+                $("#recal").append("Recalculando")
+                $("#recal").css("opacity",0.3)
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                
+                $("#recal").attr("disabled", "disabled");
+              }
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <link rel="stylesheet"
+              href="https://files.wnology.io/~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~/cssnotific.css">
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+
+                body {
+                  background: transparent;
+                }
+              </style>
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: PV
+              deviceIds:
+                - ~exportplaceholderid-device-deviceEte-0~
+              deviceTags: []
+              duration: 259200000
+              id: query
+              queryType: time-series
+              resolution: 300000
+        height: 2.5
+        id: LRWj_uvJeP
+        startX: 1.5
+        startY: 4.5
+        width: 2.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: indicator
+        config:
+          conditions: []
+          defaultCondition:
+            color: 'rgba(255, 38, 27, 1)'
+            label: |-
+              CAUSA ANOMALIA:
+
+              sintonia do PID AIC-001
+          duration: 0
+          segments: []
+        height: 0.5
+        id: E-v6TKQ65Y
+        startX: 0
+        startY: 6.5
+        title: ''
+        width: 1.5
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: >-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:steelblue;width: 100%;height:100%;padding-left:0;padding-right:0">
+                  <strong style="color:#FFF">Anomalias no pH</strong>
+                </div>
+                <div class="card-body" style="padding-left:0;padding-right:0">
+                  <div id="myDiv">
+                  </div>
+                    <a><button id="recal" class="btn btn-primary" style="width:15%;color:white">Recalcular</button></a>
+                    <a href="" target="_top" class="btn btn-success" style="width:15%">Aplicar</a>
+                </div>
+              </div>
+
+              <div id="snackbar">Aguarde 15 minutos e depois clique no botão
+              aplicar.</div>
+
+              <script>
+
+              var drawChar = function(){
+                if(!DashboardBlock.input.queries.query) return
+
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/resultanomalia";
+                Http.open("GET", url);
+                Http.send();
+                Http.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                      obj = obj.outliers
+                      var teste = DashboardBlock.input.queries.query
+                      var value = teste.map(el => el.value)
+                      var time = teste.map(el => el.time)
+                    var listout = {}
+                    var objeto = []
+                    for(var i=0;i<obj.length;i++){
+                    var listatime = []
+                    var listavalue = []
+                    var values = []
+                    var times = []
+                      for(var j=0;j<time.length;j++){
+                        if((time[j]>=obj[i][0]) && (time[j]<=obj[i][1])){
+                          listatime.push(time[j])
+                          listavalue.push(value[j])
+                        }
+                      }
+                      listout = {"value":listavalue,"time":listatime}
+                      objeto.push(listout)
+                    }
+                    console.log(listout)
+                    for(var aux=0;aux<objeto.length;aux++){
+                        times.push(objeto[aux].time)
+                        values.push(objeto[aux].value)
+                    }
+
+                    var datareal = {
+                    y: value,
+                    x: time,
+                    type: 'scatter',
+                    name:'Real',
+                    line: {shape: 'spline',
+                    width: 3,
+                    color:'steelblue'},
+                    hoverinfo: 'y',
+                    mode: 'lines',
+                    };
+
+                    var datareal2 = {
+                    y: value,
+                    x: time,
+                    type: 'scatter',
+                    name:'Real',
+                    line: {shape: 'spline'},
+                    mode: 'markers',
+                    marker: {
+                      color: 'rgb(255, 255, 255)',
+                      size: 6,
+                      line: {
+                        color: 'steelblue',
+                        width: 1.5
+                      }
+                    },
+                    hoverinfo: 'none',
+              };    
+
+
+              var traces = []
+
+
+              traces.push(datareal)
+
+              traces.push(datareal2)
+
+
+              for (var i = 0; i < objeto.length; i++){
+
+                  var anomalias = {
+                    y: values[i],
+                    x: times[i],
+                    type: 'scatter',
+                    name:`anomalia${i}`,
+                    line: {shape: 'spline',
+                    width: 4,
+                    color:'red'},
+                    mode: 'lines',
+                    hoverinfo: 'x'
+                    };
+                    traces.push(anomalias);
+              }
+                      var layout2 = {
+                         showlegend: true,
+                         xaxis: {
+                             showgrid: true,
+                             zeroline: true,
+                             showline: false,
+                             mirror: 'ticks',
+                             color: 'black',
+                             gridcolor: 'black',
+                             gridwidth: 1,
+                             zerolinecolor: 'black',
+                             zerolinewidth: 1,
+                             linecolor: 'black',
+                             linewidth: 1
+                         },
+                         yaxis: {
+                             title: {
+                              text: "<b>PV [pH]</b>",
+                              font: {
+                                family: 'sans-serif',
+                                size: 12,
+                                color: '#000'
+                              }
+                            },
+                             showgrid: true,
+                             zeroline: true,
+                             showline: false,
+                             mirror: 'ticks',
+                            color: '#000F',
+                            gridcolor: '#000F',
+                            range:[7,12],
+                            gridwidth: 1,
+                            zerolinecolor: '#000F',
+                            zerolinewidth: 1,
+                            linecolor: '#000F',
+                            linewidth: 1,
+                            tickfont: {
+                            size: 10,
+                            color: 'black'
+                        },
+                      },
+                         autosize: false,
+                         width: DashboardBlock.input.size.width - 10 ,
+                         height:DashboardBlock.input.size.height - 129,
+                         margin: {
+                             l: 60,
+                             r: 10,
+                             b: 35,
+                             t: 5,
+                             pad: 0
+                         }
+                      }
+              Plotly.newPlot('myDiv', traces, layout2, {displayModeBar: false});
+                };
+                }
+              }
+               DashboardBlock.on('change', drawChar);
+
+              drawChar()
+
+
+              var bt = document.getElementById('recal')
+
+              bt.addEventListener("click",trig)
+
+              function trig() {
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~.wnology.io/anomaliaete";
+                Http.open("GET", url);
+                Http.send();
+                $("#recal").empty()
+                $("#recal").append("Recalculando")
+                $("#recal").css("opacity",0.3)
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+                
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                $("#recal").attr("disabled", "disabled");
+              }
+
+
+              </script>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <link rel="stylesheet"
+              href="https://files.wnology.io/~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~/cssnotific.css">
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <!-- <script
+              src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+              -->
+
+              <!-- <script
+              src="https://www.chartjs.org/samples/latest/utils.js"></script>
+              -->
+
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              <style>
+
+                body {
+                  background: transparent;
+                }
+              </style>
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: PV
+              deviceIds:
+                - ~exportplaceholderid-device-deviceEte-0~
+              deviceTags: []
+              duration: 259200000
+              id: query
+              queryType: time-series
+              resolution: 300000
+        height: 3
+        id: Jp25WOrkhB
+        startX: 0
+        startY: 7
+        width: 4
+    contextConfiguration: []
+    defaultTheme: light
+    description: ''
+    duration: 3600000
+    id: ~exportplaceholderid-dashboard-otimizacaoControleDePH-0~
+    name: Otimização Controle de pH
+    public: false
+    refreshRate: 180
+    reportConfigs: []
+    resolution: 60000
+version: 1

@@ -1,0 +1,49 @@
+resourceType: ExperienceView
+resources:
+  - id: ~exportplaceholderid-experienceView-cssTableResults-5~
+    localFilename: ./css-table-results.hbs
+    name: css-table-results
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    id: ~exportplaceholderid-experienceView-errorAlert-6~
+    localFilename: ./errorAlert.hbs
+    name: errorAlert
+    version: develop
+    viewTags: {}
+    viewType: component
+  - id: ~exportplaceholderid-experienceView-htmlErrorAlert-7~
+    localFilename: ./html-error-alert.hbs
+    name: html-error-alert
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    id: ~exportplaceholderid-experienceView-jsImport-8~
+    localFilename: ./js-import.hbs
+    name: js-import
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    id: ~exportplaceholderid-experienceView-jsNotify-9~
+    localFilename: ./js-notify.hbs
+    name: js-notify
+    version: develop
+    viewTags: {}
+    viewType: component
+  - id: ~exportplaceholderid-experienceView-jsPermission-10~
+    localFilename: ./js-permission.hbs
+    name: js-permission
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    id: ~exportplaceholderid-experienceView-noAccess-11~
+    localFilename: ./noAccess.hbs
+    name: noAccess
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

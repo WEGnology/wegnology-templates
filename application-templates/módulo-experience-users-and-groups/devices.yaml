@@ -1,0 +1,14 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags: {}
+        dataType: number
+        name: attribute
+    children: []
+    deviceClass: standalone
+    id: ~exportplaceholderid-device-randomDevice-0~
+    name: random-device
+    tags:
+      - key: location
+        value: -26.478576797777844, -49.049706948538834
+version: 1

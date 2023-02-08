@@ -1,0 +1,113 @@
+<div class="container justify-content-center" style="padding-top:1%;" id="main">
+    <div class="jumbotron rounded" style="background-color:#fff;">
+        <h2>Cadastro de usuário</h2>
+        <form id='signUpForm'>
+            {{#if pageData.profileError}}
+            {{component "html-error-alert" pageData.profileError}}
+            {{/if}}
+            <div class="form-group">
+                <label for="firstName">Nome</label>
+                <input autofocus minlength="1" maxlength="255" required value="{{pageData.firstName}}" type="text"
+                    class="form-control" name="firstName" id="firstName" placeholder="e.g. John">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Sobrenome</label>
+                <input autofocus minlength="1" maxlength="255" required value="{{pageData.lastName}}" type="text"
+                    class="form-control" name="lastName" id="lastName" placeholder="e.g. Doe">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input required value="{{pageData.email}}" type="email" class="form-control" name="email" id="email"
+                    placeholder="e.g. John@example.com">
+            </div>
+            <div class="form-group ">
+                <label for="group">Grupo</label>
+                <select class="form-control" id="group" name="group" value="{{pageData.group}}" data-placeholder="Selecione o Grupo">
+                    <option value="0">Normal</option>
+                    <option value="1">Administrador</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,64}$" value=""
+                    type="password" class="form-control" name="password" id="password" placeholder="*">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirme sua senha</label>
+                <input required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,64}$" value=""
+                    type="password" class="form-control" name="password2" id="password2" placeholder="*">
+                <small class="form-text text-muted">* As senhas devem ter no mínimo 8 caracteres, incluindo pelo menos
+                    uma letra
+                    maiúscula, uma letra minúscula, um número e um caractere especial.</small>
+            </div>
+            <div class="custom-control custom-checkbox p-4">
+                <input type="checkbox" class="custom-control-input" name="agree" id="agree" required>
+                <label class="custom-control-label" name="customCheck" for="agree">Li
+                    e aceito os</label>
+                <a href="#" target="_blank">Termos
+                    de
+                    Uso</a>.
+            </div>
+            <button class="btn btn-primary">Confirmar Cadastro</button>
+            <a href="/" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div>
+</div>
+<style>
+    form .error:not(label):not(span) {
+        border-color: red;
+        border-width: 0.1rem;
+        box-shadow: 0px 0px 5px 0.01rem red;
+    }
+
+    form .error {
+        color: red;
+    }
+
+    #agree-error {
+        display: block;
+    }
+</style>
+<div id="noAccess" style="display: none;">
+    Você não possui acesso a essa página.
+</div>
+{{component 'js-import'}}
+{{component 'js-notify'}}
+{{component 'js-permission'}}
+<script>
+
+    if (!isAdm) {
+        $('#main').css('display', 'none');
+    }
+
+    $("#signUpForm").submit(function (e) {
+        e.preventDefault();
+    }).validate({
+        submitHandler: function (form) {
+            var data = $(form).serializeArray();
+            data = data.splice(0, 6);
+            console.log(data);
+            console.log(data[4].value + ' | ' + data[5].value);
+            if (data[4].value == data[5].value) {
+                $.ajax({
+                    type: "POST",
+                    url: '/api/v1/user',
+                    data: data,
+                    error: (e) => {
+                        executeNotify({ message: "Não foi possível realizar o cadastro ERRO: " + e.status, type: 'danger' });
+                    },
+                    success: () => {
+                        executeNotify({ message: "Email de confirmação enviado", type: 'success' });
+                        setTimeout(function () { window.location.href = '/delete-account'; }, 3000);
+                    }
+                });
+            } else {
+                executeNotify({ message: "As senhas devem corresponder", type: 'danger' });
+                $("#password").attr("class", "form-control error");
+                $("#password2").attr("class", "form-control error");
+            }
+        }
+    });
+
+</script>
+{{component 'noAccess'}}

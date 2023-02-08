@@ -1,0 +1,209 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - description: Created for Endpoint GET /Solar
+    enabled: true
+    flowId: ~exportplaceholderid-flow-getSolar-6~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-getSolar-2~
+    name: GET /Solar
+    nodes:
+      - config:
+          bodyTemplate: working
+          bodyTemplateType: path
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-pageInicial-5~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: ''
+          sameSiteTemplate: ''
+        id: CDoLXIhgAS
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 140
+          'y': 400
+        outputIds:
+          - - JdEukJcLF8
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: JdEukJcLF8
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 140
+          'y': 540
+        outputIds: []
+        type: DebugNode
+      - config:
+          attributes:
+            - Daily_Yield
+          findMetadata: false
+          findMethod: experienceUserIdOrEmail
+          findMultiple: true
+          idTemplate: '{{experience.user.id}}'
+          includeConnectionStatus: true
+          includeState: true
+          resultPath: working.devices
+          resultsPage: '0'
+          resultsPerPage: '2'
+          sortDirection: asc
+          sortField: name
+          tagsAsObject: true
+        id: sa-Ab7BjmD
+        meta:
+          category: data
+          description: ''
+          label: 'Device: Get'
+          name: get-device
+          x: 260
+          'y': 180
+        outputIds:
+          - - cLubgS4NPt
+        type: GetDeviceNode
+      - config:
+          expression: '{{data.query.device}} != undefined'
+        id: cLubgS4NPt
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 300
+          'y': 300
+        outputIds:
+          - - CDoLXIhgAS
+          - - ryU25QgBYP
+        type: ConditionalNode
+      - config:
+          deviceIdTemplate: '{{data.query.device}}'
+          idTemplate: '{{experience.user.id}}'
+          idTypeTemplate: experienceUser
+        id: ryU25QgBYP
+        meta:
+          category: experience
+          description: ''
+          label: 'Device: Verify'
+          name: verify-experience-device
+          x: 520
+          'y': 440
+        outputIds:
+          - - c8YVIZv92_
+          - - 0hnW8eR8Vc
+        type: VerifyDeviceNode
+      - config:
+          findMetadata: false
+          findMethod: id
+          idTemplate: '{{data.query.device}}'
+          includeConnectionStatus: true
+          includeState: false
+          resultPath: working.device
+          tagsAsObject: true
+        id: 0hnW8eR8Vc
+        meta:
+          category: data
+          description: ''
+          label: 'Device: Get'
+          name: get-device
+          x: 600
+          'y': 580
+        outputIds:
+          - - 3d2Cx8ewUO
+        type: GetDeviceNode
+      - config:
+          bodyTemplate: working
+          bodyTemplateType: path
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-pageDevice-4~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: ''
+          sameSiteTemplate: ''
+        id: 3d2Cx8ewUO
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 600
+          'y': 720
+        outputIds:
+          - - ksKL9Yj3ED
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: ksKL9Yj3ED
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 460
+          'y': 880
+        outputIds: []
+        type: DebugNode
+      - config:
+          bodyTemplate: /
+          bodyTemplateType: string
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+          sameSiteTemplate: ''
+        id: c8YVIZv92_
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 380
+          'y': 580
+        outputIds:
+          - - ksKL9Yj3ED
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: 610b3537955fa10006d5ebdf
+        meta:
+          category: trigger
+          description: ''
+          label: GET /Solar
+          name: endpoint
+          uiId: X9-CnfJYB7
+          x: 460
+          'y': 40
+        outputIds:
+          - - sa-Ab7BjmD
+        type: endpoint
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-get-0~
+        meta:
+          category: trigger
+          description: ''
+          label: GET/
+          name: endpoint
+          uiId: iOSwWeNfMm
+          x: 140
+          'y': 40
+        outputIds:
+          - - sa-Ab7BjmD
+        type: endpoint
+    version: develop
+version: 1

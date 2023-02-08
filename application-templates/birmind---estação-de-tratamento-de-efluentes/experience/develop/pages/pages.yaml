@@ -1,0 +1,91 @@
+resourceType: ExperienceView
+resources:
+  - description: Created for Endpoint GET /anomaliaete.
+    id: ~exportplaceholderid-experienceView-getAnomaliaete-1~
+    localFilename: ./GET__anomaliaete.hbs
+    name: GET /anomaliaete
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /predictete.
+    id: ~exportplaceholderid-experienceView-getPredictete-2~
+    localFilename: ./GET__predictete.hbs
+    name: GET /predictete
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /relevanceete.
+    id: ~exportplaceholderid-experienceView-getRelevanceete-3~
+    localFilename: ./GET__relevanceete.hbs
+    name: GET /relevanceete
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /resultanomalia.
+    id: ~exportplaceholderid-experienceView-getResultanomalia-4~
+    localFilename: ./GET__resultanomalia.hbs
+    name: GET /resultanomalia
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /resultpredicao.
+    id: ~exportplaceholderid-experienceView-getResultpredicao-5~
+    localFilename: ./GET__resultpredicao.hbs
+    name: GET /resultpredicao
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /resultrelevancia.
+    id: ~exportplaceholderid-experienceView-getResultrelevancia-6~
+    localFilename: ./GET__resultrelevancia.hbs
+    name: GET /resultrelevancia
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /resultsintonia.
+    id: ~exportplaceholderid-experienceView-getResultsintonia-7~
+    localFilename: ./GET__resultsintonia.hbs
+    name: GET /resultsintonia
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Created for Endpoint GET /sintoniaete.
+    id: ~exportplaceholderid-experienceView-getSintoniaete-8~
+    layoutId: ~exportplaceholderid-experienceView-exampleLayout-0~
+    localFilename: ./GET__sintoniaete.hbs
+    name: GET /sintoniaete
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Here is an example home page, which renders only for logged-in
+      users. Within the endpoint that renders this template, we redirect to the
+      Login page if the experience user is not logged in. This page renders
+      within your Example Layout at the position of the {{ page }} tag.
+    id: ~exportplaceholderid-experienceView-homePage-9~
+    layoutId: ~exportplaceholderid-experienceView-exampleLayout-0~
+    localFilename: ./Home_Page.hbs
+    name: Home Page
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Users who are not logged in will be redirected to this page when
+      they try to visit the home page. This is a simple login form; when the
+      user submits the form, it will hit the POST /login endpoint with the email
+      and password submitted by the user. If the credentials are valid, the user
+      will get an authentication cookie and will be redirected to the Home page.
+    id: ~exportplaceholderid-experienceView-logIn-10~
+    layoutId: ~exportplaceholderid-experienceView-exampleLayout-0~
+    localFilename: ./Log_In.hbs
+    name: Log In
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-pageInicial-11~
+    layoutId: ~exportplaceholderid-experienceView-exampleLayout-0~
+    localFilename: ./PageInicial.hbs
+    name: PageInicial
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

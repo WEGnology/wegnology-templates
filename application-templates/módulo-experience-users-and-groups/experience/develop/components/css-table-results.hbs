@@ -1,0 +1,138 @@
+<style>
+
+.rwd-table { 
+  margin: 0;
+  min-width: 300px;
+  width: 100%;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+  /* font-size:14px;*/
+}
+.rwd-table td:first-child {
+  padding-top: 0.5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: 0.5em;
+}
+
+
+@media (min-width: 990px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
+  border-top: 0; 
+}
+
+
+@media (min-width: 990px) {
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: 0.25em 0.5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+.rwd-table {
+  background: #f7f7f7;
+  color: #000;
+  border-radius: 0.4em;
+  overflow: hidden;
+}
+.rwd-table tr {
+  border-color: #fff;
+}
+.rwd-table th,
+.rwd-table td {
+  margin: 0.5em 1em;
+}
+
+td i{
+  color:#00579d;
+  margin-right:3px;
+}
+
+td button{
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+@media (min-width: 990px) {
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+  
+}
+.rwd-table th,
+.rwd-table td:before {
+  color: #00579d;
+}
+
+@media (max-width: 767px) {
+    .rwd-table .dropdown-menu {
+        position: static !important;
+    }
+}
+@media (min-width: 768px) {
+    .rwd-table {
+        overflow: inherit;
+    }
+    
+  .table td, .table th {
+      border-top: 0;
+  }
+  .table thead th {
+      border-bottom: 0;
+  }
+}
+
+    @keyframes loading{
+      0%{
+        background-position:100% 50%
+      }
+      100%{
+        background-position:0 50%
+      }
+    }
+
+  .fixed-table-loading{
+      color: #f7f7f7;
+      border-color: #f7f7f7;
+      border-radius: 10px;
+      background: linear-gradient(
+        90deg, #f7f7f7 25%, #e6e6e6 37%, #f2f2f2 63%
+      )!important;         
+      animation: loading 1.4s ease infinite;
+      background-size: 400% 100%; 
+  }
+
+  span .loading-text{
+    display: none;
+  }
+
+</style>

@@ -1,0 +1,539 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-anomalia-0~
+    name: Anomalia
+    nodes:
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: qBJj5Zu3yg
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 360
+          'y': 300
+        outputIds:
+          - - 60arDEzAlS
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: ExtzEmkg8e
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 620
+        outputIds:
+          - - 2fodbE2Ddq
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: Q-Xy9Gfg6_
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 820
+        outputIds:
+          - - 3Yeb95Hqz2
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\r\n    \"name\":\"Anomalia\",\r\n    \"strategy\":\"3326b362-b88b-42d0-8e2a-bfd71e8c9f0f\",\r\n    \"data_source\":\"wegnology_api\",\r\n    \"strategy_config\":{\r\n        \"max_anomalies\":8,\r\n        \"ignore_waveforms\": true\r\n    },\r\n    \"data_source_data\": {\r\n        \"token\": \"{{globals.tokAPI}}\",\r\n\t\t\"attributes\": [\"PV\"\r\n        ],\r\n    \"device_ids\": [\r\n      \"~exportplaceholderid-device-deviceEte-0~\"\r\n    ],\r\n    \"resolution\": 10000,\r\n    \"aggregation\": \"MEAN\",\r\n    \"application_id\": \"~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~\"\r\n    },\r\n    \"inputs_map\":{\r\n        \"y\":\"~exportplaceholderid-device-deviceEte-0~__PV\"\r\n    }\r\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: 'http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/'
+        id: 2fodbE2Ddq
+        meta:
+          category: data
+          description: ''
+          label: Order
+          name: http
+          x: 360
+          'y': 720
+        outputIds:
+          - - Q-Xy9Gfg6_
+        type: HttpNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: ''
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{data.pedido.body.id}}/dispatch/
+        id: 98z-WVECiB
+        meta:
+          category: data
+          description: ''
+          label: Dispatch
+          name: http
+          x: 360
+          'y': 1000
+        outputIds:
+          - - ZFxgnGRzL4
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: ZFxgnGRzL4
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 400
+          'y': 1120
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.response
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{aux}}/
+        id: lF9fK9eTzt
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 620
+          'y': 680
+        outputIds:
+          - - jJzeZSQAJT
+        type: HttpNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "completed"'
+        id: q9A8shR9Y5
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 620
+          'y': 900
+        outputIds:
+          - - rx1qQv98SQ
+          - - _aQoQQFLAE
+        type: ConditionalNode
+      - config:
+          message: Error
+          property: ''
+        id: FQ2RxtSS8q
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 880
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.result
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/result/projects/{{project}}/calc-results/{{data.response.body.dispatch_info.result_id}}/
+        id: _aQoQQFLAE
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 1040
+          'y': 980
+        outputIds:
+          - - nArRYnwTyB
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: ztBqZFD3tm
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1100
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "failed"'
+        id: rx1qQv98SQ
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 740
+          'y': 1040
+        outputIds:
+          - - mVp2ImtamY
+          - - FQ2RxtSS8q
+        type: ConditionalNode
+      - config:
+          message: '{{data.response.body.dispatch_info.status}}'
+          property: ''
+        id: mVp2ImtamY
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: MO4Cn8NVh6
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 620
+          'y': 280
+        outputIds:
+          - - ZZZN8AXP9d
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: XCDE5CIwmY
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 580
+        outputIds:
+          - - lF9fK9eTzt
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: jJzeZSQAJT
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 780
+        outputIds:
+          - - q9A8shR9Y5
+        type: DebugNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: template
+          getAll: false
+          keyName: aux
+          valuePath: aux
+        id: 8qyW7aIHFa
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 620
+          'y': 480
+        outputIds:
+          - - XCDE5CIwmY
+        type: GetValueNode
+      - config:
+          keyName: aux
+          resultPath: ''
+          value: data.pedido.body.calc_order
+          valueType: path
+        id: 3Yeb95Hqz2
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 360
+          'y': 900
+        outputIds:
+          - - 98z-WVECiB
+        type: StoreValueNode
+      - config:
+          keyName: project
+          resultPath: ''
+          value: '{{globals.idProjeto}}'
+          valueType: number
+        id: 60arDEzAlS
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 360
+          'y': 400
+        outputIds:
+          - - cTGULE2gCZ
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: cTGULE2gCZ
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 360
+          'y': 520
+        outputIds:
+          - - ExtzEmkg8e
+        type: GetValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: ZZZN8AXP9d
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 620
+          'y': 380
+        outputIds:
+          - - 8qyW7aIHFa
+        type: GetValueNode
+      - config: {}
+        id: XNAYqv1T-_
+        meta:
+          annotationText: Análise Anomalia do consumo de cal de uma ETE.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 60
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: FG1y0sOgYY
+        meta:
+          annotationText: >-
+            Este workflow tem a função de criar a ordem de cálculo para a
+            análise e dar dispatch nessa análise.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 360
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: HbbAu97rcl
+        meta:
+          annotationText: >-
+            Este workflow tem a função de obter o resultado da análise e enviar
+            este resultado ao front end.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 620
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          bodyTemplate: data.result.body.result
+          bodyTemplateType: path
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: nArRYnwTyB
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 1080
+          'y': 1140
+        outputIds:
+          - - ztBqZFD3tm
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-anomalia-0~-iZ2l3gx5Lc
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Anomalia
+          name: virtualButton
+          payload: ''
+          uiId: MXc9w8vpbo
+          x: 360
+          'y': 180
+        outputIds:
+          - - qBJj5Zu3yg
+        type: virtualButton
+      - config: {}
+        key: ~exportplaceholderid-flow-anomalia-0~-XIfBuQ8UEP
+        meta:
+          category: trigger
+          description: ''
+          label: fetch result
+          name: virtualButton
+          payload: ''
+          uiId: 5uZyTSuc0t
+          x: 620
+          'y': 180
+        outputIds:
+          - - MO4Cn8NVh6
+        type: virtualButton
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getAnomaliaete-1~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /anomaliaete
+          name: endpoint
+          uiId: WYW51kbIAu
+          x: 160
+          'y': 180
+        outputIds:
+          - - qBJj5Zu3yg
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getResultanomalia-6~
+        meta:
+          category: trigger
+          description: ''
+          label: GET / resultanomalia
+          name: endpoint
+          uiId: WhIpvnrdt6
+          x: 920
+          'y': 180
+        outputIds:
+          - - MO4Cn8NVh6
+        type: endpoint
+version: 1

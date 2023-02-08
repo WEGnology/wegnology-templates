@@ -1,0 +1,38 @@
+resourceType: DataTable
+resources:
+  - columns:
+      - constraint: required
+        dataType: string
+        name: DATE_TIME
+      - constraint: required
+        dataType: number
+        name: PLANT_ID
+      - constraint: required
+        dataType: string
+        name: SOURCE_KEY
+      - constraint: required
+        dataType: number
+        name: DC_POWER
+      - constraint: required
+        dataType: number
+        name: AC_POWER
+      - constraint: required
+        dataType: number
+        name: DAILY_YIELD
+      - constraint: required
+        dataType: number
+        name: TOTAL_YIELD
+      - constraint: required
+        dataType: number
+        name: AMBIENT_TEMPERATURE
+      - constraint: required
+        dataType: number
+        name: MODULE_TEMPERATURE
+      - constraint: required
+        dataType: number
+        name: IRRADIATION
+    description: ''
+    id: ~exportplaceholderid-dataTable-dadosPlantaSolar-0~
+    localFilename: ./Dados_PlantaSolar.csv
+    name: Dados_PlantaSolar
+version: 1

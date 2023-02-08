@@ -1,0 +1,25 @@
+<style>
+#noAccess{
+    width: 80%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right:10%;
+    border-radius: 25px;
+    height: 10vh;
+    line-height: 10vh;
+    text-align: center;
+    opacity: 1;
+    display: block;
+    font-family: arial;
+    font-size: 2rem;
+}
+</style>
+
+<script>
+    if(!isAdm){
+        $('#noAccess').css('display','block')
+        executeNotify({ message: "Acesso negado", type: 'danger' });
+        setTimeout(function () { window.location.href = '/'; }, 2000);
+    }
+</script>

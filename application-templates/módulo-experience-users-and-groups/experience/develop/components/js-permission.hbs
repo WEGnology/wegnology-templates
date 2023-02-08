@@ -1,0 +1,11 @@
+<script>
+    // Verifica permissões do usuário
+    var group = {{ jsonEncode experience.user.experienceGroups }};
+    var isAdm = false;
+
+    for (let i = 0; i < group.length; i++) {
+        if (group[i].name === 'adm') {
+            isAdm = true;
+        }
+    }
+</script>

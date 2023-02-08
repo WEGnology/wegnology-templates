@@ -1,0 +1,371 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-forecast-1~
+    name: Forecast
+    nodes:
+      - config:
+          customNodeId: ~exportplaceholderid-flow-customNodePredictMfm-0~
+          customNodeVersion: default
+          fields:
+            - id: deviceId
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - id: attName
+              value: kpiInversor
+            - id: attNameStatus
+              value: ''
+            - id: varTrigger
+              value: '-1'
+            - id: points
+              value: '4'
+            - id: predictionStep
+              value: '24'
+            - id: predictionFrequency
+              value: '1'
+            - id: bmdUser
+              value: Username
+            - id: bmdPassword
+              value: Password
+            - id: projeto
+              value: '0'
+            - id: email
+              value: ''
+            - id: alarms
+              value: '0'
+            - id: upperCriticalLimit
+              value: 'null'
+            - id: lowerCriticalLimit
+              value: 'null'
+            - id: callback
+              value: >-
+                https://~exportplaceholderid-application-applicationBirminDUsinaSolar-0~.wnology.io/predictdiaria
+            - id: daysUsedPrediction
+              value: '26'
+          resultPath: data.resultado
+        id: i73tKJcP2y
+        meta:
+          category: customNodeExecute
+          description: ''
+          label: Custom Node Predict MFM
+          name: custom-node-execute-node
+          x: 340
+          'y': 640
+        outputIds:
+          - - RCPQM2m8rL
+            - qw3ggR2Kzy
+        type: CustomNodeExecuteNode
+      - config:
+          message: ''
+          property: ''
+        id: HiUq71tRHi
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 340
+          'y': 900
+        outputIds:
+          - - PGIIMGqrXZ
+        type: DebugNode
+      - config:
+          script: "payload.plot_predict = []\n\npayload.plot_past = []\n\nvar len = payload.data.resultado.prediction.length\npayload.len = len\n\nvar len2 = payload.data.resultado.timeseries.length\npayload.len2 = len2\n\nvar plot = {\n    \"time\" : [],\n    \"value\" : []\n}\nvar plot2 = {\n    \"time\" : [],\n    \"value\" : []\n}\n\nfor(var i = 0;i<len;i=i+1){\n    var timestamp = payload.data.resultado.prediction[i].timestamp.replace(\"+00:00\",'Z')\n    if (payload.data.resultado.prediction[i].value < 0){\n        payload.data.resultado.prediction[i].value = 0\n    } \n    plot.time.push(timestamp)\n    plot.value.push(payload.data.resultado.prediction[i].value.toFixed(4))\n}\n\nfor(var j = 0; j<len2; j=j+1){\n    var timestamp = payload.data.resultado.timeseries[j].timestamp.replace(\"+00:00\",'Z')\n    if (payload.data.resultado.timeseries[j].value < 0){\n        payload.data.resultado.timeseries[j].value = 0\n    } \n    plot2.time.push(timestamp)\n    plot2.value.push(payload.data.resultado.timeseries[j].value.toFixed(4))\n}\n\npayload.plot_predict.push(plot)\n\npayload.plot_past.push(plot2)\n\nvar plot5= {\n\t\t\t\"past\":payload.plot_past,\n\t\t\t\"predict\":payload.plot_predict,\n\t\t\t\"upper\":payload.upper,\n\t\t\t\"lower\":payload.lower\n\t\t} \n\n\npayload.plot5 = plot5\npayload.plot5 = JSON.stringify(payload.plot5)\n"
+        id: RCPQM2m8rL
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 340
+          'y': 780
+        outputIds:
+          - - HiUq71tRHi
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: lQRXluXX0R
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 340
+          'y': 1100
+        outputIds: []
+        type: DebugNode
+      - config:
+          customNodeId: ~exportplaceholderid-flow-customNodePredictMfm-0~
+          customNodeVersion: default
+          fields:
+            - id: deviceId
+              value: ~exportplaceholderid-device-solarPowerGenerator-0~
+            - id: attName
+              value: PerformanceRatio
+            - id: attNameStatus
+              value: ''
+            - id: varTrigger
+              value: '-1'
+            - id: points
+              value: '4'
+            - id: predictionStep
+              value: '24'
+            - id: predictionFrequency
+              value: '1'
+            - id: bmdUser
+              value: Username
+            - id: bmdPassword
+              value: Password
+            - id: projeto
+              value: '0'
+            - id: email
+              value: ''
+            - id: alarms
+              value: '0'
+            - id: upperCriticalLimit
+              value: 'null'
+            - id: lowerCriticalLimit
+              value: 'null'
+            - id: callback
+              value: >-
+                https://~exportplaceholderid-application-applicationBirminDUsinaSolar-0~.wnology.io/predictmensal
+            - id: daysUsedPrediction
+              value: '24'
+          resultPath: data.resultado
+        id: yoIFQ-tsIa
+        meta:
+          category: customNodeExecute
+          description: ''
+          label: Custom Node Predict MFM
+          name: custom-node-execute-node
+          x: 720
+          'y': 640
+        outputIds:
+          - - 5b8LUEMhMc
+            - g-Hwj573KJ
+        type: CustomNodeExecuteNode
+      - config:
+          message: ''
+          property: ''
+        id: kgewfdmjTO
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 720
+          'y': 900
+        outputIds:
+          - - wUoabIVsFs
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: VtmnZyk6RJ
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 720
+          'y': 1100
+        outputIds: []
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: qw3ggR2Kzy
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 100
+          'y': 780
+        outputIds: []
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: 5b8LUEMhMc
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 960
+          'y': 780
+        outputIds: []
+        type: DebugNode
+      - config:
+          keyName: customNode-i73tKJcP2y/aux
+          resultPath: delete
+          value: ''
+          valueType: clear
+        id: QNArVwI3_p
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 520
+          'y': 260
+        outputIds:
+          - - c6ZRRRb-PG
+        type: StoreValueNode
+      - config:
+          keyName: customNode-yoIFQ-tsIa/aux
+          resultPath: ''
+          value: ''
+          valueType: clear
+        id: c6ZRRRb-PG
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 520
+          'y': 380
+        outputIds:
+          - - Rx2q3t2YSy
+        type: StoreValueNode
+      - config:
+          message: ''
+          property: ''
+        id: Rx2q3t2YSy
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 480
+        outputIds:
+          - - i73tKJcP2y
+            - yoIFQ-tsIa
+        type: DebugNode
+      - config:
+          bodyTemplate: "{\n\t\"data\":{{plot5}}\n}"
+          bodyTemplateType: string
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: PGIIMGqrXZ
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 340
+          'y': 1000
+        outputIds:
+          - - lQRXluXX0R
+        type: EndpointReplyNode
+      - config:
+          bodyTemplate: "{\n\t\"data\":{{plot5}}\n}"
+          bodyTemplateType: string
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: wUoabIVsFs
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 720
+          'y': 1000
+        outputIds:
+          - - VtmnZyk6RJ
+        type: EndpointReplyNode
+      - config:
+          script: "payload.plot_predict = []\n\npayload.plot_past = []\n\nvar len = payload.data.resultado.prediction.length\npayload.len = len\n\nvar len2 = payload.data.resultado.timeseries.length\npayload.len2 = len2\n\nvar plot = {\n    \"time\" : [],\n    \"value\" : []\n}\nvar plot2 = {\n    \"time\" : [],\n    \"value\" : []\n}\n\nfor(var i = 0;i<len;i=i+1){\n    var timestamp = payload.data.resultado.prediction[i].timestamp.replace(\"+00:00\",'Z')\n    if (payload.data.resultado.prediction[i].value < 0){\n        payload.data.resultado.prediction[i].value = 0\n    } \n    plot.time.push(timestamp)\n    plot.value.push(payload.data.resultado.prediction[i].value.toFixed(4))\n}\n\nfor(var j = 0; j<len2; j=j+1){\n    var timestamp = payload.data.resultado.timeseries[j].timestamp.replace(\"+00:00\",'Z')\n    if (payload.data.resultado.timeseries[j].value < 0){\n        payload.data.resultado.timeseries[j].value = 0\n    } \n    plot2.time.push(timestamp)\n    plot2.value.push(payload.data.resultado.timeseries[j].value.toFixed(4))\n}\n\npayload.plot_predict.push(plot)\n\npayload.plot_past.push(plot2)\n\nvar plot5= {\n\t\t\t\"past\":payload.plot_past,\n\t\t\t\"predict\":payload.plot_predict,\n\t\t\t\"upper\":payload.upper,\n\t\t\t\"lower\":payload.lower\n\t\t} \n\n\npayload.plot5 = plot5\npayload.plot5 = JSON.stringify(payload.plot5)\n"
+        id: g-Hwj573KJ
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 720
+          'y': 780
+        outputIds:
+          - - kgewfdmjTO
+        type: RawFunctionNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-forecast-1~-0h-Tud5Qkx-nUIIia_sbn
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: PWcVM4W6M5
+          x: 60
+          'y': 140
+        outputIds:
+          - - i73tKJcP2y
+            - yoIFQ-tsIa
+        type: virtualButton
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getPredictmensal-5~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /predictmensal
+          name: endpoint
+          uiId: 7Xz2sw0Rgy
+          x: 760
+          'y': 140
+        outputIds:
+          - - yoIFQ-tsIa
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getPredictdiaria-4~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /predictdiaria
+          name: endpoint
+          uiId: rGi4pl6d_z
+          x: 320
+          'y': 140
+        outputIds:
+          - - i73tKJcP2y
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getGeraanalise-1~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /geraanalise
+          name: endpoint
+          uiId: M75h76dXg6
+          x: 520
+          'y': 140
+        outputIds:
+          - - QNArVwI3_p
+        type: endpoint
+version: 1

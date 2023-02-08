@@ -1,0 +1,547 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-insertValue-1~
+    name: Insert Value
+    nodes:
+      - config: {}
+        id: TuarNECbiD
+        meta:
+          annotationText: Workflow para inserir os dados no device para análise de relevancia.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 360
+          'y': 900
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          keyName: value
+          resultPath: value
+          value: '5416'
+          valueType: number
+        id: J5z0-My6sW
+        meta:
+          category: data
+          description: ''
+          label: Linhas Tabela
+          name: store-value
+          x: 360
+          'y': 500
+        outputIds:
+          - - W5cARBAKas
+        type: StoreValueNode
+      - config:
+          message: ''
+          property: ''
+        id: Loz0h2TdkB
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 820
+        outputIds: []
+        type: DebugNode
+      - config:
+          currentItemPath: values
+          loopSourcePath: dado
+          mapResultPath: ''
+          parallel: false
+        id: cMZO60GgJy
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 200
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 360
+          'y': 740
+        outputIds:
+          - - Loz0h2TdkB
+          - - 9HjZ55vdhh
+        type: LoopNode
+      - config:
+          loopNodeId: cMZO60GgJy
+          mapValuePath: ''
+          shouldBreak: false
+        id: M4370JCJKv
+        meta:
+          category: loop
+          description: ''
+          groupId: cMZO60GgJy
+          label: Next
+          name: loop-next
+          x: 200
+          'y': 700
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          script: |+
+            payload.array = payload.query.items.map((item) => {
+                return {
+                    "data":{
+                        "ALARM_GERAL_ATIVO":item.ALARM_GERAL_ATIVO,
+                        "PHIT_PV":item.PHIT_PV,
+                        "FT02_PV":item.FT02_PV,
+                        "AIT01_O2_PV":item.AIT01_O2_PV,
+                        "FT03_PV":item.FT03_PV,
+                        "SP01A_Running":item.SP01A_Running,
+                        "AG01_Running":item.AG01_Running,
+                        "AG07_Running":item.AG07_Running,
+                        "BD04_Running":item.BD04_Running,
+                        "AG02_Running":item.AG02_Running
+                    },
+                    "time":item.Timestamp
+                }
+            })
+            var len = payload.array.length
+            payload.aux = payload.aux + len
+            // var auxiliar = payload.array
+            // payload.datas.push(...auxiliar)
+
+        id: GY1QM4JFt3
+        meta:
+          category: logic
+          description: ''
+          groupId: cMZO60GgJy
+          label: Function
+          name: function
+          x: 200
+          'y': 440
+        outputIds:
+          - - 1GAgnbHIEH
+        type: RawFunctionNode
+      - config:
+          script: |
+            var aux = 0
+            payload.aux = aux
+            var array = []
+
+            var dado = payload.value
+            dado = dado/1000
+            dado = Math.ceil(dado)
+            payload.dado = dado
+        id: W5cARBAKas
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 360
+          'y': 580
+        outputIds:
+          - - _zYDsX7Mot
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: _zYDsX7Mot
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 660
+        outputIds:
+          - - cMZO60GgJy
+        type: DebugNode
+      - config:
+          dataTableIdTemplate: 612cc8d84e1f5d0006a5e5c9
+          includeFieldsTemplate: ''
+          limitTemplate: ''
+          offsetTemplate: '{{aux}}'
+          queryTemplate: '{"$or":[]}'
+          resultPath: query
+          sortColumnTemplate: ''
+          sortDirectionTemplate: ''
+        id: 9HjZ55vdhh
+        meta:
+          category: data
+          description: ''
+          groupId: cMZO60GgJy
+          label: 'Table: Get Rows'
+          name: get-table-rows
+          x: 200
+          'y': 320
+        outputIds:
+          - - GY1QM4JFt3
+        type: DataTableQueryNode
+      - config:
+          action: sendState
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-deviceEteRelevance-1~
+            - name: deviceState
+              type: path
+              value: array
+          resource: device
+          responsePath: resultRelevance
+        id: 1GAgnbHIEH
+        meta:
+          category: data
+          description: ''
+          groupId: cMZO60GgJy
+          label: WEGnology API
+          name: losantapi
+          x: 200
+          'y': 540
+        outputIds:
+          - - M4370JCJKv
+        type: LosantApiNode
+      - config:
+          keyName: value
+          resultPath: value
+          value: '12784'
+          valueType: number
+        id: pWSCtnLHD_
+        meta:
+          category: data
+          description: ''
+          label: Linhas Tabela
+          name: store-value
+          x: 560
+          'y': 500
+        outputIds:
+          - - E8kadGnOnF
+        type: StoreValueNode
+      - config:
+          message: ''
+          property: ''
+        id: 5rQ_-cSxGH
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 820
+        outputIds: []
+        type: DebugNode
+      - config:
+          currentItemPath: values
+          loopSourcePath: dado
+          mapResultPath: ''
+          parallel: false
+        id: Dn7MRYTbPx
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 200
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 560
+          'y': 740
+        outputIds:
+          - - 5rQ_-cSxGH
+          - - '-JX7qCJHwF'
+        type: LoopNode
+      - config:
+          loopNodeId: Dn7MRYTbPx
+          mapValuePath: ''
+          shouldBreak: false
+        id: tCp9FtTMj0
+        meta:
+          category: loop
+          description: ''
+          groupId: Dn7MRYTbPx
+          label: Next
+          name: loop-next
+          x: 200
+          'y': 740
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          script: |+
+            payload.array = payload.query.items.map((item) => {
+                return {
+                     "data":{
+                        "PV":item.PV,
+                        "SP":item.SP,
+                        "MV":item.MV,
+                        "Mode":item.Mode
+                    },
+                    "time":item.Timestamp
+                }
+            })
+            var len = payload.array.length
+            payload.aux = payload.aux + len
+            // var auxiliar = payload.array
+            // payload.datas.push(...auxiliar)
+
+        id: TvPpp25j-3
+        meta:
+          category: logic
+          description: ''
+          groupId: Dn7MRYTbPx
+          label: Function
+          name: function
+          x: 200
+          'y': 440
+        outputIds:
+          - - MIHUgkD7AN
+        type: RawFunctionNode
+      - config:
+          script: |
+            var aux = 0
+            payload.aux = aux
+            var array = []
+
+            var dado = payload.value
+            dado = dado/1000
+            dado = Math.ceil(dado)
+            payload.dado = dado
+        id: E8kadGnOnF
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 560
+          'y': 580
+        outputIds:
+          - - FzUEPaW_kg
+        type: RawFunctionNode
+      - config:
+          message: ''
+          property: ''
+        id: FzUEPaW_kg
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 660
+        outputIds:
+          - - Dn7MRYTbPx
+        type: DebugNode
+      - config:
+          dataTableIdTemplate: 612cc8e227f6b300071751b2
+          includeFieldsTemplate: ''
+          limitTemplate: ''
+          offsetTemplate: '{{aux}}'
+          queryTemplate: '{"$or":[]}'
+          resultPath: query
+          sortColumnTemplate: ''
+          sortDirectionTemplate: ''
+        id: '-JX7qCJHwF'
+        meta:
+          category: data
+          description: ''
+          groupId: Dn7MRYTbPx
+          label: 'Table: Get Rows'
+          name: get-table-rows
+          x: 200
+          'y': 320
+        outputIds:
+          - - TvPpp25j-3
+        type: DataTableQueryNode
+      - config:
+          action: sendState
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-deviceEte-0~
+            - name: deviceState
+              type: path
+              value: array
+          resource: device
+          responsePath: resultAnomalia
+        id: MIHUgkD7AN
+        meta:
+          category: data
+          description: ''
+          groupId: Dn7MRYTbPx
+          label: WEGnology API
+          name: losantapi
+          x: 200
+          'y': 540
+        outputIds:
+          - - tCp9FtTMj0
+        type: LosantApiNode
+      - config: {}
+        id: EWVt2kiuXy
+        meta:
+          annotationText: >-
+            Este workflow insere os dados da ETE  ao device para realizar as
+            outras analises de IA.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 560
+          'y': 900
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          action: removeData
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-deviceEte-0~
+            - name: start
+              type: string
+              value: '1'
+            - name: end
+              type: string
+              value: '0'
+          resource: device
+          responsePath: resultdelete
+        id: 2Is7qOX0nN
+        meta:
+          category: data
+          description: ''
+          label: WEGnology API
+          name: losantapi
+          x: 480
+          'y': 180
+        outputIds:
+          - - lGSj4--hCE
+        type: LosantApiNode
+      - config:
+          action: removeData
+          params:
+            - name: deviceId
+              type: string
+              value: ~exportplaceholderid-device-deviceEteRelevance-1~
+            - name: start
+              type: string
+              value: '1'
+            - name: end
+              type: string
+              value: '0'
+          resource: device
+          responsePath: resultdelete
+        id: lGSj4--hCE
+        meta:
+          category: data
+          description: ''
+          label: WEGnology API
+          name: losantapi
+          x: 480
+          'y': 280
+        outputIds:
+          - - C5EbnJs1Ci
+        type: LosantApiNode
+      - config: {}
+        id: DeKNy4cBVw
+        meta:
+          annotationText: Workflow para atualizar os dados inseridos nos devices.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          message: ''
+          property: ''
+        id: C5EbnJs1Ci
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 480
+          'y': 360
+        outputIds:
+          - - J5z0-My6sW
+            - pWSCtnLHD_
+        type: DebugNode
+      - config: {}
+        id: 33u8AQCE8Z
+        meta:
+          annotationText: >-
+            A lógica dentro do bloco loop, é a parte de envio dos dados para o
+            device.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 180
+          x: 60
+          'y': 420
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: S9GvosvcHp
+        meta:
+          annotationText: >-
+            Deve ser selecionado em cada bloco de Storage: Set, e atribuido para
+            a variável Value, o número de linhas da tabela que vai ser
+            analisada.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 200
+          x: 780
+          'y': 360
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: pCQbYqOU05
+        meta:
+          annotationText: >-
+            Neste workflow, no bloco Table: Get deve ser selecionada a tabela a
+            qual serão coletados os dados para analise de relevancia e enviar
+            estes dados para o device selecionado através do Id atribuído no
+            bloco. 
+          category: annotation
+          groupId: cMZO60GgJy
+          height: 280
+          label: Note
+          name: note
+          width: 200
+          x: 460
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: l0hSh8n3fj
+        meta:
+          annotationText: >-
+            Neste workflow, no bloco Table: Get deve ser selecionada a tabela a
+            qual serão coletados os dados para analise da tabela de Dados_ETE e
+            enviar estes dados para o device selecionado através do Id atribuído
+            no bloco. 
+          category: annotation
+          groupId: Dn7MRYTbPx
+          height: 280
+          label: Note
+          name: note
+          width: 200
+          x: 460
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-insertValue-1~-e-JNu-50AfdwIg1qVpbr8
+        meta:
+          category: trigger
+          description: ''
+          label: Atualiza Dados
+          name: virtualButton
+          payload: ''
+          uiId: CDf_dxHv2A
+          x: 480
+          'y': 100
+        outputIds:
+          - - 2Is7qOX0nN
+        type: virtualButton
+version: 1

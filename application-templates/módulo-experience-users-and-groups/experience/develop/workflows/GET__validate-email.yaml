@@ -1,0 +1,340 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - enabled: true
+    flowId: ~exportplaceholderid-flow-getValidateEmail-4~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-getValidateEmail-4~
+    name: GET /validate-email
+    nodes:
+      - config:
+          dataMethod: individualFields
+          emailTemplate: '{{working.user.email}}'
+          firstNameTemplate: '{{working.user.firstName}}'
+          groupIdTemplates:
+            - ~exportplaceholderid-experienceGroup-adm-0~
+          lastNameTemplate: '{{working.user.lastName}}'
+          passwordTemplate: '{{working.user.password}}'
+          resultPath: working.result
+          userTags:
+            - keyTemplate: fullName
+              valueTemplate: '{{working.user.fullName}}'
+        id: DRTjwUbazZ
+        meta:
+          category: experience
+          description: ''
+          label: 'User: Create'
+          name: create-experience-user
+          x: 700
+          'y': 1040
+        outputIds:
+          - - OTLSHOHjnj
+        type: CreateExperienceUserNode
+      - config:
+          rules:
+            - destination: working.token
+              type: set
+              valueTemplate: '{{data.query.jwt}}'
+        id: 2YxeyW0wU7
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 420
+          'y': 140
+        outputIds:
+          - - JkGvbKt1bN
+        type: MutateNode
+      - config:
+          destinationPath: working.decode
+          tokenTemplate: '{{working.token}}'
+        id: JkGvbKt1bN
+        meta:
+          category: logic
+          description: ''
+          label: 'JWT: Decode'
+          name: jwt-decode
+          x: 420
+          'y': 260
+        outputIds:
+          - - Oo1bmN89Do
+        type: JWTDecodeNode
+      - config:
+          expression: '{{working.decode}}'
+        id: Oo1bmN89Do
+        meta:
+          category: logic
+          description: ''
+          label: is valid?
+          name: conditional
+          x: 420
+          'y': 360
+        outputIds:
+          - - N6oyhzIFKv
+          - - MgdY_ao5el
+        type: ConditionalNode
+      - config:
+          bodyTemplate: "{\r\n    \"error\":{\r\n        \"type\": \"JsonWebTokenError\",\r\n        \"message\": \"Invalid Token\"\r\n    }\r\n}"
+          bodyTemplateType: json
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: '400'
+          sameSiteTemplate: ''
+        id: N6oyhzIFKv
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 280
+          'y': 460
+        outputIds:
+          - - R_k71jsuVe
+        type: EndpointReplyNode
+      - config:
+          diffDataPath: time
+          operation: diff
+          resultPath: working.isExpired
+          sourceFormatString: X
+          sourcePath: working.decode.exp
+        id: MgdY_ao5el
+        meta:
+          category: logic
+          description: ''
+          label: Date/Time
+          name: date-time
+          x: 540
+          'y': 460
+        outputIds:
+          - - tNsSqvE8vb
+        type: DateTimeNode
+      - config:
+          expression: '{{working.isExpired}} > 0'
+        id: tNsSqvE8vb
+        meta:
+          category: logic
+          description: ''
+          label: is expired?
+          name: conditional
+          x: 540
+          'y': 560
+        outputIds:
+          - - f9yMsgAgSs
+          - - bid4eJQQ_k
+        type: ConditionalNode
+      - config:
+          bodyTemplate: "{\r\n    \"error\":{\r\n        \"type\": \"TokenExpiredError\",\r\n        \"message\": \"jwt expired\"\r\n    }\r\n}"
+          bodyTemplateType: json
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: '400'
+          sameSiteTemplate: ''
+        id: f9yMsgAgSs
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 400
+          'y': 680
+        outputIds:
+          - - R_k71jsuVe
+        type: EndpointReplyNode
+      - config:
+          rules:
+            - destination: working.user
+              type: set
+              valueTemplate: '{{working.decode}}'
+        id: bid4eJQQ_k
+        meta:
+          category: logic
+          description: ''
+          label: User
+          name: mutate
+          x: 580
+          'y': 680
+        outputIds:
+          - - Olpx6ygmId
+        type: MutateNode
+      - config:
+          emailTemplate: '{{working.user.email}}'
+          invalidateExistingTokens: true
+          passwordTemplate: '{{working.user.password}}'
+          tokenResultPath: working.result.auth
+          ttlTemplate: ''
+          userResultPath: working.result.user
+        id: OTLSHOHjnj
+        meta:
+          authMode: emailPassword
+          category: experience
+          description: ''
+          label: Authenticate
+          name: experience-user-auth
+          x: 700
+          'y': 1140
+        outputIds:
+          - - SFBYAkGq2A
+          - - u2KzNew-qt
+        type: ExperienceUserAuthNode
+      - config:
+          bodyTemplate: /
+          bodyTemplateType: string
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '301'
+          sameSiteTemplate: ''
+        id: SFBYAkGq2A
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 480
+          'y': 1360
+        outputIds:
+          - - R_k71jsuVe
+        type: EndpointReplyNode
+      - config:
+          bodyTemplate: /
+          bodyTemplateType: string
+          cookieInfo:
+            - maxAgeTemplate: ''
+              nameTemplate: authorization
+              pathTemplate: ''
+              valueTemplate: '{{working.result.auth}}'
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+          sameSiteTemplate: ''
+        id: u2KzNew-qt
+        meta:
+          category: output
+          description: ''
+          label: Set Cookie
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 680
+          'y': 1360
+        outputIds:
+          - - R_k71jsuVe
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: R_k71jsuVe
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 280
+          'y': 1500
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{working.user.group}} === "1"'
+        id: t5Tnl2lM8R
+        meta:
+          category: logic
+          description: ''
+          label: Group = Adm?
+          name: conditional
+          x: 580
+          'y': 900
+        outputIds:
+          - - KpdIrO3n_K
+          - - DRTjwUbazZ
+        type: ConditionalNode
+      - config:
+          dataMethod: individualFields
+          emailTemplate: '{{working.user.email}}'
+          firstNameTemplate: '{{working.user.firstName}}'
+          groupIdTemplates:
+            - ~exportplaceholderid-experienceGroup-normal-1~
+          lastNameTemplate: '{{working.user.lastName}}'
+          passwordTemplate: '{{working.user.password}}'
+          resultPath: working.result
+          userTags:
+            - keyTemplate: fullName
+              valueTemplate: '{{working.user.fullName}}'
+        id: KpdIrO3n_K
+        meta:
+          category: experience
+          description: ''
+          label: 'User: Create'
+          name: create-experience-user
+          x: 500
+          'y': 1040
+        outputIds:
+          - - p9Qqh7VzSy
+        type: CreateExperienceUserNode
+      - config:
+          emailTemplate: '{{working.user.email}}'
+          invalidateExistingTokens: true
+          passwordTemplate: '{{working.user.password}}'
+          tokenResultPath: working.result.auth
+          ttlTemplate: ''
+          userResultPath: working.result.user
+        id: p9Qqh7VzSy
+        meta:
+          authMode: emailPassword
+          category: experience
+          description: ''
+          label: Authenticate
+          name: experience-user-auth
+          x: 500
+          'y': 1140
+        outputIds:
+          - - SFBYAkGq2A
+          - - u2KzNew-qt
+        type: ExperienceUserAuthNode
+      - config:
+          rules:
+            - destination: working.user.fullName
+              type: set
+              valueTemplate: '{{working.user.firstName}} {{working.user.lastName}}'
+        id: Olpx6ygmId
+        meta:
+          category: logic
+          description: ''
+          label: Full Name
+          name: mutate
+          x: 580
+          'y': 800
+        outputIds:
+          - - t5Tnl2lM8R
+        type: MutateNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getValidateEmail-7~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /validate-email
+          name: endpoint
+          uiId: zGKEoMpmHR
+          x: 420
+          'y': 20
+        outputIds:
+          - - 2YxeyW0wU7
+        type: endpoint
+    version: develop
+version: 1

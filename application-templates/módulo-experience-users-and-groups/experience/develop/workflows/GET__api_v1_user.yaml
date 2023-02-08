@@ -1,0 +1,155 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - description: Retorna todos os usuários da aplicação.
+    enabled: true
+    flowId: ~exportplaceholderid-flow-getApiV1User-3~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-getApiV1User-3~
+    name: GET /api/v1/user
+    nodes:
+      - config:
+          findMetadata: false
+          findMethod: userTags
+          findMultiple: true
+          resultPath: working.user.items
+          resultsPage: ''
+          resultsPerPage: ''
+          sortDirection: asc
+          sortField: email
+          userTags:
+            - keyTemplate: fullName
+              valueTemplate: ''
+        id: 9zprQARypd
+        meta:
+          category: experience
+          description: ''
+          label: 'User: Get'
+          name: get-experience-user
+          x: 640
+          'y': 600
+        outputIds:
+          - - qd2f_ub7DA
+        type: GetExperienceUserNode
+      - config:
+          message: ''
+          property: ''
+        id: zKAy4yFN2G
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 900
+        outputIds: []
+        type: DebugNode
+      - config:
+          bodyTemplate: working.user
+          bodyTemplateType: path
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: ''
+          sameSiteTemplate: ''
+        id: hB7sMnK_Ks
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 640
+          'y': 760
+        outputIds:
+          - - zKAy4yFN2G
+        type: EndpointReplyNode
+      - config:
+          rules:
+            - destination: working.user.count
+              type: set
+              valueTemplate: '{{length working.user.items}}'
+        id: qd2f_ub7DA
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 640
+          'y': 680
+        outputIds:
+          - - hB7sMnK_Ks
+        type: MutateNode
+      - config:
+          bodyTemplate: ''
+          bodyTemplateType: string
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '400'
+          sameSiteTemplate: ''
+        id: aUCGjeYL0D
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 420
+          'y': 760
+        outputIds:
+          - - zKAy4yFN2G
+        type: EndpointReplyNode
+      - config:
+          findMetadata: false
+          findMethod: name
+          findMultiple: false
+          name: adm
+          resultPath: working.group
+          sortDirection: asc
+          sortField: name
+        id: zgWWF8re3r
+        meta:
+          category: experience
+          description: ''
+          label: GET adm
+          name: get-experience-group
+          x: 540
+          'y': 260
+        outputIds:
+          - - U8Ir93gZTm
+        type: GetExperienceGroupNode
+      - config:
+          emailOrIdTemplate: '{{experience.user.id}}'
+          groupIdTemplate: '{{working.group.id}}'
+        id: U8Ir93gZTm
+        meta:
+          category: experience
+          description: ''
+          label: 'Group: Verify'
+          name: verify-experience-group
+          x: 540
+          'y': 400
+        outputIds:
+          - - aUCGjeYL0D
+          - - 9zprQARypd
+        type: VerifyExperienceGroupNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getApiV1User-2~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /api/v1/user
+          name: endpoint
+          uiId: LgcvrMcC5p
+          x: 540
+          'y': 100
+        outputIds:
+          - - zgWWF8re3r
+        type: endpoint
+    version: develop
+version: 1

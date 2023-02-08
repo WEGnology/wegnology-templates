@@ -1,0 +1,74 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: PV
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: SP
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: MV
+      - attributeTags: {}
+        dataType: number
+        name: Mode
+    children: []
+    deviceClass: standalone
+    id: ~exportplaceholderid-device-deviceEte-0~
+    name: DeviceETE
+    tags:
+      - key: gps
+        value: -26.49112594193875, -49.0992648776389
+      - key: equipament
+        value: ETE
+  - attributes:
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: ALARM_GERAL_ATIVO
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: PHIT_PV
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: FT02_PV
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: AIT01_O2_PV
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: FT03_PV
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: SP01A_Running
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: AG01_Running
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: AG07_Running
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: BD04_Running
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: AG02_Running
+    children: []
+    deviceClass: standalone
+    id: ~exportplaceholderid-device-deviceEteRelevance-1~
+    name: DeviceETERelevance
+    tags: []
+version: 1

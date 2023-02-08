@@ -1,0 +1,539 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-predicao-2~
+    name: Predicao
+    nodes:
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: YTFz8OPj3h
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 360
+          'y': 300
+        outputIds:
+          - - o7Vbk32OKn
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: XTZ0wgnIkb
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 640
+        outputIds:
+          - - yXnP6HSvvc
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: 8hKUPzqIXA
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 880
+        outputIds:
+          - - NtHMNS6FFA
+        type: DebugNode
+      - config: {}
+        id: SNTVqFbCY5
+        meta:
+          annotationText: Análise Predict da PV de uma ETE.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 60
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: " {\r\n    \"name\":\"Predict ETE\",\r\n    \"strategy\":\"281bf348-f161-4f95-b971-30cc46417246\",\r\n    \"data_source\":\"wegnology_api\",\r\n    \"data_source_data\": {\r\n        \"token\": \"{{globals.tokAPI}}\",\r\n\t\t\"attributes\": [\"PV\"\r\n\t\t],\r\n    \"device_ids\": [\r\n      \"~exportplaceholderid-device-deviceEte-0~\"\r\n    ],\r\n    \"resolution\": 5000,\r\n    \"aggregation\": \"MEAN\",\r\n    \"application_id\": \"~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~\"\r\n    },\r\n    \"inputs_map\": {\r\n        \"y\": \"~exportplaceholderid-device-deviceEte-0~__PV\"\r\n    },\r\n    \"strategy_config\":{\r\n        \"predict_steps\": 20,\r\n        \"auto_ml\":true\r\n    },\r\n    \"preprocess\": {\r\n\t\t\"input_configurations\": {\r\n\t\t\t\"y\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"args\": {\"errors\": \"coerce\"},\r\n\t\t\t\t\t\"function\": \"convert_to_numeric\"\r\n\t\t\t},\r\n        {\"function\": \"scale_series\", \"args\": {\"method\": \"normalize\", \"normalization_method\": \"min/max\", \"min\": -1, \"max\": 1}}\r\n\t\t]\r\n\t},\r\n\t\t\"global_configurations\": [{\r\n\t\t\t\t\t \t\t\"args\": {\"keep\": \"first\", \"input_types\": \"continuous\", \"data_types\":\"dataframe\"},\r\n            \t\"function\": \"remove_duplicated_index\"\r\n\t\t\t\t },\r\n\t\t\t\t{\"function\": \"nan_processing\", \"args\": {\"method\": \"interpolate\", \"interpolate_method\":\"linear\"}},\r\n\t\t\t\t{\r\n            \t\"args\": {\"frequency_value\": 4,\"frequency_unit\":\"T\",  \"default_numeric\":\"mean\",\"default_non_numeric\":\"last\"},\r\n            \t\"function\": \"resample_dataset\"\r\n       \t },\r\n\t\t\t{\"function\": \"nan_processing\", \"args\": {\"method\": \"interpolate\", \"interpolate_method\":\"linear\"}}\r\n\t\t\t]\r\n\t\t}\r\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: 'http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/'
+        id: yXnP6HSvvc
+        meta:
+          category: data
+          description: ''
+          label: Order
+          name: http
+          x: 360
+          'y': 760
+        outputIds:
+          - - 8hKUPzqIXA
+        type: HttpNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: ''
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{data.pedido.body.id}}/dispatch/
+        id: 5y7w3mSrKv
+        meta:
+          category: data
+          description: ''
+          label: Dispatch
+          name: http
+          x: 360
+          'y': 1120
+        outputIds:
+          - - 4w3_PPlNic
+        type: HttpNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.response
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{aux}}/
+        id: SPvkXeV2De
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 620
+          'y': 680
+        outputIds:
+          - - bwCHW9_ech
+        type: HttpNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "completed"'
+        id: m_bCts1ldL
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 620
+          'y': 900
+        outputIds:
+          - - V1muxx5LNl
+          - - Y9x55RUfiQ
+        type: ConditionalNode
+      - config:
+          message: Error
+          property: ''
+        id: vEiysmk1yQ
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 880
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.result
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/result/projects/{{project}}/calc-results/{{data.response.body.dispatch_info.result_id}}/
+        id: Y9x55RUfiQ
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 1040
+          'y': 980
+        outputIds:
+          - - XHqG9ws5aQ
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: lEGEl0zGh2
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1100
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "failed"'
+        id: V1muxx5LNl
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 740
+          'y': 1040
+        outputIds:
+          - - 9Y3Utpoa4y
+          - - vEiysmk1yQ
+        type: ConditionalNode
+      - config:
+          message: '{{data.response.body.dispatch_info.status}}'
+          property: ''
+        id: 9Y3Utpoa4y
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: i3mpQYoniW
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 620
+          'y': 280
+        outputIds:
+          - - LvOYehJlC9
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: unMhR1gvEh
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 580
+        outputIds:
+          - - SPvkXeV2De
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: bwCHW9_ech
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 780
+        outputIds:
+          - - m_bCts1ldL
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: 4w3_PPlNic
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          keyName: aux
+          resultPath: ''
+          value: data.pedido.body.calc_order
+          valueType: path
+        id: NtHMNS6FFA
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 360
+          'y': 1000
+        outputIds:
+          - - 5y7w3mSrKv
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: template
+          getAll: false
+          keyName: aux
+          valuePath: aux
+        id: o5OKSVaqp1
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 620
+          'y': 480
+        outputIds:
+          - - unMhR1gvEh
+        type: GetValueNode
+      - config:
+          keyName: project
+          resultPath: ''
+          value: '{{globals.idProjeto}}'
+          valueType: number
+        id: o7Vbk32OKn
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 360
+          'y': 420
+        outputIds:
+          - - Jn4Rru7XTJ
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: Jn4Rru7XTJ
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 360
+          'y': 520
+        outputIds:
+          - - XTZ0wgnIkb
+        type: GetValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: LvOYehJlC9
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 620
+          'y': 380
+        outputIds:
+          - - o5OKSVaqp1
+        type: GetValueNode
+      - config: {}
+        id: dNig-8YL-z
+        meta:
+          annotationText: >-
+            Este workflow tem a função de criar a ordem de cálculo para a
+            análise e dar dispatch nessa análise.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 360
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: RBEq_XNQeh
+        meta:
+          annotationText: >-
+            Este workflow tem a função de obter o resultado da análise e enviar
+            este resultado ao front end.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 620
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          bodyTemplate: data.result.body.result
+          bodyTemplateType: path
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: XHqG9ws5aQ
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 1040
+          'y': 1120
+        outputIds:
+          - - lEGEl0zGh2
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-predicao-2~-KpEvT_DJfh
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Predict
+          name: virtualButton
+          payload: ''
+          uiId: 5ZWXwf_3_T
+          x: 360
+          'y': 180
+        outputIds:
+          - - YTFz8OPj3h
+        type: virtualButton
+      - config: {}
+        key: ~exportplaceholderid-flow-predicao-2~-vLECe0qIHN
+        meta:
+          category: trigger
+          description: ''
+          label: fetch result
+          name: virtualButton
+          payload: ''
+          uiId: N0l6fYK4pv
+          x: 620
+          'y': 180
+        outputIds:
+          - - i3mpQYoniW
+        type: virtualButton
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getPredictete-4~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /predictete
+          name: endpoint
+          uiId: '-P4eMNhDah'
+          x: 160
+          'y': 180
+        outputIds:
+          - - YTFz8OPj3h
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getResultpredicao-7~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /resultpredicao
+          name: endpoint
+          uiId: TSTcGWGITn
+          x: 960
+          'y': 180
+        outputIds:
+          - - i3mpQYoniW
+        type: endpoint
+version: 1

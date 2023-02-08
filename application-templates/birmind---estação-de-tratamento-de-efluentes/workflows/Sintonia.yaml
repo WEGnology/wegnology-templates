@@ -1,0 +1,539 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-sintonia-4~
+    name: Sintonia
+    nodes:
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: kbzdWI5tnC
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 340
+          'y': 300
+        outputIds:
+          - - ub3xJvAS_8
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: 79muPZdZnO
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 340
+          'y': 640
+        outputIds:
+          - - FTceKgoEqK
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: 05FaAn-mf8
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 340
+          'y': 860
+        outputIds:
+          - - 0w1Q4a2iIw
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\r\n    \"name\": \"Sintonia ETE\",\r\n    \"strategy\": \"7896bca9-ff62-4ac2-a708-20c6aa17afef\",\r\n    \"strategy_service\": \"loop_autotuning\",\r\n    \"strategy_config\": {\r\n      \"mode\": 0,\r\n      \"mv_max\": 0.026,\r\n      \"mv_min\": 0,\r\n      \"pv_max\": 10,\r\n      \"pv_min\": 9,\r\n      \"pid_config\": {\r\n          \"controller_type\": 2,\r\n        \"controller_structure\":1\r\n      },\r\n      \"mv_eng_unit\": {\r\n        \"type\": 1,\r\n        \"multiplier\": 1\r\n      },\r\n      \"pv_eng_unit\": {\r\n          \"type\": 0,\r\n        \"multiplier\": 1\r\n      },\r\n      \"feasibility\":\"mv\",\r\n      \"pv_kpi_range\": 5,\r\n      \"cruz_sp_limit\": 10,\r\n      \"auto_tuning_config\": {\r\n        \"sampling_time\": 5,\r\n        \"system_time_constant\": 5,\r\n        \"mv_order\": 3,\r\n        \"pv_order\": 2,\r\n        \"residue_order\": 1,\r\n        \"forgetting_factor\": 0.81,\r\n        \"system_time_delay\": 0\r\n      }\r\n    },\r\n    \"data_source\":\"wegnology_api\",\r\n    \"data_source_data\": {\r\n        \"token\": \"{{globals.tokAPI}}\",\r\n\t\t\"attributes\": [\"PV\",\r\n    \"SP\",\r\n    \"MV\",\r\n    \"Mode\"],\r\n    \"device_ids\": [\r\n      \"~exportplaceholderid-device-deviceEte-0~\"\r\n    ],\r\n    \"resolution\": 5000,\r\n    \"aggregation\": \"MEAN\",\r\n    \"application_id\": \"~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~\"\r\n    },\r\n    \"inputs_map\": {\r\n      \"pv\": \"~exportplaceholderid-device-deviceEte-0~__PV\",\r\n      \"mv\": \"~exportplaceholderid-device-deviceEte-0~__MV\",\r\n      \"sp\": \"~exportplaceholderid-device-deviceEte-0~__SP\",\r\n      \"mode\": \"~exportplaceholderid-device-deviceEte-0~__Mode\"\r\n    }\r\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: 'http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/'
+        id: FTceKgoEqK
+        meta:
+          category: data
+          description: ''
+          label: Order
+          name: http
+          x: 340
+          'y': 760
+        outputIds:
+          - - 05FaAn-mf8
+        type: HttpNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: ''
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{data.pedido.body.id}}/dispatch/
+        id: BcgKxP1paE
+        meta:
+          category: data
+          description: ''
+          label: Dispatch
+          name: http
+          x: 340
+          'y': 1060
+        outputIds:
+          - - _dcuaUq_7i
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: _dcuaUq_7i
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 380
+          'y': 1160
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.response
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{aux}}/
+        id: '-TD5hHeUH-'
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 600
+          'y': 700
+        outputIds:
+          - - QS2ElcAe1Z
+        type: HttpNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "completed"'
+        id: 3-P48LeuWy
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 600
+          'y': 920
+        outputIds:
+          - - hQ9baiDuAY
+          - - 06Uv1NUDRy
+        type: ConditionalNode
+      - config:
+          message: Error
+          property: ''
+        id: 0Dmu0XWR-w
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 860
+          'y': 1320
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.result
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/result/projects/{{project}}/calc-results/{{data.response.body.dispatch_info.result_id}}/
+        id: 06Uv1NUDRy
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 1020
+          'y': 1000
+        outputIds:
+          - - 08RqfrLgtb
+        type: HttpNode
+      - config:
+          message: '{{data.response.body.dispatch_info.status}}'
+          property: ''
+        id: KRCWepe_UG
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1080
+          'y': 1320
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "failed"'
+        id: hQ9baiDuAY
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 720
+          'y': 1060
+        outputIds:
+          - - H4-qKb9tTh
+          - - 0Dmu0XWR-w
+        type: ConditionalNode
+      - config:
+          message: '{{data.response.body.dispatch_info.status}}'
+          property: ''
+        id: H4-qKb9tTh
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 600
+          'y': 1260
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: AsnoTMXa2M
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 600
+          'y': 280
+        outputIds:
+          - - LfDpk_T1Bp
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: Wt5C9r1eiF
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 600
+          'y': 600
+        outputIds:
+          - - '-TD5hHeUH-'
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: QS2ElcAe1Z
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 600
+          'y': 800
+        outputIds:
+          - - 3-P48LeuWy
+        type: DebugNode
+      - config:
+          keyName: aux
+          resultPath: ''
+          value: data.pedido.body.calc_order
+          valueType: path
+        id: 0w1Q4a2iIw
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 340
+          'y': 960
+        outputIds:
+          - - BcgKxP1paE
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: template
+          getAll: false
+          keyName: aux
+          valuePath: aux
+        id: 2rWZuT_5Ni
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 600
+          'y': 500
+        outputIds:
+          - - Wt5C9r1eiF
+        type: GetValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: LfDpk_T1Bp
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 600
+          'y': 400
+        outputIds:
+          - - 2rWZuT_5Ni
+        type: GetValueNode
+      - config:
+          keyName: project
+          resultPath: ''
+          value: '{{globals.idProjeto}}'
+          valueType: number
+        id: ub3xJvAS_8
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 340
+          'y': 420
+        outputIds:
+          - - A6gDwlgSQW
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: A6gDwlgSQW
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 340
+          'y': 540
+        outputIds:
+          - - 79muPZdZnO
+        type: GetValueNode
+      - config: {}
+        id: D-W9f3azzS
+        meta:
+          annotationText: Análise de sintonia para a malha de controle de uma ETE.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 60
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: rRJ3Xpkqq7
+        meta:
+          annotationText: >-
+            Este workflow tem a função de criar a ordem de cálculo para a
+            análise e dar dispatch nessa análise.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 340
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 6ysmdbzo0V
+        meta:
+          annotationText: >-
+            Este workflow tem a função de obter o resultado da análise e enviar
+            este resultado ao front end.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 600
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          bodyTemplate: data.result.body.result
+          bodyTemplateType: path
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: 08RqfrLgtb
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 1040
+          'y': 1160
+        outputIds:
+          - - KRCWepe_UG
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-sintonia-4~-TyXKgj56nb
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Sintonia
+          name: virtualButton
+          payload: ''
+          uiId: XgD4iCIzEj
+          x: 340
+          'y': 180
+        outputIds:
+          - - kbzdWI5tnC
+        type: virtualButton
+      - config: {}
+        key: ~exportplaceholderid-flow-sintonia-4~-zLsTOeyjqN
+        meta:
+          category: trigger
+          description: ''
+          label: fetch result
+          name: virtualButton
+          payload: ''
+          uiId: JAQcAxBFRw
+          x: 600
+          'y': 180
+        outputIds:
+          - - AsnoTMXa2M
+        type: virtualButton
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getSintoniaete-10~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /sintoniaete
+          name: endpoint
+          uiId: vcST5YuyUQ
+          x: 100
+          'y': 180
+        outputIds:
+          - - kbzdWI5tnC
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getResultsintonia-9~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /resultsintonia
+          name: endpoint
+          uiId: 9PzEsfZhHx
+          x: 900
+          'y': 180
+        outputIds:
+          - - AsnoTMXa2M
+        type: endpoint
+version: 1

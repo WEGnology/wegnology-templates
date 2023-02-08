@@ -1,0 +1,35 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    id: ~exportplaceholderid-experienceView-createAccount-1~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase-0~
+    localFilename: ./Create_Account_.hbs
+    name: "Create Account "
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-deleteAccount-2~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase-0~
+    localFilename: ./Delete_Account.hbs
+    name: Delete Account
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-home-3~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase-0~
+    localFilename: ./Home.hbs
+    name: Home
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-login-4~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase-0~
+    localFilename: ./Login.hbs
+    name: Login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

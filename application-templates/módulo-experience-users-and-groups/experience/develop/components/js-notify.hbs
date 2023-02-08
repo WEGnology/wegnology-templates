@@ -1,0 +1,44 @@
+<script>
+function executeNotify(options) {
+        let notifyOptions = {
+            message: options.message,
+            type: options.type
+        };
+
+        $.extend(notifyOptions, options);
+        let typeIconDictionary = function () {
+            return {
+                'success': 'fas fa-check-circle',
+                'info': 'fas fa-info-circle',
+                'warning': 'fas fa-exclamation-triangle',
+                'danger': 'fas fa-times-circle'
+            };
+        };
+
+        if (!options.icon && typeIconDictionary()[notifyOptions.type]) {
+            notifyOptions['icon'] = typeIconDictionary()[notifyOptions.type];
+        }
+
+        $.notify({
+            message: notifyOptions.message,
+            icon: notifyOptions.icon
+        }, {
+            type: notifyOptions.type,
+            placement: {
+                from: 'top',
+                align: 'right'
+            },
+            offset: 20,
+            spacing: 10,
+            z_index: 2000,
+            delay: notifyOptions.delay ? notifyOptions.delay : 5000,
+            timer: 1000,
+            showProgressbar: notifyOptions.showProgressbar ? true : false,
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+            },
+            icon_type: 'class'
+        });
+    }
+</script>

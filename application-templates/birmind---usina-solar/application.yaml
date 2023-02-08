@@ -1,0 +1,18 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: >
+      Esta aplicação tem como objetivo mostrar o uso do módulo de predição de
+      séries temporais numa aplicação de Energia solar, fornecendo ao usuário a
+      possibilidade de monitorar e predizer o comportamento de algumas
+      variáveis, presentes nos painéis solares e componentes.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+    name: BirminD - Usina Solar
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

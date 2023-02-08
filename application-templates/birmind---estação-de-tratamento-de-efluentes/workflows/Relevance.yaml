@@ -1,0 +1,539 @@
+resourceType: Flow
+resources:
+  - description: ''
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-relevance-3~
+    name: Relevance
+    nodes:
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: m6E0qCelzq
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 400
+          'y': 300
+        outputIds:
+          - - LtyguTavMM
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: fkx1UJRg9A
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 400
+          'y': 660
+        outputIds:
+          - - UkkGNrtxT4
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: n3ypUtep42
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 400
+          'y': 920
+        outputIds:
+          - - 8V0QdbMoX2
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\r\n    \"name\":\"RelevanceETE\",\r\n    \"strategy\": \"f68a7876-45b4-4d17-8422-6a2f98afb25f\",\r\n    \"strategy_service\":\"relevance\",\r\n    \"data_source\":\"wegnology_api\",\r\n    \"data_source_data\": {\r\n        \"token\": \"{{globals.tokAPI}}\",\r\n\t\t\"attributes\": [\r\n          \"AG01_Running\",\r\n          \"AG02_Running\",\r\n          \"AG07_Running\",\r\n          \"AIT01_O2_PV\",\r\n          \"ALARM_GERAL_ATIVO\",\r\n          \"BD04_Running\",\r\n          \"FT02_PV\",\r\n          \"FT03_PV\",\r\n          \"PHIT_PV\",\r\n          \"SP01A_Running\"\r\n        ],\r\n        \"device_ids\": [\r\n          \"~exportplaceholderid-device-deviceEteRelevance-1~\"\r\n        ],\r\n        \"resolution\": 10000,\r\n        \"aggregation\": \"MEAN\",\r\n        \"application_id\": \"~exportplaceholderid-application-applicationBirminDEstacaoDeTratamentoDeEfluentes-0~\"\r\n    },\r\n    \"strategy_config\": {\r\n        \"input_columns\": [\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AG01_Running\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AG02_Running\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AG07_Running\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AIT01_O2_PV\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__FT02_PV\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__FT03_PV\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__PHIT_PV\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__SP01A_Running\",\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__BD04_Running\"\r\n        ],\r\n        \"output_column\": [\r\n            \"~exportplaceholderid-device-deviceEteRelevance-1~__ALARM_GERAL_ATIVO\"\r\n        ]\r\n    },\r\n    \"inputs_map\": null,\r\n    \"preprocess\": {\r\n        \"input_configurations\": {\r\n               \"~exportplaceholderid-device-deviceEteRelevance-1~__AG01_Running\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AG02_Running\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AG07_Running\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__AIT01_O2_PV\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__FT02_PV\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__FT03_PV\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__PHIT_PV\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__SP01A_Running\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__BD04_Running\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ],\r\n        \"~exportplaceholderid-device-deviceEteRelevance-1~__ALARM_GERAL_ATIVO\": [\r\n          {\r\n            \"function\": \"convert_to_numeric\",\r\n            \"args\": {\r\n              \"errors\": \"coerce\"\r\n            }\r\n          }\r\n        ]\r\n        },\r\n        \"global_configurations\": [\r\n        {\r\n          \"function\": \"remove_duplicated_index\",\r\n          \"args\": {\r\n            \"keep\": \"last\"\r\n          }\r\n        },\r\n        {\r\n          \"function\": \"nan_processing\",\r\n          \"args\": {\r\n            \"method\": \"drop\",\r\n            \"fill_value\": null,\r\n            \"fill_method\": null,\r\n            \"fill_limit\": null,\r\n            \"interpolate_method\": null\r\n          }\r\n        }\r\n      ]\r\n    }\r\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: 'http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/'
+        id: UkkGNrtxT4
+        meta:
+          category: data
+          description: ''
+          label: Order
+          name: http
+          x: 400
+          'y': 780
+        outputIds:
+          - - n3ypUtep42
+        type: HttpNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: ''
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.pedido
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{data.pedido.body.id}}/dispatch/
+        id: nZtDrEK5PR
+        meta:
+          category: data
+          description: ''
+          label: Dispatch
+          name: http
+          x: 400
+          'y': 1120
+        outputIds:
+          - - asuVhNXQE8
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: asuVhNXQE8
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 440
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.response
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/order/projects/{{project}}/orders/{{aux}}/
+        id: xAw63VeqOg
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 660
+          'y': 740
+        outputIds:
+          - - 3vZb3T1Obm
+        type: HttpNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "completed"'
+        id: a7DitD8xXo
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 660
+          'y': 960
+        outputIds:
+          - - IiQy8e9Ehz
+          - - N-9UYCtK4a
+        type: ConditionalNode
+      - config:
+          message: Error
+          property: ''
+        id: GBHWzfCY3v
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 920
+          'y': 1360
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+            - key: Authorization
+              valueTemplate: 'Bearer {{data.token.body.access}}'
+            - key: Accept
+              valueTemplate: application/json
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: data.result
+          timeoutTemplate: ''
+          uriTemplate: >-
+            http://api.birmind.cloud/api/v1/result/projects/{{project}}/calc-results/{{data.response.body.dispatch_info.result_id}}/
+        id: N-9UYCtK4a
+        meta:
+          category: data
+          description: ''
+          label: Verificar pedido
+          name: http
+          x: 1080
+          'y': 1040
+        outputIds:
+          - - r65nIxhqxj
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: Aa0F8LIvlK
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 1140
+          'y': 1340
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{data.response.body.dispatch_info.status}} == "failed"'
+        id: IiQy8e9Ehz
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 780
+          'y': 1100
+        outputIds:
+          - - 01zdX9Zr5L
+          - - GBHWzfCY3v
+        type: ConditionalNode
+      - config:
+          message: '{{data.response.body.dispatch_info.status}}'
+          property: ''
+        id: 01zdX9Zr5L
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          authCredentials: {}
+          authType: none
+          bodyTemplate: "{\n \t\"username\":\"{{globals.user}}\",\n \t\"password\":\"{{globals.pass}}\"\n}"
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: payloadPath
+          errorPath: data.error
+          headerInfo:
+            - key: Content-Type
+              valueTemplate: application/json
+          method: POST
+          requestEncodingTemplate: utf8
+          responsePath: data.token
+          timeoutTemplate: ''
+          uriTemplate: 'https://api.birmind.cloud/api/v1/get-token/'
+        id: t1AH1cOyPz
+        meta:
+          category: data
+          description: ''
+          label: Get-token
+          name: http
+          x: 660
+          'y': 280
+        outputIds:
+          - - dsg_iT-mUJ
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: reIdfAy6jJ
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 640
+        outputIds:
+          - - xAw63VeqOg
+        type: DebugNode
+      - config:
+          message: ''
+          property: ''
+        id: 3vZb3T1Obm
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 840
+        outputIds:
+          - - a7DitD8xXo
+        type: DebugNode
+      - config:
+          keyName: aux
+          resultPath: ''
+          value: data.pedido.body.calc_order
+          valueType: path
+        id: 8V0QdbMoX2
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 400
+          'y': 1020
+        outputIds:
+          - - nZtDrEK5PR
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: template
+          getAll: false
+          keyName: aux
+          valuePath: aux
+        id: Lc5pQ3_NPJ
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 660
+          'y': 540
+        outputIds:
+          - - reIdfAy6jJ
+        type: GetValueNode
+      - config:
+          keyName: project
+          resultPath: ''
+          value: '{{globals.idProjeto}}'
+          valueType: number
+        id: LtyguTavMM
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 400
+          'y': 420
+        outputIds:
+          - - iJxx-FiGmN
+        type: StoreValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: iJxx-FiGmN
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 400
+          'y': 540
+        outputIds:
+          - - fkx1UJRg9A
+        type: GetValueNode
+      - config:
+          defaultValue: '0'
+          defaultValueType: json
+          getAll: false
+          keyName: project
+          valuePath: project
+        id: dsg_iT-mUJ
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 660
+          'y': 400
+        outputIds:
+          - - Lc5pQ3_NPJ
+        type: GetValueNode
+      - config: {}
+        id: D2BZ3CNhi0
+        meta:
+          annotationText: Análise de relevancia do acionamento de um alarme geral de uma ETE.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 180
+          x: 60
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 52bJFFfpjt
+        meta:
+          annotationText: >-
+            Este workflow tem a função de criar a ordem de cálculo para a
+            análise e dar dispatch nessa análise.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 400
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: t-jRCo58v2
+        meta:
+          annotationText: >-
+            Este workflow tem a função de obter o resultado da análise e enviar
+            este resultado ao front end.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 660
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          bodyTemplate: data.result.body.result
+          bodyTemplateType: path
+          cookieInfo: []
+          experienceVersion: develop
+          headerInfo:
+            - keyTemplate: Content-Type
+              valueTemplate: application/json
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: custom
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: r65nIxhqxj
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 1120
+          'y': 1160
+        outputIds:
+          - - Aa0F8LIvlK
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-flow-relevance-3~-hA59iAv-sN
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Relevance
+          name: virtualButton
+          payload: ''
+          uiId: qKzBVmI9xf
+          x: 400
+          'y': 180
+        outputIds:
+          - - m6E0qCelzq
+        type: virtualButton
+      - config: {}
+        key: ~exportplaceholderid-flow-relevance-3~-u9HylhnelWsJqT55wUArX
+        meta:
+          category: trigger
+          description: ''
+          label: fetch result
+          name: virtualButton
+          payload: ''
+          uiId: vRneTRymrl
+          x: 660
+          'y': 180
+        outputIds:
+          - - t1AH1cOyPz
+        type: virtualButton
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getRelevanceete-5~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /relevanceete
+          name: endpoint
+          uiId: Wb8yMX9MgF
+          x: 200
+          'y': 180
+        outputIds:
+          - - m6E0qCelzq
+        type: endpoint
+      - config:
+          experienceVersion: develop
+        key: ~exportplaceholderid-experienceEndpoint-getResultrelevancia-8~
+        meta:
+          category: trigger
+          description: ''
+          label: GET /resultrelevancia
+          name: endpoint
+          uiId: 8nVt6pzLx8
+          x: 1080
+          'y': 180
+        outputIds:
+          - - t1AH1cOyPz
+        type: endpoint
+version: 1

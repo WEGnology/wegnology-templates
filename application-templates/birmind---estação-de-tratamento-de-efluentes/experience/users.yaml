@@ -1,0 +1,24 @@
+resourceType: ExperienceUser
+resources:
+  - email: ete@birmind.com.br
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-myExampleGroup-0~
+    firstName: ETE
+    id: ~exportplaceholderid-experienceUser-eteBirmindComBr-0~
+    lastName: Birmind
+    userTags: {}
+  - email: test.user.jccvl2sicp@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-myExampleGroupJ5I8Yjvkq4-1~
+    firstName: Test
+    id: ~exportplaceholderid-experienceUser-testUserJccvl2SicpExampleCom-1~
+    lastName: User
+    userTags: {}
+  - email: test.user.zjmi-qs_oy@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-myExampleGroup-0~
+    firstName: Test
+    id: ~exportplaceholderid-experienceUser-testUserZjmiQsOyExampleCom-2~
+    lastName: User
+    userTags: {}
+version: 1

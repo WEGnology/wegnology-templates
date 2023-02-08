@@ -1,0 +1,1479 @@
+resourceType: Dashboard
+resources:
+  - blocks:
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: image
+        config:
+          bgColor: 'rgba(255, 255, 255, 0)'
+          imageSource: static
+          imageUrl: >-
+            https://files.wnology.io/~exportplaceholderid-application-applicationBirminDUsinaSolar-0~/logo_birmind.png
+        height: 0.5
+        id: ciXwTkDQfw
+        startX: 0
+        startY: 0
+        width: 4
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: input
+        config:
+          controls:
+            - action: workflow
+              buttonId: QevlWg1549
+              color: 'rgba(141, 179, 25, 1)'
+              grid:
+                h: 1
+                w: 4
+                x: 0
+                'y': 0
+              id: button-0
+              label: Atualiza Dados
+              templateId: button-0
+              type: button
+              workflowId: ~exportplaceholderid-flow-insertValues-2~
+          defaultMode: unlocked
+        height: 0.5
+        id: s8y5dGoi1Y
+        startX: 3.5
+        startY: 0.5
+        title: Comandos Workflow
+        width: 0.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <div class="card" style="text-align: center">
+                      <div class="card-header">Dashboard Energia Solar</div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <style>
+                body {
+                  padding: 10px;
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                function renderBlock(input) {
+                  document.getElementById('blockInput').innerHTML =
+                    JSON.stringify(input, undefined, 2);
+                }
+
+                /*
+                  Add listeners to your required events. These listeners invoke
+                  the functions above so that your code can handle the event
+                  as needed.
+                */
+                DashboardBlock.on('change', renderBlock);
+
+                /*
+                  Render the initial state when the block loads.
+                */
+                $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+              </script>
+          segments: []
+        height: 0.5
+        id: q2np0Emvb9
+        startX: 0
+        startY: 0.5
+        width: 3.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: image
+        config:
+          bgColor: 'rgba(255, 255, 255, 0)'
+          imageSource: static
+          imageUrl: >-
+            https://files.wnology.io/~exportplaceholderid-application-applicationBirminDUsinaSolar-0~/9104831217694.jpg
+        height: 2
+        id: L6KkUcfCUd
+        startX: 0
+        startY: 1
+        width: 1.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          duration: 0
+          gaugeMax: '15000'
+          gaugeMin: '0'
+          gaugeType: dial
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: AC_Power
+            color: '#8db319'
+            deviceIds:
+              - ~exportplaceholderid-device-solarPowerGenerator-0~
+            deviceTags: []
+            label: AC Power
+        height: 1
+        id: xlPf9ceZeB
+        startX: 2
+        startY: 1
+        title: Potência AC
+        width: 0.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          duration: 0
+          gaugeMax: '70'
+          gaugeMin: '0'
+          gaugeType: thermometer
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: TemperatureMod
+            color: '#8db319'
+            deviceIds:
+              - ~exportplaceholderid-device-solarPowerGenerator-0~
+            deviceTags: []
+            label: Temperatura Modulo ºC
+        height: 1
+        id: ov24SPHDwE
+        startX: 1.5
+        startY: 1
+        width: 0.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: >-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:#ecedee;width: 100%;height:100%;padding-left:0;padding-right:0;">
+                  <strong style="color:black;">Controle de Análise</strong>
+                </div>
+                <div id="botao" class="card-body" style="padding-left:0;padding-right:0">
+                  <a><button id="recal" class="btn btn-primary" style="width:40%;color:white;margin-top:20px;margin-right:20px">Recalcular</button></a>
+                  <a href="" target="_top" class="btn btn-success" style="width:40%;margin-top:20px;margin-right:-20px">Aplicar</a>
+                </div>
+              </div>
+
+              <div id="snackbar">Aguarde 15 minutos e depois clique no botão
+              aplicar.</div>
+
+              <script>
+                function periodicFunction() {
+                var alt = DashboardBlock.input.size.height - 52
+                var alt2 = DashboardBlock.input.size.width - 20
+                $("#botao").css("height", alt);
+                $("#botao").css("width", alt2);
+                }
+                DashboardBlock.on('change', periodicFunction);
+                      periodicFunction();
+                var bt = document.getElementById("recal")
+              bt.addEventListener("click",trig)
+
+              function trig() {
+                const Http = new XMLHttpRequest();
+                const url = "https://~exportplaceholderid-application-applicationBirminDUsinaSolar-0~.wnology.io/geraanalise";
+                Http.open("GET", url);
+                Http.send();
+                $("#recal").empty()
+                $("#recal").append("Recalculando")
+                $("#recal").css("opacity",0.3)
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                $("#recal").attr("disabled", "disabled");
+              }
+
+
+              </script>
+            headContent: >
+              <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              />
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <link rel="stylesheet"
+              href="https://files.wnology.io/~exportplaceholderid-application-applicationBirminDUsinaSolar-0~/cssnotific.css">
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+              <style>
+                body {
+                  padding: 1px;
+                  margin: 0px;
+                  background: transparent;
+                }
+              </style>
+
+              <!-- <script type="text/javascript">
+                function renderBlock(input) {
+               
+                  if (DashboardBlock.input.queries.warnings) { // check ot see if the query was successfull
+                    $('#table-body').empty() // empty table on re-render
+                    // loop through each point and append row to table
+                    input.queries.warnings.items.forEach(function(row) {
+                      $('#table-body').append(`
+                            <tr>
+                            <td>${row.warning_or_alarm ? 'Alarm': 'Warning'}</td>
+                            <td>${row.description}</td>
+                            </tr>
+                        `)
+                    })
+                  }
+                }
+
+                DashboardBlock.on('queryChange', renderBlock)
+              </script> -->
+          segments: []
+        height: 1
+        id: uJYiU6fOtF
+        startX: 3
+        startY: 1
+        width: 1
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: indicator
+        config:
+          conditions:
+            - color: '#8db319'
+              condition: '{{value-0}} > 0 '
+              id: leLx5RJTcS
+              label: Ligado
+            - color: 'rgba(255, 38, 27, 1)'
+              condition: '{{value-0}} <= 0 '
+              id: TyNZ6ZWIg4
+              label: Desligado
+          defaultCondition:
+            color: '#8db319'
+            label: ''
+          duration: 0
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: DC_Power
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+        height: 1
+        id: '-2S1e8yN4C'
+        startX: 2.5
+        startY: 1
+        title: Status
+        width: 0.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          duration: 0
+          gaugeMax: '15000'
+          gaugeMin: '0'
+          gaugeType: dial
+          precision: '3'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: DC_Power
+            color: '#8db319'
+            deviceIds:
+              - ~exportplaceholderid-device-solarPowerGenerator-0~
+            deviceTags: []
+            label: DC Power
+        height: 1
+        id: _PNbxQ79QF
+        startX: 1.5
+        startY: 2
+        title: Potência DC
+        width: 1
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <section>
+                      <article>
+                          <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 400; float:left">
+                              <a style="text-decoration: none; color: black"> Geração últimos 30 dias [kW]</a>
+                          </p>
+                          <div style="clear: both" class='chart1 ' id='myDiv1'></div>
+                      </article>
+                  </section>
+
+                  <script>
+                      var periodicFunction = function() {
+
+
+
+                          let totalPower = DashboardBlock.input.queries.power
+                          console.log(totalPower)
+                          totalPower =  totalPower[totalPower.length-1].value - totalPower[0].value
+                          
+
+                              var trace1 = [
+                              {
+                                  type: "indicator",
+                                  mode: "number+gauge+delta",
+                                  gauge: { shape: "bullet" },
+                                  delta: { reference: 40000 },
+                                  value: totalPower,
+                                  domain: { x: [0, 1], y: [0, 1] },
+                              }
+                              ]
+
+                              var layout1 = {
+                                  showlegend: true,
+                                  xaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1
+                                  },
+                                  yaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      rangemode: 'tozero',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1
+                                  },
+                                  autosize: false,
+                                  width: DashboardBlock.input.size.width-60,
+                                  height: DashboardBlock.input.size.height-84,
+                                  margin: {
+                                      l: 40,
+                                      r: 20,
+                                      b: 40,
+                                      t: 20,
+                                      pad: 4
+                                  },
+                                  paper_bgcolor: '#f5f6f7',
+                                  plot_bgcolor: '#f5f6f7',
+                              }
+                              Plotly.newPlot('myDiv1', trace1, layout1, { displayModeBar: false });
+                              
+                          }
+                          // setInterval(function(){ periodicFunction(); }, 10000)
+                      
+                      DashboardBlock.on('dataChange', function(input) {
+                          console.log('datachange', input)
+                      })
+                      DashboardBlock.on('change', periodicFunction)
+
+
+                  </script>
+            headContent: |2-
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                  
+          segments:
+            - aggregation:
+                options: {}
+                type: FIRST
+              attribute: Total_Yield
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: power
+              queryType: time-series
+              resolution: 3600000
+        height: 1
+        id: Sd5Lrew0yE
+        startX: 2.5
+        startY: 2
+        width: 1.5
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <section>
+                      <article style="margin:0px">
+                          <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 400; float:left">
+                              <a style="text-decoration: none; color: black"> Potência AC e DC vs Irradiação</a>
+                          </p>
+                          <div style="clear: both" class='chart1 ' id='myDiv1'></div>
+                      </article>
+                  </section>
+
+                  <script>
+                      var periodicFunction = function() {
+
+
+
+                          const irradiation = DashboardBlock.input.queries.irradiation
+                          const ac_power = DashboardBlock.input.queries.ac_power
+                          const dc_power = DashboardBlock.input.queries.dc_power
+                          const ac = irradiation.map((item) => {
+                              var index = ac_power.findIndex(p => p.time == item.time)
+
+                              return {"time":item.time, "irradiation":item.value, "ac_power":ac_power[index].value};
+                          })
+
+                          const dc = irradiation.map((item) => {
+                              var index = dc_power.findIndex(p => p.time == item.time)
+
+                              return {"time":item.time, "irradiation":item.value, "dc_power":dc_power[index].value};
+                          })
+
+
+                              var trace1 = {
+                              x: ac.map((item) => {return item.irradiation}),
+                              y: ac.map((item) => {return item.ac_power}),
+                              name: "AC Power",
+                              mode: 'markers',
+                              type: 'scatter',
+                              marker: {
+                              opacity: 0.4,
+                              size: 3.5,
+                              color:"steelblue"
+                              },
+                              };
+                              
+                              var trace2 = {
+                              x: dc.map((item) => {return item.irradiation}),
+                              y: dc.map((item) => {return item.dc_power}),
+                              name: "DC Power",
+                              mode: 'markers',
+                              type: 'scatter',
+                              marker: {
+                              size: 3.5,
+                              opacity: 0.4,
+                              color:"Orange"
+                              },
+                              };
+
+                              yreg = linearRegression(trace1.y, trace1.x)
+                              var reta1 = [yreg.intercept, yreg.intercept + yreg.slope]
+                              var trace3 = {
+                              x: [0,1],
+                              y: reta1,
+                              name: "AC Trend",
+                              mode: 'lines',
+                              hoverinfo: "none",
+                              type: 'scatter',
+                              line:{
+                                  color: 'steelblue',
+                                  width: 3,
+                                  dash:"dashdot"
+                              }
+                              };
+
+
+                              yreg2 = linearRegression(trace2.y, trace2.x)
+                              var reta2 = [yreg2.intercept, yreg2.intercept + yreg2.slope]
+                              var trace4 = {
+                              x: [0,1],
+                              y: reta2,
+                              name: "DC Trend",
+                              mode: 'lines',
+                              type: 'scatter',
+                              hoverinfo: "none",
+                              line:{
+                                  color: 'orange',
+                                  width: 3,
+                                  dash:"dashdot"
+                              }
+                              };
+
+                              var layout1 = {
+                                  showlegend: true,
+                                  legend: {
+                                      "orientation": "h",
+                                  },
+                                  xaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1
+                                  },
+                                  yaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      rangemode: 'tozero',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1
+                                  },
+                                  autosize: false,
+                                  width: DashboardBlock.input.size.width-25,
+                                  height: DashboardBlock.input.size.height-54,
+                                  margin: {
+                                      l: 40,
+                                      r: 20,
+                                      b: 40,
+                                      t: 20,
+                                      pad: 4
+                                  },
+                                  paper_bgcolor: '#fff',
+                                  plot_bgcolor: '#fff',
+                              }
+                              Plotly.newPlot('myDiv1', [trace1, trace3,trace2,trace4], layout1, { displayModeBar: false });
+                              
+                          }
+                          // setInterval(function(){ periodicFunction(); }, 10000)
+                      
+                      DashboardBlock.on('dataChange', function(input) {
+                          console.log('datachange', input)
+                      })
+                      DashboardBlock.on('change', periodicFunction)
+
+                      
+                      function linearRegression(y,x){
+                      var lr = {};
+                      var n = y.length;
+                      var sum_x = 0;
+                      var sum_y = 0;
+                      var sum_xy = 0;
+                      var sum_xx = 0;
+                      var sum_yy = 0;
+
+                      for (var i = 0; i < y.length; i++) {
+
+                          sum_x += x[i];
+                          sum_y += y[i];
+                          sum_xy += (x[i]*y[i]);
+                          sum_xx += (x[i]*x[i]);
+                          sum_yy += (y[i]*y[i]);
+                      } 
+
+                      lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
+                      lr['intercept'] = (sum_y - lr.slope * sum_x)/n;
+                      lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
+
+                      return lr;
+              }
+
+
+                  </script>
+            headContent: |2-
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                  
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: Irradiation
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: irradiation
+              queryType: time-series
+              resolution: 3600000
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: AC_Power
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: ac_power
+              queryType: time-series
+              resolution: 3600000
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: DC_Power
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: dc_power
+              queryType: time-series
+              resolution: 3600000
+        height: 2
+        id: OfNoPC94EB
+        startX: 0
+        startY: 3
+        title: ''
+        width: 2
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: graph
+        config:
+          duration: 2592000000
+          realTime: false
+          recharts: true
+          resolution: 3600000
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: TemperatureAmb
+              color: '#ff261b'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              dotWeight: 1
+              expression: ''
+              graphType: line
+              label: Temperatura Ambiente
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: ''
+              yAxisMax: ''
+              yAxisMin: ''
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: TemperatureMod
+              color: '#057180'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              dotWeight: 1
+              expression: ''
+              graphType: line
+              label: Temperatura Módulo
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: ''
+              yAxisMax: ''
+              yAxisMin: ''
+        height: 2
+        id: 68zOwzYI85
+        startX: 2
+        startY: 3
+        title: 'Temperaturas [ºC]'
+        width: 2
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <section>
+                      <article>
+                          <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 400; float:left;">
+                              <a style="text-decoration: none; color: black"> Eficiência Inversor [%]</a>
+                          </p>
+                          <div style="clear: both" class='chart1 ' id='myDiv1'></div>
+                      </article>
+                  </section>
+
+                  <script>
+                      var periodicFunction = function() {
+
+
+
+                          const ac_power = DashboardBlock.input.queries.ac_power
+                          const dc_power = DashboardBlock.input.queries.dc_power
+                          const power = ac_power.map((item) => {
+                              var index = dc_power.findIndex(p => p.time == item.time)
+                              if(dc_power[index].value != 0){
+                                  var ratio = (item.value/dc_power[index].value)*100
+                              } else {
+                                  var ratio = 0
+                              }
+
+                              return {"time":item.time, "dc_power":dc_power[index].value, "ac_power":item.value, "ratio":ratio};
+                          })
+
+                              var trace1 = {
+                              x: power.map((item) => {return item.time}),
+                              y: power.map((item) => {return item.ratio}),
+                              name: "AC Power",
+                              mode: 'lines+markers',
+                              type: 'scatter'
+                              };
+
+
+                              var layout1 = {
+                                  showlegend: false,
+                                  xaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1
+                                  },
+                                  yaxis: {
+                                      showgrid: true,
+                                      zeroline: true,
+                                      showline: false,
+                                      mirror: 'ticks',
+                                      rangemode: 'tozero',
+                                      color: 'grey',
+                                      gridcolor: 'grey',
+                                      gridwidth: 1,
+                                      zerolinecolor: 'grey',
+                                      zerolinewidth: 1,
+                                      linecolor: 'grey',
+                                      linewidth: 1,
+                                      range:[0,100]
+                                  },
+                                  autosize: false,
+                                  width: DashboardBlock.input.size.width-50,
+                                  height: DashboardBlock.input.size.height-84,
+                                  margin: {
+                                      l: 40,
+                                      r: 20,
+                                      b: 40,
+                                      t: 20,
+                                      pad: 4
+                                  },
+                                  paper_bgcolor: '#fff',
+                                  plot_bgcolor: '#fff',
+                              }
+                              Plotly.newPlot('myDiv1', [trace1], layout1, { displayModeBar: false });
+                              
+                          }
+                          // setInterval(function(){ periodicFunction(); }, 10000)
+                      
+                      DashboardBlock.on('dataChange', function(input) {
+                          console.log('datachange', input)
+                      })
+                      DashboardBlock.on('change', periodicFunction)
+
+
+                  </script>
+            headContent: |2-
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                  
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: Irradiation
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: irradiation
+              queryType: time-series
+              resolution: 3600000
+            - aggregation:
+                options: {}
+                type: SUM
+              attribute: AC_Power
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: ac_power
+              queryType: time-series
+              resolution: 86400000
+            - aggregation:
+                options: {}
+                type: SUM
+              attribute: DC_Power
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: dc_power
+              queryType: time-series
+              resolution: 86400000
+        height: 2
+        id: SLGBZ5OL_k
+        startX: 0
+        startY: 5
+        width: 2
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: graph
+        config:
+          duration: 2592000000
+          realTime: false
+          recharts: true
+          resolution: 3600000
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: Daily_Yield
+              color: '#ff261b'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              dotWeight: 1
+              expression: ''
+              graphType: line
+              label: Daily yield
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: ''
+              yAxisMax: ''
+              yAxisMin: ''
+        height: 2
+        id: t_9lo6Jwku
+        startX: 2
+        startY: 5
+        title: 'Geração diária [kW]'
+        width: 2
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <div class="card" style="text-align: center">
+                      <div class="card-header">Estimativas de KPI</div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            headContent: >-
+              <meta charset="UTF-8">
+
+              <!--
+
+              You can include any external JavaScript or CSS as needed.
+
+              This example demonstrates including Bootstrap and JQuery
+
+              into your custom HTML page.
+
+              -->
+
+              <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script
+              src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+              <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+              <script
+              src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+              <style>
+                body {
+                  padding: 10px;
+                  background: transparent;
+                }
+              </style>
+
+              <script type="text/javascript">
+                /*
+                  Renders the block input to the page.
+                  This function is simply printing the raw data to the page
+                  for debugging purposes.
+                */
+                function renderBlock(input) {
+                  document.getElementById('blockInput').innerHTML =
+                    JSON.stringify(input, undefined, 2);
+                }
+
+                /*
+                  Add listeners to your required events. These listeners invoke
+                  the functions above so that your code can handle the event
+                  as needed.
+                */
+                DashboardBlock.on('change', renderBlock);
+
+                /*
+                  Render the initial state when the block loads.
+                */
+                $(document).ready(function() {
+                  renderBlock(DashboardBlock.input);
+                });
+              </script>
+          segments: []
+        height: 0.5
+        id: parcEzgcgj
+        startX: 0
+        startY: 7
+        width: 4
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <section>
+                  <article>
+                      <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 300; float:left">
+                          <a style="text-decoration: none; color: black"> Eficiência do Inversor
+                          </a>
+                      </p>
+                      <div style="clear: both" class='chart1 ' id='myDiv1'></div>
+                  </article>
+              </section>
+              <script>
+                  function periodicFunction() {
+                      
+                      const Http = new XMLHttpRequest();
+                      const url = "https://~exportplaceholderid-application-applicationBirminDUsinaSolar-0~.wnology.io/predictdiaria";
+                      Http.open("GET", url);
+                      Http.send();
+                      Http.onreadystatechange = function () {
+                          if (this.readyState == 4 && this.status == 200) {
+                              console.log(String(Http.responseText).replace(/&quot;/ig, '"'))
+                              var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                              console.log(obj)
+                              var aux = obj.data;
+                              console.log(aux)
+                              var past = obj.data.past
+                              console.log(past)
+                              var predict = obj.data.predict
+                              console.log(predict)
+                              // var lower = obj.data.lower
+                              // console.log(lower)
+                              // var upper = obj.data.upper
+                              // console.log(upper)
+                              var trace1 = {
+                                  y: past[0].value,
+                                  x: past[0].time,
+                                  type: 'scatter',
+                                  name: 'Dados Históricos',
+                                  mode: 'lines'
+                              };
+                              var pred1 = {
+                                  y: predict[0].value,
+                                  x: predict[0].time,
+                                  type: 'scatter',
+                                  mode: 'lines',
+                                  name: 'Predição',
+                                  line: {
+                                      dash: 'dashdot',
+                                      shape: 'linear'
+                                  }
+                              };
+                              // var upper1 = {
+                              //     y: upper[0].value,
+                              //     x: upper[0].time,
+                              //     line: { color: "transparent" },
+                              //     name: "Limite Superior",
+                              //     showlegend: false,
+                              //     type: "scatter"
+                              // };
+                              // var lower1 = {
+                              //     y: lower[0].value,
+                              //     x: lower[0].time,
+                              //     fill: "tonexty",
+                              //     fillcolor: "rgba(128,128,128, 0.4)",
+                              //     line: { color: "transparent" },
+                              //     name: "Limite Inferior",
+                              //     showlegend: false,
+                              //     type: "scatter"
+                              // };
+                              var layout1 = {
+                                  showlegend: true,
+                                  xaxis: {
+                                          type: 'date',
+                                          showgrid: true,
+                                          zeroline: true,
+                                          showline: false,
+                                          mirror: 'ticks',
+                                          color: '#grey',
+                                          gridcolor: '#grey',
+                                          gridwidth: 1,
+                                          zerolinecolor: '#grey',
+                                          zerolinewidth: 1,
+                                          linecolor: '#grey',
+                                      },
+                                      yaxis: {
+                                          showgrid: true,
+                                          zeroline: true,
+                                          showline: false,
+                                          mirror: 'ticks',
+                                          color: '#grey',
+                                          gridcolor: '#grey',
+                                          rangemode: 'tozero',
+                                          gridwidth: 1,
+                                          zerolinecolor: '#grey',
+                                          zerolinewidth: 1,
+                                          linecolor: '#grey',
+                                          linewidth: 1
+                                  },
+                                  autosize: false,
+                                  width: DashboardBlock.input.size.width -60,
+                                  height: DashboardBlock.input.size.height -85,
+                                  margin: {
+                                      l: 40,
+                                      r: 20,
+                                      b: 40,
+                                      t: 20,
+                                      pad: 4
+                                  },
+                                  paper_bgcolor: '#fff',
+                                  plot_bgcolor: '#fff',
+                              }
+                              Plotly.newPlot('myDiv1', [trace1, pred1], layout1, { displayModeBar: false });
+                          }
+                      }
+                      // setInterval(function(){ periodicFunction(); }, 10000)
+                  };
+                  DashboardBlock.on('change', periodicFunction);
+                  periodicFunction();
+
+              </script>
+            headContent: |2
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+          segments: []
+        height: 1.5
+        id: o9yP52vTzt
+        startX: 1
+        startY: 7.5
+        title: ''
+        width: 3
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:#ecedee;width: 100%;height:100%;padding-left:0;padding-right:0;">
+                  <strong style="color:black;">Eficiência Atual do Inversor
+                    
+                  </strong>
+                </div>
+                <div style="clear: both;" class='chart14' id='baware2'>
+                </div>
+              </div>
+
+              <script>
+                var drawChar = function(){
+                      if(!DashboardBlock.input.queries.query) return
+
+                      var teste = DashboardBlock.input.queries.query
+                          var value = teste[0].value.toFixed(2) * 100
+                          console.log("aqui >",value)
+                          
+                          var data = [{
+                        values: [value,100-value],
+                        labels: ['mean','rest'],
+                        hole: .8,
+                        marker: {
+                          colors: ["#357312", '#3939394d']
+                        },
+                        type: 'pie',
+                        hoverinfo: 'none',
+                        textinfo: 'none'
+                        }];
+                      if (value < 30){
+                      data[0].marker.colors[0] = "#cb1414"
+                      }else if(value< 60){
+                        data[0].marker.colors[0] = "#ffff00"
+                      }
+                      var layout = {
+                        height: DashboardBlock.input.size.height - 72,
+                        width: DashboardBlock.input.size.width - 59,
+                        paper_bgcolor: '#27272700',
+                        plot_bgcolor: '#30303000',
+                        showlegend: false,
+                        margin: {"t": 15, "b": 15, "l": 55, "r": 15},
+                        annotations: [
+                          {
+                          font: {
+                            size: 25,
+                            color:"#000"
+                          },
+                          showarrow: false,
+                          text: value + '%',
+                          x: 0.5,
+                          y: 0.5
+                          }]
+                      };
+                      Plotly.newPlot('baware2', data, layout, {displayModeBar: false});
+                    }
+                DashboardBlock.on('change', drawChar);
+                  drawChar()
+              </script>
+            headContent: |2-
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <style>
+                body {
+                  padding: 1px;
+                  margin: 0px;
+                  background: transparent;
+                }
+              </style>
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: kpiInversor
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: query
+              queryType: time-series
+              resolution: 3600000
+        height: 1.5
+        id: VhhreRYM89
+        startX: 0
+        startY: 7.5
+        width: 1
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <div class="card text-center">
+                <div class="card-header" style="background-color:#ecedee;width: 100%;height:100%;padding-left:0;padding-right:0;">
+                  <strong style="color:black;">Performance Ratio</strong>
+                </div>
+                  <p style="margin-top:5px;margin-bottom:0px"> Valor Nominal : 13500kW DC
+                      <div style="clear: both;" class='chart14' id='baware2'>
+                      </div>
+              </div>
+
+              <script>
+                  var drawChar = function(){
+                      if(!DashboardBlock.input.queries.query) return
+
+                      var teste = DashboardBlock.input.queries.query
+                          var len = teste.length - 1
+                          var value = teste[len].value.toFixed(2) * 100
+                          console.log("aqui >", teste)
+                          var data = [{
+                        values: [value,100-value],
+                        labels: ['mean','rest'],
+                        hole: .8,
+                        marker: {
+                          colors: ["#357312", '#3939394d']
+                        },
+                        type: 'pie',
+                        hoverinfo: 'none',
+                        textinfo: 'none'
+                        }];
+                      if (value < 30){
+                      data[0].marker.colors[0] = "#cb1414"
+                      }else if(value< 60){
+                        data[0].marker.colors[0] = "#ffff00"
+                      }
+                      var layout = {
+                        height: DashboardBlock.input.size.height - 92,
+                        width: DashboardBlock.input.size.width - 59,
+                        paper_bgcolor: '#27272700',
+                        plot_bgcolor: '#30303000',
+                        showlegend: false,
+                        margin: {"t": 15, "b": 15, "l": 55, "r": 10},
+                        annotations: [
+                          {
+                          font: {
+                            size: 25,
+                            color:"#000"
+                          },
+                          showarrow: false,
+                          text: value + '%',
+                          x: 0.5,
+                          y: 0.5
+                          }]
+                      };
+                      Plotly.newPlot('baware2', data, layout, {displayModeBar: false});
+                    }
+                DashboardBlock.on('change', drawChar);
+                  drawChar()
+              </script>
+            headContent: |2-
+                  <meta charset="UTF-8">
+                  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+              <style>
+                body {
+                  padding: 1px;
+                  margin: 0px;
+                  background: transparent;
+                }
+              </style>
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: PerformanceRatio
+              deviceIds:
+                - ~exportplaceholderid-device-solarPowerGenerator-0~
+              deviceTags: []
+              duration: 2592000000
+              id: query
+              queryType: time-series
+              resolution: 86400000
+        height: 1.5
+        id: P-6aZQCYE1
+        startX: 0
+        startY: 9
+        width: 1
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        blockType: custom-html
+        config:
+          configuration:
+            bodyContent: |-
+              <section>
+                  <article>
+                      <p style="margin-bottom: 0rem ;font-size: medium; font-weight: 300; float:left">
+                          <a style="text-decoration: none; color: black">Performance Ratio</a>
+                      </p>
+                      <div style="clear: both;" class='chart14' id='baware2'>
+                      </div>
+                  </article>
+              </section>
+
+              <script>
+                  function periodicFunction() {
+                          const Http = new XMLHttpRequest();
+                          const url = "https://~exportplaceholderid-application-applicationBirminDUsinaSolar-0~.wnology.io/predictmensal";
+                          Http.open("GET", url);
+                          Http.send();
+                          
+                          Http.onreadystatechange = function () {
+                              if (this.readyState == 4 && this.status == 200) {
+                                  console.log(String(Http.responseText).replace(/&quot;/ig, '"'))
+                                  var obj = JSON.parse(String(Http.responseText).replace(/&quot;/ig, '"'))
+                                  var aux = obj.data;
+                                  var past = obj.data.past
+                                  var predict = obj.data.predict
+
+                                  var datareal = {
+                                      x: past[0].time,
+                                      y: past[0].value,
+                                      type: 'lines',
+                                      name: "Dados Históricos"
+                                  }
+                                  
+                                  var datapred = {
+                                      x: predict[0].time,
+                                      y: predict[0].value,
+                                      type: 'lines',
+                                      mode: 'lines',
+                                      name: "Predição",
+                                      line: {
+                                          dash: 'dashdot',
+                                          shape: 'linear'
+                                      }
+                                  }
+
+                                  var layout2 = {
+                                      showlegend: true,
+                                      xaxis: {
+                                          type: 'date',
+                                          showgrid: true,
+                                          zeroline: true,
+                                          showline: false,
+                                          mirror: 'ticks',
+                                          color: '#grey',
+                                          gridcolor: '#grey',
+                                          gridwidth: 1,
+                                          zerolinecolor: '#grey',
+                                          zerolinewidth: 1,
+                                          linecolor: '#grey',
+                                      },
+                                      yaxis: {
+                                          showgrid: true,
+                                          zeroline: true,
+                                          showline: false,
+                                          mirror: 'ticks',
+                                          color: '#grey',
+                                          gridcolor: '#grey',
+                                          rangemode: 'tozero',
+                                          gridwidth: 1,
+                                          zerolinecolor: '#grey',
+                                          zerolinewidth: 1,
+                                          linecolor: '#grey',
+                                          linewidth: 1
+                                      },
+                                      autosize: false,
+                                      width: DashboardBlock.input.size.width -50,
+                                      height: DashboardBlock.input.size.height -80,
+                                      margin: {
+                                          l: 40,
+                                          r: 20,
+                                          b: 40,
+                                          t: 20,
+                                          pad: 4
+                                      },
+                                      paper_bgcolor: '#fff',
+                                      plot_bgcolor: '#fff',
+                                  };
+
+                                  Plotly.newPlot('baware2', [datareal, datapred], layout2, { displayModeBar: false });
+                              }
+                          }
+                          // setInterval(function(){ periodicFunction(); }, 10000)
+                      };
+                      DashboardBlock.on('change', periodicFunction);
+                      periodicFunction();
+              </script>
+            headContent: |2+
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/frontstyle.css">
+                  <link rel="stylesheet" href="https://files.wnology.io/5e83726d92334d0007f2e3ab/generaldash.css">
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+                  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                  <link rel="stylesheet"
+                      href="https://files.wnology.io/5e83726d92334d0007f2e3ab/font-awesome-4.7.0/css/font-awesome.min.css">
+                  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+
+          segments: []
+        height: 1.5
+        id: uWLONzeuTc
+        startX: 1
+        startY: 9
+        width: 3
+    contextConfiguration:
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        defaultValue: ~exportplaceholderid-device-solarPowerGenerator-0~
+        name: deviceId-0
+        type: deviceId
+        validationConfig:
+          deviceIds:
+            - ~exportplaceholderid-device-solarPowerGenerator-0~
+          deviceTags: []
+          includeFullDevice: true
+        validationEnabled: true
+      - applicationId: ~exportplaceholderid-application-applicationBirminDUsinaSolar-0~
+        defaultValue: ~exportplaceholderid-experienceUser-solarBirmindComBr-0~
+        name: experienceUser-0
+        type: experienceUser
+        validationConfig: {}
+        validationEnabled: false
+    defaultTheme: light
+    description: ''
+    duration: 3600000
+    id: ~exportplaceholderid-dashboard-solar-0~
+    name: Solar
+    public: false
+    refreshRate: 180
+    resolution: 60000
+version: 1
