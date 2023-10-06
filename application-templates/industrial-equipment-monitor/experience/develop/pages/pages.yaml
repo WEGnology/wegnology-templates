@@ -1,0 +1,25 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    id: ~exportplaceholderid-experienceView-pageDashboardDevice~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboardPage~
+    localFilename: ./page-dashboard-device.hbs
+    name: page-dashboard-device
+    version: develop
+    viewTags: {}
+    viewType: page
+  - id: ~exportplaceholderid-experienceView-pageDashboardOverview~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboardPage~
+    localFilename: ./page-dashboard-overview.hbs
+    name: page-dashboard-overview
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    id: ~exportplaceholderid-experienceView-pageLogin~
+    localFilename: ./page-login.hbs
+    name: page-login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

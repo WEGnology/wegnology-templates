@@ -1,0 +1,9 @@
+resourceType: ExperienceUser
+resources:
+  - email: test.user@example.com
+    experienceGroupIds: []
+    firstName: Test
+    id: ~exportplaceholderid-experienceUser-testUserExampleCom~
+    lastName: User
+    userTags: {}
+version: 1
