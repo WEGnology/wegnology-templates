@@ -4,9 +4,9 @@ resources:
       Gerencia a tela de login, verifica se o usuário está conectado ou se
       credenciais foram enviadas.
     enabled: true
-    flowId: ~exportplaceholderid-flow-endpointLogin-1~
+    flowId: ~exportplaceholderid-flow-endpointLogin~
     globals: []
-    id: ~exportplaceholderid-flowVersion-endpointLogin-1~
+    id: ~exportplaceholderid-flowVersion-endpointLogin~
     name: Endpoint /login
     nodes:
       - config:
@@ -40,7 +40,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '401'
@@ -158,7 +158,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '200'
@@ -177,7 +177,7 @@ resources:
         type: EndpointReplyNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postLogin-9~
+        key: ~exportplaceholderid-experienceEndpoint-postLogin~
         meta:
           category: trigger
           description: Acionado quando o usuário envia credenciais.
@@ -190,7 +190,7 @@ resources:
           - - B1XrON5DTW
         type: endpoint
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getLogin-5~
+        key: ~exportplaceholderid-experienceEndpoint-getLogin~
         meta:
           category: trigger
           description: Acionado quando o usuário acessa a tela de login.

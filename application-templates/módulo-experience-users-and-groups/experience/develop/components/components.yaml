@@ -1,46 +1,76 @@
 resourceType: ExperienceView
 resources:
-  - id: ~exportplaceholderid-experienceView-cssTableResults-5~
+  - id: ~exportplaceholderid-experienceView-cssComponent~
+    localFilename: ./css-component.hbs
+    name: css-component
+    version: develop
+    viewTags: {}
+    viewType: component
+  - id: ~exportplaceholderid-experienceView-cssTableResults~
     localFilename: ./css-table-results.hbs
     name: css-table-results
     version: develop
     viewTags: {}
     viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-errorAlert-6~
+    id: ~exportplaceholderid-experienceView-errorAlert~
     localFilename: ./errorAlert.hbs
     name: errorAlert
     version: develop
     viewTags: {}
     viewType: component
-  - id: ~exportplaceholderid-experienceView-htmlErrorAlert-7~
+  - id: ~exportplaceholderid-experienceView-htmlErrorAlert~
     localFilename: ./html-error-alert.hbs
     name: html-error-alert
     version: develop
     viewTags: {}
     viewType: component
+  - id: ~exportplaceholderid-experienceView-jsBsNotify~
+    localFilename: ./js-bs-notify.hbs
+    name: js-bs-notify
+    version: develop
+    viewTags: {}
+    viewType: component
+  - id: ~exportplaceholderid-experienceView-jsBsTableFilter~
+    localFilename: ./js-bs-table-filter.hbs
+    name: js-bs-table-filter
+    version: develop
+    viewTags: {}
+    viewType: component
+  - id: ~exportplaceholderid-experienceView-jsFontAwesome~
+    localFilename: ./js-font-awesome.hbs
+    name: js-font-awesome
+    version: develop
+    viewTags: {}
+    viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-jsImport-8~
+    id: ~exportplaceholderid-experienceView-jsImport~
     localFilename: ./js-import.hbs
     name: js-import
     version: develop
     viewTags: {}
     viewType: component
+  - id: ~exportplaceholderid-experienceView-jsJquery~
+    localFilename: ./js-jquery.hbs
+    name: js-jquery
+    version: develop
+    viewTags: {}
+    viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-jsNotify-9~
+    id: ~exportplaceholderid-experienceView-jsNotify~
     localFilename: ./js-notify.hbs
     name: js-notify
     version: develop
     viewTags: {}
     viewType: component
-  - id: ~exportplaceholderid-experienceView-jsPermission-10~
+  - id: ~exportplaceholderid-experienceView-jsPermission~
     localFilename: ./js-permission.hbs
     name: js-permission
     version: develop
     viewTags: {}
     viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-noAccess-11~
+    id: ~exportplaceholderid-experienceView-noAccess~
     localFilename: ./noAccess.hbs
     name: noAccess
     version: develop

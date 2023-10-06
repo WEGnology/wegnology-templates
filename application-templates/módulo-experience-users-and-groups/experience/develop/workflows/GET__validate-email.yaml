@@ -1,9 +1,9 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-getValidateEmail-4~
+    flowId: ~exportplaceholderid-flow-getValidateEmail~
     globals: []
-    id: ~exportplaceholderid-flowVersion-getValidateEmail-4~
+    id: ~exportplaceholderid-flowVersion-getValidateEmail~
     name: GET /validate-email
     nodes:
       - config:
@@ -11,7 +11,7 @@ resources:
           emailTemplate: '{{working.user.email}}'
           firstNameTemplate: '{{working.user.firstName}}'
           groupIdTemplates:
-            - ~exportplaceholderid-experienceGroup-adm-0~
+            - ~exportplaceholderid-experienceGroup-adm~
           lastNameTemplate: '{{working.user.lastName}}'
           passwordTemplate: '{{working.user.password}}'
           resultPath: working.result
@@ -80,7 +80,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '400'
@@ -135,7 +135,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-login-4~
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '400'
@@ -268,7 +268,7 @@ resources:
           emailTemplate: '{{working.user.email}}'
           firstNameTemplate: '{{working.user.firstName}}'
           groupIdTemplates:
-            - ~exportplaceholderid-experienceGroup-normal-1~
+            - ~exportplaceholderid-experienceGroup-normal~
           lastNameTemplate: '{{working.user.lastName}}'
           passwordTemplate: '{{working.user.password}}'
           resultPath: working.result
@@ -324,7 +324,7 @@ resources:
         type: MutateNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getValidateEmail-7~
+        key: ~exportplaceholderid-experienceEndpoint-getValidateEmail~
         meta:
           category: trigger
           description: ''

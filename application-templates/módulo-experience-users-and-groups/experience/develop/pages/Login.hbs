@@ -1,37 +1,5 @@
-{{#fillSection "metaDescription"}}This is an example login page for your application experience.{{/fillSection}}
-<div id="main">
-    <div id="form">
-        <img src="https://files.wnology.io/~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~/application/weg-logo.png" />
-        {{#if pageData.loginFailure}}
-        {{component "errorAlert" "Email ou senha incorreto."}}
-        {{/if}}
-        <form method="post">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input autofocus required value="{{ pageData.email }}" type="email" class="form-control" name="email"
-                    id="email" placeholder="e.g. test.user@example.com">
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input required minlength="8" maxlength="255" type="password" class="form-control" id="password"
-                    name="password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg" id="btn">ENTRAR</button>
-        </form>
-    </div>
-    <div id="img">
-        <img src="https://files.wnology.io/~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~/application/bannerv2.jpg" />
-    </div>
-</div>
-{{component 'js-import'}}
-<!--div id="google_translate_element"></div>
-<script type="text/javascript"
-    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-    }
-</script-->
+{{#fillSection "metaDescription"}}This is an example login page for your
+application experience.{{/fillSection}}
 <style>
     #main {
         width: 100%;
@@ -84,3 +52,32 @@
         }
     }
 </style>
+<div id="main">
+  <div id="form">
+    <img
+      src="{{file 'application/weg-logo.png'}}" />
+    {{#if pageData.loginFailure}}
+    {{component "errorAlert" "Email ou senha incorreto."}}
+    {{/if}}
+    <form method="post">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input autofocus required value="{{ pageData.email }}" type="email"
+          class="form-control" name="email"
+          id="email" placeholder="e.g. test.user@example.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input required minlength="8" maxlength="255" type="password"
+          class="form-control" id="password"
+          name="password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" id="btn">ENTRAR</button>
+    </form>
+  </div>
+  <div id="img">
+    <img
+      src="{{file 'application/bannerv2.jpg'}}" />
+  </div>
+</div>
+{{component 'js-import'}}

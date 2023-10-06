@@ -1,7 +1,7 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-layoutBase-0~
+    id: ~exportplaceholderid-experienceView-layoutBase~
     localFilename: ./layout-base.hbs
     name: layout-base
     version: develop

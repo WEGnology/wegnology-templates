@@ -2,7 +2,7 @@ resourceType: Dashboard
 resources:
   - blocks:
       - applicationId: >-
-          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~
+          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups~
         blockType: gauge
         config:
           displayAsPercentage: false
@@ -31,7 +31,7 @@ resources:
         title: Temperatura do motor
         width: 1
       - applicationId: >-
-          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~
+          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups~
         blockType: map
         config:
           additionalAttributes: []
@@ -68,7 +68,7 @@ resources:
         startY: 0
         width: 3
       - applicationId: >-
-          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~
+          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups~
         blockType: pie
         config:
           percentFormat: ''
@@ -102,8 +102,8 @@ resources:
         width: 1
     contextConfiguration:
       - applicationId: >-
-          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~
-        defaultValue: ~exportplaceholderid-device-randomDevice-0~
+          ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups~
+        defaultValue: ~exportplaceholderid-device-randomDevice~
         name: deviceId
         type: deviceId
         validationConfig:
@@ -112,7 +112,8 @@ resources:
     defaultTheme: light
     description: Dashboard genérico que apresenta dados fixos.
     duration: 3600000
-    id: ~exportplaceholderid-dashboard-dashboard-0~
+    id: ~exportplaceholderid-dashboard-dashboard~
+    isPasswordProtected: false
     name: Dashboard
     public: false
     refreshRate: 60

@@ -1,0 +1,275 @@
+resourceType: Dashboard
+resources:
+  - blocks:
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          gaugeMax: '50'
+          gaugeMin: '0'
+          gaugeType: number
+          precision: '2'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: LAST
+            attribute: temp
+            color: 'rgba(0, 87, 157, 1)'
+            deviceIds:
+              - '{{ctx.deviceId}}'
+            deviceTags: []
+            label: °C
+        height: 1
+        id: INY-_2ubwE
+        startX: 0
+        startY: 0
+        title: Temperature
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: graph
+        config:
+          duration: 86400000
+          realTime: false
+          recharts: true
+          resolution: 300000
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: temp
+              color: 'rgba(0, 87, 157, 1)'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - '{{ctx.deviceId}}'
+              deviceTags: []
+              dotWeight: 0
+              expression: ''
+              graphType: line
+              label: Temperatura
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: °C
+              yAxisMax: ''
+              yAxisMin: ''
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: humidity
+              color: 'rgba(40, 185, 218, 1)'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - '{{ctx.deviceId}}'
+              deviceTags: []
+              dotWeight: 0
+              expression: ''
+              graphType: line
+              label: Umidade
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: ''
+              yAxisMax: ''
+              yAxisMin: ''
+        height: 2
+        id: TfDgqz2SzB
+        startX: 1
+        startY: 0
+        title: Temperature vs. Humidity
+        width: 3
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: true
+          duration: 0
+          gaugeMax: '100'
+          gaugeMin: '0'
+          gaugeType: dial
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: humidity
+            color: 'rgba(0, 87, 157, 1)'
+            deviceIds:
+              - '{{ctx.deviceId}}'
+            deviceTags: []
+            label: ''
+        height: 1
+        id: qUeDJO2_67
+        startX: 0
+        startY: 1
+        title: Humidity
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: graph
+        config:
+          duration: 86400000
+          realTime: false
+          recharts: true
+          resolution: 300000
+          segments:
+            - aggregation:
+                options: {}
+                type: LAST
+              attribute: pressure
+              color: 'rgba(0, 87, 157, 1)'
+              cumulative: false
+              detectDataGaps: false
+              deviceIds:
+                - ~exportplaceholderid-device-weather~
+              deviceTags: []
+              dotWeight: 0
+              expression: ''
+              graphType: line
+              label: Pressão
+              lineType: monotone
+              lineWeight: 2
+              yAxisFormat: ''
+              yAxisLabel: ''
+              yAxisMax: ''
+              yAxisMin: ''
+        height: 2
+        id: jzFsaUcvgc
+        startX: 1
+        startY: 2
+        title: Pressure
+        width: 2
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          gaugeMax: ''
+          gaugeMin: ''
+          gaugeType: number
+          precision: '0'
+          precisionType: floating
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: LAST
+            attribute: visibility
+            color: '#8db319'
+            deviceIds:
+              - ~exportplaceholderid-device-weather~
+            deviceTags: []
+            label: m
+        height: 1
+        id: HP5V43op1x
+        startX: 3
+        startY: 2
+        title: Visibility
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          gaugeMax: ''
+          gaugeMin: ''
+          gaugeType: number
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: pressure
+            color: '#8db319'
+            deviceIds:
+              - '{{ctx.deviceId}}'
+            deviceTags: []
+            label: mbar
+        height: 1
+        id: lBXJ4H0gTQ
+        startX: 0
+        startY: 2
+        title: Pressure
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          gaugeMax: ''
+          gaugeMin: ''
+          gaugeType: number
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: LAST
+            attribute: feels-like
+            color: '#8db319'
+            deviceIds:
+              - ~exportplaceholderid-device-weather~
+            deviceTags: []
+            label: °C
+        height: 1
+        id: GWqzNn72Ie
+        startX: 3
+        startY: 3
+        title: Feels Like
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          gaugeMax: '100'
+          gaugeMin: '0'
+          gaugeType: number
+          precision: '3'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: wind-speed
+            color: '#8db319'
+            deviceIds:
+              - '{{ctx.deviceId}}'
+            deviceTags: []
+            label: m/sec
+        height: 1
+        id: '-lOWnpEPV_'
+        startX: 0
+        startY: 3
+        title: Wind Speed
+        width: 1
+    contextConfiguration:
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+        defaultValue: ~exportplaceholderid-device-weather~
+        name: deviceId
+        type: deviceId
+        validationConfig:
+          includeFullDevice: false
+        validationEnabled: false
+    defaultTheme: light
+    description: ''
+    duration: 3600000
+    id: ~exportplaceholderid-dashboard-weatherStation~
+    isPasswordProtected: false
+    name: Weather Station
+    public: false
+    refreshRate: 60
+    resolution: 60000
+version: 1

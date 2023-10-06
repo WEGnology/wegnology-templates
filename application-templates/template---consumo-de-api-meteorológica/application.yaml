@@ -1,0 +1,24 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: Esse modelo é a implementação do WEGnology Walkthrough, o nosso
+      passo a passo inicial que fornece um guia de como desenvolver uma estação
+      meteorológica na plataforma utilizando dados de uma API externa.
+    filesPath: ./files
+    globals:
+      - cloudOnly: false
+        description: Informe a latitude e longitude que será usada para requisitar os dados
+        json: '"-26.4829808,-49.0584639"'
+        key: gps_location
+      - cloudOnly: false
+        description: Chave de API adquirida no https://openweathermap.org/api
+        json: '"SUA CHAVE"'
+        key: api_key
+    id: ~exportplaceholderid-application-applicationTemplateConsumoDeApiMeteorologica~
+    name: TEMPLATE - Consumo de API Meteorológica
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: Losant
+    authorUrl: https://www.losant.com
+    keywords: []
+version: 1

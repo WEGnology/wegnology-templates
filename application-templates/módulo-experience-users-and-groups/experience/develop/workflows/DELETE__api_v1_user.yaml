@@ -2,9 +2,9 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Recebe um email e deleta o usuário proprietário.
     enabled: true
-    flowId: ~exportplaceholderid-flow-deleteApiV1User-0~
+    flowId: ~exportplaceholderid-flow-deleteApiV1User~
     globals: []
-    id: ~exportplaceholderid-flowVersion-deleteApiV1User-0~
+    id: ~exportplaceholderid-flowVersion-deleteApiV1User~
     name: DELETE /api/v1/user
     nodes:
       - config:
@@ -114,7 +114,7 @@ resources:
         type: VerifyExperienceGroupNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-deleteApiV1User-0~
+        key: ~exportplaceholderid-experienceEndpoint-deleteApiV1User~
         meta:
           category: trigger
           description: ''

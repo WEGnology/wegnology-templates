@@ -6,7 +6,7 @@ resources:
         name: attribute
     children: []
     deviceClass: standalone
-    id: ~exportplaceholderid-device-randomDevice-0~
+    id: ~exportplaceholderid-device-randomDevice~
     name: random-device
     tags:
       - key: location

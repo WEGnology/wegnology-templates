@@ -2,9 +2,9 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Desconecta o usuário atual e apaga os seus cookies de autenticação.
     enabled: true
-    flowId: ~exportplaceholderid-flow-endpointLogout-2~
+    flowId: ~exportplaceholderid-flow-endpointLogout~
     globals: []
-    id: ~exportplaceholderid-flowVersion-endpointLogout-2~
+    id: ~exportplaceholderid-flowVersion-endpointLogout~
     name: Endpoint /logout
     nodes:
       - config:
@@ -42,7 +42,7 @@ resources:
         type: DebugNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getLogout-6~
+        key: ~exportplaceholderid-experienceEndpoint-getLogout~
         meta:
           category: trigger
           description: >-

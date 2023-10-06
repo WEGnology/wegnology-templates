@@ -1,8 +1,0 @@
-resourceType: ExperienceUser
-resources:
-  - email: solar@birmind.com.br
-    experienceGroupIds:
-      - ~exportplaceholderid-experienceGroup-myExampleGroup-0~
-    id: ~exportplaceholderid-experienceUser-solarBirmindComBr-0~
-    userTags: {}
-version: 1

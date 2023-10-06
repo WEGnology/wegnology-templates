@@ -2,9 +2,9 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Retorna todos os usuários da aplicação.
     enabled: true
-    flowId: ~exportplaceholderid-flow-getApiV1User-3~
+    flowId: ~exportplaceholderid-flow-getApiV1User~
     globals: []
-    id: ~exportplaceholderid-flowVersion-getApiV1User-3~
+    id: ~exportplaceholderid-flowVersion-getApiV1User~
     name: GET /api/v1/user
     nodes:
       - config:
@@ -139,7 +139,7 @@ resources:
         type: VerifyExperienceGroupNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getApiV1User-2~
+        key: ~exportplaceholderid-experienceEndpoint-getApiV1User~
         meta:
           category: trigger
           description: ''

@@ -5,7 +5,7 @@ resources:
     deviceTags: []
     groupTags:
       type: adm
-    id: ~exportplaceholderid-experienceGroup-adm-0~
+    id: ~exportplaceholderid-experienceGroup-adm~
     name: adm
     parentId: null
   - children: []
@@ -14,7 +14,7 @@ resources:
     deviceTags: []
     groupTags:
       type: normal
-    id: ~exportplaceholderid-experienceGroup-normal-1~
+    id: ~exportplaceholderid-experienceGroup-normal~
     name: normal
     parentId: null
 version: 1

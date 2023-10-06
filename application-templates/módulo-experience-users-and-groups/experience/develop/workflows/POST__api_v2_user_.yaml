@@ -4,9 +4,9 @@ resources:
       Recebe os dados de cadastro e envia um email de confirmação, valida o
       email e cadastr um novo usuário.
     enabled: true
-    flowId: ~exportplaceholderid-flow-postApiV2User-5~
+    flowId: ~exportplaceholderid-flow-postApiV2User~
     globals: []
-    id: ~exportplaceholderid-flowVersion-postApiV2User-5~
+    id: ~exportplaceholderid-flowVersion-postApiV2User~
     name: 'POST /api/v2/user '
     nodes:
       - config:
@@ -335,7 +335,7 @@ resources:
         type: VerifyExperienceGroupNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postApiV1User-8~
+        key: ~exportplaceholderid-experienceEndpoint-postApiV1User~
         meta:
           category: trigger
           description: ''

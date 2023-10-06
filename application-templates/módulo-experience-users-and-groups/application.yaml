@@ -9,7 +9,7 @@ resources:
       usuários, navegação entre páginas e muito mais.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups-0~
+    id: ~exportplaceholderid-application-applicationModuloExperienceUsersAndGroups~
     name: Módulo EXPERIENCE (Users and Groups)
     readmePath: ./README.md
     imagePath: ./preview.png
