@@ -1,0 +1,123 @@
+resourceType: Dashboard
+resources:
+  - blocks:
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+        blockType: gauge
+        config:
+          displayAsPercentage: false
+          duration: 0
+          gaugeMax: '100'
+          gaugeMin: '0'
+          gaugeType: thermometer
+          precision: '4'
+          precisionType: significant
+          realTime: false
+          segment:
+            aggregation:
+              options: {}
+              type: MEAN
+            attribute: attribute
+            color: 'rgba(0, 87, 157, 1)'
+            deviceIds:
+              - '{{ctx.deviceId}}'
+            deviceTags: []
+            expression: ''
+            label: ''
+        height: 1
+        id: Vt94hASnOu
+        startX: 0
+        startY: 0
+        title: Temperatura do motor
+        width: 1
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+        blockType: map
+        config:
+          additionalAttributes: []
+          clusterPoints: false
+          compositeResult: false
+          defaultBearing: 0
+          defaultPitch: 0
+          defaultZoom: 15
+          deviceIds:
+            - '{{ctx.deviceId}}'
+          deviceTags: []
+          endColor: 'rgba(0, 87, 157, 1)'
+          iconTemplate: |-
+            {{#if isLastPoint}}
+            {{colorMarker '#8db319'}}
+            {{else if isFirstPoint}}
+            {{colorMarker '#ff261b'}}
+            {{/if}}
+          includeArrows: false
+          includeLines: true
+          locationTagKey: location
+          pinMode: simple
+          popupTemplate: >-
+            ##### **{{deviceName}}** {{#if isLastPoint}} (Current
+            Location){{else if isFirstPoint}} (Starting Location){{/if}}
+
+
+            LatLng({{format latitude}}, {{format longitude}})
+          resizedPins: true
+          startColor: 'rgba(255, 38, 27, 1)'
+        height: 3.5
+        id: 2DCxeoXgzD
+        startX: 1
+        startY: 0
+        width: 3
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+        blockType: pie
+        config:
+          percentFormat: ''
+          segments:
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: attribute
+              color: 'rgba(0, 87, 157, 1)'
+              deviceIds:
+                - '{{ctx.deviceId}}'
+              deviceTags: []
+              expression: '{{ value }} '
+              label: 'Parado '
+            - aggregation:
+                options: {}
+                type: MEAN
+              attribute: attribute
+              color: 'rgba(40, 185, 218, 1)'
+              deviceIds:
+                - '{{ctx.deviceId}}'
+              deviceTags: []
+              expression: '{{ value }} * 4'
+              label: Operando
+          valueFormat: ',.6'
+        height: 2.5
+        id: c9CH8QKXGG
+        startX: 0
+        startY: 1
+        title: Tempo de operação
+        width: 1
+    contextConfiguration:
+      - applicationId: >-
+          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+        defaultValue: ~exportplaceholderid-device-randomDevice~
+        name: deviceId
+        type: deviceId
+        validationConfig:
+          includeFullDevice: true
+        validationEnabled: false
+    defaultTheme: light
+    description: Generic dashboard that shows fixed data.
+    duration: 3600000
+    exportHash: f7d7b017e290251bd72dd3b0f9800bc22cc96b3ad6b45f24a693785f5b949415
+    id: ~exportplaceholderid-dashboard-dashboard~
+    isPasswordProtected: false
+    name: Dashboard
+    public: false
+    refreshRate: 60
+    reportConfigs: []
+    resolution: 60000
+version: 1

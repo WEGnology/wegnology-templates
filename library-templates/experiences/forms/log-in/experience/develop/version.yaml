@@ -1,7 +1,8 @@
 resourceType: ExperienceVersion
 resources:
   - endpointDefaultCors: true
+    exportHash: caa3bf4e3f8b32c79546cecdae1d233d8de5cf10a095d7d11dadef974048391d
     globals: []
-    id: ~exportplaceholderid-experienceVersion-develop-0~
+    id: ~exportplaceholderid-experienceVersion-develop~
     version: develop
 version: 1

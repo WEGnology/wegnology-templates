@@ -4,7 +4,7 @@ This template provides a reference implementation for a paginated table of devic
 
 Displaying a table or list containing thousands of devices is too much data for a user to effectively consume. Querying the details for thousands of devices can also take too long, leading to poor page speeds. The most common solution to this problem is to paginate large collections of devices. This reduces the amount of data a user is required to consume and reduces the number of devices that must be queried. This results in a faster and better overall user experience.
 
-![WEGnology Paginated Device Table](./wnology-paginated-device-table.gif)
+![WEGnology Paginated Device Table](./losant-paginated-device-table.gif)
 
 ## Dependencies
 This template requires [Twitter Bootstrap v4](https://getbootstrap.com/) as a CSS and JS framework. If Bootstrap is not already added to your experience, WEGnology recommends installing the "Bootstrap 4 Layouts" template.
@@ -35,6 +35,6 @@ In most cases, this page should only be treated as example code that you will co
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

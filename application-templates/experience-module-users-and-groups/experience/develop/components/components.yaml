@@ -1,0 +1,91 @@
+resourceType: ExperienceView
+resources:
+  - exportHash: 9f8763a686ca010aa5b2224ec59511928cca0463fc79a448357eacfc684dc4f2
+    id: ~exportplaceholderid-experienceView-cssComponent~
+    localFilename: ./css-component.hbs
+    name: css-component
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: ccd3e16d036020f50d53d31f4ed412c3e9328c42ac694419aadab985641faf67
+    id: ~exportplaceholderid-experienceView-cssTableResults~
+    localFilename: ./css-table-results.hbs
+    name: css-table-results
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    exportHash: b4e83f8691db74f8a5e0dd223dc63347ed7eaf51d047ecb7d8312ea205d9b6ca
+    id: ~exportplaceholderid-experienceView-errorAlert~
+    localFilename: ./errorAlert.hbs
+    name: errorAlert
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: d1e32151c05ebde45b9b20bf0fc2e4996550e779fab399671ee65720f5158f31
+    id: ~exportplaceholderid-experienceView-htmlErrorAlert~
+    localFilename: ./html-error-alert.hbs
+    name: html-error-alert
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: 3c39ce382f9f89c6e3229c285c121372bdfd45e5830f8cea9a6df837348031f2
+    id: ~exportplaceholderid-experienceView-jsBsNotify~
+    localFilename: ./js-bs-notify.hbs
+    name: js-bs-notify
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: a45e33342353fe401d4f67cc538d1072d1ef89414aac3d9bf246938ee7df25a4
+    id: ~exportplaceholderid-experienceView-jsBsTableFilter~
+    localFilename: ./js-bs-table-filter.hbs
+    name: js-bs-table-filter
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: 7266b0c11bf810adfa9fb4695d8ec9c2719e7acc7b8d6ddcbed79b3b1c3b644b
+    id: ~exportplaceholderid-experienceView-jsFontAwesome~
+    localFilename: ./js-font-awesome.hbs
+    name: js-font-awesome
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    exportHash: 66fba0cfff91f3c108bfb16ba94f14f62348ab373499e966e5167008e5661c09
+    id: ~exportplaceholderid-experienceView-jsImport~
+    localFilename: ./js-import.hbs
+    name: js-import
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: 6c120c9d86249b23b38ba0712ec91e8f9cc26040c91b5d9b3b341381ed35e004
+    id: ~exportplaceholderid-experienceView-jsJquery~
+    localFilename: ./js-jquery.hbs
+    name: js-jquery
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    exportHash: b35d764df66789493fc43cecda0a718aacdd2bb81d895f38e0e63596ebef1c2e
+    id: ~exportplaceholderid-experienceView-jsNotify~
+    localFilename: ./js-notify.hbs
+    name: js-notify
+    version: develop
+    viewTags: {}
+    viewType: component
+  - exportHash: fa8648f3e974555eabc36936cc5ce498b2a39628ba9d1e0270ddeffa9eee7862
+    id: ~exportplaceholderid-experienceView-jsPermission~
+    localFilename: ./js-permission.hbs
+    name: js-permission
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: ""
+    exportHash: 09499dbf5ca9e9e17c11ba740e311b2125ab126f446680b145be83d764dbee7b
+    id: ~exportplaceholderid-experienceView-noAccess~
+    localFilename: ./noAccess.hbs
+    name: noAccess
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

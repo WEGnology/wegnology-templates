@@ -4,11 +4,11 @@ resources:
     description: Calculates the distance, in meters, between two GPS coordinates.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryWorkflowsNodesGpsDistance-0~
+    id: ~exportplaceholderid-application-libraryWorkflowsNodesGpsDistance~
     name: GPS Distance
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

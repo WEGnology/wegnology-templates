@@ -1,0 +1,123 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: b107699c1d8b06522b4b8c981d51f9bf7dd436865f0f62d202ed9ab8c029daee
+    id: ~exportplaceholderid-experienceEndpoint-deleteApiV1User~
+    method: delete
+    route: /api/v1/user
+    unauthorizedReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-home~
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 3fe5345084db6f4ddf2b457f5b5bae2afda8c809e357350cc463166141b0b2b2
+    id: ~exportplaceholderid-experienceEndpoint-getApiV1User~
+    method: get
+    route: /api/v1/user
+    unauthorizedReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-home~
+    version: develop
+  - access: authenticated
+    description: ""
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 57439e0853d52bb71d8a40bf882c2f7974bde4c375d99620341be012190d9d6c
+    id: ~exportplaceholderid-experienceEndpoint-getCreateAccount~
+    method: get
+    route: /create-account
+    staticReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-createAccount~
+    unauthorizedReply:
+      type: redirect
+      value: /
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 9440a50528362b21661f4e4823410cc7591721629fc2ce83831b551eeccb7d4d
+    id: ~exportplaceholderid-experienceEndpoint-getDeleteAccount~
+    method: get
+    route: /delete-account
+    staticReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-deleteAccount~
+    unauthorizedReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-home~
+    version: develop
+  - access: public
+    description: ""
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 470b8d706e7d91ec4f4d66cdd93752ce2987fd87cc57b4983e1fea30516025ef
+    id: ~exportplaceholderid-experienceEndpoint-getLogin~
+    method: get
+    route: /login
+    version: develop
+  - access: authenticated
+    description: ""
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e2dd1074011bcd5c96fa2989f77244d19ba275078401d1c2eee5c600b736addb
+    id: ~exportplaceholderid-experienceEndpoint-getLogout~
+    method: get
+    route: /logout
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 5ac8e72bc0f538e8447e2988a88f7cccdb8e32a50dcba34439b145472813397e
+    id: ~exportplaceholderid-experienceEndpoint-getValidateEmail~
+    method: get
+    route: /validate-email
+    version: develop
+  - access: authenticated
+    description: ""
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 122a360ca1b204abd95af7b5171737330ffa5aa7f77718e4afa2c9276fcd966f
+    id: ~exportplaceholderid-experienceEndpoint-get~
+    method: get
+    route: /
+    staticReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-home~
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: ccc70802d438e398780614787f4d0d6ce5f23581407abdb8bcbe7f7ff07da9d3
+    id: ~exportplaceholderid-experienceEndpoint-postApiV1User~
+    method: post
+    route: /api/v1/user
+    version: develop
+  - access: public
+    description: ""
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: a2bd3cc974ec7df183f7dbe2ab4024c48dbd0820a95a105ecb7d948d64911f8f
+    id: ~exportplaceholderid-experienceEndpoint-postLogin~
+    method: post
+    route: /login
+    version: develop
+version: 1

@@ -1,0 +1,34 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: feels-like
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: humidity
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: pressure
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temp
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: visibility
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: wind-speed
+    children: []
+    deviceClass: standalone
+    exportHash: fc510d4882990cd713d96af9aacf46037701671ffdd8a2612337eb9dd6087514
+    id: ~exportplaceholderid-device-weather~
+    name: Weather
+    tags: []
+version: 1

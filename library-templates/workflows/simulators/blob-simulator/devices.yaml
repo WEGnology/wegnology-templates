@@ -7,7 +7,8 @@ resources:
         name: image
     children: []
     deviceClass: standalone
-    id: ~exportplaceholderid-device-deviceRecordingBlobSimulatorOutput-0~
+    exportHash: 5c1bc8aaba9785cf51f9661d6010920a4128cca02adb60cc4f39413296745db2
+    id: ~exportplaceholderid-device-deviceRecordingBlobSimulatorOutput~
     name: Device Recording Blob Simulator Output
     tags: []
 version: 1

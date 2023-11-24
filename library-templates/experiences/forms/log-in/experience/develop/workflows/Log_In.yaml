@@ -1,9 +1,10 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-logIn-0~
+    exportHash: 32a2320d1fb95b6fc6353c85181189e12167070378a1e034c5436f858c84c2b9
+    flowId: ~exportplaceholderid-flow-logIn~
     globals: []
-    id: ~exportplaceholderid-flowVersion-logIn-0~
+    id: ~exportplaceholderid-flowVersion-logIn~
     name: Log In
     nodes:
       - config:
@@ -39,7 +40,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLogin-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLogin~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '401'
@@ -160,7 +161,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLogin-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLogin~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '200'
@@ -262,7 +263,7 @@ resources:
         type: EndpointReplyNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postLogin-1~
+        key: ~exportplaceholderid-experienceEndpoint-postLogin~
         meta:
           category: trigger
           description: When a user submits login credentials ...
@@ -275,7 +276,7 @@ resources:
           - - KwKCZ598oj
         type: endpoint
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getLogin-0~
+        key: ~exportplaceholderid-experienceEndpoint-getLogin~
         meta:
           category: trigger
           description: When a user visits the login page ...

@@ -1,7 +1,8 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-getTlDataExplorerDeviceId-0~
+    exportHash: 9e946bee8a3215a5bc12a8001dcd839f3730bf552d47b8d7da99221e3f071206
+    flowId: ~exportplaceholderid-flow-getTlDataExplorerDeviceId~
     globals:
       - json: '["x", "y", "z", "flup"]'
         key: x-allowedAttributes
@@ -9,7 +10,7 @@ resources:
           ["FIRST", "LAST", "COUNT", "MAX", "MIN", "MEDIAN", "MEAN", "SUM",
           "STD_DEV", "NONE"]
         key: allowedAggregations
-    id: ~exportplaceholderid-flowVersion-getTlDataExplorerDeviceId-0~
+    id: ~exportplaceholderid-flowVersion-getTlDataExplorerDeviceId~
     name: 'GET /tl-data-explorer/{deviceId}'
     nodes:
       - config:
@@ -19,7 +20,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlDataExplorer-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlDataExplorer~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '200'
@@ -145,7 +146,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlDataExplorer-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlDataExplorer~
           replyIdPath: data.replyId
           replyType: page
           responseCodeTemplate: '500'
@@ -435,7 +436,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getTlDataExplorerDeviceId-0~
+        key: ~exportplaceholderid-experienceEndpoint-getTlDataExplorerDeviceId~
         meta:
           category: trigger
           description: ''
@@ -449,7 +450,7 @@ resources:
         type: endpoint
       - config:
           scope: local
-        key: ~exportplaceholderid-flow-getTlDataExplorerDeviceId-0~-flowError
+        key: ~exportplaceholderid-flow-getTlDataExplorerDeviceId~-flowError
         meta:
           category: trigger
           description: ''

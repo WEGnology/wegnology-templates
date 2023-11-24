@@ -2,9 +2,10 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Created for Endpoint POST /tl-basic-form
     enabled: true
-    flowId: ~exportplaceholderid-flow-postTlBasicForm-0~
+    exportHash: 292f03d3cda4997b80a9a100e12b0d95b81b1180ade2b490ada3c089eaecaac3
+    flowId: ~exportplaceholderid-flow-postTlBasicForm~
     globals: []
-    id: ~exportplaceholderid-flowVersion-postTlBasicForm-0~
+    id: ~exportplaceholderid-flowVersion-postTlBasicForm~
     name: POST /tl-basic-form
     nodes:
       - config:
@@ -99,7 +100,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postTlBasicForm-0~
+        key: ~exportplaceholderid-experienceEndpoint-postTlBasicForm~
         meta:
           category: trigger
           description: ''

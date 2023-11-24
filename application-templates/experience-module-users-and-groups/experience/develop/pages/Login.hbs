@@ -1,0 +1,83 @@
+{{#fillSection "metaDescription"}}This is an example login page for your
+application experience.{{/fillSection}}
+<style>
+    #main {
+        width: 100%;
+        margin-bottom: 0.2%;
+        display: block;
+        overflow: auto;
+    }
+
+    #form {
+        width: 30%;
+        float: left;
+        padding-left: 1%;
+        padding-right: 1%;
+        height: 85vh;
+        padding-top: 10%;
+    }
+
+    #form img {
+        width: 40%;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+
+    #btn {
+        width: 100%;
+    }
+
+    #img {
+        width: 70%;
+        float: left;
+        border-left: 1px solid #e5e5e5e5;
+        height: 85vh;
+    }
+
+    #img img {
+        width: 100%;
+        height: 85vh;
+    }
+
+    @media only screen and (max-width: 600px) {
+        #img {
+            display: none;
+            visibility: hidden;
+        }
+
+        #form {
+            width: 100%;
+            padding: 5%;
+            height: 80vh;
+        }
+    }
+</style>
+<div id="main">
+  <div id="form">
+    <img
+      src="{{file 'application/weg-logo.png'}}" />
+    {{#if pageData.loginFailure}}
+    {{component "errorAlert" "Email ou senha incorreto."}}
+    {{/if}}
+    <form method="post">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input autofocus required value="{{ pageData.email }}" type="email"
+          class="form-control" name="email"
+          id="email" placeholder="e.g. test.user@example.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input required minlength="8" maxlength="255" type="password"
+          class="form-control" id="password"
+          name="password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" id="btn">ENTRAR</button>
+    </form>
+  </div>
+  <div id="img">
+    <img
+      src="{{file 'application/bannerv2.jpg'}}" />
+  </div>
+</div>
+{{component 'js-import'}}

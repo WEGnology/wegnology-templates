@@ -1,0 +1,81 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 7f0b1d12dc65bb7b35ea5c0d22e149b410327cdd5b0938a17f1db86072f406cb
+    id: ~exportplaceholderid-experienceEndpoint-getDevicesDeviceId~
+    method: get
+    route: /devices/{deviceId}
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: d9caf96bdca0f0f6b514460a855002f71e607ae0853f326b3ddc2030a3042f41
+    id: ~exportplaceholderid-experienceEndpoint-getDevices~
+    method: get
+    route: /devices
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: The public-facing route for the login page. Users who are already
+      logged in will get redirected to the home page (powered by the workflow).
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 6a45ba0657a685fb173384f03adb09361f58b96b73423d21592e4dfd30cd8e10
+    id: ~exportplaceholderid-experienceEndpoint-getLogin~
+    method: get
+    route: /login
+    version: develop
+  - access: public
+    description: Requests to this endpoint will delete the user's auth cookie and
+      redirect to the /login endpoint.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e783c9304e36efddd3d33aa3939be075aec376ef5a8d884e3e1f9d2b1c8e046d
+    id: ~exportplaceholderid-experienceEndpoint-getLogout~
+    method: get
+    route: /logout
+    version: develop
+  - access: authenticated
+    description: The experience root. If a user is not logged in, they will be
+      redirected to /login.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 07010a292e446cf140eb0f2c417812254ca209c6baadf22981c192b88caa0108
+    id: ~exportplaceholderid-experienceEndpoint-get~
+    method: get
+    route: /
+    staticReply:
+      type: redirect
+      value: /devices
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: When a user submits login credentials, those credentials hit this
+      route. Then they are authenticated in the workflow backing this endpoint;
+      if valid, the user is redirected to the home page. If not, the user is
+      redirected back to the login page with a message about what went wrong.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c0bc4fff9ee5adb5e518ec70fac6257b5f00ea97a48fc14e3d5913c399958a72
+    id: ~exportplaceholderid-experienceEndpoint-postLogin~
+    method: post
+    route: /login
+    version: develop
+version: 1

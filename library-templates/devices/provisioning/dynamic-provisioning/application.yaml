@@ -4,11 +4,11 @@ resources:
     description: Dynamic provisioning of devices for Experience Users or Experience Groups.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryDevicesProvisioningDynamicProvisioning-0~
+    id: ~exportplaceholderid-application-libraryDevicesProvisioningDynamicProvisioning~
     name: Dynamic Provisioning
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

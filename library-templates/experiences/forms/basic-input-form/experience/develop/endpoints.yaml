@@ -3,17 +3,21 @@ resources:
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlBasicForm-1~
+    experienceGroupIds: []
+    exportHash: 9c8856c7da5c37a2a84b141950670d3c225aa2ccfd47413d6eba795512049ffb
+    id: ~exportplaceholderid-experienceEndpoint-getTlBasicForm~
     method: get
     route: /tl-basic-form
     staticReply:
       type: page
-      value: ~exportplaceholderid-experienceView-tlBasicForm-0~
+      value: ~exportplaceholderid-experienceView-tlBasicForm~
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postTlBasicForm-0~
+    experienceGroupIds: []
+    exportHash: 4d8f018af95bb6ac1eccda37b73d785c350ce1f10a512c8898185f412c17143d
+    id: ~exportplaceholderid-experienceEndpoint-postTlBasicForm~
     method: post
     route: /tl-basic-form
     version: develop

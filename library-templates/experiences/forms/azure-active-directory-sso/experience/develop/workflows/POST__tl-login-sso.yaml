@@ -1,9 +1,10 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-postTlLoginSso-0~
+    exportHash: ffebb1b6b645205372f984a6214238f4c878c096f7b2cd5a003d78f5d07bc01a
+    flowId: ~exportplaceholderid-flow-postTlLoginSso~
     globals: []
-    id: ~exportplaceholderid-flowVersion-postTlLoginSso-0~
+    id: ~exportplaceholderid-flowVersion-postTlLoginSso~
     name: POST /tl-login-sso
     nodes:
       - config:
@@ -215,7 +216,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLoginSso-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLoginSso~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '401'
@@ -263,7 +264,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLoginSso-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlPageLoginSso~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '401'
@@ -359,7 +360,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postTlLoginSso-0~
+        key: ~exportplaceholderid-experienceEndpoint-postTlLoginSso~
         meta:
           category: trigger
           description: ''

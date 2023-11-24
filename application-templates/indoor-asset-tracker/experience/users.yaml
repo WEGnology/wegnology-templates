@@ -1,0 +1,16 @@
+resourceType: ExperienceUser
+resources:
+  - email: kanarra@example.com
+    experienceGroupIds: []
+    exportHash: d8ce41b7f09f8d01e9099f5e33b4a2d62bf5ae4828135364c8dcaf728eeaf60c
+    id: ~exportplaceholderid-experienceUser-kanarraExampleCom~
+    userTags:
+      pin: "2222"
+  - email: manager@example.com
+    experienceGroupIds: []
+    exportHash: cf8d193b8b6b20adf5cb3ece0d28ac703372d2eefe4ef910fa7de2363441a17c
+    id: ~exportplaceholderid-experienceUser-managerExampleCom~
+    userTags:
+      pin: "1111"
+      role: manager
+version: 1

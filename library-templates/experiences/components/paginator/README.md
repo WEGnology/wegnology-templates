@@ -45,6 +45,6 @@ The workflow that is handling your requests is also responsible for validating t
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

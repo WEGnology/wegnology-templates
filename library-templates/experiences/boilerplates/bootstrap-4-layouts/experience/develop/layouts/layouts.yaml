@@ -1,35 +1,40 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-fixedWidthSingleColumn-0~
+    exportHash: 47eb1f9da1883996db67d59de1ebf35e87b31e12f99afa6328448f388a165ee8
+    id: ~exportplaceholderid-experienceView-fixedWidthSingleColumn~
     localFilename: ./Fixed_Width__Single_Column.hbs
     name: Fixed Width, Single Column
     version: develop
     viewTags: {}
     viewType: layout
   - description: ""
-    id: ~exportplaceholderid-experienceView-fixedWidthTwoColumns-1~
+    exportHash: 3acbb396e1b6887ff53388a1cb40dd6a0fe0dc09dcbd2d91c2c1367e5e443f2f
+    id: ~exportplaceholderid-experienceView-fixedWidthTwoColumns~
     localFilename: ./Fixed_Width__Two_Columns.hbs
     name: Fixed Width, Two Columns
     version: develop
     viewTags: {}
     viewType: layout
   - description: ""
-    id: ~exportplaceholderid-experienceView-fullWidthSingleColumn-2~
+    exportHash: 7484c73396f896996bd67621304625e64ba6c2e564c9bb7c0ba1d0a7595375dc
+    id: ~exportplaceholderid-experienceView-fullWidthSingleColumn~
     localFilename: ./Full_Width__Single_Column.hbs
     name: Full Width, Single Column
     version: develop
     viewTags: {}
     viewType: layout
   - description: ""
-    id: ~exportplaceholderid-experienceView-fullWidthTwoColumns-3~
+    exportHash: ba4fd4397abde45dd513b2e1780521db9fedc346cfdcc9dd1a72eae0f82ef093
+    id: ~exportplaceholderid-experienceView-fullWidthTwoColumns~
     localFilename: ./Full_Width__Two_Columns.hbs
     name: Full Width, Two Columns
     version: develop
     viewTags: {}
     viewType: layout
   - description: ""
-    id: ~exportplaceholderid-experienceView-narrowWidthSingleColumn-4~
+    exportHash: ee05ff5be039219b619225dbcb2316b657aeadbe2893bf9064c1ecf261264241
+    id: ~exportplaceholderid-experienceView-narrowWidthSingleColumn~
     localFilename: ./Narrow_Width__Single_Column.hbs
     name: Narrow Width, Single Column
     version: develop

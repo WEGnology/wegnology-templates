@@ -1,9 +1,10 @@
 resourceType: Webhook
 resources:
-  - id: ~exportplaceholderid-webhook-callbackWebhook-0~
+  - exportHash: 6baa405c97dc33bfd81262bec7274ff42465d1eec8e74f0d065a42ec6bc18141
+    id: ~exportplaceholderid-webhook-callbackWebhook~
     name: Callback Webhook
     responseCode: 200
-    token: ~exportplaceholderid-webhookToken-callbackWebhook-0~
+    token: ~exportplaceholderid-webhookToken-callbackWebhook~
     verificationCode: ''
     verificationType: none
     waitForReply: false

@@ -1,0 +1,39 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: 31f48cf27052a0f9a70a6d01ce3e27c899d0635d689ed05de32e70d932390d4a
+    id: ~exportplaceholderid-experienceView-createAccount~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase~
+    localFilename: ./Create_Account_.hbs
+    name: "Create Account "
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    exportHash: 727636c372019ac3d6139df47464f447038f047eb74d05bb5fef2a46f2d16b7b
+    id: ~exportplaceholderid-experienceView-deleteAccount~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase~
+    localFilename: ./Delete_Account.hbs
+    name: Delete Account
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    exportHash: b32c362802671af74187b03492592ed65c2750c92995b61d35c0da33266ce651
+    id: ~exportplaceholderid-experienceView-home~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase~
+    localFilename: ./Home.hbs
+    name: Home
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    exportHash: 45cd8cdf727016db02c898eade7dbeaeaf0b01e37be16a259549cfde1653de2c
+    id: ~exportplaceholderid-experienceView-login~
+    layoutId: ~exportplaceholderid-experienceView-layoutBase~
+    localFilename: ./Login.hbs
+    name: Login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

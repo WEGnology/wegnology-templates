@@ -1,14 +1,16 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlAuth0Home-0~
+    exportHash: 7cf9e7993b4361c80fb4ac965d678342fb2ca1bb1e63fa789f8a89fcae357e74
+    id: ~exportplaceholderid-experienceView-tlAuth0Home~
     localFilename: ./tl-auth0-home.hbs
     name: tl-auth0-home
     version: develop
     viewTags: {}
     viewType: page
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlAuth0Login-1~
+    exportHash: 5e6ed85cc691fcc4d0341bb9649d195d76b1ce3479065a5d66b66b562d86243f
+    id: ~exportplaceholderid-experienceView-tlAuth0Login~
     localFilename: ./tl-auth0-login.hbs
     name: tl-auth0-login
     version: develop

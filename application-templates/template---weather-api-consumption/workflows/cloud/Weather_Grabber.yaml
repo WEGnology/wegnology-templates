@@ -1,0 +1,141 @@
+resourceType: Flow
+resources:
+  - description: ''
+    exportHash: 6d2156781416f63fa5de6b7afc0a2ec966e21c223728fe95169e68883ac2b24d
+    flowClass: cloud
+    globals: []
+    id: ~exportplaceholderid-flow-weatherGrabber~
+    name: Weather Grabber
+    nodes:
+      - config:
+          authCredentials: {}
+          authType: none
+          caCertTemplate: ''
+          disableSSLVerification: false
+          encodingTemplate: utf8
+          errorBehavior: throw
+          errorPath: ''
+          headerInfo: []
+          method: GET
+          requestEncodingTemplate: utf8
+          responsePath: working.weather
+          timeoutTemplate: ''
+          uriTemplate: >-
+            https://api.openweathermap.org/data/2.5/weather?lat={{working.gps_parts.[0]}}&lon={{working.gps_parts.[1]}}&APPID={{globals.api_key}}
+        id: 28AyYwpY1M
+        meta:
+          category: data
+          description: ''
+          label: HTTP
+          name: http
+          x: 140
+          'y': 340
+        outputIds:
+          - - nTODelzbVQ
+        type: HttpNode
+      - config:
+          message: ''
+          property: ''
+        id: K8iBxANbAo
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 120
+          'y': 720
+        outputIds: []
+        type: DebugNode
+      - config:
+          attrDataMethod: individualFields
+          attrInfos:
+            - key: feels-like
+              valueTemplate: '{{subtract working.weather.body.main.feels_like 273.15}}'
+            - key: humidity
+              valueTemplate: '{{ working.weather.body.main.humidity }}'
+            - key: pressure
+              valueTemplate: '{{ working.weather.body.main.pressure }}'
+            - key: temp
+              valueTemplate: '{{subtract working.weather.body.main.temp 273.15}}'
+            - key: visibility
+              valueTemplate: '{{ working.weather.body.visibility }}'
+            - key: wind-speed
+              valueTemplate: ' {{multiply  working.weather.body.wind.speed 1.60934}}'
+          deviceId: ~exportplaceholderid-device-weather~
+          deviceIdTemplateType: stringTemplate
+          resultPath: ''
+          timeSourceType: payloadTime
+        id: g6B96KKhBG
+        meta:
+          category: output
+          description: ''
+          label: 'Device: State'
+          name: device-state
+          x: 240
+          'y': 560
+        outputIds:
+          - - K8iBxANbAo
+        type: DeviceChangeStateNode
+      - config:
+          expression: '{{working.weather.statusCode}} === 200'
+        id: nTODelzbVQ
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 140
+          'y': 440
+        outputIds:
+          - - K8iBxANbAo
+          - - g6B96KKhBG
+        type: ConditionalNode
+      - config:
+          method: split
+          methodArgs:
+            - ','
+          resultPath: working.gps_parts
+          sourceData: '{{globals.gps_location}}'
+        id: 7T8ig4nf7C
+        meta:
+          category: logic
+          description: ''
+          label: String
+          name: string
+          x: 140
+          'y': 220
+        outputIds:
+          - - 28AyYwpY1M
+        type: StringNode
+    triggers:
+      - config:
+          seconds: 600
+        key: ~exportplaceholderid-flow-weatherGrabber~-1d7dwmaQPZzcDArLKG_kY
+        meta:
+          category: trigger
+          description: ''
+          label: Timer
+          name: timer
+          timerTypeSelect: seconds
+          uiId: JwuTwF3ayP
+          x: 60
+          'y': 40
+        outputIds:
+          - - 7T8ig4nf7C
+        type: timer
+      - config: {}
+        key: ~exportplaceholderid-flow-weatherGrabber~-O87SO4NLd8N1lWZToLAKj
+        meta:
+          category: trigger
+          description: ''
+          deviceId: null
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: VP7_RpMvme
+          x: 260
+          'y': 40
+        outputIds:
+          - - 7T8ig4nf7C
+        type: virtualButton
+version: 1

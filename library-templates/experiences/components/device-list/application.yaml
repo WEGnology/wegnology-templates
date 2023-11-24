@@ -4,12 +4,15 @@ resources:
     description: "Displays a list of devices. Each entry has a configurable link,
       label, and optional device image. "
     filesPath: ./files
-    globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesComponentsDeviceList-0~
+    globals:
+      - cloudOnly: false
+        json: '"featured"'
+        key: template-kewords
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsDeviceList~
     name: Device List
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

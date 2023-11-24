@@ -1,9 +1,10 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-tlI18NDemo-1~
+    exportHash: 1c9e70529cc0b1ec935e8a41169e00d774e83dc1fdd4accb1f99b9f25b8ebe66
+    flowId: ~exportplaceholderid-flow-tlI18NDemo~
     globals: []
-    id: ~exportplaceholderid-flowVersion-tlI18NDemo-0~
+    id: ~exportplaceholderid-flowVersion-tlI18NDemo~
     name: tl-i18n-demo
     nodes:
       - config:
@@ -13,7 +14,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-tlI18NDemo-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-tlI18NDemo~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '200'
@@ -44,7 +45,7 @@ resources:
         outputIds: []
         type: DebugNode
       - config:
-          customNodeId: ~exportplaceholderid-flow-tlI18NGetDictionary-0~
+          customNodeId: ~exportplaceholderid-flow-tlI18NGetDictionary~
           customNodeVersion: default
           fields:
             - id: _vffS7jwC8
@@ -93,7 +94,7 @@ resources:
           - - Hi-3bkDMAB
         type: EndpointReplyNode
       - config:
-          customNodeId: ~exportplaceholderid-flow-tlI18NGetDictionary-0~
+          customNodeId: ~exportplaceholderid-flow-tlI18NGetDictionary~
           customNodeVersion: default
           fields:
             - id: _vffS7jwC8
@@ -210,7 +211,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getLanguageTlI18NDemo-1~
+        key: ~exportplaceholderid-experienceEndpoint-getLanguageTlI18NDemo~
         meta:
           category: trigger
           description: ''
@@ -223,7 +224,7 @@ resources:
           - - QGfo0UNd4M
         type: endpoint
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getTlI18NDemoSubdomain-0~
+        key: ~exportplaceholderid-experienceEndpoint-getTlI18NDemoSubdomain~
         meta:
           category: trigger
           description: ''

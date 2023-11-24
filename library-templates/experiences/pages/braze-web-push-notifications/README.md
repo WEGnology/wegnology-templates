@@ -23,6 +23,6 @@ One of the reasons to utilize Braze within your IoT application is to send push 
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

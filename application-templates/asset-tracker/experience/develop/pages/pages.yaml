@@ -1,0 +1,31 @@
+resourceType: ExperienceView
+resources:
+  - exportHash: 8b34083866c58425bb4f0adc79e3a363521a786796389be7d94da1829dd68781
+    id: ~exportplaceholderid-experienceView-pageDashboardDevice~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboardPage~
+    localFilename: ./page-dashboard-device.hbs
+    name: page-dashboard-device
+    version: develop
+    viewTags: {}
+    viewType: page
+  - exportHash: 2316e5ca27c26e5ef696f6b05bf789085701ab3d8dab655a114cdfec00266e3c
+    id: ~exportplaceholderid-experienceView-pageDashboardOverview~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboardPage~
+    localFilename: ./page-dashboard-overview.hbs
+    name: page-dashboard-overview
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Users who are not logged in will be redirected to this page when
+      they try to visit the home page. This is a simple login form; when the
+      user submits the form, it will hit the POST /login endpoint with the email
+      and password submitted by the user. If the credentials are valid, the user
+      will get an authentication cookie and will be redirected to the Home page.
+    exportHash: b171e8540d9973b213c943e87e37087e75a03662b6dc8dd9e62c7a3089610e8e
+    id: ~exportplaceholderid-experienceView-pageLogin~
+    localFilename: ./page-login.hbs
+    name: page-login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

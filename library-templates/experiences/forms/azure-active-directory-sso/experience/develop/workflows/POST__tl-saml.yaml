@@ -1,9 +1,10 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-postTlSaml-1~
+    exportHash: cafdbfcbc388ce48836e1adce439880d898a1a69e1436c3dbe61fa44c89e7c90
+    flowId: ~exportplaceholderid-flow-postTlSaml~
     globals: []
-    id: ~exportplaceholderid-flowVersion-postTlSaml-1~
+    id: ~exportplaceholderid-flowVersion-postTlSaml~
     name: POST /tl-saml
     nodes:
       - config:
@@ -414,7 +415,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postTlSaml-1~
+        key: ~exportplaceholderid-experienceEndpoint-postTlSaml~
         meta:
           category: trigger
           description: ''

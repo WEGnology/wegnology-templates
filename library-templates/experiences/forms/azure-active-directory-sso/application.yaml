@@ -11,11 +11,11 @@ resources:
       - cloudOnly: true
         json: '"serviceProviderMetadataTemplate"'
         key: serviceProviderMetadataTemplate_example_com
-    id: ~exportplaceholderid-application-libraryExperiencesFormsAzureActiveDirectorySso-0~
+    id: ~exportplaceholderid-application-libraryExperiencesFormsAzureActiveDirectorySso~
     name: Azure Active Directory SSO
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

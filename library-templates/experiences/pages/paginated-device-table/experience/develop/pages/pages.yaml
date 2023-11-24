@@ -1,7 +1,8 @@
 resourceType: ExperienceView
 resources:
   - description: Created for Endpoint GET /tl-devices.
-    id: ~exportplaceholderid-experienceView-pageGetTlDevices-0~
+    exportHash: 21ee4220e2d552a0bca4f69c7c721824a6096c544b2e4cca49ea85cd0c6de385
+    id: ~exportplaceholderid-experienceView-pageGetTlDevices~
     localFilename: ./Page_-_GET__tl-devices.hbs
     name: Page - GET /tl-devices
     version: develop

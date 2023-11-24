@@ -4,11 +4,11 @@ resources:
     description: Renders a QR code scanner and processes the data within a scanned code.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesComponentsQrCodeReader-0~
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsQrCodeReader~
     name: QR Code Reader
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

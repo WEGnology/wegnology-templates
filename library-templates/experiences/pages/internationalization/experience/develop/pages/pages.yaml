@@ -1,7 +1,8 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlI18NDemo-0~
+    exportHash: d6e1d18a3938bacbfcec2a1bf975e0c728c6d296dffd5f98b597066cce1562bb
+    id: ~exportplaceholderid-experienceView-tlI18NDemo~
     localFilename: ./tl-i18n-demo.hbs
     name: tl-i18n-demo
     version: develop

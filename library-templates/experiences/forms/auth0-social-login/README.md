@@ -106,6 +106,6 @@ If you wish to add a provider that does not have UI elements included with this 
 
 ## License
 
-Copyright &copy; 2022 WEGnology. All rights reserved.
+Copyright &copy; 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

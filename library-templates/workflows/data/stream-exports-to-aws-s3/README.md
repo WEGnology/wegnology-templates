@@ -43,6 +43,6 @@ As a demonstration of the process, this template works without any additional co
 
 ## License
 
-Copyright &copy; 2022 WEGnology. All rights reserved.
+Copyright &copy; 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

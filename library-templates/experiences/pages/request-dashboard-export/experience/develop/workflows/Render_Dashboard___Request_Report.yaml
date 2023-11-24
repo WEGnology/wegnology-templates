@@ -1,13 +1,14 @@
 resourceType: ExperienceFlowVersion
 resources:
   - enabled: true
-    flowId: ~exportplaceholderid-flow-renderDashboardRequestReport-0~
+    exportHash: 4d9998dc6b12d57cb2c262f3c0c40534fc33c56985a8f0fe261dcae73d29b2b2
+    flowId: ~exportplaceholderid-flow-renderDashboardRequestReport~
     globals:
       - json: '"ENTER JWT SECRET HERE"'
         key: JWT_SECRET
-      - json: '"~exportplaceholderid-dashboard-sampleDashboard-0~"'
+      - json: '"~exportplaceholderid-dashboard-sampleDashboard~"'
         key: dashboardId
-    id: ~exportplaceholderid-flowVersion-renderDashboardRequestReport-0~
+    id: ~exportplaceholderid-flowVersion-renderDashboardRequestReport~
     name: Render Dashboard / Request Report
     nodes:
       - config:
@@ -17,7 +18,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-dashboardPage-0~
+          pageIdTemplate: ~exportplaceholderid-experienceView-dashboardPage~
           replyIdPath: ''
           replyType: page
           responseCodeTemplate: '200'
@@ -455,7 +456,7 @@ resources:
         type: GetExperienceUserNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getTlDashboardReport-1~
+        key: ~exportplaceholderid-experienceEndpoint-getTlDashboardReport~
         meta:
           category: trigger
           description: ''
@@ -468,7 +469,7 @@ resources:
           - - Ny4Ym0TIE7
         type: endpoint
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postTlDashboardReport-0~
+        key: ~exportplaceholderid-experienceEndpoint-postTlDashboardReport~
         meta:
           category: trigger
           description: ''
@@ -481,7 +482,7 @@ resources:
           - - u_HkZtK6X3
         type: endpoint
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postTlDashboardReportCb-2~
+        key: ~exportplaceholderid-experienceEndpoint-postTlDashboardReportCb~
         meta:
           category: trigger
           description: ''
@@ -495,7 +496,7 @@ resources:
         type: endpoint
       - config: {}
         key: >-
-          ~exportplaceholderid-flow-renderDashboardRequestReport-0~-_J71B7jcDhm00vy6JMaGH
+          ~exportplaceholderid-flow-renderDashboardRequestReport~-_J71B7jcDhm00vy6JMaGH
         meta:
           category: trigger
           description: ''

@@ -1,0 +1,30 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: a81497205b0c7194664bd8015392aa3640f04af4083503970ed4c64a718034ab
+    id: ~exportplaceholderid-experienceView-cssTemplates~
+    localFilename: ./css-templates.hbs
+    name: css-templates
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: A simple helper component for rendering an "error bar". In the
+      example login page, this is used to alert the user that their credentials
+      are invalid when they attempt to log in and the request fails.
+    exportHash: 74ac936e42f7315e79a2120706590f1e51eb0141c0ed69bb92804d5c9a28b99e
+    id: ~exportplaceholderid-experienceView-errorAlert~
+    localFilename: ./errorAlert.hbs
+    name: errorAlert
+    version: develop
+    viewTags: {}
+    viewType: component
+  - description: This is a pin login that is rendered on the kiosk login. It renders
+      10 numbers, as well as a backspace and "ok" button.
+    exportHash: 78477943e906911d30ef3ac7c1426dd6500db2e6b64453ddb13fd21897113e04
+    id: ~exportplaceholderid-experienceView-pinLogin~
+    localFilename: ./pinLogin.hbs
+    name: pinLogin
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

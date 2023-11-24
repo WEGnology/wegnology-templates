@@ -4,19 +4,23 @@ resources:
     description: Endpoint to request the push notification test page.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getBrazeWebPush-1~
+    experienceGroupIds: []
+    exportHash: 40187d17c9e68eba4e157d6d18d1c470b76d99ee7be6bf9d01bcae3275f25516
+    id: ~exportplaceholderid-experienceEndpoint-getBrazeWebPush~
     method: get
     route: /braze-web-push
     staticReply:
       statusCode: 200
       type: page
-      value: ~exportplaceholderid-experienceView-tlPageWebPush-0~
+      value: ~exportplaceholderid-experienceView-tlPageWebPush~
     version: develop
   - access: public
     description: Endpoint used to retrieve the service worker JavaScript.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getServiceWorkerJs-0~
+    experienceGroupIds: []
+    exportHash: 5326c5f47cc3b3f861b244e4c8cc43f8638263eae6525ca4395cd5190ed931a5
+    id: ~exportplaceholderid-experienceEndpoint-getServiceWorkerJs~
     method: get
     route: /service-worker.js
     version: develop

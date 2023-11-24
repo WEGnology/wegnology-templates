@@ -2,6 +2,7 @@ resourceType: ExperienceUser
 resources:
   - email: test.user@example.com
     experienceGroupIds: []
-    id: ~exportplaceholderid-experienceUser-testUserExampleCom-0~
+    exportHash: 2bb3f0f57d5c4fbcc9b05a383152ecef56b4bb0e1239bbaaa5a87854bd9463cb
+    id: ~exportplaceholderid-experienceUser-testUserExampleCom~
     userTags: {}
 version: 1

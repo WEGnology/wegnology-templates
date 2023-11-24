@@ -3,12 +3,15 @@ resources:
   - blobUrlTTL: 86400
     description: Allow Experience Users to change their passwords.
     filesPath: ./files
-    globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesFormsChangeUserPassword-0~
+    globals:
+      - cloudOnly: false
+        json: '"featured,password"'
+        key: template-kewords
+    id: ~exportplaceholderid-application-libraryExperiencesFormsChangeUserPassword~
     name: Change User Password
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

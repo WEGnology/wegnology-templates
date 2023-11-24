@@ -2,9 +2,10 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Return the service work script.
     enabled: true
-    flowId: ~exportplaceholderid-flow-getServiceWorkerJs-0~
+    exportHash: 8257355e7c89f5e1da5b6660ef7ab149cca2ff2f40ffa8e053858ac76036200d
+    flowId: ~exportplaceholderid-flow-getServiceWorkerJs~
     globals: []
-    id: ~exportplaceholderid-flowVersion-getServiceWorkerJs-0~
+    id: ~exportplaceholderid-flowVersion-getServiceWorkerJs~
     name: GET service-worker.js
     nodes:
       - config:
@@ -81,7 +82,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getServiceWorkerJs-0~
+        key: ~exportplaceholderid-experienceEndpoint-getServiceWorkerJs~
         meta:
           category: trigger
           description: ''

@@ -1,0 +1,29 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: a1bfade98b6acbb023a5660b3f18ecedce76be023133a8e21e90fbf4be88fd2e
+    id: ~exportplaceholderid-experienceView-pageDashboardAvailable~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboard~
+    localFilename: ./page-dashboard-available.hbs
+    name: page-dashboard-available
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    exportHash: 74e2915f1985e6d1e7bc20cef404fe5f5eb5df4262fef6433eb2159efe19cb49
+    id: ~exportplaceholderid-experienceView-pageDashboardHistory~
+    layoutId: ~exportplaceholderid-experienceView-layoutDashboard~
+    localFilename: ./page-dashboard-history.hbs
+    name: page-dashboard-history
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: ""
+    exportHash: e80c7cb08097aa4004df42c7e9c3768f65de03b44b5bf48e027d166b95fb8c7f
+    id: ~exportplaceholderid-experienceView-pageLogin~
+    localFilename: ./page-login.hbs
+    name: page-login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

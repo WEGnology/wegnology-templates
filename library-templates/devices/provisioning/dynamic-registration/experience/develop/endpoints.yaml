@@ -5,7 +5,9 @@ resources:
       themselves.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postApiRegisterDevice-0~
+    experienceGroupIds: []
+    exportHash: b0a447bbfc798b903cd67eeded500fc26ee06d59089651314b951eefd36a278f
+    id: ~exportplaceholderid-experienceEndpoint-postApiRegisterDevice~
     method: post
     route: /api/register-device
     version: develop

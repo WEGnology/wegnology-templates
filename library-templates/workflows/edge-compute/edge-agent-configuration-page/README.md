@@ -69,6 +69,6 @@ This creates a race condition, as this workflow and the other matching workflow(
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the MIT license.

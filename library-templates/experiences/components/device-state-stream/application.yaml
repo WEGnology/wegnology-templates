@@ -5,11 +5,11 @@ resources:
       displays the state values.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesComponentsDeviceStateStream-0~
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsDeviceStateStream~
     name: Device State Stream
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

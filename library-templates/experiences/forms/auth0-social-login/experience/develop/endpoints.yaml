@@ -3,28 +3,36 @@ resources:
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Callback-2~
+    experienceGroupIds: []
+    exportHash: 6c88b884ed6e46379499316deb10304606e07a738dea928dc48b66f15699756e
+    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Callback~
     method: get
     route: /tl-auth0-callback
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Home-0~
+    experienceGroupIds: []
+    exportHash: fea19251baa4ed7a6acffe2a0d30a85e163b6779daf6c180d0798d80ee79d515
+    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Home~
     method: get
     route: /tl-auth0-home
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0LoginConnection-1~
+    experienceGroupIds: []
+    exportHash: 8ce4c77fcf51537badc24028aa700038d3b4835253dd30835eafb604b8339969
+    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0LoginConnection~
     method: get
     route: /tl-auth0-login/{connection?}
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Logout-3~
+    experienceGroupIds: []
+    exportHash: d7f5dee4452ccff242933c8f0323570e17d6f427fd35999978c8e071365c68a6
+    id: ~exportplaceholderid-experienceEndpoint-getTlAuth0Logout~
     method: get
     route: /tl-auth0-logout
     version: develop

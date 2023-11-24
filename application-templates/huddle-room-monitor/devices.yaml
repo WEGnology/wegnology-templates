@@ -1,0 +1,102 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: occupied_rooms
+        system:
+          aggregation: SUM
+          childAttributes:
+            - mode: all
+              name: occupied_rooms
+      - attributeTags: {}
+        dataType: number
+        name: total_rooms
+        system:
+          aggregation: SUM
+          childAttributes:
+            - mode: all
+              name: total_rooms
+    children:
+      - attributes:
+          - attributeTags: {}
+            dataType: number
+            description: ""
+            name: occupied_rooms
+            system:
+              aggregation: SUM
+              childAttributes:
+                - mode: all
+                  name: occupied
+          - attributeTags: {}
+            dataType: number
+            name: total_rooms
+            system:
+              aggregation: COUNT
+              childAttributes:
+                - mode: all
+                  name: occupied
+        children:
+          - attributes:
+              - attributeTags: {}
+                dataType: number
+                description: 1=occupied. 0=unoccupied.
+                name: occupied
+              - attributeTags:
+                  units: seconds
+                dataType: number
+                description: The duration of a meeting. Reported when the room becomes
+                  unoccupied.
+                name: meeting_time
+            children: []
+            deviceClass: standalone
+            exportHash: fda2d652127936afc5a2fbb73aa836dd6cc0f3a4a3deb7e958c1edeeeb9b7a0d
+            id: ~exportplaceholderid-device-huddleRoom1~
+            name: Huddle Room 1
+            tags: []
+          - attributes:
+              - attributeTags: {}
+                dataType: number
+                description: 1=occupied. 0=unoccupied.
+                name: occupied
+              - attributeTags:
+                  units: seconds
+                dataType: number
+                name: meeting_time
+            children: []
+            deviceClass: standalone
+            exportHash: 924929ff97b37ed03c1197b54005946679d84e237a907e463e6016b47995105f
+            id: ~exportplaceholderid-device-huddleRoom2~
+            name: Huddle Room 2
+            tags: []
+          - attributes:
+              - attributeTags: {}
+                dataType: number
+                description: 1=occupied. 0=unoccupied.
+                name: occupied
+              - attributeTags:
+                  units: seconds
+                dataType: number
+                name: meeting_time
+            children: []
+            deviceClass: standalone
+            exportHash: 4591150584b6a1c90e908e57c9b13bac6ac9fb68237edc8e9f96bca1f9e3ee9c
+            id: ~exportplaceholderid-device-huddleRoom3~
+            name: Huddle Room 3
+            tags: []
+        deviceClass: system
+        exportHash: 456f5a7f25b3d596d67c8dc9b5529ca628c2a0470547653a90d5f773d288e3c2
+        id: ~exportplaceholderid-device-floor7~
+        keepDuplicates: false
+        name: Floor 7
+        systemInterval: 60
+        tags: []
+    deviceClass: system
+    exportHash: fab13fc3aa5b82fd7e9d9348f7a87b258ebd1ecc2263cae20d4738f9250c4ee7
+    id: ~exportplaceholderid-device-buildingA~
+    keepDuplicates: false
+    name: Building A
+    systemInterval: 60
+    tags: []
+version: 1

@@ -1,0 +1,61 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - description: Disconnect the current user and delete their auth cookies.
+    enabled: true
+    exportHash: fcbb1bb6f9ae710ba8a95299e0f62740b6d930071cdbac327dceed55c5cb5f5c
+    flowId: ~exportplaceholderid-flow-endpointLogout~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-endpointLogout~
+    name: Endpoint /logout
+    nodes:
+      - config:
+          bodyTemplate: /login
+          bodyTemplateType: string
+          cookieInfo:
+            - nameTemplate: authorization
+          headerInfo: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+        id: Bkx0DpwaW
+        meta:
+          category: output
+          description: Delete the auth cookie and redirect the user to the login page.
+          label: Go to /login
+          name: endpoint-reply
+          x: 260
+          'y': 200
+        outputIds:
+          - - S1eeAPTDpZ
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: S1eeAPTDpZ
+        meta:
+          category: output
+          description: Log requests to this endpoint.
+          label: Debug
+          name: debug
+          x: 260
+          'y': 300
+        outputIds: []
+        type: DebugNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getLogout~
+        meta:
+          category: trigger
+          description: >-
+            On a request to the logout route (user clicks "Log Out" example
+            dropdown) ...
+          label: GET /logout
+          name: endpoint
+          uiId: BkZxCwawTW
+          x: 260
+          'y': 100
+        outputIds:
+          - - Bkx0DpwaW
+        type: endpoint
+    version: develop
+version: 1

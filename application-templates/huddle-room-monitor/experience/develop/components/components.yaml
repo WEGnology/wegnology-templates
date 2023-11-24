@@ -1,0 +1,11 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: b58051629aaeae97534184f277c0b0cd9ec9359e83be2bd91c22baf482232171
+    id: ~exportplaceholderid-experienceView-cssTemplates~
+    localFilename: ./css-templates.hbs
+    name: css-templates
+    version: develop
+    viewTags: {}
+    viewType: component
+version: 1

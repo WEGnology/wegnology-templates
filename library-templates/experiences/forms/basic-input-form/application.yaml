@@ -4,12 +4,15 @@ resources:
     description: Demonstrates how to use a form to receive user input and process
       that input using a workflow.
     filesPath: ./files
-    globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesFormsBasicInputForm-0~
+    globals:
+      - cloudOnly: false
+        json: '"featured"'
+        key: template-kewords
+    id: ~exportplaceholderid-application-libraryExperiencesFormsBasicInputForm~
     name: Basic Input Form
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

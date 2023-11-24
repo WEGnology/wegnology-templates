@@ -4,11 +4,11 @@ resources:
     description: Converts temperatures between Celsius, Fahrenheit, and Kelvin.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryWorkflowsNodesConvertTemperature-0~
+    id: ~exportplaceholderid-application-libraryWorkflowsNodesConvertTemperature~
     name: Convert Temperature
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

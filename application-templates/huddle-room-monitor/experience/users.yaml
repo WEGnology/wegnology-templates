@@ -1,0 +1,19 @@
+resourceType: ExperienceUser
+resources:
+  - email: employee@example.com
+    experienceGroupIds: []
+    exportHash: 567dbc2ce42206719107a1a3fbf9876e95931c8c575269b7085624436caa0010
+    firstName: John
+    id: ~exportplaceholderid-experienceUser-employeeExampleCom~
+    lastName: Smith
+    userTags:
+      role: employee
+  - email: manager@example.com
+    experienceGroupIds: []
+    exportHash: ed110e55c556a550e1589603749a0e81a8f850a81fee236b60e0c6ddf51bd9b7
+    firstName: Jane
+    id: ~exportplaceholderid-experienceUser-managerExampleCom~
+    lastName: Smith
+    userTags:
+      role: manager
+version: 1

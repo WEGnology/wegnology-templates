@@ -3,7 +3,9 @@ resources:
   - access: authenticated
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlDataExplorerDeviceId-0~
+    experienceGroupIds: []
+    exportHash: d89b75e96504fb8f71317e97a9befc8acadf96c15efb90d706de00b84cc19f59
+    id: ~exportplaceholderid-experienceEndpoint-getTlDataExplorerDeviceId~
     method: get
     route: /tl-data-explorer/{deviceId}
     version: develop

@@ -6,7 +6,7 @@ const mqtt = require('mqtt');
 
 /**
  * This script demonstrates JWT-based dynamic device registration
- * using the Losant IoT Platform.
+ * using the WEGnology IoT Platform.
  * 
  * If authentication credentials are not already available,
  * this script will POST a signed registration token to obtain
@@ -55,7 +55,7 @@ const getCredentials = async () => {
 
   if(credentials) {
     console.log('Credentials received from registration URL.');
-    console.log('A new device has been created in your Losant application.');
+    console.log('A new device has been created in your WEGnology application.');
     return credentials;
   }
 };
@@ -100,7 +100,7 @@ const connect = async () => {
     return;
   }
 
-  mqttClient = mqtt.connect('mqtts://broker.losant.com', {
+  mqttClient = mqtt.connect('mqtts://broker.app.wnology.io', {
     clientId: credentials.deviceId,
     username: credentials.accessKey,
     password: credentials.accessSecret
@@ -116,4 +116,3 @@ const connect = async () => {
 };
 
  connect();
-

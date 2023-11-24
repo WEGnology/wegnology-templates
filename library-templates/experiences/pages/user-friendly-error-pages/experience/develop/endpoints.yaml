@@ -6,13 +6,15 @@ resources:
       404 page.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getAny-0~
+    experienceGroupIds: []
+    exportHash: 757482ba2fb70961386a37ab4a970b2a65e7c7b564e619928abf356db43f8476
+    id: ~exportplaceholderid-experienceEndpoint-getAny~
     method: get
     route: /{any*}
     staticReply:
       statusCode: 404
       type: page
-      value: ~exportplaceholderid-experienceView-404Page-0~
+      value: ~exportplaceholderid-experienceView-404Page~
     version: develop
   - access: public
     description: A catch-all route that fires on any POST request that is not caught
@@ -20,12 +22,14 @@ resources:
       404 page.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postAny-1~
+    experienceGroupIds: []
+    exportHash: f9a46a824643ca0783911d260b4df6ec7b6acc8665c6c2a4e8b3e05531159e86
+    id: ~exportplaceholderid-experienceEndpoint-postAny~
     method: post
     route: /{any*}
     staticReply:
       statusCode: 404
       type: page
-      value: ~exportplaceholderid-experienceView-404Page-0~
+      value: ~exportplaceholderid-experienceView-404Page~
     version: develop
 version: 1

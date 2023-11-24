@@ -1,0 +1,11 @@
+resourceType: ExperienceUser
+resources:
+  - email: user@adm.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-adm~
+    exportHash: f74ad01fd085d89c7d3279544bf1fe8e173666f445c89ced2f477d8a195bfa47
+    firstName: Admin
+    id: ~exportplaceholderid-experienceUser-userAdmCom~
+    userTags:
+      fullName: Admin
+version: 1

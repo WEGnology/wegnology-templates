@@ -36,6 +36,6 @@ The pages that are included in this template contain markup that would typically
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

@@ -1,0 +1,47 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c6a1d499129f3279211b60d94302e871d41013b46c376db1d65bd07f98e4cf46
+    id: ~exportplaceholderid-experienceEndpoint-getLogin~
+    method: get
+    route: /login
+    staticReply:
+      statusCode: 200
+      type: page
+      value: ~exportplaceholderid-experienceView-pageLogin~
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 393dbcb3e60aa8e531bef49474febea39a05f1a9ba2b586ddb660b16c6851314
+    id: ~exportplaceholderid-experienceEndpoint-getLogout~
+    method: get
+    route: /logout
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: cc9ff26d6e8ab230995bd288b5c72cad2fe62e227b7507d51cb1d4ed371d8723
+    id: ~exportplaceholderid-experienceEndpoint-get~
+    method: get
+    route: /
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c9722c25ce3b9492b7a2d59d1abe1714a6f4e91d46f049543e34fd9594c99e1f
+    id: ~exportplaceholderid-experienceEndpoint-postLogin~
+    method: post
+    route: /login
+    version: develop
+version: 1

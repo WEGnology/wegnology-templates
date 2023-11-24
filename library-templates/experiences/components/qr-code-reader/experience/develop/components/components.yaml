@@ -1,7 +1,8 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlQrCodeReader-0~
+    exportHash: 4bf85f2f6db82d34b88503f82637f58d5d5dde8633b17192f7a6aef31f7d8170
+    id: ~exportplaceholderid-experienceView-tlQrCodeReader~
     localFilename: ./tl-qr-code-reader.hbs
     name: tl-qr-code-reader
     version: develop

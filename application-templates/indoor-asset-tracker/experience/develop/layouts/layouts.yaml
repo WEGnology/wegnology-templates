@@ -1,0 +1,22 @@
+resourceType: ExperienceView
+resources:
+  - description: This layout is used to display all pages excluding those containing
+      dashboards.. If a non-manager user is logged in and viewing the page, they
+      will be logged out after 60 seconds due to the nature of a physical kiosk.
+    exportHash: 786c4059d4e1143262fdf57bf2595bd9db3f623506fbd53ff6025b6e1dd88c85
+    id: ~exportplaceholderid-experienceView-containerLayout~
+    localFilename: ./Container_Layout.hbs
+    name: Container Layout
+    version: develop
+    viewTags: {}
+    viewType: layout
+  - description: This layout is used to display dashboards within both the kiosk and
+      manager views.
+    exportHash: 12811700862417c3d32a828e8339d8c0cfd046d5bf443acb8e6a0db597a1a513
+    id: ~exportplaceholderid-experienceView-dashboardLayout~
+    localFilename: ./Dashboard_Layout.hbs
+    name: Dashboard Layout
+    version: develop
+    viewTags: {}
+    viewType: layout
+version: 1

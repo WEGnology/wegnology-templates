@@ -3,14 +3,18 @@ resources:
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getLanguageTlI18NDemo-1~
+    experienceGroupIds: []
+    exportHash: 6a9a9cedbb986969b6ea0b16bf637dc0d0321b6bf122ddb512ad5a3e221089ce
+    id: ~exportplaceholderid-experienceEndpoint-getLanguageTlI18NDemo~
     method: get
     route: /{language}/tl-i18n-demo
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlI18NDemoSubdomain-0~
+    experienceGroupIds: []
+    exportHash: 24a79bd5e46b80ed2d26599a37968fa8ff856bfa4c9a597ed5cbaf67d69d1071
+    id: ~exportplaceholderid-experienceEndpoint-getTlI18NDemoSubdomain~
     method: get
     route: /tl-i18n-demo-subdomain
     version: develop

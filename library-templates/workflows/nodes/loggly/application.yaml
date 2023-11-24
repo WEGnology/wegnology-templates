@@ -4,11 +4,11 @@ resources:
     description: Log payload data to Loggly using their HTTP API.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryWorkflowsNodesLoggly-0~
+    id: ~exportplaceholderid-application-libraryWorkflowsNodesLoggly~
     name: Loggly
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

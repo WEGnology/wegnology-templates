@@ -1,13 +1,14 @@
 resourceType: Notebook
 resources:
   - description: Demo notebook that simply outputs all provided inputs.
-    id: ~exportplaceholderid-notebook-basicNotebook-0~
+    exportHash: 6e1d41a8e5edb3adec2e2702d6f0d555ac09f0a5edf24e12b5f1f47d53f3d771
+    id: ~exportplaceholderid-notebook-basicNotebook~
     imageVersion: v2
     inputs:
       - fileName: hello-world.txt
         inputType: externalUrl
         sourceUrl: >-
-          https://~exportplaceholderid-files-domain~/~exportplaceholderid-application-libraryWorkflowsDataStreamExportsToAwsS3-0~/tl-stream-exports-to-s3/hello-world.txt
+          https://~exportplaceholderid-files-domain~/~exportplaceholderid-application-libraryWorkflowsDataStreamExportsToAwsS3~/tl-stream-exports-to-s3/hello-world.txt
     localFilename: ./all-inputs-to-outputs.ipynb.txt.ipynb
     name: Basic Notebook
     outputs:

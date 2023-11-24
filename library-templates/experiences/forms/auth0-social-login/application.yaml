@@ -5,11 +5,11 @@ resources:
       your Experience Users.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesFormsAuth0SocialLogin-0~
+    id: ~exportplaceholderid-application-libraryExperiencesFormsAuth0SocialLogin~
     name: Auth0 Social Login
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

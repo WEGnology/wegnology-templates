@@ -10,11 +10,11 @@ resources:
       - cloudOnly: true
         json: '"example.com"'
         key: tl-jwt-reset-issuer
-    id: ~exportplaceholderid-application-libraryExperiencesFormsForgotPassword-0~
+    id: ~exportplaceholderid-application-libraryExperiencesFormsForgotPassword~
     name: Forgot Password
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

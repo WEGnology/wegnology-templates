@@ -1,0 +1,69 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 01b160ac2d2e71318d70f8e2a2dc6cde1ce4ec84fd74dc2c828c63056c6c98ca
+    id: ~exportplaceholderid-experienceEndpoint-getHistory~
+    method: get
+    route: /history
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: The public-facing route for the login page. Users who are already
+      logged in will get redirected to the home page (powered by the workflow).
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8a349b140654b7a0bbd6e9f3da07d1caff92201aaf047a1c2976f778b407ddc1
+    id: ~exportplaceholderid-experienceEndpoint-getLogin~
+    method: get
+    route: /login
+    version: develop
+  - access: public
+    description: Requests to this endpoint will delete the user's auth cookie and
+      redirect to the /login endpoint.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c8f9b4d204f40f74a3b7b034ff1280967ca175dd3a970a8796a2c81a299617a9
+    id: ~exportplaceholderid-experienceEndpoint-getLogout~
+    method: get
+    route: /logout
+    version: develop
+  - access: authenticated
+    description: The experience root. If a user is not logged in, they will be
+      redirected to /login.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 4e8ecfc1ce00d92d2b23f73b54617d2e72184a4e45ad938b4cce0651fb94d7f5
+    id: ~exportplaceholderid-experienceEndpoint-get~
+    method: get
+    route: /
+    staticReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-pageDashboardAvailable~
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: When a user submits login credentials, those credentials hit this
+      route. Then they are authenticated in the workflow backing this endpoint;
+      if valid, the user is redirected to the home page. If not, the user is
+      redirected back to the login page with a message about what went wrong.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8e1e357f448f003d1177a63d831556e99cff848027fdb9ad55aca99aaf57d0d9
+    id: ~exportplaceholderid-experienceEndpoint-postLogin~
+    method: post
+    route: /login
+    version: develop
+version: 1

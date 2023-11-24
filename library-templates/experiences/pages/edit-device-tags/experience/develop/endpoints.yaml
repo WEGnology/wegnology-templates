@@ -3,7 +3,9 @@ resources:
   - access: authenticated
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getDevicesDeviceIdEdit-0~
+    experienceGroupIds: []
+    exportHash: 4846608ffef144a5f99c40c0f95ad3c2e46ef6c258a8baa8bfabb7adfc7adfb2
+    id: ~exportplaceholderid-experienceEndpoint-getDevicesDeviceIdEdit~
     method: get
     route: /devices/{deviceId}/edit
     unauthorizedReply:
@@ -14,7 +16,9 @@ resources:
   - access: authenticated
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postDevicesDeviceIdEdit-1~
+    experienceGroupIds: []
+    exportHash: 28bc0945460d91b6be512f6c0a91242fb4a324a1422523f0b0eb4989c4cfef7f
+    id: ~exportplaceholderid-experienceEndpoint-postDevicesDeviceIdEdit~
     method: post
     route: /devices/{deviceId}/edit
     unauthorizedReply:

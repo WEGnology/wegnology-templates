@@ -4,11 +4,11 @@ resources:
     description: Allow Experience Users to update their profile.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesFormsUserProfile-0~
+    id: ~exportplaceholderid-application-libraryExperiencesFormsUserProfile~
     name: User Profile
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

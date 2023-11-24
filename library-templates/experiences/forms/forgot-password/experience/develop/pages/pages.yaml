@@ -2,14 +2,16 @@ resourceType: ExperienceView
 resources:
   - description: Shows a form where a user can enter their email and request a
       password reset.
-    id: ~exportplaceholderid-experienceView-tlPageForgotPassword-0~
+    exportHash: 745d406b1cdc264a7fa1bcb403fcd4f6fb989d207ebab35b96a393db4731686e
+    id: ~exportplaceholderid-experienceView-tlPageForgotPassword~
     localFilename: ./tl-page-forgot-password.hbs
     name: tl-page-forgot-password
     version: develop
     viewTags: {}
     viewType: page
   - description: Displays a form that allows a user to submit a new password.
-    id: ~exportplaceholderid-experienceView-tlPageResetPassword-1~
+    exportHash: e644a02f22e1cc643c0f24716f5c9b9314c712a1396f575f46dc92253184c788
+    id: ~exportplaceholderid-experienceView-tlPageResetPassword~
     localFilename: ./tl-page-reset-password.hbs
     name: tl-page-reset-password
     version: develop

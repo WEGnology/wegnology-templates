@@ -1,0 +1,20 @@
+resourceType: DataTable
+resources:
+  - columns:
+      - constraint: required
+        dataType: number
+        name: warning_or_alarm
+      - constraint: required
+        dataType: number
+        name: warning_or_alarm_index
+      - constraint: required
+        dataType: string
+        name: description
+      - constraint: required
+        dataType: string
+        name: additional_information
+    exportHash: 3a9d9e421b3c576819c936f67a88eb275ece79c04694eaaf3d70d49450cdaf64
+    id: ~exportplaceholderid-dataTable-warningsAndAlarms~
+    localFilename: ./warnings_and_alarms.csv
+    name: warnings_and_alarms
+version: 1

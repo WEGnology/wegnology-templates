@@ -2,7 +2,7 @@ resourceType: Dashboard
 resources:
   - blocks:
       - applicationId: >-
-          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport-0~
+          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport~
         blockType: device-list
         config:
           additionalAttributes: []
@@ -15,7 +15,7 @@ resources:
           deviceLinkNewWindow: true
           deviceLinkType: custom
           deviceLinkUrl: >-
-            https://~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport-0~.~exportplaceholderid-endpoint-domain~/tl-dashboard-report
+            https://~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport~.~exportplaceholderid-endpoint-domain~/tl-dashboard-report
           excludeConnectionInfo: false
           query: |-
             {
@@ -36,7 +36,7 @@ resources:
         title: My Devices
         width: 4
       - applicationId: >-
-          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport-0~
+          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport~
         blockType: custom-html
         config:
           configuration:
@@ -118,7 +118,7 @@ resources:
         width: 4
     contextConfiguration:
       - applicationId: >-
-          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport-0~
+          ~exportplaceholderid-application-libraryExperiencesPagesRequestDashboardExport~
         defaultValue: ~exportplaceholderid-experienceUser-exampleDomainCom-0~
         name: experienceUser
         type: experienceUser
@@ -127,7 +127,9 @@ resources:
     defaultTheme: light
     description: ''
     duration: 3600000
-    id: ~exportplaceholderid-dashboard-sampleDashboard-0~
+    exportHash: 3e9dfa3e6486655316ffc5652c46b2c254030b38977bff43e761f26fa2d43cd4
+    id: ~exportplaceholderid-dashboard-sampleDashboard~
+    isPasswordProtected: false
     name: Sample Dashboard
     public: true
     refreshRate: 60

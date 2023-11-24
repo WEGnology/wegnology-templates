@@ -1,0 +1,216 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags: {}
+        dataType: gps
+        description: ""
+        name: location
+      - attributeTags: {}
+        dataType: string
+        description: ""
+        name: shipment_id
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temperature
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: orientation
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: shock
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: battery
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: signal_strength
+      - attributeTags: {}
+        dataType: string
+        name: distCenterId
+    children: []
+    description: ""
+    deviceClass: standalone
+    exportHash: 904b99c30d87793b198e5d320ed00a7524494ae3908d23d43604a5deaf1b2766
+    id: ~exportplaceholderid-device-tracker0000~
+    name: Tracker 0000
+    tags:
+      - key: simId
+        value: "0000"
+  - attributes:
+      - attributeTags: {}
+        dataType: gps
+        description: ""
+        name: location
+      - attributeTags: {}
+        dataType: string
+        description: ""
+        name: shipment_id
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temperature
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: orientation
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: shock
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: battery
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: signal_strength
+      - attributeTags: {}
+        dataType: string
+        name: distCenterId
+    children: []
+    description: ""
+    deviceClass: standalone
+    exportHash: cb069d8e7aeae4a5c810531d5ae282653afca5a2f4182302aba2468cb79d66d9
+    id: ~exportplaceholderid-device-tracker0001~
+    name: Tracker 0001
+    tags:
+      - key: simId
+        value: "0001"
+      - key: DeviceRecipe
+        value: GPS Tracker Recipe
+  - attributes:
+      - attributeTags: {}
+        dataType: gps
+        description: ""
+        name: location
+      - attributeTags: {}
+        dataType: string
+        description: ""
+        name: shipment_id
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temperature
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: orientation
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: shock
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: battery
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: signal_strength
+      - attributeTags: {}
+        dataType: string
+        name: distCenterId
+    children: []
+    description: ""
+    deviceClass: standalone
+    exportHash: 5fc02ffe5462e93ba1c13299cec5ac3ae24935774bf26badf8c89339e4753837
+    id: ~exportplaceholderid-device-tracker0002~
+    name: Tracker 0002
+    tags:
+      - key: simId
+        value: "0002"
+      - key: DeviceRecipe
+        value: GPS Tracker Recipe
+  - attributes:
+      - attributeTags: {}
+        dataType: gps
+        description: ""
+        name: location
+      - attributeTags: {}
+        dataType: string
+        description: ""
+        name: shipment_id
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temperature
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: orientation
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: shock
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: battery
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: signal_strength
+      - attributeTags: {}
+        dataType: string
+        name: distCenterId
+    children: []
+    description: ""
+    deviceClass: standalone
+    exportHash: 10b243ac0038e2411c479e30992644696c4960f9b90a8bd9e6fe37ad004f8044
+    id: ~exportplaceholderid-device-tracker0003~
+    name: Tracker 0003
+    tags:
+      - key: simId
+        value: "0003"
+      - key: DeviceRecipe
+        value: GPS Tracker Recipe
+  - attributes:
+      - attributeTags: {}
+        dataType: gps
+        description: ""
+        name: location
+      - attributeTags: {}
+        dataType: string
+        description: ""
+        name: shipment_id
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: temperature
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: orientation
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: shock
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: battery
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: signal_strength
+      - attributeTags: {}
+        dataType: string
+        name: distCenterId
+    children: []
+    description: ""
+    deviceClass: standalone
+    exportHash: c15b6314de7b79d6302f82fd7b153c13c062bf0d0565050c839dbafc9246a8a8
+    id: ~exportplaceholderid-device-tracker0004~
+    name: Tracker 0004
+    tags:
+      - key: simId
+        value: "0004"
+      - key: DeviceRecipe
+        value: GPS Tracker Recipe
+version: 1

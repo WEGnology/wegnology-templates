@@ -1,0 +1,11 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: f304c70e1e09dfe759588e3eba4e1d644ade13925f22af61c68192f9fd8add12
+    id: ~exportplaceholderid-experienceView-layoutDashboardPage~
+    localFilename: ./layout-dashboard-page.hbs
+    name: layout-dashboard-page
+    version: develop
+    viewTags: {}
+    viewType: layout
+version: 1

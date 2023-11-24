@@ -4,11 +4,11 @@ resources:
     description: Displays a filterable dropdown menu for use in forms or for navigation.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesComponentsAdvancedDropdown-0~
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsAdvancedDropdown~
     name: Advanced Dropdown
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

@@ -1,0 +1,24 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This model is an implementation of  WEGnology Walkthrough, the
+      first steps guide on how to develop a weather station application on the
+      platform using data from an external API.
+    filesPath: ./files
+    globals:
+      - cloudOnly: false
+        description: Provide the latitude and longitude used to request the data.
+        json: '"-26.4829808,-49.0584639"'
+        key: gps_location
+      - cloudOnly: false
+        description: API key obtained at https://openweathermap.org/api
+        json: '"SUA CHAVE"'
+        key: api_key
+    id: ~exportplaceholderid-application-applicationTemplateWeatherApiConsumption~
+    name: TEMPLATE - Weather API Consumption
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords: []
+version: 1

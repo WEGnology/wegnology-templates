@@ -1,0 +1,78 @@
+resourceType: ExperienceView
+resources:
+  - description: 'This page is a dashboard that displays a dashboard of the
+      equipment device matching a specific "type" tag. '
+    exportHash: 04ea8aeb2e2d867b26ab101827d75df18332211cb4c377578057b7c0cb1d0607
+    id: ~exportplaceholderid-experienceView-kioskDashboardEquipment~
+    layoutId: ~exportplaceholderid-experienceView-dashboardLayout~
+    localFilename: ./kiosk-dashboard-equipment.hbs
+    name: kiosk-dashboard-equipment
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: This page shows a context-based dashboard of a resident's location.
+    exportHash: f62980125ca5f99c11b53cf388765959f0cbfda9be0d5aa4c93a557ee7a590c7
+    id: ~exportplaceholderid-experienceView-kioskDashboardResident~
+    layoutId: ~exportplaceholderid-experienceView-dashboardLayout~
+    localFilename: ./kiosk-dashboard-resident.hbs
+    name: kiosk-dashboard-resident
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: Users who are not logged in will be redirected to this page when
+      they try to visit the / page. This page loads a pinpad login form; when
+      the user submits the form, it will hit the POST /login endpoint with the
+      unique pincode of the user. If the credentials are valid, the user will
+      get an authentication cookie and will be redirected to the /kiosk page.
+    exportHash: 9699b69f6f91867f9d184a1f04e48e089a345df3a0b9808334e5c8f4b97bc822
+    id: ~exportplaceholderid-experienceView-kioskLogIn~
+    layoutId: ~exportplaceholderid-experienceView-containerLayout~
+    localFilename: ./kiosk-log-in.hbs
+    name: kiosk-log-in
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: This page shows the home page of the kiosk, prompting users to
+      select residents or equipment to search for. Once one has been selected,
+      this page will display either a list of equipment types or a list of
+      residents based on values passed in from the workflow through pageData.
+    exportHash: 5514d6f2c0870e0ce29ca306ffabfe0afa69d08184c16537765a807d2ad28a8f
+    id: ~exportplaceholderid-experienceView-kioskSelectors~
+    layoutId: ~exportplaceholderid-experienceView-containerLayout~
+    localFilename: ./kiosk-selectors.hbs
+    name: kiosk-selectors
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: This page uses context to render a historical dashboard for a manager view.
+    exportHash: cef085dac954a50ed892fb9ec0d43f5d7ca8a34f7e0a59b925b940511e1bf719
+    id: ~exportplaceholderid-experienceView-managerDashboardDevice~
+    layoutId: ~exportplaceholderid-experienceView-dashboardLayout~
+    localFilename: ./manager-dashboard-device.hbs
+    name: manager-dashboard-device
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: "This is the manager home page, which renders a dashboard only for
+      logged-in users with a role=manager tag. Within the endpoint that renders
+      this template, we redirect to the manager login page if the experience
+      user is not logged in. "
+    exportHash: 806f49df766bbfec4cce852671a161b674be1e56b4e48fd536b738b0910042e6
+    id: ~exportplaceholderid-experienceView-managerDashboardHome~
+    layoutId: ~exportplaceholderid-experienceView-dashboardLayout~
+    localFilename: ./manager-dashboard-home.hbs
+    name: manager-dashboard-home
+    version: develop
+    viewTags: {}
+    viewType: page
+  - description: This is the login page for a manager. The manager login requires an
+      email and a password and will route to the manager's home page.
+    exportHash: 17f705e9720283dc501168aedff4f2a72c6c75417448843156238a6ed083a209
+    id: ~exportplaceholderid-experienceView-managerLogin~
+    layoutId: ~exportplaceholderid-experienceView-containerLayout~
+    localFilename: ./manager-login.hbs
+    name: manager-login
+    version: develop
+    viewTags: {}
+    viewType: page
+version: 1

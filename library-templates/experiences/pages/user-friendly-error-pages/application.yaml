@@ -4,11 +4,11 @@ resources:
     description: Includes implementations for 404 and 500 error pages.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesPagesUserFriendlyErrorPages-0~
+    id: ~exportplaceholderid-application-libraryExperiencesPagesUserFriendlyErrorPages~
     name: User-Friendly Error Pages
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

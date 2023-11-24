@@ -58,7 +58,8 @@ resources:
     description: Industrial power generator.
     deviceClass: standalone
     deviceName: Generator
-    id: ~exportplaceholderid-deviceRecipe-tlGenerator-0~
+    exportHash: 10225cb7865a0a23c733e515e6fc468e1b3cd72b84bf735f601b523a2cc577a5
+    id: ~exportplaceholderid-deviceRecipe-tlGenerator~
     name: tl-generator
     tags: []
 version: 1

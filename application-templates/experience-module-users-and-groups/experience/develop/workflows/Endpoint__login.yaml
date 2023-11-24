@@ -1,0 +1,207 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - description: >-
+      Manage the login screen, and verify whether the user is logged in or their
+      credentials were sent.
+    enabled: true
+    exportHash: 6e72b89b0c47021874c180c370e4e7f2579e366d7686662206785195fa21186b
+    flowId: ~exportplaceholderid-flow-endpointLogin~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-endpointLogin~
+    name: Endpoint /login
+    nodes:
+      - config:
+          emailTemplate: '{{data.body.email}}'
+          invalidateExistingTokens: false
+          passwordTemplate: '{{data.body.password}}'
+          tokenResultPath: data.responseToken
+          ttlTemplate: ''
+          userResultPath: data.responseUser
+        id: r1BuEcPab
+        meta:
+          authMode: emailPassword
+          category: experience
+          description: Realiza a autenticação das credenciais.
+          label: Authenticate
+          name: experience-user-auth
+          x: 360
+          'y': 480
+        outputIds:
+          - - BkxSdV9P6-
+          - - r1-HdN5Dab
+        type: ExperienceUserAuthNode
+      - config:
+          bodyTemplate: |-
+            {
+              "loginFailure": true,
+              "email": {{jsonEncode data.body.email}}
+            }
+          bodyTemplateType: json
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: '401'
+          sameSiteTemplate: ''
+        id: BkxSdV9P6-
+        meta:
+          category: output
+          description: Retorna para a tela de login com uma mensagem de erro.
+          label: Login Failure
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 260
+          'y': 580
+        outputIds:
+          - - SkfSONqvaW
+        type: EndpointReplyNode
+      - config:
+          bodyTemplate: /
+          bodyTemplateType: string
+          cookieInfo:
+            - maxAgeTemplate: ''
+              nameTemplate: authorization
+              pathTemplate: ''
+              valueTemplate: '{{data.responseToken}}'
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+          sameSiteTemplate: ''
+        id: r1-HdN5Dab
+        meta:
+          category: output
+          description: >-
+            Redireciona para "home page" e armazena os coockies de autenticação
+            usuário.
+          label: Set cookie & redirect to home
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 460
+          'y': 580
+        outputIds:
+          - - SkfSONqvaW
+        type: EndpointReplyNode
+      - config:
+          message: ''
+          property: ''
+        id: SkfSONqvaW
+        meta:
+          category: output
+          description: Apresenta o log das requisições em formato JSON.
+          label: Debug
+          name: debug
+          x: 360
+          'y': 680
+        outputIds: []
+        type: DebugNode
+      - config:
+          expression: '{{ experience.user }}'
+        id: B1XrON5DTW
+        meta:
+          category: logic
+          description: Verifica se usuário está logado.
+          label: Logged in?
+          name: conditional
+          x: 360
+          'y': 280
+        outputIds:
+          - - r1NSOEcw6Z
+          - - ryHSdE5vTZ
+        type: ConditionalNode
+      - config:
+          bodyTemplate: /
+          bodyTemplateType: string
+          cookieInfo: []
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+          sameSiteTemplate: ''
+        id: ryHSdE5vTZ
+        meta:
+          category: output
+          description: Redireciona o usuário para "home page" se já estiver logado.
+          label: Go to /
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 660
+          'y': 580
+        outputIds:
+          - - SkfSONqvaW
+        type: EndpointReplyNode
+      - config:
+          expression: '{{ data.method }} == ''post'''
+        id: r1NSOEcw6Z
+        meta:
+          category: logic
+          description: Verifica se credenciais foram enviadas.
+          label: POST request?
+          name: conditional
+          x: 260
+          'y': 380
+        outputIds:
+          - - SyUrOE9wpW
+          - - r1BuEcPab
+        type: ConditionalNode
+      - config:
+          bodyTemplate: |-
+            {
+              "loginFailure": false
+            }
+          bodyTemplateType: json
+          cookieInfo: []
+          headerInfo: []
+          layoutIdTemplate: ''
+          mqttTopicsTemplate: []
+          pageIdTemplate: ~exportplaceholderid-experienceView-login~
+          replyIdPath: ''
+          replyType: page
+          responseCodeTemplate: '200'
+          sameSiteTemplate: ''
+        id: SyUrOE9wpW
+        meta:
+          category: output
+          description: Carrega a tela de login.
+          label: Render Login
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 60
+          'y': 580
+        outputIds:
+          - - SkfSONqvaW
+        type: EndpointReplyNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-postLogin~
+        meta:
+          category: trigger
+          description: Acionado quando o usuário envia credenciais.
+          label: POST /login
+          name: endpoint
+          uiId: SywHdN5P6W
+          x: 260
+          'y': 180
+        outputIds:
+          - - B1XrON5DTW
+        type: endpoint
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getLogin~
+        meta:
+          category: trigger
+          description: Acionado quando o usuário acessa a tela de login.
+          label: GET /login
+          name: endpoint
+          uiId: SJ_SOV5D6W
+          x: 460
+          'y': 180
+        outputIds:
+          - - B1XrON5DTW
+        type: endpoint
+    version: develop
+version: 1

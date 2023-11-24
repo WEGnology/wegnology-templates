@@ -3,14 +3,18 @@ resources:
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlFileUpload-0~
+    experienceGroupIds: []
+    exportHash: c6dfc83710e21b01b3b4a9f1a3176329aa08ef60ec4194f46f44aa238361ee19
+    id: ~exportplaceholderid-experienceEndpoint-getTlFileUpload~
     method: get
     route: /tl-file-upload
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postTlFileUpload-1~
+    experienceGroupIds: []
+    exportHash: c9ef420f71f0d42a29a1dae2215a456a153176b5d734f9063602b43b7161f93f
+    id: ~exportplaceholderid-experienceEndpoint-postTlFileUpload~
     method: post
     route: /tl-file-upload
     version: develop

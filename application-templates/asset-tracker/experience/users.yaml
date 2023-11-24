@@ -1,0 +1,10 @@
+resourceType: ExperienceUser
+resources:
+  - email: test.user@example.com
+    experienceGroupIds: []
+    exportHash: 551e7dfd008a34ed12c3ba1968273617f879b42801ccd09baacbc1023f1d29ae
+    firstName: Test
+    id: ~exportplaceholderid-experienceUser-testUserExampleCom~
+    lastName: User
+    userTags: {}
+version: 1

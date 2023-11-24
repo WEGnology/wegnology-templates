@@ -5,7 +5,9 @@ resources:
       from Twilio "
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlVerifyForm-0~
+    experienceGroupIds: []
+    exportHash: 27c798a7076f5f60b778f8d04965aafc3263bd8f2b0a93b196b5da499d62c620
+    id: ~exportplaceholderid-experienceEndpoint-getTlVerifyForm~
     method: get
     route: /tl-verify-form
     version: develop
@@ -14,18 +16,22 @@ resources:
       to /tl-verify-login.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getTlVerifyLogin-1~
+    experienceGroupIds: []
+    exportHash: 774eee3f822b1debbf439eebe9c2c34d94f1142b7e04d54842b5e79fdcf035b8
+    id: ~exportplaceholderid-experienceEndpoint-getTlVerifyLogin~
     method: get
     route: /tl-verify-login
     staticReply:
       statusCode: 200
       type: page
-      value: ~exportplaceholderid-experienceView-tlPageLogin-0~
+      value: ~exportplaceholderid-experienceView-tlPageLogin~
     version: develop
   - access: public
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postTlVerifyForm-2~
+    experienceGroupIds: []
+    exportHash: 9fcb5709d411758462c6ea9bb88f9a79ea539159fe1f34e38805d29c3fd9ca42
+    id: ~exportplaceholderid-experienceEndpoint-postTlVerifyForm~
     method: post
     route: /tl-verify-form
     version: develop
@@ -33,7 +39,9 @@ resources:
     description: Endpoint that accepts and verifies an experience's email and password.
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postTlVerifyLogin-3~
+    experienceGroupIds: []
+    exportHash: f56ac8b9e39aca8fc9b78108503da34d034c0b7822fce4f7e84ca5996fa14539
+    id: ~exportplaceholderid-experienceEndpoint-postTlVerifyLogin~
     method: post
     route: /tl-verify-login
     version: develop

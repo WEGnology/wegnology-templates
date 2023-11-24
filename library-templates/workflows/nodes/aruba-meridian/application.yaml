@@ -5,11 +5,11 @@ resources:
       using the Meridian Asset Tracking API.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryWorkflowsNodesArubaMeridian-0~
+    id: ~exportplaceholderid-application-libraryWorkflowsNodesArubaMeridian~
     name: Aruba Meridian
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

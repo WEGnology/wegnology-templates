@@ -1,0 +1,21 @@
+resourceType: ExperienceUser
+resources:
+  - email: kanarra@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-kanarra~
+    exportHash: 75fe2030a6f48918dada8893d5163550c3158b44e1c98964233cd0fa657ea6d3
+    id: ~exportplaceholderid-experienceUser-kanarraExampleCom~
+    userTags: {}
+  - email: sadler-isberg@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-sadlerIsberg~
+    exportHash: 16e7c59d1980e3e9704130fb22d6468befa911d411995c13d861883a003dc6ce
+    id: ~exportplaceholderid-experienceUser-sadlerIsbergExampleCom~
+    userTags: {}
+  - email: tekton-health@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-tektonHealth~
+    exportHash: 9f31e1f6b6d47f4b99ef89615331ccb1853d9cf567e55d10884527f9216a9e89
+    id: ~exportplaceholderid-experienceUser-tektonHealthExampleCom~
+    userTags: {}
+version: 1

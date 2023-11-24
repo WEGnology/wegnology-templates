@@ -1,0 +1,11 @@
+resourceType: ExperienceView
+resources:
+  - description: ""
+    exportHash: f48a05279b1ff5bf3840262f560db2f29d05d8ad3202bc25278c0c5e72f01186
+    id: ~exportplaceholderid-experienceView-layoutBase~
+    localFilename: ./layout-base.hbs
+    name: layout-base
+    version: develop
+    viewTags: {}
+    viewType: layout
+version: 1

@@ -3,14 +3,18 @@ resources:
   - access: authenticated
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-getProvision-0~
+    experienceGroupIds: []
+    exportHash: e57f4a13d84924417a7a71a6f7c7d321618a988a5a4f902e7a77a26f23656a61
+    id: ~exportplaceholderid-experienceEndpoint-getProvision~
     method: get
     route: /provision
     version: develop
   - access: authenticated
     enabled: true
     endpointTags: {}
-    id: ~exportplaceholderid-experienceEndpoint-postProvision-1~
+    experienceGroupIds: []
+    exportHash: 9c75ba1b88bf2ea90bb5d50c2df3e196f365ba252d1ec6c3f40c99111d81ca9b
+    id: ~exportplaceholderid-experienceEndpoint-postProvision~
     method: post
     route: /provision
     version: develop

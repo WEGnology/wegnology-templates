@@ -1,7 +1,8 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlDeviceList-0~
+    exportHash: e299cff6f75576853dc52b3526ea9d0b074cb9d28394e496818bbd700db845b9
+    id: ~exportplaceholderid-experienceView-tlDeviceList~
     localFilename: ./tl-device-list.hbs
     name: tl-device-list
     version: develop

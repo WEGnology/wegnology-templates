@@ -2,9 +2,10 @@ resourceType: ExperienceFlowVersion
 resources:
   - description: Returns an authentication token for an experience user.
     enabled: true
-    flowId: ~exportplaceholderid-flow-postApiAuth-0~
+    exportHash: adcbeedbe1ada5f0dfd0c85d1a1a043f6971aac4d09888e4084fb873ad3780ed
+    flowId: ~exportplaceholderid-flow-postApiAuth~
     globals: []
-    id: ~exportplaceholderid-flowVersion-postApiAuth-0~
+    id: ~exportplaceholderid-flowVersion-postApiAuth~
     name: POST /api/auth
     nodes:
       - config:
@@ -190,7 +191,7 @@ resources:
         type: DebugNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-postApiAuth-0~
+        key: ~exportplaceholderid-experienceEndpoint-postApiAuth~
         meta:
           category: trigger
           description: ''

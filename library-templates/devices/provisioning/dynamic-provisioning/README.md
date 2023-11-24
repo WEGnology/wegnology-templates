@@ -36,7 +36,7 @@ If the user chooses to provision the device to their group, the device is update
 
 ## License
 
-Copyright &copy; 2022 WEGnology.
+Copyright &copy; 2023 WEGnology.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.
 

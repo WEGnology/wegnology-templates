@@ -1,7 +1,8 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-dashboardPage-0~
+    exportHash: 6328752c79fe687addec0ed073f0c130a8252e588c76c488c8fe2823ce5adfd6
+    id: ~exportplaceholderid-experienceView-dashboardPage~
     localFilename: ./Dashboard_Page.hbs
     name: Dashboard Page
     version: develop

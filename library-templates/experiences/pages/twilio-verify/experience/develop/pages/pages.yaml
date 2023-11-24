@@ -2,14 +2,16 @@ resourceType: ExperienceView
 resources:
   - description: A basic login form that's designed to accept an experience user's
       email and password. This form submits back to the POST /tl-login endpoint.
-    id: ~exportplaceholderid-experienceView-tlPageLogin-0~
+    exportHash: b29398fb3deac4f40d17c41834f6fe3fc796d61425343768b5e561157154f423
+    id: ~exportplaceholderid-experienceView-tlPageLogin~
     localFilename: ./tl-page-login.hbs
     name: tl-page-login
     version: develop
     viewTags: {}
     viewType: page
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlPageVerify-1~
+    exportHash: c09fb0191aed9a1b8a3d1dcd2779f92d6578851bf425afe7640b7dc18078e698
+    id: ~exportplaceholderid-experienceView-tlPageVerify~
     localFilename: ./tl-page-verify.hbs
     name: tl-page-verify
     version: develop

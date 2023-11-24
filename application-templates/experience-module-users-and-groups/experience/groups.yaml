@@ -1,0 +1,20 @@
+resourceType: ExperienceGroupTree
+resources:
+  - children: []
+    deviceIds: []
+    deviceTags: []
+    exportHash: 7a73b25586c748c7bdf42758b3c14c573757c51df1c464101e9aa153f7de774a
+    groupTags:
+      type: adm
+    id: ~exportplaceholderid-experienceGroup-adm~
+    name: adm
+  - children: []
+    description: An example user group
+    deviceIds: []
+    deviceTags: []
+    exportHash: 7c137c30c00402e02840dd883febc806afdaa229f3a40c956091b2eef57a2bca
+    groupTags:
+      type: normal
+    id: ~exportplaceholderid-experienceGroup-normal~
+    name: normal
+version: 1

@@ -4,9 +4,10 @@ resources:
       Removes the user's authentication cookie and redirects the user back to
       the login page.
     enabled: true
-    flowId: ~exportplaceholderid-flow-logOut-1~
+    exportHash: ae2c3add117423b8d0c4e07be0829be9c0403ee5a1f825d935ec1b3d80ca1cba
+    flowId: ~exportplaceholderid-flow-logOut~
     globals: []
-    id: ~exportplaceholderid-flowVersion-logOut-1~
+    id: ~exportplaceholderid-flowVersion-logOut~
     name: Log Out
     nodes:
       - config:
@@ -63,7 +64,7 @@ resources:
         type: AnnotationNode
     triggers:
       - config: {}
-        key: ~exportplaceholderid-experienceEndpoint-getLogout-2~
+        key: ~exportplaceholderid-experienceEndpoint-getLogout~
         meta:
           category: trigger
           description: ''

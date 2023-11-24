@@ -1,0 +1,77 @@
+resourceType: ExperienceFlowVersion
+resources:
+  - enabled: true
+    exportHash: ba3b4d4fcf131f71bc5cd799560525ac9a5c107dbdf6595737c0ccddd3376a38
+    flowId: ~exportplaceholderid-flow-workflowGetLogout~
+    globals: []
+    id: ~exportplaceholderid-flowVersion-workflowGetLogout~
+    name: Workflow - GET /logout
+    nodes:
+      - config:
+          bodyTemplate: /login
+          bodyTemplateType: string
+          cookieInfo:
+            - nameTemplate: authorization
+              pathTemplate: ''
+          headerInfo: []
+          mqttTopicsTemplate: []
+          replyIdPath: ''
+          replyType: redirect
+          responseCodeTemplate: '302'
+        id: GhlpDRGyhm
+        meta:
+          category: output
+          description: ''
+          label: 'Endpoint: Reply'
+          mqttTopicsType: []
+          name: endpoint-reply
+          x: 220
+          'y': 200
+        outputIds:
+          - - cvrbKzD1-y
+        type: EndpointReplyNode
+      - config: {}
+        id: YQo2ZCuTIN
+        meta:
+          annotationText: >-
+            Removes the `authorization` cookie, which will prevent any other
+            request by this user from being authenticated. Immediately redirect
+            them to /login.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 420
+          'y': 200
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          message: ''
+          property: ''
+        id: cvrbKzD1-y
+        meta:
+          category: output
+          description: ''
+          label: Debug
+          name: debug
+          x: 220
+          'y': 400
+        outputIds: []
+        type: DebugNode
+    triggers:
+      - config: {}
+        key: ~exportplaceholderid-experienceEndpoint-getLogout~
+        meta:
+          category: trigger
+          description: ''
+          label: Endpoint
+          name: endpoint
+          uiId: bKPEmhE9VH
+          x: 220
+          'y': 60
+        outputIds:
+          - - GhlpDRGyhm
+        type: endpoint
+    version: develop
+version: 1

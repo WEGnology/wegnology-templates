@@ -5,11 +5,11 @@ resources:
       and info bubbles.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryExperiencesComponentsGoogleMaps-0~
+    id: ~exportplaceholderid-application-libraryExperiencesComponentsGoogleMaps~
     name: Google Maps
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

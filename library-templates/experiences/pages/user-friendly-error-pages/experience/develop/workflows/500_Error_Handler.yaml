@@ -4,9 +4,10 @@ resources:
       A workflow that replies to any fatal error within an experience workflow
       and issues a user-friendly page reply.
     enabled: true
-    flowId: ~exportplaceholderid-flow-500ErrorHandler-0~
+    exportHash: df886d6269ab444790084cac4cba645e31f73e48944f8c3c8ebea084a631ae86
+    flowId: ~exportplaceholderid-flow-500ErrorHandler~
     globals: []
-    id: ~exportplaceholderid-flowVersion-500ErrorHandler-0~
+    id: ~exportplaceholderid-flowVersion-500ErrorHandler~
     name: 500 Error Handler
     nodes:
       - config:
@@ -16,7 +17,7 @@ resources:
           headerInfo: []
           layoutIdTemplate: ''
           mqttTopicsTemplate: []
-          pageIdTemplate: ~exportplaceholderid-experienceView-500Page-1~
+          pageIdTemplate: ~exportplaceholderid-experienceView-500Page~
           replyIdPath: data.erroredPayload.data.replyId
           replyType: page
           responseCodeTemplate: '500'
@@ -132,7 +133,7 @@ resources:
       - config:
           scope: experience
         key: >-
-          ~exportplaceholderid-application-libraryExperiencesPagesUserFriendlyErrorPages-0~-experience-flowError
+          ~exportplaceholderid-application-libraryExperiencesPagesUserFriendlyErrorPages~-experience-flowError
         meta:
           category: trigger
           description: ''

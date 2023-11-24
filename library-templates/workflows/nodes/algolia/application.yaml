@@ -4,11 +4,11 @@ resources:
     description: This node provides access to Algolia's Search Index HTTPS GET API.
     filesPath: ./files
     globals: []
-    id: ~exportplaceholderid-application-libraryWorkflowsNodesAlgolia-0~
+    id: ~exportplaceholderid-application-libraryWorkflowsNodesAlgolia~
     name: Algolia
     readmePath: ./README.md
     imagePath: ./preview.png
-    authorName: Losant
-    authorUrl: https://www.losant.com
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
     keywords: []
 version: 1

@@ -2,7 +2,7 @@
 
 This template is an example implementation of SMS-based two-factor authentication using [Twilio Verify](https://www.twilio.com/verify) within WEGnology Experiences. Leveraging Twilio Verify, this template could be extended to support [phone, email, and push notifications](https://www.twilio.com/verify).
 
-![Twilio Verify Form](./twilio-verify-wnology-screenshot.png)
+![Twilio Verify Form](./twilio-verify-screenshot.png)
 
 ## Usage 
 
@@ -60,6 +60,6 @@ This template uses a [JWT token](https://jwt.io/introduction/) as part of the 2F
 
 ## License
 
-Copyright (c) 2022 WEGnology. All rights reserved.
+Copyright (c) 2023 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

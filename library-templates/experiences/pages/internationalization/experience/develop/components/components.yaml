@@ -1,21 +1,24 @@
 resourceType: ExperienceView
 resources:
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlI18NHeadInfo-3~
+    exportHash: 17f29ba726a9bfb723d4f9dcddc8c0f716d3ec824f13d3b72fb375dd71e999ee
+    id: ~exportplaceholderid-experienceView-tlI18NHeadInfo~
     localFilename: ./tl-i18n-head-info.hbs
     name: tl-i18n-head-info
     version: develop
     viewTags: {}
     viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlI18NLanguageHref-1~
+    exportHash: 7707216d0961a2cc17f153cd33ad20065228749103ee47d264e9c678db059b70
+    id: ~exportplaceholderid-experienceView-tlI18NLanguageHref~
     localFilename: ./tl-i18n-language-href.hbs
     name: tl-i18n-language-href
     version: develop
     viewTags: {}
     viewType: component
   - description: ""
-    id: ~exportplaceholderid-experienceView-tlI18NLanguageSelector-2~
+    exportHash: aba6468aa1b2f09bf00a671cff03aea3180ad8b70a84462a72e9ff9e676b0cfb
+    id: ~exportplaceholderid-experienceView-tlI18NLanguageSelector~
     localFilename: ./tl-i18n-language-selector.hbs
     name: tl-i18n-language-selector
     version: develop

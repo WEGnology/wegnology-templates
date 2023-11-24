@@ -8,7 +8,8 @@ resources:
 
 
       totalPages: (Number) The total number of pages that are available. This controls the value for the last page link.
-    id: ~exportplaceholderid-experienceView-tlDeviceTablePaginator-1~
+    exportHash: c0b260e428c8233e61480778325620ffbdab09f4eeb43592c6ea6774ce4880c9
+    id: ~exportplaceholderid-experienceView-tlDeviceTablePaginator~
     localFilename: ./tl-device-table-paginator.hbs
     name: tl-device-table-paginator
     version: develop
