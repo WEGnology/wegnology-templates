@@ -1,8 +1,7 @@
 resourceType: Dashboard
 resources:
   - blocks:
-      - applicationId: >-
-          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+      - applicationId: ~exportplaceholderid-application-applicationModuleUsersAndGroups~
         blockType: gauge
         config:
           displayAsPercentage: false
@@ -28,16 +27,17 @@ resources:
         id: Vt94hASnOu
         startX: 0
         startY: 0
-        title: Temperatura do motor
+        title: Motor temperature
         width: 1
-      - applicationId: >-
-          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+      - applicationId: ~exportplaceholderid-application-applicationModuleUsersAndGroups~
         blockType: map
         config:
           additionalAttributes: []
+          centerOnDataPoints: true
           clusterPoints: false
           compositeResult: false
           defaultBearing: 0
+          defaultCenter: ''
           defaultPitch: 0
           defaultZoom: 15
           deviceIds:
@@ -67,8 +67,7 @@ resources:
         startX: 1
         startY: 0
         width: 3
-      - applicationId: >-
-          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+      - applicationId: ~exportplaceholderid-application-applicationModuleUsersAndGroups~
         blockType: pie
         config:
           percentFormat: ''
@@ -98,11 +97,10 @@ resources:
         id: c9CH8QKXGG
         startX: 0
         startY: 1
-        title: Tempo de operação
+        title: Operation temperature
         width: 1
     contextConfiguration:
-      - applicationId: >-
-          ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
+      - applicationId: ~exportplaceholderid-application-applicationModuleUsersAndGroups~
         defaultValue: ~exportplaceholderid-device-randomDevice~
         name: deviceId
         type: deviceId
@@ -112,7 +110,7 @@ resources:
     defaultTheme: light
     description: Generic dashboard that shows fixed data.
     duration: 3600000
-    exportHash: f7d7b017e290251bd72dd3b0f9800bc22cc96b3ad6b45f24a693785f5b949415
+    exportHash: 6387468194b32e2824d9baaf6517b049f1af07f69f6bc91f188ec683723b0ff2
     id: ~exportplaceholderid-dashboard-dashboard~
     isPasswordProtected: false
     name: Dashboard

@@ -1,0 +1,16 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: The Module (Users and Groups) is the means by which a web interface
+      can be built for users to interact with what has been developed on the
+      platform.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-applicationModuleUsersAndGroups~
+    name: Module (Users and Groups)
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords: []
+version: 1

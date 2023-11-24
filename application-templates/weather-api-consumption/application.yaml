@@ -12,10 +12,10 @@ resources:
         key: gps_location
       - cloudOnly: false
         description: API key obtained at https://openweathermap.org/api
-        json: '"SUA CHAVE"'
+        json: '"YOUR KEY"'
         key: api_key
-    id: ~exportplaceholderid-application-applicationTemplateWeatherApiConsumption~
-    name: TEMPLATE - Weather API Consumption
+    id: ~exportplaceholderid-application-applicationWeatherApiConsumption~
+    name: Weather API Consumption
     readmePath: ./README.md
     imagePath: ./preview.png
     authorName: WEGnology

@@ -1,4 +1,4 @@
-# TEMPLATE - Weather API Consumption
+# Weather API Consumption
 
 This template is the implementation of the [WEGnology Walkthrough](https://docs.app.wnology.io/getting-started/walkthrough/#wegnology-walkthrough), our initial step-by-step guide. In this walkthrough, a guide is provided on how to develop a weather station on the platform using data from an external API.
 

@@ -1,6 +1,6 @@
-# EXPERIENCE Module (Users and Groups)
+# Module (Users and Groups)
 
-The module **EXPERIENCE** is the means by which a web interface can be built for users to interact with what has been developed on the platform. This module provides some tools that were used in this model to deliver a user control application with a login system, account registration, and deletion, permissions based on user groups, navigation between pages, and much more.
+The **Module (Users and Groups)** is the means by which a web interface can be built for users to interact with what has been developed on the platform. This module provides some tools that were used in this model to deliver a user control application with a login system, account registration, and deletion, permissions based on user groups, navigation between pages, and much more.
 
 ## Description
 
