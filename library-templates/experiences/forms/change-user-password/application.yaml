@@ -13,4 +13,6 @@ resources:
     keywords:
       - featured
       - password
+      - ui
+      - user
 version: 1

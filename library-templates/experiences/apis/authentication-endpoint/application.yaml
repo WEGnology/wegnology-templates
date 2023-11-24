@@ -11,5 +11,6 @@ resources:
     imagePath: ./preview.png
     authorName: WEGnology
     authorUrl: https://docs.app.wnology.io
-    keywords: []
+    keywords:
+      - api
 version: 1

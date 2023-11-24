@@ -13,4 +13,6 @@ resources:
     authorUrl: https://docs.app.wnology.io
     keywords:
       - featured
+      - ui
+      - device
 version: 1

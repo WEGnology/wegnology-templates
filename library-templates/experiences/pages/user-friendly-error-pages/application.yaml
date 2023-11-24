@@ -10,5 +10,8 @@ resources:
     imagePath: ./preview.png
     authorName: WEGnology
     authorUrl: https://docs.app.wnology.io
-    keywords: []
+    keywords:
+      - ui
+      - error
+      - page
 version: 1

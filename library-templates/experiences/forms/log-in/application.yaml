@@ -5,7 +5,7 @@ resources:
     filesPath: ./files
     globals:
       - cloudOnly: false
-        json: '"featured"'
+        json: '"featured,ui,login,auth,user"'
         key: template-kewords
     id: ~exportplaceholderid-application-libraryExperiencesFormsLogIn~
     name: Log In

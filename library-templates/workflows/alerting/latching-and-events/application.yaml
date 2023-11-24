@@ -6,7 +6,7 @@ resources:
     filesPath: ./files
     globals:
       - cloudOnly: false
-        json: '"featured"'
+        json: '"featured,alert"'
         key: template-kewords
     id: ~exportplaceholderid-application-libraryWorkflowsAlertingLatchingAndEvents~
     name: Latching and Events

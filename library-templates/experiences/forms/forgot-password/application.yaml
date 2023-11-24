@@ -16,5 +16,7 @@ resources:
     imagePath: ./preview.png
     authorName: WEGnology
     authorUrl: https://docs.app.wnology.io
-    keywords: []
+    keywords:
+      - password
+      - ui
 version: 1

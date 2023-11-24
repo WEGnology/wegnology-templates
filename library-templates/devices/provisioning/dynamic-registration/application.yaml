@@ -20,5 +20,6 @@ resources:
     imagePath: ./preview.png
     authorName: WEGnology
     authorUrl: https://docs.app.wnology.io
-    keywords: []
+    keywords:
+      - device
 version: 1

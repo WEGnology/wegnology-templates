@@ -3,15 +3,14 @@ resources:
   - blobUrlTTL: 86400
     description: A general-purpose pagination UI component.
     filesPath: ./files
-    globals:
-      - cloudOnly: false
-        json: '"pagination,paginator,table,list"'
-        key: keywords
+    globals: []
     id: ~exportplaceholderid-application-libraryExperiencesComponentsPaginator~
     name: Paginator
     readmePath: ./README.md
     imagePath: ./preview.png
     authorName: WEGnology
     authorUrl: https://docs.app.wnology.io
-    keywords: []
+    keywords:
+      - ui
+      - paginator
 version: 1
