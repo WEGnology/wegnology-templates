@@ -1,9 +1,8 @@
 resourceType: Application
 resources:
   - blobUrlTTL: 86400
-    description: The module **EXPERIENCE** is the means by which a web interface can
-      be built for users to interact with what has been developed on the
-      platform.
+    description: The module EXPERIENCE is the means by which a web interface can be
+      built for users to interact with what has been developed on the platform.
     filesPath: ./files
     globals: []
     id: ~exportplaceholderid-application-applicationExperienceModuleUsersAndGroups~
