@@ -1,0 +1,543 @@
+resourceType: DeviceTree
+resources:
+  - attributes:
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected core speed.
+        name: NRc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected fan speed.
+        name: NRf
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical core speed.
+        name: Nc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded fan speed.
+        name: Nf_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at bypass duct.
+        name: P15
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Pressure at fan inlet.
+        name: P2
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at HPC outlet.
+        name: P30
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded corrected fan speed.
+        name: PCNfR_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Static pressure at HPC outlet.
+        name: Ps30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at fan inlet.
+        name: T2
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPC outlet.
+        name: T24
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at HPC outlet.
+        name: T30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPT outlet.
+        name: T50
+      - attributeTags: {}
+        dataType: number
+        description: Throttle resolver angle.
+        name: TRA
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: HPT coolant bleed.
+        name: W31
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: LPT coolant bleed.
+        name: W32
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not a failure occurred (0=no failure, 1=failure).
+        name: failure
+      - attributeTags: {}
+        dataType: number
+        description: Bleed enthalpy.
+        name: htBleed
+      - attributeTags:
+          units: pps/psi
+        dataType: number
+        description: Ratio of fuel flow to Ps30.
+        name: phi
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: time_in_cycles
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical fan speed.
+        name: Nf
+      - attributeTags: {}
+        dataType: number
+        description: Operational setting.
+        name: setting_1
+      - attributeTags: {}
+        dataType: number
+        description: The confidence that an outlier has been predicted on this data point.
+        name: anomaly_score
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not an outlier has been detected (0=no outlier,
+          1=outlier detected).
+        name: prediction
+    children: []
+    description: Represents the attributes found in the Turbofan dataset from NASA's
+      Prognostic Data Repository.
+    deviceClass: standalone
+    exportHash: 990006cdf4950a175afd0b77e37e186c3ef017e8f74e119204a549a4d8ebe8be
+    id: ~exportplaceholderid-device-turbofan~
+    name: Turbofan
+    tags:
+      - key: serial
+        value: 5CsqyHaGDLBn
+      - key: location
+        value: 39.1081779, -84.5095562
+      - key: another_tag
+        value: Example tag that is hidden by Device Tags admin page
+      - key: DeviceRecipe
+        value: Turbofan
+      - key: cpf_site
+        value: ~exportplaceholderid-experienceGroup-site11~
+      - key: cpf_customer
+        value: ~exportplaceholderid-experienceGroup-customer1~
+  - attributes:
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected core speed.
+        name: NRc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected fan speed.
+        name: NRf
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical core speed.
+        name: Nc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded fan speed.
+        name: Nf_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at bypass duct.
+        name: P15
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Pressure at fan inlet.
+        name: P2
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at HPC outlet.
+        name: P30
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded corrected fan speed.
+        name: PCNfR_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Static pressure at HPC outlet.
+        name: Ps30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at fan inlet.
+        name: T2
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPC outlet.
+        name: T24
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at HPC outlet.
+        name: T30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPT outlet.
+        name: T50
+      - attributeTags: {}
+        dataType: number
+        description: Throttle resolver angle.
+        name: TRA
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: HPT coolant bleed.
+        name: W31
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: LPT coolant bleed.
+        name: W32
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not a failure occurred (0=no failure, 1=failure).
+        name: failure
+      - attributeTags: {}
+        dataType: number
+        description: Bleed enthalpy.
+        name: htBleed
+      - attributeTags:
+          units: pps/psi
+        dataType: number
+        description: Ratio of fuel flow to Ps30.
+        name: phi
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: time_in_cycles
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical fan speed.
+        name: Nf
+      - attributeTags: {}
+        dataType: number
+        description: Operational setting.
+        name: setting_1
+      - attributeTags: {}
+        dataType: number
+        description: The confidence that an outlier has been predicted on this data point.
+        name: anomaly_score
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not an outlier has been detected (0=no outlier,
+          1=outlier detected).
+        name: prediction
+    children: []
+    description: Represents the attributes found in the Turbofan dataset from NASA's
+      Prognostic Data Repository.
+    deviceClass: standalone
+    exportHash: 83e26f5ab50591e29cbce4c890144ba91acf2c1311d62f0acb69fbade115cff9
+    id: ~exportplaceholderid-device-turbofan-1~
+    name: Turbofan
+    tags:
+      - key: serial
+        value: 5CsqyHaGDLBn
+      - key: location
+        value: 39.1081779, -84.5095562
+      - key: another_tag
+        value: Example tag that is hidden by Device Tags admin page
+      - key: DeviceRecipe
+        value: Turbofan
+      - key: cpf_site
+        value: ~exportplaceholderid-experienceGroup-site11~
+      - key: cpf_customer
+        value: ~exportplaceholderid-experienceGroup-customer1~
+  - attributes:
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected core speed.
+        name: NRc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected fan speed.
+        name: NRf
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical core speed.
+        name: Nc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded fan speed.
+        name: Nf_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at bypass duct.
+        name: P15
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Pressure at fan inlet.
+        name: P2
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at HPC outlet.
+        name: P30
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded corrected fan speed.
+        name: PCNfR_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Static pressure at HPC outlet.
+        name: Ps30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at fan inlet.
+        name: T2
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPC outlet.
+        name: T24
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at HPC outlet.
+        name: T30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPT outlet.
+        name: T50
+      - attributeTags: {}
+        dataType: number
+        description: Throttle resolver angle.
+        name: TRA
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: HPT coolant bleed.
+        name: W31
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: LPT coolant bleed.
+        name: W32
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not a failure occurred (0=no failure, 1=failure).
+        name: failure
+      - attributeTags: {}
+        dataType: number
+        description: Bleed enthalpy.
+        name: htBleed
+      - attributeTags:
+          units: pps/psi
+        dataType: number
+        description: Ratio of fuel flow to Ps30.
+        name: phi
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: time_in_cycles
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical fan speed.
+        name: Nf
+      - attributeTags: {}
+        dataType: number
+        description: Operational setting.
+        name: setting_1
+      - attributeTags: {}
+        dataType: number
+        description: The confidence that an outlier has been predicted on this data point.
+        name: anomaly_score
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not an outlier has been detected (0=no outlier,
+          1=outlier detected).
+        name: prediction
+    children: []
+    description: Represents the attributes found in the Turbofan dataset from NASA's
+      Prognostic Data Repository.
+    deviceClass: standalone
+    exportHash: f90a0e939e93ee972b1a040fcc375b10f39853485ecd39884536b880690358d8
+    id: ~exportplaceholderid-device-turbofan-2~
+    name: Turbofan
+    tags:
+      - key: serial
+        value: 5CsqyHaGDLBn
+      - key: location
+        value: 39.1081779, -84.5095562
+      - key: another_tag
+        value: Example tag that is hidden by Device Tags admin page
+      - key: DeviceRecipe
+        value: Turbofan
+      - key: cpf_site
+        value: ~exportplaceholderid-experienceGroup-site21~
+      - key: cpf_customer
+        value: ~exportplaceholderid-experienceGroup-customer2~
+  - attributes:
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected core speed.
+        name: NRc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Corrected fan speed.
+        name: NRf
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical core speed.
+        name: Nc
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded fan speed.
+        name: Nf_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at bypass duct.
+        name: P15
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Pressure at fan inlet.
+        name: P2
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Total pressure at HPC outlet.
+        name: P30
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Demanded corrected fan speed.
+        name: PCNfR_dmd
+      - attributeTags:
+          units: psia
+        dataType: number
+        description: Static pressure at HPC outlet.
+        name: Ps30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at fan inlet.
+        name: T2
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPC outlet.
+        name: T24
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at HPC outlet.
+        name: T30
+      - attributeTags:
+          units: ˚R
+        dataType: number
+        description: Total temperature at LPT outlet.
+        name: T50
+      - attributeTags: {}
+        dataType: number
+        description: Throttle resolver angle.
+        name: TRA
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: HPT coolant bleed.
+        name: W31
+      - attributeTags:
+          units: lbm/s
+        dataType: number
+        description: LPT coolant bleed.
+        name: W32
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not a failure occurred (0=no failure, 1=failure).
+        name: failure
+      - attributeTags: {}
+        dataType: number
+        description: Bleed enthalpy.
+        name: htBleed
+      - attributeTags:
+          units: pps/psi
+        dataType: number
+        description: Ratio of fuel flow to Ps30.
+        name: phi
+      - attributeTags: {}
+        dataType: number
+        description: ""
+        name: time_in_cycles
+      - attributeTags:
+          units: rpm
+        dataType: number
+        description: Physical fan speed.
+        name: Nf
+      - attributeTags: {}
+        dataType: number
+        description: Operational setting.
+        name: setting_1
+      - attributeTags: {}
+        dataType: number
+        description: The confidence that an outlier has been predicted on this data point.
+        name: anomaly_score
+      - attributeTags: {}
+        dataType: number
+        description: Whether or not an outlier has been detected (0=no outlier,
+          1=outlier detected).
+        name: prediction
+    children: []
+    description: Represents the attributes found in the Turbofan dataset from NASA's
+      Prognostic Data Repository.
+    deviceClass: standalone
+    exportHash: e2d3df9bf9eb257ff44676c1e7542f823efee274fa944ad423452f395552d096
+    id: ~exportplaceholderid-device-turbofan-3~
+    name: Turbofan
+    tags:
+      - key: serial
+        value: 5CsqyHaGDLBn
+      - key: location
+        value: 39.1081779, -84.5095562
+      - key: another_tag
+        value: Example tag that is hidden by Device Tags admin page
+      - key: DeviceRecipe
+        value: Turbofan
+      - key: cpf_site
+        value: ~exportplaceholderid-experienceGroup-site12~
+      - key: cpf_customer
+        value: ~exportplaceholderid-experienceGroup-customer1~
+version: 1

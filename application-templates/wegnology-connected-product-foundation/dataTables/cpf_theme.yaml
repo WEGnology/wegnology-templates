@@ -1,0 +1,15 @@
+resourceType: DataTable
+resources:
+  - columns:
+      - constraint: required
+        dataType: string
+        name: name
+      - constraint: required
+        dataType: string
+        name: value
+    description: Stores the white label theme.
+    exportHash: 852e4aa6f64312724cb550a737f74b04dc16a78fb29ad63a26de5bcd9a2d165f
+    id: ~exportplaceholderid-dataTable-cpfTheme~
+    localFilename: ./cpf_theme.csv
+    name: cpf_theme
+version: 1

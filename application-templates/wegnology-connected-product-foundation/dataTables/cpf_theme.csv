@@ -1,0 +1,22 @@
+id,name,value
+6670763e9ad13c0ed4ce8b6a,company_name,Kanarra
+6670763e9ad13c0ed4ce8b6b,title_template,CPF | {{this}}
+6670763e9ad13c0ed4ce8b6c,primary,#3c7fe2
+6670763e9ad13c0ed4ce8b6d,secondary,#414653
+6670763e9ad13c0ed4ce8b6e,success,#44972f
+6670763e9ad13c0ed4ce8b6f,info,#60b1b2
+6670763e9ad13c0ed4ce8b70,warning,#d99333
+6670763e9ad13c0ed4ce8b71,danger,#bf391d
+6670763e9ad13c0ed4ce8b72,text_dark,#111a29
+6670763e9ad13c0ed4ce8b73,text_mid,#414653
+6670763e9ad13c0ed4ce8b74,text_light,#a7a0aa
+6670763e9ad13c0ed4ce8b75,text_white,#ffffff
+6670763e9ad13c0ed4ce8b76,bg_dark,#f3f4f5
+6670763e9ad13c0ed4ce8b77,bg_mid,#fbfbfb
+6670763e9ad13c0ed4ce8b78,bg_light,#ffffff
+6670763e9ad13c0ed4ce8b79,border,#cfd1d5
+6670763e9ad13c0ed4ce8b7a,font_family,Open+Sans
+6670763e9ad13c0ed4ce8b7b,tos,https://example.com/company/terms-of-service
+6670763e9ad13c0ed4ce8b7c,privacy_policy,https://example.com/company/privacy-policy
+6670763e9ad13c0ed4ce8b7d,logo_large,logo_large.png
+6670763e9ad13c0ed4ce8b7e,logo_small,logo_small.png

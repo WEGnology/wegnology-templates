@@ -1,0 +1,20 @@
+resourceType: ExperienceVersion
+resources:
+  - endpointDefaultCors: true
+    exportHash: 79b0f2c834a5dc42c91d7f78fa8d89975b27f0ab2a922b5bf164885356ec1f82
+    globals:
+      - json: '"favicon.ico"'
+        key: favicon
+      - json: '"CPF | {{this}}"'
+        key: title_template
+      - json: '"Kanarra"'
+        key: company_name
+      - json: '"https://example.com/company/privacy-policy"'
+        key: privacy_policy
+      - json: '"https://example.com/company/terms-of-service"'
+        key: tos
+      - json: '"Open+Sans"'
+        key: font_family
+    id: ~exportplaceholderid-experienceVersion-develop~
+    version: develop
+version: 1

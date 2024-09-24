@@ -1,0 +1,32 @@
+resourceType: ExperienceUser
+resources:
+  - email: customer-1-admin@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-customer1~
+    exportHash: 7d46a2babbc116b0b0e9b3d7d7ff923f00f6d97abe406cc7056718ea38f80852
+    id: ~exportplaceholderid-experienceUser-customer1AdminExampleCom~
+    userTags:
+      cpf_role: admin
+  - email: site-1-viewer@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-site11~
+    exportHash: 31989dcac844f6971584e80c9828cff8004a98d7018b92205f6e7478797cfefa
+    id: ~exportplaceholderid-experienceUser-site1ViewerExampleCom~
+    userTags:
+      cpf_role: viewer
+  - email: system-admin@example.com
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-system~
+    exportHash: c63579b51424972fbf8e76221b6a815f208ae69072dedafbfeefb873d83ca58a
+    id: ~exportplaceholderid-experienceUser-systemAdminExampleCom~
+    userTags:
+      cpf_role: admin
+  - email: testdocumentation@weg.net
+    experienceGroupIds:
+      - ~exportplaceholderid-experienceGroup-system~
+    exportHash: 83f9568c5cef6e6ddecc48e327939dbe5884fe699c93f254ae32fb48a39c22b2
+    firstName: Test
+    id: ~exportplaceholderid-experienceUser-testdocumentationWegNet~
+    lastName: Documentation
+    userTags: {}
+version: 1

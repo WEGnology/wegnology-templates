@@ -1,0 +1,17 @@
+resourceType: DataTable
+resources:
+  - columns:
+      - constraint: unique
+        dataType: string
+        name: deviceRecipeName
+      - constraint: required
+        dataType: string
+        name: dashboardId
+    description: >-
+      Maps which dashboard should be displayed based on the recipe that created
+      the device.
+    exportHash: 2f94d5107a58c06444e5f9364ce5c26ddd940c5c81293e3f6a740b0eb519e8ee
+    id: ~exportplaceholderid-dataTable-cpfDashboards~
+    localFilename: ./cpf_dashboards.csv
+    name: cpf_dashboards
+version: 1

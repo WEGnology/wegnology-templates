@@ -1,0 +1,617 @@
+resourceType: ExperienceEndpoint
+resources:
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 6c0193109beeb161cd79b28c1e24d5f040adfd33c3b1caa428c1796e7236a1c2
+    id: ~exportplaceholderid-experienceEndpoint-getAdminDashboards~
+    method: get
+    route: /admin/dashboards
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8a0f0001fec383976efe38bee076406c45116762d00ab6a0bfa8b684e5da1d87
+    id: ~exportplaceholderid-experienceEndpoint-getAdminDeviceTags~
+    method: get
+    route: /admin/device-tags
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 5d24c12bb5f4a2a120ddda4d4cb38341e9bd069228bbf2879c646f1dee647168
+    id: ~exportplaceholderid-experienceEndpoint-getAdminDevicesTable~
+    method: get
+    route: /admin/devices-table
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8060cb596698a2433cf0ceffe91e9579c3f7ff0c1cf7314e7a64689f6bb8c759
+    id: ~exportplaceholderid-experienceEndpoint-getAdminNavigation~
+    method: get
+    route: /admin/navigation
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: b887294c1cb482c692f464cc9e6486a32ee9aa1a540ed3b92c1b5696badbe4a2
+    id: ~exportplaceholderid-experienceEndpoint-getAdminWhitelabel~
+    method: get
+    route: /admin/whitelabel
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 489e1b090b641ff55e051ef2e367e41b28100d6b6a2a2aa2f2eb631a62eb9cfe
+    id: ~exportplaceholderid-experienceEndpoint-getAdmin~
+    method: get
+    route: /admin
+    staticReply:
+      statusCode: 301
+      type: redirect
+      value: /admin/whitelabel
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    description: A catch-all route that fires on any GET request that is not caught
+      by another route. This provides the behavior of a typical application's
+      404 page.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 69f2f549a3a2848389ba9400ed3642881385293e9cb730e5f9e5ab42777afb28
+    id: ~exportplaceholderid-experienceEndpoint-getAny~
+    method: get
+    route: /{any*}
+    staticReply:
+      statusCode: 404
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPage404~
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 3e7bda1889a22daa6f3f9c9204eab0de5d22a7f28ae6b0fffe27313555ef3ec2
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsCustomersTable~
+    method: get
+    route: /cpf/elements/customers-table
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: d7e6c03cc21d020831e56f49ffae6f8e8800bea34607ed68b66d19187003610f
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDashboard~
+    method: get
+    route: /cpf/elements/dashboard
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 81f3da093b39c05b3f8c1e76c22c8f9471aefc11ea68cf1d46c45a5022c25d9a
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDeviceDataExplorerDeviceId~
+    method: get
+    route: /cpf/elements/device-data-explorer/{deviceId}
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 2a969c6c4db51f109d3939b72039e361e978a368b31d2faf238e28520aae9b27
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDeviceHistoryGraph~
+    method: get
+    route: /cpf/elements/device-history-graph
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8c23b12c8f9cb0420f08671d04efb462fb4f862e4a0bbad0275d9e4cde4176b8
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDeviceSummary~
+    method: get
+    route: /cpf/elements/device-summary
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e5adb89d0964237c0542be26d2cee316f523aef1330f7813f39fb9166fbe0a6b
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDevicesCreatedSince~
+    method: get
+    route: /cpf/elements/devices-created-since
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: ce3699db30ccc203e964d290eac0c86078abc10e294f5135efd95021b55e2f58
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDevicesTable~
+    method: get
+    route: /cpf/elements/devices-table
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 50629ce7bac65971d6481eb96e47405a6326f5c19294b09ec163099b207d2e41
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsEventsTable~
+    method: get
+    route: /cpf/elements/events-table
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 26641084a697f408303d625b8bdef1a61fa824ec53c143eb190b8adea654776a
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsGroupSelect~
+    method: get
+    route: /cpf/elements/group-select
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 0f99fe7b1949d84ea1c00aeb30175e91a99df14a102acd72d0c118bae3d41b7c
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsNav~
+    method: get
+    route: /cpf/elements/nav
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 4c2eb576c11da5a8a847bf41d5e0703d26a86f783a40b05db83f65bc45b20071
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsSitesTable~
+    method: get
+    route: /cpf/elements/sites-table
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 154b1e79e911fdc1466b797a3092256d6d95db826290cbcb2a9a71e0e8b72b11
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsTagEditForm~
+    method: get
+    route: /cpf/elements/tag-edit-form
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 9a38716e2c3ea04363b3d9bd06c0700e3da8d7e031c23f80ca6600b46bfd3484
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsTopNav~
+    method: get
+    route: /cpf/elements/top-nav
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 8bf7ff57c104750f1e8e685b0b7424340b1633c7776fde6673d5c2d4e29d2b80
+    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsUsersTable~
+    method: get
+    route: /cpf/elements/users-table
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: fa84d39243ffe52a29014e3b7fb6df997fcf1f07501aa096a073e85cb6235501
+    id: ~exportplaceholderid-experienceEndpoint-getCustomersCustomerId~
+    method: get
+    route: /customers/{customerId}
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: eefde5732a2f3e8f6f7fcd64a08b4492f121e6c6b48601b3f96338c129096426
+    id: ~exportplaceholderid-experienceEndpoint-getCustomers~
+    method: get
+    route: /customers
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 78723ece5612d1865efd9246de0f2b34e924b5b3fec76b01328e2aa90c21655d
+    id: ~exportplaceholderid-experienceEndpoint-getDevicesDeviceId~
+    method: get
+    route: /devices/{deviceId}
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags:
+      cpf_role: editor
+    experienceGroupIds: []
+    exportHash: a3147fa1751df7814f557d11532980e93f7a14975b5ee6a4f4a6b4d36bf02a71
+    id: ~exportplaceholderid-experienceEndpoint-getDevicesRegister~
+    method: get
+    route: /devices/register
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 0c45e53c3ca5d25dbf4c5f74667e6410ae975097d01e4daaa786c1359b7a856a
+    id: ~exportplaceholderid-experienceEndpoint-getDevices~
+    method: get
+    route: /devices
+    staticReply:
+      statusCode: 200
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPageDevices~
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 43fbab079108ee4a9d6f057c0f862acd0f9c6ade7f958e425611d676b1fdb36a
+    id: ~exportplaceholderid-experienceEndpoint-getEventsEventId~
+    method: get
+    route: /events/{eventId}
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 6225b5185ac4cc71b1a5eb127310525a8ce6438accbbc53264504beb8fae447e
+    id: ~exportplaceholderid-experienceEndpoint-getEvents~
+    method: get
+    route: /events
+    staticReply:
+      statusCode: 200
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPageEvents~
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: afe2b7c6d3e600d8ecdbfc5550acde7e35a10a0cb849d22d079f8d67aadf2a4e
+    id: ~exportplaceholderid-experienceEndpoint-getForgotPassword~
+    method: get
+    route: /forgot-password
+    staticReply:
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPageForgotPassword~
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 29f21730e954b19e60a88f2134c8c970d5929e1db069ead07152effe4a6ff3f3
+    id: ~exportplaceholderid-experienceEndpoint-getLogin~
+    method: get
+    route: /login
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 2ddc73f386416ce701c0cf04aeecb30ecd3ef7500d5cb39a9392ef43d44cae0e
+    id: ~exportplaceholderid-experienceEndpoint-getLogout~
+    method: get
+    route: /logout
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 3fd5c8a748d3de3af4e44953c661198d9208f05873b1489b7244a1da4013e385
+    id: ~exportplaceholderid-experienceEndpoint-getMeProfile~
+    method: get
+    route: /me/profile
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: ab0b786accb2f858da60220ea9b0002e4fdde14d492d066b6a16baeace0fca32
+    id: ~exportplaceholderid-experienceEndpoint-getResetPassword~
+    method: get
+    route: /reset-password
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: d4fe32a6743d075cb03bc99a372dc3fcc9bfd526b17091bc5e95fa829dd4219a
+    id: ~exportplaceholderid-experienceEndpoint-getScriptJs~
+    method: get
+    route: /script.js
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e49d67da1eedae8f384090f9b0ac1fd0e4a7d643e2d791958250ed3fb9803607
+    id: ~exportplaceholderid-experienceEndpoint-getSitesSiteId~
+    method: get
+    route: /sites/{siteId}
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c940fcbd209de9ebba0f2ad5f172179f59d04618477f694a79ff13c6062b5cec
+    id: ~exportplaceholderid-experienceEndpoint-getSites~
+    method: get
+    route: /sites
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 2e22487b86d67c3ab14cde4869e950010574e8cd81ce8b0f7ef301fa0eea42c3
+    id: ~exportplaceholderid-experienceEndpoint-getStylesCss~
+    method: get
+    route: /styles.css
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: b012184ead763f3eeb160efe0301d0fa86fd0f7373c3b5fdbf7fdb4dbf2d8380
+    id: ~exportplaceholderid-experienceEndpoint-getUsersUserId~
+    method: get
+    route: /users/{userId}
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: d7ea80b54fb283a6d13425413b86b5a2dad4b4f61bec42befae4d9838c039bb8
+    id: ~exportplaceholderid-experienceEndpoint-getUsers~
+    method: get
+    route: /users
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 7155e8652baba6187c79c226f129727c7fea74e9ecae01a979b3b032f13f9121
+    id: ~exportplaceholderid-experienceEndpoint-get~
+    method: get
+    route: /
+    staticReply:
+      statusCode: 200
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPageHome~
+    unauthorizedReply:
+      statusCode: 302
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: c9239ae5e743a7ff3a57684339762bf833c64cc6fd794d358411304d34c27322
+    id: ~exportplaceholderid-experienceEndpoint-postAdminDashboards~
+    method: post
+    route: /admin/dashboards
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 837d3640ac5fbfb51320a42e7bffbcef219713a72ecd7c4ff06d8d843cab8b40
+    id: ~exportplaceholderid-experienceEndpoint-postAdminDeviceTags~
+    method: post
+    route: /admin/device-tags
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 179919130f0390544c26dc3626bed912cae3090b1be82c2e9e061d577b47fbda
+    id: ~exportplaceholderid-experienceEndpoint-postAdminDevicesTable~
+    method: post
+    route: /admin/devices-table
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: a7cbc9eb29379c0e0de25a9e00400774847b29d4b2a228cbfc70c0a980c2e057
+    id: ~exportplaceholderid-experienceEndpoint-postAdminNavigation~
+    method: post
+    route: /admin/navigation
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: a8c2689d6d8c2d92f9b858c6d942c04ebcd756c379c8753d88dae07a3af5f361
+    id: ~exportplaceholderid-experienceEndpoint-postAdminWhitelabel~
+    method: post
+    route: /admin/whitelabel
+    version: develop
+  - access: public
+    description: A catch-all route that fires on any POST request that is not caught
+      by another route. This provides the behavior of a typical application's
+      404 page.
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e812690c2f9975422fae9eba3bd073f4ae49eaf9f99d70e8132c316482712dde
+    id: ~exportplaceholderid-experienceEndpoint-postAny~
+    method: post
+    route: /{any*}
+    staticReply:
+      statusCode: 404
+      type: page
+      value: ~exportplaceholderid-experienceView-cpfPage404~
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: e920dad1e5c46ef55405ffc3683bdc8fc89161eb8e32b12dc98ef2f29f141baf
+    id: ~exportplaceholderid-experienceEndpoint-postCustomersCustomerId~
+    method: post
+    route: /customers/{customerId}
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: cecfb5b5306d27fc0b7462f9958db2e993aed78469d8e2e0461f73970798dd67
+    id: ~exportplaceholderid-experienceEndpoint-postDevicesDeviceId~
+    method: post
+    route: /devices/{deviceId}
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: cc591b14b56774f72362dcf8b8bcf79caeb0c3c02dd743679f45b71a7850c023
+    id: ~exportplaceholderid-experienceEndpoint-postDevicesRegister~
+    method: post
+    route: /devices/register
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 99a3a90f07fa1e22204c544001fcd36b8598135e252196b795ea6eb25539d74a
+    id: ~exportplaceholderid-experienceEndpoint-postEventsEventId~
+    method: post
+    route: /events/{eventId}
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 25df41dc62917b687ecd8ad93247677844f7989cfa564c7ea39b85106725383f
+    id: ~exportplaceholderid-experienceEndpoint-postForgotPassword~
+    method: post
+    route: /forgot-password
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: d264b48b7e011254f201ed893b0b7ab103264427cea7d05ada74c63ae17497ff
+    id: ~exportplaceholderid-experienceEndpoint-postLogin~
+    method: post
+    route: /login
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: a7562c9cc28df50304796cbc0a3f74d1784eca08e019b2c21c21667d44054744
+    id: ~exportplaceholderid-experienceEndpoint-postMeProfile~
+    method: post
+    route: /me/profile
+    version: develop
+  - access: public
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 3d7b09cd1dd521573eff6e9b53fe919c614b580b6ed3c477042faa24c309928b
+    id: ~exportplaceholderid-experienceEndpoint-postResetPassword~
+    method: post
+    route: /reset-password
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: 2cbd4ea4a8a6c78962acdc62a0201df1098ee561ede87aa706350b24faf7fe37
+    id: ~exportplaceholderid-experienceEndpoint-postSitesSiteId~
+    method: post
+    route: /sites/{siteId}
+    version: develop
+  - access: authenticated
+    enabled: true
+    endpointTags: {}
+    experienceGroupIds: []
+    exportHash: ddcca87400268dec3f1d8aa55154a066076dba402f8ad2481e2d5c977675cec7
+    id: ~exportplaceholderid-experienceEndpoint-postUsersUserId~
+    method: post
+    route: /users/{userId}
+    unauthorizedReply:
+      type: redirect
+      value: /login
+    version: develop
+version: 1
