@@ -1,16 +1,18 @@
 resourceType: Application
 resources:
   - blobUrlTTL: 86400
-    description: >-
-      Prebuilt and production-ready template that significantly reduces the
-      development time and complexity for your applications.
+    description: Prebuilt and production-ready template that significantly reduces
+      the development time and complexity for your applications.
     filesPath: ./files
     globals:
       - cloudOnly: true
         json: '"a super secret value"'
         key: cpf-jwt-password-reset-secret
-    id: >-
-      ~exportplaceholderid-application-applicationWeGnologyConnectedProductFoundation~
-    name: Application / WEGnology Connected Product Foundation
+    id: ~exportplaceholderid-application-applicationWeGnologyConnectedProductFoundation~
+    name: WEGnology Connected Product Foundation
     readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords: []
 version: 1
