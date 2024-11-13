@@ -82,7 +82,7 @@ resources:
         name: W32
       - attributeTags: {}
         dataType: number
-        description: Whether or not a failure occurred (0=no failure, 1=failure).
+        description: 'Whether or not a failure occurred (0=no failure, 1=failure).'
         name: failure
       - attributeTags: {}
         dataType: number
@@ -95,7 +95,7 @@ resources:
         name: phi
       - attributeTags: {}
         dataType: number
-        description: ""
+        description: ''
         name: time_in_cycles
       - attributeTags:
           units: rpm
@@ -112,12 +112,14 @@ resources:
         name: anomaly_score
       - attributeTags: {}
         dataType: number
-        description: Whether or not an outlier has been detected (0=no outlier,
-          1=outlier detected).
+        description: >-
+          Whether or not an outlier has been detected (0=no outlier, 1=outlier
+          detected).
         name: prediction
     deviceClass: standalone
-    deviceDescription: Represents the attributes found in the Turbofan dataset from
-      NASA's Prognostic Data Repository.
+    deviceDescription: >-
+      Represents the attributes found in the Turbofan dataset from NASA's
+      Prognostic Data Repository.
     deviceName: Turbofan
     exportHash: b473f23be0ba54bca0a9300c89244c551021d1ef5b5c4c022d3ca9ba93aa39b7
     id: ~exportplaceholderid-deviceRecipe-turbofan~
@@ -126,7 +128,7 @@ resources:
       - key: serial
         value: 5CsqyHaGDLBn
       - key: location
-        value: 39.1081779, -84.5095562
+        value: '39.1081779, -84.5095562'
       - key: another_tag
         value: Example tag that is hidden by Device Tags admin page
 version: 1

@@ -4,7 +4,7 @@ resources:
       - children:
           - children: []
             deviceIds: []
-            deviceQueryJson: >-
+            deviceQueryJson: |-
               {
                 "$and": [
                   {
@@ -24,7 +24,7 @@ resources:
             name: Site 1.1
           - children: []
             deviceIds: []
-            deviceQueryJson: >-
+            deviceQueryJson: |-
               {
                 "$and": [
                   {
@@ -52,7 +52,7 @@ resources:
       - children:
           - children: []
             deviceIds: []
-            deviceQueryJson: >-
+            deviceQueryJson: |-
               {
                 "$and": [
                   {
@@ -72,7 +72,7 @@ resources:
             name: Site 2.1
           - children: []
             deviceIds: []
-            deviceQueryJson: >-
+            deviceQueryJson: |-
               {
                 "$and": [
                   {

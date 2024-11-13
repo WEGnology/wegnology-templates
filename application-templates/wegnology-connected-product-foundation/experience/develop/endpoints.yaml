@@ -80,16 +80,17 @@ resources:
       value: /login
     version: develop
   - access: public
-    description: A catch-all route that fires on any GET request that is not caught
-      by another route. This provides the behavior of a typical application's
-      404 page.
+    description: >-
+      A catch-all route that fires on any GET request that is not caught by
+      another route. This provides the behavior of a typical application's 404
+      page.
     enabled: true
     endpointTags: {}
     experienceGroupIds: []
     exportHash: 69f2f549a3a2848389ba9400ed3642881385293e9cb730e5f9e5ab42777afb28
     id: ~exportplaceholderid-experienceEndpoint-getAny~
     method: get
-    route: /{any*}
+    route: '/{any*}'
     staticReply:
       statusCode: 404
       type: page
@@ -118,9 +119,10 @@ resources:
     endpointTags: {}
     experienceGroupIds: []
     exportHash: 81f3da093b39c05b3f8c1e76c22c8f9471aefc11ea68cf1d46c45a5022c25d9a
-    id: ~exportplaceholderid-experienceEndpoint-getCpfElementsDeviceDataExplorerDeviceId~
+    id: >-
+      ~exportplaceholderid-experienceEndpoint-getCpfElementsDeviceDataExplorerDeviceId~
     method: get
-    route: /cpf/elements/device-data-explorer/{deviceId}
+    route: '/cpf/elements/device-data-explorer/{deviceId}'
     version: develop
   - access: authenticated
     enabled: true
@@ -231,7 +233,7 @@ resources:
     exportHash: fa84d39243ffe52a29014e3b7fb6df997fcf1f07501aa096a073e85cb6235501
     id: ~exportplaceholderid-experienceEndpoint-getCustomersCustomerId~
     method: get
-    route: /customers/{customerId}
+    route: '/customers/{customerId}'
     unauthorizedReply:
       statusCode: 302
       type: redirect
@@ -256,7 +258,7 @@ resources:
     exportHash: 78723ece5612d1865efd9246de0f2b34e924b5b3fec76b01328e2aa90c21655d
     id: ~exportplaceholderid-experienceEndpoint-getDevicesDeviceId~
     method: get
-    route: /devices/{deviceId}
+    route: '/devices/{deviceId}'
     unauthorizedReply:
       type: redirect
       value: /login
@@ -299,7 +301,7 @@ resources:
     exportHash: 43fbab079108ee4a9d6f057c0f862acd0f9c6ade7f958e425611d676b1fdb36a
     id: ~exportplaceholderid-experienceEndpoint-getEventsEventId~
     method: get
-    route: /events/{eventId}
+    route: '/events/{eventId}'
     version: develop
   - access: authenticated
     enabled: true
@@ -386,7 +388,7 @@ resources:
     exportHash: e49d67da1eedae8f384090f9b0ac1fd0e4a7d643e2d791958250ed3fb9803607
     id: ~exportplaceholderid-experienceEndpoint-getSitesSiteId~
     method: get
-    route: /sites/{siteId}
+    route: '/sites/{siteId}'
     unauthorizedReply:
       type: redirect
       value: /login
@@ -419,7 +421,7 @@ resources:
     exportHash: b012184ead763f3eeb160efe0301d0fa86fd0f7373c3b5fdbf7fdb4dbf2d8380
     id: ~exportplaceholderid-experienceEndpoint-getUsersUserId~
     method: get
-    route: /users/{userId}
+    route: '/users/{userId}'
     unauthorizedReply:
       statusCode: 302
       type: redirect
@@ -500,16 +502,17 @@ resources:
     route: /admin/whitelabel
     version: develop
   - access: public
-    description: A catch-all route that fires on any POST request that is not caught
-      by another route. This provides the behavior of a typical application's
-      404 page.
+    description: >-
+      A catch-all route that fires on any POST request that is not caught by
+      another route. This provides the behavior of a typical application's 404
+      page.
     enabled: true
     endpointTags: {}
     experienceGroupIds: []
     exportHash: e812690c2f9975422fae9eba3bd073f4ae49eaf9f99d70e8132c316482712dde
     id: ~exportplaceholderid-experienceEndpoint-postAny~
     method: post
-    route: /{any*}
+    route: '/{any*}'
     staticReply:
       statusCode: 404
       type: page
@@ -522,7 +525,7 @@ resources:
     exportHash: e920dad1e5c46ef55405ffc3683bdc8fc89161eb8e32b12dc98ef2f29f141baf
     id: ~exportplaceholderid-experienceEndpoint-postCustomersCustomerId~
     method: post
-    route: /customers/{customerId}
+    route: '/customers/{customerId}'
     version: develop
   - access: authenticated
     enabled: true
@@ -531,7 +534,7 @@ resources:
     exportHash: cecfb5b5306d27fc0b7462f9958db2e993aed78469d8e2e0461f73970798dd67
     id: ~exportplaceholderid-experienceEndpoint-postDevicesDeviceId~
     method: post
-    route: /devices/{deviceId}
+    route: '/devices/{deviceId}'
     unauthorizedReply:
       type: redirect
       value: /login
@@ -555,7 +558,7 @@ resources:
     exportHash: 99a3a90f07fa1e22204c544001fcd36b8598135e252196b795ea6eb25539d74a
     id: ~exportplaceholderid-experienceEndpoint-postEventsEventId~
     method: post
-    route: /events/{eventId}
+    route: '/events/{eventId}'
     version: develop
   - access: public
     enabled: true
@@ -600,7 +603,7 @@ resources:
     exportHash: 2cbd4ea4a8a6c78962acdc62a0201df1098ee561ede87aa706350b24faf7fe37
     id: ~exportplaceholderid-experienceEndpoint-postSitesSiteId~
     method: post
-    route: /sites/{siteId}
+    route: '/sites/{siteId}'
     version: develop
   - access: authenticated
     enabled: true
@@ -609,7 +612,7 @@ resources:
     exportHash: ddcca87400268dec3f1d8aa55154a066076dba402f8ad2481e2d5c977675cec7
     id: ~exportplaceholderid-experienceEndpoint-postUsersUserId~
     method: post
-    route: /users/{userId}
+    route: '/users/{userId}'
     unauthorizedReply:
       type: redirect
       value: /login

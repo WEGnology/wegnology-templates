@@ -132,7 +132,8 @@ resources:
     version: develop
     viewTags: {}
     viewType: page
-  - description: This page is displayed whenever a request is made and there is not
+  - description: >-
+      This page is displayed whenever a request is made and there is not
       matching endpoint.
     exportHash: b48edb6750da351bb400d69eff921dd483210bd487be3f2b5ba8f2028b7e4d51
     headers:
@@ -145,7 +146,8 @@ resources:
     viewTags:
       title: Not Found
     viewType: page
-  - description: This page renders whenever a fatal error is thrown in a workflow
+  - description: >-
+      This page renders whenever a fatal error is thrown in a workflow
       processing an experience endpoint request.
     exportHash: 267a07e212439f1c55b1870917e049e3f98d2bbecd315793d06370919ffc762c
     headers:
@@ -218,7 +220,7 @@ resources:
     viewTags:
       title: White Label
     viewType: page
-  - description: Created for Endpoint GET /customers/{customerId}.
+  - description: 'Created for Endpoint GET /customers/{customerId}.'
     exportHash: 1ed4073a54b8a57407b85a05af742f38991f76a18c8c20f9436041b7d3e4162d
     headers:
       content-type: text/html
@@ -228,7 +230,7 @@ resources:
     name: cpf-page-customer-details
     version: develop
     viewTags:
-      title: "{{defaultTo pageData.customer.name 'Add Customer'}}"
+      title: '{{defaultTo pageData.customer.name ''Add Customer''}}'
     viewType: page
   - exportHash: 87ba49d475fe51f29a3dcaa257cd7197f72acc34de316082c7c2aafd395f0e97
     headers:
@@ -250,7 +252,7 @@ resources:
     name: cpf-page-device-details
     version: develop
     viewTags:
-      title: "{{pageData.device.name}}"
+      title: '{{pageData.device.name}}'
     viewType: page
   - exportHash: 808bafc3770586b820b5aa85eb8e04b0125f13ff0803a683443f54682648fa0e
     headers:
@@ -274,7 +276,7 @@ resources:
     viewTags:
       title: Devices
     viewType: page
-  - description: Created for Endpoint GET /events/{eventID}.
+  - description: 'Created for Endpoint GET /events/{eventID}.'
     exportHash: 14b23d0a7455136a292a1723c846d0e4e1323fc07cf5d43d3c6862a4779e090c
     headers:
       content-type: text/html
@@ -284,7 +286,7 @@ resources:
     name: cpf-page-event-details
     version: develop
     viewTags:
-      title: "{{pageData.event.subject}}"
+      title: '{{pageData.event.subject}}'
     viewType: page
   - exportHash: a2f75cdd9d18a048ae062cb1e6674f16ed52664b584db2369f65975fb773a1c3
     headers:
@@ -353,7 +355,7 @@ resources:
     viewTags:
       title: Reset Password
     viewType: page
-  - description: Displays a form to view, edit, or create a site.
+  - description: 'Displays a form to view, edit, or create a site.'
     exportHash: cebdd4456f7c6e027571cbf48f6e2966e7707e6102287da08457d24a4d9e5491
     headers:
       content-type: text/html
@@ -363,7 +365,7 @@ resources:
     name: cpf-page-site-details
     version: develop
     viewTags:
-      title: "{{defaultTo pageData.site.name 'Add Site'}}"
+      title: '{{defaultTo pageData.site.name ''Add Site''}}'
     viewType: page
   - exportHash: fe0e7772cb7777bc56d536e412fbc4bf4a9591bc9e579ca782338517697d9f70
     headers:
@@ -376,7 +378,7 @@ resources:
     viewTags:
       title: Sites
     viewType: page
-  - description: Created for Endpoint GET /users/{userid}.
+  - description: 'Created for Endpoint GET /users/{userid}.'
     exportHash: eacb1e0f3b72aa82d27c51073e34298b5cba207c7038830f828c5aebd513ccde
     headers:
       content-type: text/html
@@ -386,7 +388,7 @@ resources:
     name: cpf-page-users-details
     version: develop
     viewTags:
-      title: "{{defaultTo pageData.user.email 'Add User'}}"
+      title: '{{defaultTo pageData.user.email ''Add User''}}'
     viewType: page
   - exportHash: 341e66b82d63f237c8429908aa1665277e271438590cd0b0f6113d5ba7a48a97
     headers:
