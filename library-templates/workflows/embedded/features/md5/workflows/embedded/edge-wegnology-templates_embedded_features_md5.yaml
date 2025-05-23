@@ -1,0 +1,144 @@
+resourceType: Flow
+resources:
+  - description: Esse exemplo mostra como calcular o hash md5 de uma string.
+    exportHash: 59f19dc4544d99ea0891c95e2f3ed4f7462713a933cfb290077c9a6d0f134880
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesMd5~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\md5
+    nodes:
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: uZ7qta2Sxl
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 260
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 3ZaLFeNtdE
+        meta:
+          annotationText: Inicialização obrigatória.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 200
+          x: 40
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: md5sum
+          inputs:
+            - type: str
+              valueTemplate: '{{senha}}'
+          outputs:
+            - destinationPath: data.hash
+              maxLength: '32'
+              type: str
+          resultPath: data.returnCode
+        id: 75pE_6Bf07
+        meta:
+          category: data
+          description: ''
+          label: Md5sum
+          name: registered-function
+          x: 280
+          'y': 360
+        outputIds:
+          - - _puMCkzB0C
+        type: RegisteredFunctionNode
+      - config: {}
+        id: 27P7R9YAg7
+        meta:
+          annotationText: |
+            Calcula o hash MD5 da palavra *"senha@123"*.
+
+            - **data.senha** => string cujo hash queremos calcular
+            - **data.md5** => hash gerado
+            - **data.returnCode** => resultado da operação.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 300
+          x: 280
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: _puMCkzB0C
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 280
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: vGKIElAE4_
+        meta:
+          annotationText: >
+            **Atenção:** O hash MD5 é representado por 32 caracteres em
+            hexadecimal, portanto a variável de saída **data.hash** deve ter no
+            mínimo este tamanho.
+
+
+            Resultados possíveis:
+
+            * 0: sucesso na operação.
+
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+          category: annotation
+          height: 300
+          label: Note
+          name: note
+          width: 260
+          x: 280
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: i44APYt1T0HUL9Ja0Pj3m
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: o39C9t4Nqx
+          x: 40
+          'y': 180
+        outputIds:
+          - - uZ7qta2Sxl
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesMd5~-u8whX6ysfuOCyanhw9YHk
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: '{ "senha" : "senha@123" }'
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesMd5~-u8whX6ysfuOCyanhw9YHk
+          x: 280
+          'y': 280
+        outputIds:
+          - - 75pE_6Bf07
+        type: virtualButton
+version: 1

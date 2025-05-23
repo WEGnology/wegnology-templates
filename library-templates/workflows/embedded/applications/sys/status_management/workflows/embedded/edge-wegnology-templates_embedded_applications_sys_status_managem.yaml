@@ -1,0 +1,419 @@
+resourceType: Flow
+resources:
+  - description: Esse exemplo demonstra como utilizar a API relacionada ao sistema.
+    exportHash: cc03dd3fcb96247a7d2965dd96819bc9100f9a48f7ab241081b50735804baa19
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSysStatusManagement~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\sys\status_management
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "system-api/v1/last/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: 3t_asFUoK2
+        meta:
+          category: output
+          description: ''
+          label: Last Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 240
+        outputIds:
+          - - hhldhFr5TQ
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "system-api/v1/periodic" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: hhldhFr5TQ
+        meta:
+          category: output
+          description: ''
+          label: Periodic Subscribe
+          name: mqtt
+          x: 40
+          'y': 340
+        outputIds:
+          - - yn0L2H8G6y
+        type: MqttMessageNode
+      - config: {}
+        id: o26xGlfbpo
+        meta:
+          annotationText: Inicializa se inscrevendo nos tópicos necessários.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 5erXgo4hMx
+        meta:
+          annotationText: Inscreve-se no tópico de resposta do último status do sistema.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 220
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 0cACpBbhoI
+        meta:
+          annotationText: Inscreve-se no tópico periódico do status do sistema.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 320
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "system-api/v1/periodic/set/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: yn0L2H8G6y
+        meta:
+          category: output
+          description: ''
+          label: Set Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 440
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: UuMreBv8EW
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da configuração da periodicidade.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 420
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: system-api/v1/last
+        id: 8uCTj4kWII
+        meta:
+          category: output
+          description: ''
+          label: Last
+          name: mqtt
+          x: 620
+          'y': 320
+        outputIds:
+          - - g0c2X3GcuP
+        type: MqttMessageNode
+      - config: {}
+        id: UYNk7XqKKO
+        meta:
+          annotationText: Faz uma requisição do último status do sistema.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 580
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: g0c2X3GcuP
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: pr0EcmYLEa
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 920
+          'y': 320
+        outputIds:
+          - - 8xeJWnVT38
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 8xeJWnVT38
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 920
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: SpFCND4cGP
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1220
+          'y': 320
+        outputIds:
+          - - f4SSLYrBx0
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: f4SSLYrBx0
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1220
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: system-api/v1/periodic/set
+        id: uf58rYbTWP
+        meta:
+          category: output
+          description: ''
+          label: Periodic Set
+          name: mqtt
+          x: 620
+          'y': 820
+        outputIds:
+          - - gGm2V9xdE9
+        type: MqttMessageNode
+      - config: {}
+        id: u2LTERo90R
+        meta:
+          annotationText: |-
+            Faz uma alteração no intervalo de publicação do formato periódico.
+
+            - **data.interval** => Intervalo em segundos da periodicidade.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 580
+          'y': 560
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: gGm2V9xdE9
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 920
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: pbqsNKyqXh
+        meta:
+          annotationText: |-
+            Escuta a requisição do último status do sistema.
+
+            - **data.system** => Informações referentes ao status do sistema.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 880
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: nIGIhpfX5x
+        meta:
+          annotationText: |-
+            Escuta a publicação periódica do status.
+
+            - **data.system** => Informações referentes ao status do sistema.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1180
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 47cMAeJzPq
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 920
+          'y': 820
+        outputIds:
+          - - 24hYEwP04e
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 24hYEwP04e
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 920
+          'y': 920
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: K0oXVtivX6
+        meta:
+          annotationText: |-
+            Escuta a publicação periódica do status.
+
+            - **data.interval** => Intervalo determinado pela publicação.
+            - **data.sucess** => Sucesso ou não da alteração.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 880
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: JwfUDWpbt7DEf1YC3cTHA
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: ICPXn3fPZZ
+          x: 40
+          'y': 140
+        outputIds:
+          - - 3t_asFUoK2
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSysStatusManagement~-OjEpXeAg7oeqm_tJ9_cga
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSysStatusManagement~-OjEpXeAg7oeqm_tJ9_cga
+          x: 620
+          'y': 220
+        outputIds:
+          - - 8uCTj4kWII
+        type: virtualButton
+      - config: {}
+        key: system-api/v1/last/response
+        meta:
+          category: trigger
+          description: ''
+          label: Last Response
+          name: mqtt
+          uiId: ZYfVD2cd38
+          x: 920
+          'y': 220
+        outputIds:
+          - - pr0EcmYLEa
+        type: mqttTopic
+      - config: {}
+        key: system-api/v1/periodic
+        meta:
+          category: trigger
+          description: ''
+          label: Periodic
+          name: mqtt
+          uiId: EqKgmRERM9
+          x: 1220
+          'y': 220
+        outputIds:
+          - - SpFCND4cGP
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSysStatusManagement~-_ZKfOnACaPzJGAdJJdZhz
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: '{"interval":20}'
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSysStatusManagement~-_ZKfOnACaPzJGAdJJdZhz
+          x: 620
+          'y': 720
+        outputIds:
+          - - uf58rYbTWP
+        type: virtualButton
+      - config: {}
+        key: system-api/v1/periodic/set/response
+        meta:
+          category: trigger
+          description: ''
+          label: Periodic Set Response
+          name: mqtt
+          uiId: zJpLGm0FR5
+          x: 920
+          'y': 720
+        outputIds:
+          - - 47cMAeJzPq
+        type: mqttTopic
+version: 1

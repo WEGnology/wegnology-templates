@@ -1,0 +1,189 @@
+resourceType: Flow
+resources:
+  - description: Esse exemplo demonstra como utilizar a função registrada compress_file
+    exportHash: 0c535be8b18855aaf580630d436f657686265f72731eb471a595a01595780ed6
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressFile~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\compress_file
+    nodes:
+      - config:
+          functionName: compress_file
+          inputs:
+            - type: str
+              valueTemplate: '{{data.dir}}'
+            - type: str
+              valueTemplate: '{{data.compressed_name}}'
+            - type: bool
+              valueTemplate: '{{data.store}}'
+          outputs: []
+          resultPath: data.returnCode
+        id: xOwoIRJxeH
+        meta:
+          category: data
+          description: ''
+          label: Compress File
+          name: registered-function
+          x: 340
+          'y': 460
+        outputIds:
+          - - uJ10q2bRLi
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: uJ10q2bRLi
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 340
+          'y': 560
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: create_dir
+          inputs:
+            - type: str
+              valueTemplate: '{{data.dir}}'
+          outputs: []
+          resultPath: data.returnCode
+        id: WRf3TwvoXy
+        meta:
+          category: data
+          description: ''
+          label: Create Directory
+          name: registered-function
+          x: 60
+          'y': 460
+        outputIds:
+          - - FGQNBATfoh
+        type: RegisteredFunctionNode
+      - config: {}
+        id: On5u4AFBRx
+        meta:
+          annotationText: >-
+            Cria um diretório *compress_dir* vazio para realizar a compressão do
+            arquivo.
+
+
+            - **data.dir** => Nome do diretório a ser criado.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 20
+          'y': 160
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: FGQNBATfoh
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 60
+          'y': 560
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: Gx1m1H_fjF
+        meta:
+          annotationText: >-
+            Comprime o diretório *compress_dir*.
+
+
+            - **data.dir** => Caminho do arquivo a ser compactado
+
+            - **data.compressed_name** => Nome do arquivo a ser gerado,
+            resultado da compactação.
+
+            - **data.store** => Decidir se guarda ou não o arquivo de entrada no
+            diretório, *true* para guardar.
+          category: annotation
+          height: 280
+          label: Note
+          name: note
+          width: 260
+          x: 300
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 5lJw5le9Mx
+        meta:
+          annotationText: |-
+            Possíveis retornos:
+            * 0: sucesso na operação.
+            * 100: caminho inválido. 
+            * 101: formato de compressão não suportado.
+            *  102: o caminho de entrada não existe no sistema.
+            * 103: falha ao ler o arquivo de entrada.
+            * 104: falha ao criar o arquivo de saída.
+            * 105: falha ao gerar o arquivo compactado.
+            * 106: falha ao remover o arquivo de entrada.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 380
+          x: 620
+          'y': 380
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: DvihpG1vcN
+        meta:
+          annotationText: '- **data.returnCode** => Retorno da operação.'
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 620
+          'y': 260
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressFile~-5ndI4qJFFW8BNtjdTu7jv
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"dir\":\"compress_dir\",\r\n  \"compressed_name\": \"testcompressed1.tar.gz\",\r\n  \"store\": true\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressFile~-5ndI4qJFFW8BNtjdTu7jv
+          x: 340
+          'y': 360
+        outputIds:
+          - - xOwoIRJxeH
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressFile~-HLy5ybBl5f7GyzoHHJ9kg
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: '{"dir":"compress_dir"}'
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressFile~-HLy5ybBl5f7GyzoHHJ9kg
+          x: 60
+          'y': 360
+        outputIds:
+          - - WRf3TwvoXy
+        type: virtualButton
+version: 1

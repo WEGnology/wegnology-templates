@@ -1,0 +1,769 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas aos eventos
+      dos IO's.
+    exportHash: 10ea43b4ef34385204c3ffa329b8b85608ced6384be825516e186d08e3f5b0ca
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosEvents~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\ios\events
+    nodes:
+      - config:
+          messageTemplate: '{"topic":"ios-api/v1/periodic"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: P7yz5G5GZS
+        meta:
+          category: output
+          description: ''
+          label: Periodic Subscribe
+          name: mqtt
+          x: 80
+          'y': 300
+        outputIds:
+          - - FtSnipHD9s
+        type: MqttMessageNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: kT5jpoYvBZ
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 860
+          'y': 380
+        outputIds:
+          - - i4ehu_Cb_K
+        type: JsonDecodeNode
+      - config:
+          code: |-
+            use serde_json::{Result, Value};
+            let Values = json!(payload["data"]["ios"]);
+            let data = json!(payload["data"]);
+
+            for x in 0..Values.as_array().unwrap().len(){
+                let mut teste = json!(Values.as_array().unwrap()[x].get("name")).to_string().replace("\"","").to_string();
+
+                let mut id = teste.clone();
+                id.push_str("Active");
+                payload["device"]["value"][id.clone()] = json!(Values.as_array().unwrap()[x].get("active"));
+                id = teste.clone();
+                id.push_str("Ts");
+                payload["device"]["value"][id.clone()] = json!(payload["data"]["timestamp"]);
+                if !(json!(Values.as_array().unwrap()[x].get("counter")).is_null()){
+                    id = teste.clone();
+                    id.push_str("Counter");
+                    payload["device"]["value"][id] = json!(Values.as_array().unwrap()[x].get("counter"));
+                }
+            }
+        id: i4ehu_Cb_K
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 860
+          'y': 480
+        outputIds:
+          - - eYNpVtXmrO
+        type: RustFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: eYNpVtXmrO
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 860
+          'y': 580
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: aPIdaj1oB5
+        meta:
+          annotationText: Inicializa registrando nos tópicos necessários.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 60
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 4M_KmLLwFc
+        meta:
+          annotationText: >-
+            Escuta as publicações no tópico *periodic* e trata as informações
+            recebidas.
+
+
+            - **data.ios** => Informações sobre as IO's.
+
+            - **data.device** => Informações tratadas sobre as IO's.
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 260
+          x: 820
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: sxtgjpQhCZ
+        meta:
+          annotationText: >-
+            Separa as informações sobre as **IO's** e salva as informações em
+            "**device**" com o nome da IO e o tipo de informação.
+
+
+            Exemplo: SensorPeriodico:
+
+            - SensorPeriodicoActive: false
+
+            - SensorPeriodicoTs (Tempo) = xxxxxx
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 540
+          'y': 420
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: aHJqfcUKSJ
+        meta:
+          annotationText: >-
+            Escuta as publicações no tópico *onchange* e trata as informações
+            recebidas
+
+
+            - **edge/x/eea/peripherals** => Nome do tópico a ser publicado no
+            caso o IO tenha uma ID em que x é o nome do device.
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 260
+          x: 1120
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: NJASxAtsx2
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1160
+          'y': 380
+        outputIds:
+          - - dNA4_GuHkB
+        type: JsonDecodeNode
+      - config:
+          code: "use serde_json::{Result, Value};\r\nlet data = json!(payload[\"data\"]);\r\n\r\n\r\nlet mut teste = json!(data.get(\"name\")).to_string().replace(\"\\\"\",\"\").to_string();\r\nlet mut id = teste.clone();\r\nid.push_str(\"Active\");\r\npayload[\"device\"][\"value\"][id.clone()] = json!(data.get(\"active\"));\r\n//id = teste.clone();\r\n//id.push_str(\"Alias\");\r\n//payload[\"device\"][\"value\"][id.clone()] = json!(Values.as_array().unwrap()[x].get(\"name\"));\r\nid = teste.clone();\r\nid.push_str(\"Ts_ns\");\r\npayload[\"device\"][\"value\"][id.clone()] = json!(payload[\"data\"][\"timestamp_ns\"]);\r\nid = teste.clone();\r\nid.push_str(\"Event\");\r\npayload[\"device\"][\"value\"][id.clone()] = json!(payload[\"data\"][\"kind\"]);\r\n\r\npayload[\"data\"][\"timestamp\"] = json!(payload[\"data\"][\"timestamp_ns\"].as_f64().unwrap()/1000000.0);\r\n\r\nif !(json!(payload[\"data\"][\"id\"]) == json!(\"\")){\r\n  let mut first = String::from(\"edge/\");\r\n  let devId = payload[\"data\"][\"id\"].to_string().replace(\"\\\"\",\"\").to_string();\r\n  first.push_str(devId.as_str());\r\n  let second = String::from(\"/eea/peripherals\");\r\n  first.push_str(second.as_str());\r\n\r\n  payload[\"topic\"] = json!(first);\r\n}"
+        id: dNA4_GuHkB
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 1160
+          'y': 480
+        outputIds:
+          - - pLRfT8ReRu
+        type: RustFunctionNode
+      - config:
+          expression: '{{topic}} == undefined'
+        id: pLRfT8ReRu
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1160
+          'y': 580
+        outputIds:
+          - - RnI4xuJcLk
+          - - TPNeP_sWcX
+        type: ConditionalNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: RnI4xuJcLk
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1060
+          'y': 680
+        outputIds: []
+        type: DebugNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: device
+          resultPath: ''
+          timeSourceType: payloadTime
+        id: TPNeP_sWcX
+        meta:
+          category: output
+          description: ''
+          label: 'Device: State'
+          name: device-state
+          x: 1280
+          'y': 680
+        outputIds:
+          - - CotOchvWB4
+        type: DeviceChangeStateNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: CotOchvWB4
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1280
+          'y': 780
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: wsEQNTUHNo
+        meta:
+          annotationText: Tem identificação?
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 1380
+          'y': 560
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{"topic":"ios-api/v1/onchange"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: FtSnipHD9s
+        meta:
+          category: output
+          description: ''
+          label: OnChange Subscribe
+          name: mqtt
+          x: 80
+          'y': 400
+        outputIds:
+          - - cVdqbXNOa5
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: TrHHoUnGnS
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1660
+          'y': 480
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{"topic":"ios-api/v1/statistics/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: cVdqbXNOa5
+        meta:
+          category: output
+          description: ''
+          label: Status Response Subscribe
+          name: mqtt
+          x: 80
+          'y': 500
+        outputIds:
+          - - 7OZ4F78WjM
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{"topic":"ios-api/v1/events"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: 7OZ4F78WjM
+        meta:
+          category: output
+          description: ''
+          label: Events Subscribe
+          name: mqtt
+          x: 80
+          'y': 600
+        outputIds:
+          - - h5cXcwmQCW
+        type: MqttMessageNode
+      - config: {}
+        id: zIs0QOpT4A
+        meta:
+          annotationText: Inscreve-se no tópico de eventos Periódicos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 280
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 5h9YlnnDCQ
+        meta:
+          annotationText: Inscreve-se no tópico de OnChange.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 380
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: xbbB6HW6Da
+        meta:
+          annotationText: Inscreve-se no tópico das respostas das estatísticas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 480
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: oC7XBM7XZX
+        meta:
+          annotationText: Inscreve-se no tópico dos erros e informações de execução.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 580
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: HI9F1BJJoe
+        meta:
+          annotationText: >-
+            Escuta as publicações no tópico de erros e estatísticas do
+            dispositivo.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 260
+          x: 1620
+          'y': 120
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: y0wvXLJQyd
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1660
+          'y': 380
+        outputIds:
+          - - TrHHoUnGnS
+        type: JsonDecodeNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/statistics
+        id: zBS8VqL9tB
+        meta:
+          category: output
+          description: ''
+          label: Statistics
+          name: mqtt
+          x: 1960
+          'y': 380
+        outputIds: []
+        type: MqttMessageNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: oKdhxzoJ1H
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 2260
+          'y': 380
+        outputIds:
+          - - CM7THNkxDI
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: CM7THNkxDI
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 2260
+          'y': 480
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 4fuLNHB8Mj
+        meta:
+          annotationText: Faz uma requisição das estatísticas do dispositivo.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 260
+          x: 1920
+          'y': 120
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: GrkGM7uF36
+        meta:
+          annotationText: |-
+            Escuta a requisição da estatística do disposítivo.
+
+            - **data.counters** => Estatísitca do dispositivo.
+            - **data.runtime** => Tempo de operação.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 2220
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{"topic":"ios-api/v1/configure/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: h5cXcwmQCW
+        meta:
+          category: output
+          description: ''
+          label: Configure Response Subscribe
+          name: mqtt
+          x: 80
+          'y': 720
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: UeuIqXeOdp
+        meta:
+          annotationText: Inscreve-se no tópico das respostas das configurações remotas.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 700
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/configure
+        id: kUC9ojZiMW
+        meta:
+          category: output
+          description: ''
+          label: Configure
+          name: mqtt
+          x: 1960
+          'y': 1020
+        outputIds:
+          - - rGqfoAUKQD
+        type: MqttMessageNode
+      - config: {}
+        id: c4LQYibvV5
+        meta:
+          annotationText: >
+            Altera os parâmetros de configurações da API. Ao alterar a
+            configuração anterior é sobrescrita.
+
+
+            - **data** => Comando contendo as configurações desejadas.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 1920
+          'y': 700
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: rGqfoAUKQD
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1960
+          'y': 1120
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: JFlORiKP9Y
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 2260
+          'y': 1020
+        outputIds:
+          - - acYR35oddk
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: acYR35oddk
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 2260
+          'y': 1120
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: qR9pUvQL5C
+        meta:
+          annotationText: |-
+            Escuta a requisição da alteração dos parâmetros de configurações.
+
+            - **data.result** => Resultado da requisição.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 2220
+          'y': 740
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: iWxckezsmg
+        meta:
+          annotationText: >-
+            **Atenção!** 
+
+
+            Após realizar a alteração, é necessário aguardar a mensagem
+            "**accepting commands**" no tópico de eventos das IO's para poder
+            enviar mais comandos.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 1620
+          'y': 920
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: RvCSugTDeS
+        meta:
+          annotationText: >-
+            O formato do comando para as alterações dos parâmetros:
+
+
+            - **debounce_ms** => Intervalo de debounce em ms. (Opcional)
+
+            - **report_period** => Intervalo entre as publicações periódicas.
+            (Opcional) 
+
+            - **gpio** => Objeto contendo as alterações relacionadas as portas.
+            (Opcional)
+
+            - **gpio.[].mode** => Modo de operação. (Somente entradas)
+            (Opcional)
+
+            - **gpio.[].name** => Nome de entrada definido na configuração.
+            (Obrigatório)
+
+            - **gpio.[].ref_name** => Nome de entrada descrito pelo hardware.
+            (Obrigatório)
+
+            - **gpio.[].trigger** => Trigger. (Somente Entrada) (Opcional)
+
+
+            **OBS:** Os atributos dentro de *"gpio"* só se tornam obrigatórios
+            quando há a presença do objeto *"gpio"* no comando.
+          category: annotation
+          height: 380
+          label: Note
+          name: note
+          width: 480
+          x: 1960
+          'y': 1200
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: YIwbsQcluep1hrrWVQHn7
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: wBGcNe91da
+          x: 80
+          'y': 200
+        outputIds:
+          - - P7yz5G5GZS
+        type: onBoot
+      - config: {}
+        key: ios-api/v1/periodic
+        meta:
+          category: trigger
+          description: ''
+          label: Periodic
+          name: mqtt
+          uiId: DHQUx4eco_
+          x: 860
+          'y': 280
+        outputIds:
+          - - kT5jpoYvBZ
+        type: mqttTopic
+      - config: {}
+        key: ios-api/v1/onchange
+        meta:
+          category: trigger
+          description: ''
+          label: OnChange
+          name: mqtt
+          uiId: rgncl4V682
+          x: 1160
+          'y': 280
+        outputIds:
+          - - NJASxAtsx2
+        type: mqttTopic
+      - config: {}
+        key: ios-api/v1/events
+        meta:
+          category: trigger
+          description: ''
+          label: Events
+          name: mqtt
+          uiId: 4RbZBraSE0
+          x: 1660
+          'y': 280
+        outputIds:
+          - - y0wvXLJQyd
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosEvents~-623MbqAKwgCGKS5rkCMaE
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosEvents~-623MbqAKwgCGKS5rkCMaE
+          x: 1960
+          'y': 280
+        outputIds:
+          - - zBS8VqL9tB
+        type: virtualButton
+      - config: {}
+        key: ios-api/v1/statistics/response
+        meta:
+          category: trigger
+          description: ''
+          label: Statistics Response
+          name: mqtt
+          uiId: pjGzPs2wjs
+          x: 2260
+          'y': 280
+        outputIds:
+          - - oKdhxzoJ1H
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosEvents~-0DtEEfShNI_BlNbyP6aVP
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"debounce_ms\": 2,\r\n  \"report_period\": 20\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosEvents~-0DtEEfShNI_BlNbyP6aVP
+          x: 1960
+          'y': 920
+        outputIds:
+          - - kUC9ojZiMW
+        type: virtualButton
+      - config: {}
+        key: ios-api/v1/configure/response
+        meta:
+          category: trigger
+          description: ''
+          label: Configure Response
+          name: mqtt
+          uiId: C2PHp85xZC
+          x: 2260
+          'y': 920
+        outputIds:
+          - - JFlORiKP9Y
+        type: mqttTopic
+version: 1

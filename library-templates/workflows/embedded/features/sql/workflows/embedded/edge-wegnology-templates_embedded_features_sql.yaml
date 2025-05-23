@@ -1,0 +1,470 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas ao banco de
+      dados, como: sql_create_db e sql_query
+    exportHash: 80a11173c97e77d4aeb997d7fb41f8b8fd3e02dee98fe1395141b16fff25d0a1
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\sql
+    nodes:
+      - config:
+          functionName: sql_create_db
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+          outputs: []
+          resultPath: data.returnCode
+        id: auIKhOWUWw
+        meta:
+          category: data
+          description: ''
+          label: Create DataBase
+          name: registered-function
+          x: 40
+          'y': 460
+        outputIds:
+          - - eHPJbgwuEt
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: eHPJbgwuEt
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 560
+        outputIds:
+          - - dYSOdfBwX1
+        type: DebugNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+            - type: str
+              valueTemplate: 'INSERT INTO exemplo (teste1, teste2) VALUES(?1,?2)'
+            - type: str
+              valueTemplate: 'prim,seg'
+          outputs:
+            - destinationPath: data.dtb_output
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: aJTK3XPmsY
+        meta:
+          category: data
+          description: ''
+          label: Insert
+          name: registered-function
+          x: 280
+          'y': 360
+        outputIds:
+          - - yezQjEGCw6
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: yezQjEGCw6
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 280
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+            - type: str
+              valueTemplate: >-
+                CREATE TABLE exemplo (id INTEGER PRIMARY KEY, teste1 TEXT NOT
+                NULL, teste2 TEXT NOT NULL)
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.dtb_output
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: dYSOdfBwX1
+        meta:
+          category: data
+          description: ''
+          label: Create Table
+          name: registered-function
+          x: 40
+          'y': 660
+        outputIds:
+          - - jrE11MVImO
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: jrE11MVImO
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 760
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+            - type: str
+              valueTemplate: DROP TABLE exemplo
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.dtb_output
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: rLTEB_6DFi
+        meta:
+          category: data
+          description: ''
+          label: Drop Table
+          name: registered-function
+          x: 520
+          'y': 360
+        outputIds:
+          - - RyS1fkROe0
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: RyS1fkROe0
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+            - type: str
+              valueTemplate: SELECT * FROM exemplo
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.dtb_output
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: PufVFvPTBJ
+        meta:
+          category: data
+          description: ''
+          label: Select
+          name: registered-function
+          x: 1000
+          'y': 360
+        outputIds:
+          - - mxkLFmtgNN
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: mxkLFmtgNN
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1000
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: DtBN61guRz
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 760
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: '{{data.banco}}'
+            - type: str
+              valueTemplate: >-
+                CREATE TABLE exemplo (id INTEGER PRIMARY KEY, teste1 TEXT NOT
+                NULL, teste2 TEXT NOT NULL)
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.dtb_output
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: M6fixQEByg
+        meta:
+          category: data
+          description: ''
+          label: Insert
+          name: registered-function
+          x: 760
+          'y': 360
+        outputIds:
+          - - DtBN61guRz
+        type: RegisteredFunctionNode
+      - config: {}
+        id: ByIQen01oA
+        meta:
+          annotationText: >-
+            Inicializa um banco de dados *banco_teste* para este exemplo e cria
+            uma tabela *exemplo* para ser inserida as informações.
+
+
+            * **data.banco** => Nome do banco de dados a ser criado.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: N6m1BVWplu
+        meta:
+          annotationText: >-
+            Insere informações na tabela *exemplo* do banco de dados criado com
+            *INSERT INTO*.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 220
+          x: 260
+          'y': 80
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: zXVBgsdesB
+        meta:
+          annotationText: >-
+            Deleta a tabela *exemplo* do banco de dados criada ao inicializar
+            com DROP TABLE.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 500
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: MshSFOiA06
+        meta:
+          annotationText: |-
+            Lê toda a tabela *exemplo* com 
+            *SELECT * FROM*.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 980
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: UEQtnAXlfq
+        meta:
+          annotationText: |
+            Retornos para o comando de criação do banco de dados:
+            * 0: sucesso na operação.
+            * 100: nome inválido. 
+            * 101: o banco de dados já existe.
+            * 102: falha ao criar o banco de dados.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 300
+          'y': 860
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: DYD1qcLSFE
+        meta:
+          annotationText: |
+            Retornos para os comandos de *query* no banco de dados:
+            * 0: sucesso na operação.
+            * 100: banco de dados inválido ou inacessível.
+            * 101: falha ao executar a query.
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 580
+          'y': 860
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: p95o_o2BPh
+        meta:
+          annotationText: >-
+            Insere a tabela *exemplo* do banco de dados novamente com CREATE
+            TABLE.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 740
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: wPhiVs1Qm3
+        meta:
+          annotationText: |-
+            * **data.dtb_output** => Resultado da query.
+            * **data.returnCode** => Retorno da operação.
+            * **data.banco** => Nome do banco de dados.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 20
+          'y': 860
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          rules:
+            - destination: data
+              type: set
+              valueTemplate: '{ "banco": "banco_teste", "vazio": ""}'
+              valueTemplateType: json
+        id: LgqkaSXbAs
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 40
+          'y': 360
+        outputIds:
+          - - auIKhOWUWw
+        type: MutateNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-YGAJNXNUnUMnG8cWrgWrs
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"banco\":\"banco_teste\",\r\n\"vazio\":\"\"}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-YGAJNXNUnUMnG8cWrgWrs
+          x: 520
+          'y': 260
+        outputIds:
+          - - rLTEB_6DFi
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-R9gdMHwA4OKHtpGJpYg8q
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"banco\":\"banco_teste\",\r\n\"vazio\":\"\"}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-R9gdMHwA4OKHtpGJpYg8q
+          x: 1000
+          'y': 260
+        outputIds:
+          - - PufVFvPTBJ
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-7jwuRq09YVqRJEganH23f
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"banco\":\"banco_teste\",\r\n\"vazio\":\"\"}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-7jwuRq09YVqRJEganH23f
+          x: 760
+          'y': 260
+        outputIds:
+          - - M6fixQEByg
+        type: virtualButton
+      - config: {}
+        key: _e3HrumCDtvFg0ksnGOnW
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: 0zFadTPllF
+          x: 40
+          'y': 260
+        outputIds:
+          - - LgqkaSXbAs
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-8Re69HEZWDfwhlj0KEPKQ
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"banco\":\"banco_teste\",\r\n\"vazio\":\"\"}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesSql~-8Re69HEZWDfwhlj0KEPKQ
+          x: 280
+          'y': 260
+        outputIds:
+          - - aJTK3XPmsY
+        type: virtualButton
+version: 1

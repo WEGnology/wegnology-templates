@@ -1,0 +1,567 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo mostra como realizar a leitura das entradas, configurações de
+      saídas analógicas, requisição de estatística e reposta de eventos.
+    exportHash: ef608b8ddc9fad4027c2a3caa1cd654e399c12af3fcca36901072966af41bcac
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\analogios\inputs_outputs
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "aios-api/v1/read/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: fe92sWM2Hs
+        meta:
+          category: output
+          description: ''
+          label: Read Response Subscribe
+          name: mqtt
+          x: 60
+          'y': 320
+        outputIds:
+          - - VAJOGnB355
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "aios-api/v1/write/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: VAJOGnB355
+        meta:
+          category: output
+          description: ''
+          label: Write Response Subscribe
+          name: mqtt
+          x: 60
+          'y': 420
+        outputIds:
+          - - FXTyBhMcvi
+        type: MqttMessageNode
+      - config: {}
+        id: dCR884WsBE
+        meta:
+          annotationText: Subscrição nos tópicos necessários.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 40
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 7Jjq6O0mH3
+        meta:
+          annotationText: Resposta da leitura das entradas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 260
+          'y': 300
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 91T2rDPfkE
+        meta:
+          annotationText: Resposta da configuração das saídas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 260
+          'y': 400
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: aios-api/v1/read
+        id: Q3qxM41LE1
+        meta:
+          category: output
+          description: ''
+          label: Read
+          name: mqtt
+          x: 540
+          'y': 320
+        outputIds:
+          - - ZxlWP4wr7V
+        type: MqttMessageNode
+      - config: {}
+        id: NgPTFDjOZr
+        meta:
+          annotationText: Faz a requisição da leitura das entradas.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 520
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: ZxlWP4wr7V
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 540
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 6aMaBIfNGn
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 820
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: GnD0LaaHAI
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 820
+          'y': 320
+        outputIds:
+          - - 6aMaBIfNGn
+        type: JsonDecodeNode
+      - config: {}
+        id: 66jgW6F1IP
+        meta:
+          annotationText: |
+            Escuta o tópico de respostas da leitura das entradas.
+
+            - **data** => Mensagem contendo as entradas configuradas.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 780
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "aios-api/v1/events }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: FXTyBhMcvi
+        meta:
+          category: output
+          description: ''
+          label: Events Subscribe
+          name: mqtt
+          x: 60
+          'y': 520
+        outputIds:
+          - - ZxaAHbe0bk
+        type: MqttMessageNode
+      - config: {}
+        id: xpQatPfi_6
+        meta:
+          annotationText: Resposta dos eventos da Analog.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 260
+          'y': 500
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "aios-api/v1/statistics/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: ZxaAHbe0bk
+        meta:
+          category: output
+          description: ''
+          label: Statistics Subscribe
+          name: mqtt
+          x: 60
+          'y': 620
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: fqg0wnG2IS
+        meta:
+          annotationText: Resposta das estatísticas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 260
+          'y': 600
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: aios-api/v1/write
+        id: epg2P420y0
+        meta:
+          category: output
+          description: ''
+          label: Write
+          name: mqtt
+          x: 1120
+          'y': 320
+        outputIds:
+          - - 4Lvnht9pmw
+        type: MqttMessageNode
+      - config: {}
+        id: HvC2UkmUxz
+        meta:
+          annotationText: |-
+            Faz a escrita em uma das saídas.
+
+            - **data.group** => Nome do grupo.
+            - **data.tag** => Tag da variável.
+            - **data.value** => Valor a ser escrito
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1080
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 4Lvnht9pmw
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1120
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: h75s2JLQRD
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1420
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: pwkjKmIeq2
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1420
+          'y': 320
+        outputIds:
+          - - h75s2JLQRD
+        type: JsonDecodeNode
+      - config: {}
+        id: j7b6akwYiR
+        meta:
+          annotationText: |
+            Escuta o tópico de respostas da leitura das entradas.
+
+            - **data** => Mensagem contendo as entradas configuradas.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1380
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: lIkOdZy2qn
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 960
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 9plQMnS5Qa
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 560
+          'y': 860
+        outputIds:
+          - - lIkOdZy2qn
+        type: JsonDecodeNode
+      - config: {}
+        id: 4RHhBtPcIa
+        meta:
+          annotationText: |
+            Escuta o tópico de eventos das analógicas.
+
+            - **data** => Mensagem contendo o evento.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 520
+          'y': 560
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: aios-api/v1/statistics
+        id: eRc18HLSxc
+        meta:
+          category: output
+          description: ''
+          label: Statistics
+          name: mqtt
+          x: 840
+          'y': 860
+        outputIds:
+          - - JON5AFQjY4
+        type: MqttMessageNode
+      - config: {}
+        id: YbQzZotGdo
+        meta:
+          annotationText: Faz a requisição das estatísticas.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 820
+          'y': 600
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: JON5AFQjY4
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 840
+          'y': 960
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: PN2Rkq3w_s
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1120
+          'y': 960
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: ZidCJunIui
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1120
+          'y': 860
+        outputIds:
+          - - PN2Rkq3w_s
+        type: JsonDecodeNode
+      - config: {}
+        id: csY1R0WLaB
+        meta:
+          annotationText: |
+            Escuta o tópico das estatísticas.
+
+            - **data** => Mensagem contendo os contadores de eventos do tópico.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 1080
+          'y': 580
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: 736HfHwrelEITwgqsLy5p
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: MirsBfT4vR
+          x: 60
+          'y': 220
+        outputIds:
+          - - fe92sWM2Hs
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-UMZG2181D95BLZzBT2g3S
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-UMZG2181D95BLZzBT2g3S
+          x: 540
+          'y': 220
+        outputIds:
+          - - Q3qxM41LE1
+        type: virtualButton
+      - config: {}
+        key: aios-api/v1/read/response
+        meta:
+          category: trigger
+          description: ''
+          label: Read Response
+          name: mqtt
+          uiId: tXGVhwYSr4
+          x: 820
+          'y': 220
+        outputIds:
+          - - GnD0LaaHAI
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-z3DViaKxKlYRI596TX5un
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"group\": \"AI0\",\r\n  \"tag\": \"ShuntEnable\",\r\n  \"value\": \"1\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-z3DViaKxKlYRI596TX5un
+          x: 1120
+          'y': 220
+        outputIds:
+          - - epg2P420y0
+        type: virtualButton
+      - config: {}
+        key: aios-api/v1/write/response
+        meta:
+          category: trigger
+          description: ''
+          label: Write Response
+          name: mqtt
+          uiId: ovORK82tjZ
+          x: 1420
+          'y': 220
+        outputIds:
+          - - pwkjKmIeq2
+        type: mqttTopic
+      - config: {}
+        key: aios-api/v1/events
+        meta:
+          category: trigger
+          description: ''
+          label: Events
+          name: mqtt
+          uiId: jkv6a0lR_e
+          x: 560
+          'y': 760
+        outputIds:
+          - - 9plQMnS5Qa
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-UvX21uy8VQzCQtWYRLZaP
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsAnalogiosInputsOutputs~-UvX21uy8VQzCQtWYRLZaP
+          x: 840
+          'y': 760
+        outputIds:
+          - - eRc18HLSxc
+        type: virtualButton
+      - config: {}
+        key: aios-api/v1/statistics/response
+        meta:
+          category: trigger
+          description: ''
+          label: Statistics Response
+          name: mqtt
+          uiId: qEreil0qfh
+          x: 1120
+          'y': 760
+        outputIds:
+          - - ZidCJunIui
+        type: mqttTopic
+version: 1

@@ -1,0 +1,290 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas ao diretório
+      como: create_dir, read_dir e dir_size
+    exportHash: 2b041c02268bfcc4e9a43307df3aabd8bc22ca78556258c7b48b7c1a8e244d86
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\dir
+    nodes:
+      - config:
+          functionName: read_dir
+          inputs:
+            - type: str
+              valueTemplate: test_dir
+          outputs:
+            - destinationPath: data.directory
+              maxLength: '25600'
+              type: json
+          resultPath: data.returnCode
+        id: 1cuq4OrsBc
+        meta:
+          category: data
+          description: ''
+          label: Read Directory
+          name: registered-function
+          x: 300
+          'y': 360
+        outputIds:
+          - - 9Xz14WubZq
+        type: RegisteredFunctionNode
+      - config:
+          functionName: create_dir
+          inputs:
+            - type: str
+              valueTemplate: test_dir/subdir1
+          outputs: []
+          resultPath: data.returnCode
+        id: trtjv_eG9q
+        meta:
+          category: data
+          description: ''
+          label: Create Directory
+          name: registered-function
+          x: 40
+          'y': 360
+        outputIds:
+          - - Fo9KI54Fv4
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 9Xz14WubZq
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 300
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 1qgMTDBUNi
+        meta:
+          annotationText: >-
+            Inicializa criando um diretório em *test_dir/subdir1*, permitindo a
+            visualização no primeiro exemplo.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 80
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: h8EDprsLt2
+        meta:
+          annotationText: >-
+            Lê o diretório criado no inicializar e o criado através do *virtual
+            button*.
+
+
+            - **data.directory** => Lista de arquivos e subdiretórios.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 260
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 6FLc6YH7EG
+        meta:
+          annotationText: |-
+            Utiliza *dir_size* para ver o tamanho do diretório *test_dir*.
+
+            - **data.size** => Tamanho do diretório, em bytes.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 220
+          x: 780
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: Fo9KI54Fv4
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: dir_size
+          inputs:
+            - type: str
+              valueTemplate: test_dir
+          outputs:
+            - destinationPath: data.size
+              type: u64
+          resultPath: data.returnCode
+        id: zxl7HWozzk
+        meta:
+          category: data
+          description: ''
+          label: Directory Size
+          name: registered-function
+          x: 800
+          'y': 360
+        outputIds:
+          - - ZTj1DHCZcw
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: ZTj1DHCZcw
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 800
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: create_dir
+          inputs:
+            - type: str
+              valueTemplate: test_dir/subdir2
+          outputs: []
+          resultPath: data.returnCode
+        id: 9xzSnP_beW
+        meta:
+          category: data
+          description: ''
+          label: Create Directory
+          name: registered-function
+          x: 560
+          'y': 360
+        outputIds:
+          - - XFFOh_j5Lz
+        type: RegisteredFunctionNode
+      - config: {}
+        id: bySCqJiShw
+        meta:
+          annotationText: 'Cria um diretório na pasta pai de subdir1, com o nome de subdir2.'
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 540
+          'y': 120
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: XFFOh_j5Lz
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 52pQSJ2s31
+        meta:
+          annotationText: |-
+            - **data.returnCode** => Resultado da operação
+
+            Resultados possíveis:
+
+            * 0: sucesso na operação.
+            * 100: caminho inválido.
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 20
+          'y': 580
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-nJS4JidrNCsnsPPzmWMFI
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-nJS4JidrNCsnsPPzmWMFI
+          x: 300
+          'y': 260
+        outputIds:
+          - - 1cuq4OrsBc
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-R2myPUWbB2W3t4Hf_Lxcy
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-R2myPUWbB2W3t4Hf_Lxcy
+          x: 800
+          'y': 260
+        outputIds:
+          - - zxl7HWozzk
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-6Zd6xWyqTCNAYnlDlriIZ
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDir~-6Zd6xWyqTCNAYnlDlriIZ
+          x: 560
+          'y': 260
+        outputIds:
+          - - 9xzSnP_beW
+        type: virtualButton
+      - config: {}
+        key: 3Mua33HO8su7v4Xu8HApL
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: z__2GCNLrk
+          x: 40
+          'y': 260
+        outputIds:
+          - - trtjv_eG9q
+        type: onBoot
+version: 1

@@ -1,0 +1,630 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo mostra como utilizar as funções de cache compartilhado
+      (inserir, remover, etc).
+    exportHash: a5530fdb495cc52cc53bf341c60ff79f31e0df38c3745687316a2cf01d8b9769
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\cache
+    nodes:
+      - config:
+          functionName: cache_insert
+          inputs:
+            - type: str
+              valueTemplate: key10
+            - type: str
+              valueTemplate: value10
+            - type: u32
+              valueTemplate: '10'
+          outputs: []
+          resultPath: ''
+        id: bT3wht1w_x
+        meta:
+          category: data
+          description: ''
+          label: Insert ttl=10
+          name: registered-function
+          x: 40
+          'y': 300
+        outputIds:
+          - - FMPbvSp6Rb
+        type: RegisteredFunctionNode
+      - config: {}
+        id: pGIcrbIUgo
+        meta:
+          annotationText: >-
+            Cria 3 entradas no cache com *TTLs (Time-to-Live)* de 10, 20 e 30
+            segundos.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 40
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_insert
+          inputs:
+            - type: str
+              valueTemplate: key20
+            - type: str
+              valueTemplate: value20
+            - type: u32
+              valueTemplate: '20'
+          outputs: []
+          resultPath: ''
+        id: FMPbvSp6Rb
+        meta:
+          category: data
+          description: ''
+          label: Insert ttl=20
+          name: registered-function
+          x: 40
+          'y': 380
+        outputIds:
+          - - lgegHVvOgf
+        type: RegisteredFunctionNode
+      - config:
+          functionName: cache_insert
+          inputs:
+            - type: str
+              valueTemplate: key30
+            - type: str
+              valueTemplate: value30
+            - type: u32
+              valueTemplate: '30'
+          outputs: []
+          resultPath: ''
+        id: lgegHVvOgf
+        meta:
+          category: data
+          description: ''
+          label: Insert ttl=30
+          name: registered-function
+          x: 40
+          'y': 460
+        outputIds: []
+        type: RegisteredFunctionNode
+      - config:
+          functionName: cache_count
+          inputs: []
+          outputs:
+            - destinationPath: working.count
+              type: u32
+          resultPath: working.rc
+        id: RZS8Cku7Yk
+        meta:
+          category: data
+          description: ''
+          label: Count
+          name: registered-function
+          x: 1480
+          'y': 300
+        outputIds:
+          - - X9R9mUkDO9
+        type: RegisteredFunctionNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: X9R9mUkDO9
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1480
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: Rj9IXKHJFC
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1980
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: cache_clear
+          inputs: []
+          outputs: []
+          resultPath: working.rc
+        id: ip0qNPSILs
+        meta:
+          category: data
+          description: ''
+          label: Clear
+          name: registered-function
+          x: 1980
+          'y': 300
+        outputIds:
+          - - Rj9IXKHJFC
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: ZzjAY9Z4Jv
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1720
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: cache_capacity
+          inputs: []
+          outputs:
+            - destinationPath: working.capacity
+              type: u32
+          resultPath: working.rc
+        id: onNfOghV7F
+        meta:
+          category: data
+          description: ''
+          label: Capacity
+          name: registered-function
+          x: 1720
+          'y': 300
+        outputIds:
+          - - ZzjAY9Z4Jv
+        type: RegisteredFunctionNode
+      - config: {}
+        id: 7uxBNeruZs
+        meta:
+          annotationText: >-
+            Quantidade máxima de entradas suportadas em cache. *Dependerá do
+            hardware.*
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 1720
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: jXzyULuQ95
+        meta:
+          annotationText: Conta o número atual de entradas no cache.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 1480
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: eHAOBDOaGp
+        meta:
+          annotationText: Apaga todas as entradas do cache.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 1980
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: vR6j9VEiFE
+        meta:
+          annotationText: >-
+            **ATENÇÃO** O cache é compartilhado entre os workflows. Você pode
+            utilizá-lo para compartilhar chaves e valores entre os workflows, e
+            deve tomar cuidado para não utilizar chaves com o mesmo nome entre
+            os workflows, pois isso irá sobrescrever a chave gerada primeiro.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 480
+          x: 40
+          'y': 560
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_get
+          inputs:
+            - type: str
+              valueTemplate: key60
+          outputs:
+            - destinationPath: working.value
+              maxLength: '1024'
+              type: str
+          resultPath: working.rc
+        id: GCf3jqXtyf
+        meta:
+          category: data
+          description: ''
+          label: Get
+          name: registered-function
+          x: 760
+          'y': 300
+        outputIds:
+          - - Ra4AUxsrl2
+        type: RegisteredFunctionNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: Ra4AUxsrl2
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 760
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 0Et_1bO_C7
+        meta:
+          annotationText: 'Retorna o valor de um item do cache, sem removê-lo.'
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 760
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_pop
+          inputs: []
+          outputs:
+            - destinationPath: working.key
+              maxLength: '64'
+              type: str
+            - destinationPath: working.value
+              maxLength: '1024'
+              type: str
+          resultPath: working.rc
+        id: _XVTC2RG2S
+        meta:
+          category: data
+          description: ''
+          label: Pop
+          name: registered-function
+          x: 1000
+          'y': 300
+        outputIds:
+          - - cRJXuSObRq
+        type: RegisteredFunctionNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: cRJXuSObRq
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1000
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: p3daD7xXxa
+        meta:
+          annotationText: 'Retorna o próximo item disponível, removendo-o do cache.'
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 1000
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_remove
+          inputs:
+            - type: str
+              valueTemplate: key60
+          outputs: []
+          resultPath: working.rc
+        id: XpqJH9LWat
+        meta:
+          category: data
+          description: ''
+          label: Remove
+          name: registered-function
+          x: 1240
+          'y': 300
+        outputIds:
+          - - E7Qbk9fXpa
+        type: RegisteredFunctionNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: E7Qbk9fXpa
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1240
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 9WT1DfB7BZ
+        meta:
+          annotationText: Remove um item do cache.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 1240
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: U1vBKpMP3Y
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 280
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: PAUde25lTJ
+        meta:
+          annotationText: 'Insere um novo item *(key=key60, value=value60, ttl=60)* no cache.'
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 280
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_insert
+          inputs:
+            - type: str
+              valueTemplate: key60
+            - type: str
+              valueTemplate: value60
+            - type: u32
+              valueTemplate: '60'
+          outputs: []
+          resultPath: working.rc
+        id: 1NK7d5WSr2
+        meta:
+          category: data
+          description: ''
+          label: Insert ttl=60
+          name: registered-function
+          x: 280
+          'y': 300
+        outputIds:
+          - - U1vBKpMP3Y
+        type: RegisteredFunctionNode
+      - config:
+          level: info
+          message: ''
+          property: ''
+        id: 93iZZ3BoWm
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 380
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: mcUhNa2pYZ
+        meta:
+          annotationText: >-
+            Insere um novo valor *(value=90)*, utilizando uma chave gerada
+            randômicamente.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 200
+          x: 520
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: cache_insert_with_random_key
+          inputs:
+            - type: str
+              valueTemplate: value90
+            - type: u32
+              valueTemplate: '90'
+          outputs:
+            - destinationPath: working.key
+              maxLength: '24'
+              type: str
+          resultPath: working.rc
+        id: QypypIB_Iv
+        meta:
+          category: data
+          description: ''
+          label: Insert ttl=90
+          name: registered-function
+          x: 520
+          'y': 300
+        outputIds:
+          - - 93iZZ3BoWm
+        type: RegisteredFunctionNode
+    triggers:
+      - config: {}
+        key: 5BwFo5p65dpllFrOrqIOY
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: bOucON151E
+          x: 40
+          'y': 220
+        outputIds:
+          - - bT3wht1w_x
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-1rgJcT8vP9b_LTYFrkBLB
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-1rgJcT8vP9b_LTYFrkBLB
+          x: 1980
+          'y': 220
+        outputIds:
+          - - ip0qNPSILs
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-_p0loJp1up26OAnn5_fAe
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-_p0loJp1up26OAnn5_fAe
+          x: 1720
+          'y': 220
+        outputIds:
+          - - onNfOghV7F
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-l7H2uVhOAO6B3Vu6IO3nO
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-l7H2uVhOAO6B3Vu6IO3nO
+          x: 1480
+          'y': 220
+        outputIds:
+          - - RZS8Cku7Yk
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-B7ijc3IFI9IDiwkuGSPBF
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-B7ijc3IFI9IDiwkuGSPBF
+          x: 760
+          'y': 220
+        outputIds:
+          - - GCf3jqXtyf
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-PRou8PJQ3Dwa9SUxTnoQe
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-PRou8PJQ3Dwa9SUxTnoQe
+          x: 1000
+          'y': 220
+        outputIds:
+          - - _XVTC2RG2S
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-lOcrLtddAMU6w8yA4Wnnc
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-lOcrLtddAMU6w8yA4Wnnc
+          x: 1240
+          'y': 220
+        outputIds:
+          - - XpqJH9LWat
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-zzvdUXirPWBra9Q6c2RX4
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-zzvdUXirPWBra9Q6c2RX4
+          x: 280
+          'y': 220
+        outputIds:
+          - - 1NK7d5WSr2
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-nDZHdc9EKJQoupQFrFjZA
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCache~-nDZHdc9EKJQoupQFrFjZA
+          x: 520
+          'y': 220
+        outputIds:
+          - - QypypIB_Iv
+        type: virtualButton
+version: 1
