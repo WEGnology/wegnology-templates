@@ -1,0 +1,480 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar a função registrada Get para obter
+      dados de saúde e parâmetros do sistema
+    exportHash: 4a30069e0887d7b6d9220088cc6d8b4d971fe7d084603f51671d0368f33dc81d
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\get
+    nodes:
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 0gPnBrwyQP
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 40
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: system-statistics
+          outputs:
+            - destinationPath: output.json
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: uiRclL3ovi
+        meta:
+          category: data
+          description: ''
+          label: System statistics
+          name: registered-function
+          x: 40
+          'y': 260
+        outputIds:
+          - - RYEcyZaTQB
+        type: RegisteredFunctionNode
+      - config:
+          destination: output.man
+          errorBehavior: throw
+          errorPath: ''
+          source: output.json
+        id: RYEcyZaTQB
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 40
+          'y': 340
+        outputIds:
+          - - 0gPnBrwyQP
+        type: JsonDecodeNode
+      - config: {}
+        id: 7YmcrGoOX3
+        meta:
+          annotationText: 'Faz a requisição do system-statistics, por meio de *get()*.'
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 40
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: l6NU9vagv0
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 260
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: manufacturing-details
+          outputs:
+            - destinationPath: output.json
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: nsRgl6qnJ8
+        meta:
+          category: data
+          description: ''
+          label: Manufacturing Details
+          name: registered-function
+          x: 260
+          'y': 260
+        outputIds:
+          - - SUlS_Z0jcY
+        type: RegisteredFunctionNode
+      - config:
+          destination: output.man
+          errorBehavior: throw
+          errorPath: ''
+          source: output.json
+        id: SUlS_Z0jcY
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 260
+          'y': 340
+        outputIds:
+          - - l6NU9vagv0
+        type: JsonDecodeNode
+      - config: {}
+        id: JtAnNGz_Iz
+        meta:
+          annotationText: 'Faz a requisição do manufacturing-details, por meio de *get()*.'
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: lBDHKpjNTW
+        meta:
+          annotationText: |-
+            Outros valores disponíveis para consulta por meio de *get()*:
+
+            * broker-bridge.
+            * networks.
+            * packages.
+            * services.
+            * etc.
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 240
+          x: 120
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: data.send
+        id: T4Rk5bfqrq
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 480
+          'y': 1140
+        outputIds: []
+        type: DebugNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: system-statistics
+          outputs:
+            - destinationPath: data.json
+              maxLength: '1024'
+              type: str
+          resultPath: ''
+        id: AnY9up_B6s
+        meta:
+          category: data
+          description: ''
+          label: System statistics
+          name: registered-function
+          x: 480
+          'y': 260
+        outputIds:
+          - - 5InDjZ0YZw
+        type: RegisteredFunctionNode
+      - config:
+          destination: data.send
+          errorBehavior: throw
+          errorPath: ''
+          source: data.json
+        id: 5InDjZ0YZw
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 480
+          'y': 340
+        outputIds:
+          - - gB8MS7al9F
+        type: JsonDecodeNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: networks
+          outputs:
+            - destinationPath: data.json
+              maxLength: '1024'
+              type: str
+          resultPath: ''
+        id: CSqXAkciHG
+        meta:
+          category: data
+          description: ''
+          label: Networks
+          name: registered-function
+          x: 480
+          'y': 900
+        outputIds:
+          - - 0Pyykt8viD
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: data.send.ethIp
+              source: 'data.networks.[0].ip'
+              type: move
+            - destination: data.send.ethUp
+              source: 'data.networks.[0].linkUp'
+              type: move
+            - destination: data.send.wifiIp
+              source: 'data.networks.[1].ip'
+              type: move
+            - destination: data.send.wifiUp
+              source: 'data.networks.[1].linkUp'
+              type: move
+            - destination: data.send.apIp
+              source: 'data.networks.[2].ip'
+              type: move
+            - destination: data.send.apUp
+              source: 'data.networks.[2].linkUp'
+              type: move
+            - destination: data.send.vpnIp
+              source: 'data.networks.[3].ip'
+              type: move
+            - destination: data.send.vpnUp
+              source: 'data.networks.[3].linkUp'
+              type: move
+            - destination: data.send.wifiRssi
+              source: 'data.networks.[1].rssi'
+              type: move
+            - destination: data.send.wifiSsid
+              source: 'data.networks.[1].ssid'
+              type: move
+        id: UHxx4m83Fh
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 480
+          'y': 1060
+        outputIds:
+          - - T4Rk5bfqrq
+        type: MutateNode
+      - config:
+          destination: data.networks
+          errorBehavior: throw
+          errorPath: ''
+          source: data.json
+        id: 0Pyykt8viD
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 480
+          'y': 980
+        outputIds:
+          - - UHxx4m83Fh
+        type: JsonDecodeNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: packages
+          outputs:
+            - destinationPath: data.json
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: PHegNcSXGV
+        meta:
+          category: data
+          description: ''
+          label: Packages
+          name: registered-function
+          x: 480
+          'y': 660
+        outputIds:
+          - - Z1Qlt6pwZH
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: data.send.eeaVersion
+              source: 'data.packages.[3].version'
+              type: move
+            - destination: data.send.ioupVersion
+              source: 'data.packages.[6].version'
+              type: move
+            - destination: data.send.lwVersion
+              source: 'data.packages.[7].version'
+              type: move
+            - destination: data.send.webuiVersion
+              source: 'data.packages.[11].version'
+              type: move
+            - source: data.send.datetime
+              type: remove
+        id: zk8kM7Pl8M
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 480
+          'y': 820
+        outputIds:
+          - - CSqXAkciHG
+        type: MutateNode
+      - config:
+          destination: data.packages
+          errorBehavior: throw
+          errorPath: ''
+          source: data.json
+        id: Z1Qlt6pwZH
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 480
+          'y': 740
+        outputIds:
+          - - zk8kM7Pl8M
+        type: JsonDecodeNode
+      - config:
+          functionName: get
+          inputs:
+            - type: str
+              valueTemplate: manufacturing-details
+          outputs:
+            - destinationPath: data.json
+              maxLength: '1024'
+              type: str
+          resultPath: ''
+        id: gB8MS7al9F
+        meta:
+          category: data
+          description: ''
+          label: Manufacturing details
+          name: registered-function
+          x: 480
+          'y': 420
+        outputIds:
+          - - JWEBKjemxQ
+        type: RegisteredFunctionNode
+      - config:
+          destination: data.man
+          errorBehavior: throw
+          errorPath: ''
+          source: data.json
+        id: JWEBKjemxQ
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 480
+          'y': 500
+        outputIds:
+          - - 5lxb1ZO6jT
+        type: JsonDecodeNode
+      - config:
+          rules:
+            - destination: data.send.board
+              source: data.man.board
+              type: move
+            - destination: data.send.mac
+              source: data.man.mac
+              type: move
+            - destination: data.send.material
+              source: data.man.material
+              type: move
+            - destination: data.send.serial
+              source: data.man.serial
+              type: move
+        id: 5lxb1ZO6jT
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 480
+          'y': 580
+        outputIds:
+          - - PHegNcSXGV
+        type: MutateNode
+      - config: {}
+        id: JDKih5FMpf
+        meta:
+          annotationText: Faz a requisição presente no workflow nativo.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 480
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-48PHREhLK_XVOoft_EqBD
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-48PHREhLK_XVOoft_EqBD
+          x: 40
+          'y': 180
+        outputIds:
+          - - uiRclL3ovi
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-BG9_kigYVrZn5Rdn904jS
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-BG9_kigYVrZn5Rdn904jS
+          x: 260
+          'y': 180
+        outputIds:
+          - - nsRgl6qnJ8
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-uBvkpkw1mr2bqphCoulqj
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesGet~-uBvkpkw1mr2bqphCoulqj
+          x: 480
+          'y': 180
+        outputIds:
+          - - AnY9up_B6s
+        type: virtualButton
+version: 1

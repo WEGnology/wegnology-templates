@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example demonstrates how to use the registered Get function to obtain health data and system parameters.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedFeaturesGet~
+    name: Features Get
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example demonstrates how to use the functions related to the database, such as - sql_create_db and sql_query.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedFeaturesSql~
+    name: Features Sql
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

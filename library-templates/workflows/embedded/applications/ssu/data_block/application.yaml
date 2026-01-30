@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example demonstrates how to use the functions related to the SSU connection.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedApplicationsSsuDataBlock~
+    name: Ssu Data Block
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

@@ -1,0 +1,442 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas a conexão
+      SSU.
+    exportHash: 6fdbcbb22705e75eed0b67a5705214f5b2850ff3ae0a21a5ed06fbb7ace13537
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSsuDataBlock~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\ssu\data_block
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "ssu-api/v1/data-block" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: fkIVs4k_84
+        meta:
+          category: output
+          description: ''
+          label: Data Block Subscribe
+          name: mqtt
+          x: 60
+          'y': 240
+        outputIds:
+          - - j_cDTpstyT
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "ssu-api/v1/extended-data-block" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: j_cDTpstyT
+        meta:
+          category: output
+          description: ''
+          label: Extended Data Block Subscribe
+          name: mqtt
+          x: 60
+          'y': 340
+        outputIds:
+          - - PKZXUcJYBN
+        type: MqttMessageNode
+      - config: {}
+        id: y8tyhQH6Cu
+        meta:
+          annotationText: Inicializa se inscrevendo nos tópicos necessários.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 40
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: DsikhvRxU_
+        meta:
+          annotationText: Inscreve-se no tópico do data block.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 240
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: UEsloGpYVZ
+        meta:
+          annotationText: Inscreve-se no tópico da resposta do data block extendido.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 340
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ssu-api/v1/events"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: PKZXUcJYBN
+        meta:
+          category: output
+          description: ''
+          label: Events Subscribe
+          name: mqtt
+          x: 60
+          'y': 440
+        outputIds:
+          - - T66fDMU0_J
+        type: MqttMessageNode
+      - config: {}
+        id: C2McDYKCDB
+        meta:
+          annotationText: Inscreve-se no tópico dos eventos do ssu.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 440
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ssu-api/v1/statistics/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: T66fDMU0_J
+        meta:
+          category: output
+          description: ''
+          label: Statistics Response Subscribe
+          name: mqtt
+          x: 60
+          'y': 540
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: Ryl8obwR97
+        meta:
+          annotationText: Inscreve-se no tópico da resposta das estatísticas do ssu.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 260
+          'y': 540
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: P6CunW_pVH
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1480
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: ssu-api/v1/statistics
+        id: Dh4NzmXjdc
+        meta:
+          category: output
+          description: ''
+          label: Statistics
+          name: mqtt
+          x: 1220
+          'y': 360
+        outputIds:
+          - - mMXA6mJAk0
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: mMXA6mJAk0
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1220
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 3xT8YEBEYx
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1480
+          'y': 360
+        outputIds:
+          - - P6CunW_pVH
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: VC1V4UyjUq
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 920
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: Z_kmIcBMZR
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 920
+          'y': 360
+        outputIds:
+          - - VC1V4UyjUq
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: vty41umvkd
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 720
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: MheDIrywLD
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 720
+          'y': 360
+        outputIds:
+          - - vty41umvkd
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: HFKKX63ZtQ
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 460
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: WlqAF0v_Rn
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 520
+          'y': 360
+        outputIds:
+          - - HFKKX63ZtQ
+        type: JsonDecodeNode
+      - config: {}
+        id: _Jy_7bOrqP
+        meta:
+          annotationText: |
+            Escuta o tópico do data block.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 520
+          'y': 140
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: yTbgg6DPdY
+        meta:
+          annotationText: |
+            Escuta o tópico do extended data block.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 720
+          'y': 140
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: IfMVgtEfVz
+        meta:
+          annotationText: |
+            Escuta o tópico dos eventos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 920
+          'y': 140
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 2YFTo9sPFV
+        meta:
+          annotationText: |
+            Faz uma requisição das estatísticas do SSU.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 1200
+          'y': 140
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: cpZuOD0gpw
+        meta:
+          annotationText: |
+            Escuta a requisição das estatísticas do SSU.
+
+            - **data.counter** => Objeto contendo os contadores do SSU.
+            - **data.runtime** => Tempo de apuração.
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 260
+          x: 1440
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: JwfUDWpbt7DEf1YC3cTHA
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: Y3KokKgKMe
+          x: 60
+          'y': 140
+        outputIds:
+          - - fkIVs4k_84
+        type: onBoot
+      - config: {}
+        key: ssu-api/v1/data-block
+        meta:
+          category: trigger
+          description: ''
+          label: Data Block
+          name: mqtt
+          uiId: wXGfn1n9cW
+          x: 520
+          'y': 260
+        outputIds:
+          - - WlqAF0v_Rn
+        type: mqttTopic
+      - config: {}
+        key: ssu-api/v1/extended-data-block
+        meta:
+          category: trigger
+          description: ''
+          label: Extended Data Block
+          name: mqtt
+          uiId: qYK2mNWoIz
+          x: 720
+          'y': 260
+        outputIds:
+          - - MheDIrywLD
+        type: mqttTopic
+      - config: {}
+        key: ssu-api/v1/events
+        meta:
+          category: trigger
+          description: ''
+          label: Events
+          name: mqtt
+          uiId: 3b8nN_oHKo
+          x: 920
+          'y': 260
+        outputIds:
+          - - Z_kmIcBMZR
+        type: mqttTopic
+      - config: {}
+        key: ssu-api/v1/statistics/response
+        meta:
+          category: trigger
+          description: ''
+          label: Statistics Response
+          name: mqtt
+          uiId: B7fugsxIrZ
+          x: 1480
+          'y': 260
+        outputIds:
+          - - 3xT8YEBEYx
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSsuDataBlock~-DC9ALeX3ARsDfZ2opBgvV
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsSsuDataBlock~-DC9ALeX3ARsDfZ2opBgvV
+          x: 1220
+          'y': 260
+        outputIds:
+          - - Dh4NzmXjdc
+        type: virtualButton
+version: 1

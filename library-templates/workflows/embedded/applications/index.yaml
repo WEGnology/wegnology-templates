@@ -1,0 +1,8 @@
+name: Applications
+description: This category comprises APIs that are accessible on the device
+ but are not inherently native to the WEGnology platform, necessitating additional
+ steps for their utilization. These APIs offer a broad array of functionalities,
+ including MODBUS communication, IOs, SSU, and more. The provided templates feature
+ pre-built workflows that ensure the proper application of the APIs,
+ ranging from subscribing to topics within the API to effectively leveraging their capabilities.
+resourceTypes: null

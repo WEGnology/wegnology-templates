@@ -1,0 +1,762 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas as
+      manipulações das IO's.
+    exportHash: 072424aa2db2a61bfd1152b46fa34ab469130da69e49a62b31949fce5133a3a3
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\ios\data_manipulation
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "ios-api/v1/input/reset/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: bRW7Bti4D_
+        meta:
+          category: output
+          description: ''
+          label: Input Reset Response Subscribe
+          name: mqtt
+          x: 100
+          'y': 260
+        outputIds:
+          - - J3RoMY2IF9
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "ios-api/v1/output/set/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: J3RoMY2IF9
+        meta:
+          category: output
+          description: ''
+          label: Output Set Response Subscribe
+          name: mqtt
+          x: 100
+          'y': 360
+        outputIds:
+          - - oca6147Nrt
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "ios-api/v1/output/set-multiple/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: oca6147Nrt
+        meta:
+          category: output
+          description: ''
+          label: Output Set Multiple Response Subscribe
+          name: mqtt
+          x: 100
+          'y': 460
+        outputIds:
+          - - _xqR56dzyv
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "ios-api/v1/inputs/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: _xqR56dzyv
+        meta:
+          category: output
+          description: ''
+          label: Inputs Response Subscribe
+          name: mqtt
+          x: 100
+          'y': 560
+        outputIds: []
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: gIWChrMSYN
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 960
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: GcIlFwNBqV
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 960
+          'y': 340
+        outputIds:
+          - - gIWChrMSYN
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: OXpnsUmxH1
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1800
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 0fqTkSIHWj
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1800
+          'y': 340
+        outputIds:
+          - - OXpnsUmxH1
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: XsZyl8FBmh
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1380
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{{data.msg}}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/output/set
+        id: vk3Rjh2vIz
+        meta:
+          category: output
+          description: ''
+          label: Output Set
+          name: mqtt
+          x: 1380
+          'y': 340
+        outputIds:
+          - - XsZyl8FBmh
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{{data.msg}}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/input/reset
+        id: 7vNpb85F0S
+        meta:
+          category: output
+          description: ''
+          label: Input Reset
+          name: mqtt
+          x: 660
+          'y': 340
+        outputIds:
+          - - sLEWLKJkdH
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: sLEWLKJkdH
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: lo0EiEtkFI
+        meta:
+          annotationText: >-
+            Reseta o contador da entrada selecionada através da publicação no
+            tópico *ios-api/v1/input/reset*.
+
+
+            - **data.msg** => Objeto da entrada a ser resetada.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 620
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: kfLUlddFyB
+        meta:
+          annotationText: |-
+            Escuta a requisição do reset e recebe a resposta.
+
+            - **data.name/ref_name** => Nome informado na requisição.
+            - **data.result** => Resultado do comando.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 920
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: ePRF_uVEov
+        meta:
+          annotationText: >
+            O objeto deve ter as seguintes características:
+
+
+            - **ref_name OU name** => Nome da entrada configurada pelo usuário
+            **OU** nome da entrada definida pelo hardware.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 620
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: dEG1LE6Ntt
+        meta:
+          annotationText: |-
+            Altera a saída selecionada para ligada.
+
+            - **data.msg** => Objeto da saída a ser ligada.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 1220
+          'y': 80
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 83RqL_BMQ9
+        meta:
+          annotationText: |-
+            Altera a saída selecionada para desligada.
+
+            - **data.msg** => Objeto da saída a ser desligada.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 1500
+          'y': 80
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: ooD66LWD79
+        meta:
+          annotationText: |
+            O objeto deve ter as seguintes características:
+
+            - **ref_name OU name** => nome da saída. (Obrigatório)
+            - **active** => Estado da saída(true ou false). (Obrigatório)
+            - **duration** => Intervalo para a operação transiente. (Opcional)
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 260
+          x: 1340
+          'y': 540
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: Vamw7LAL2L
+        meta:
+          annotationText: |-
+            Escuta a requisição do set e recebe a resposta.
+
+            - **data.name/ref_name** => Nome informado na requisição.
+            - **data.result** => Resultado do comando.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 1760
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 1t23hlbDth
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1820
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: EzHosnUy8n
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1820
+          'y': 1200
+        outputIds:
+          - - 1t23hlbDth
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: AAJLVYzS6M
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1400
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{{data.msg}}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/output/set-multiple
+        id: akAzAvtUad
+        meta:
+          category: output
+          description: ''
+          label: Output Set Multiple
+          name: mqtt
+          x: 1400
+          'y': 1200
+        outputIds:
+          - - AAJLVYzS6M
+        type: MqttMessageNode
+      - config: {}
+        id: oRGtXfMWiZ
+        meta:
+          annotationText: |-
+            Altera as saídas selecionadas para ligada.
+
+            - **data.msg** => Tabela das saídas a serem ligadas.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 220
+          x: 1240
+          'y': 940
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: uEyBgswxxC
+        meta:
+          annotationText: |-
+            Altera as saídas selecionadas para desligada.
+
+            - **data.msg** => Tabela das saídas a serem desligadas.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 220
+          x: 1520
+          'y': 900
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 59fbTrK1f_
+        meta:
+          annotationText: |
+            Cada objeto da tabela deve ter as seguintes características:
+
+            - **ref_name OU name** => nome da saída. (Obrigatório)
+            - **active** => Estado da saída(true ou false). (Obrigatório)
+            - **duration** => Intervalo para a operação transiente. (Opcional)
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 260
+          x: 1360
+          'y': 1400
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: j_I00X5iRI
+        meta:
+          annotationText: |-
+            Escuta a requisição do set e recebe a resposta.
+
+            - **data.name/ref_name** => Nome informado na requisição.
+            - **data.result** => Resultado do comando.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 1780
+          'y': 900
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: sm6OXbko97
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 960
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: hNDf5FqoOb
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 960
+          'y': 1200
+        outputIds:
+          - - sm6OXbko97
+        type: JsonDecodeNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ios-api/v1/inputs
+        id: vGto1BnFli
+        meta:
+          category: output
+          description: ''
+          label: Inputs
+          name: mqtt
+          x: 660
+          'y': 1200
+        outputIds:
+          - - swophkL16e
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: swophkL16e
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 1300
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: I0eiCzNYkd
+        meta:
+          annotationText: Solicita a lista de entradas configuradas e seus valores.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 620
+          'y': 980
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: tnBD3Fl5cL
+        meta:
+          annotationText: >-
+            Escuta a requisição do status das entradas
+
+
+            - **data.[]** => Lista dos objetos contendo as informações sobre as
+            entradas.
+
+            - **[].name** => Nome da entrada definido pela configuração.
+
+            - **[].ref_name** => Nome da entrada descrito pelo hardware.
+
+            - **[].active** => Estado atual da entrada
+
+            - **[].counter** => Contador.
+          category: annotation
+          height: 260
+          label: Note
+          name: note
+          width: 300
+          x: 900
+          'y': 820
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: B1niIHW45h
+        meta:
+          annotationText: Inicializa se inscrevendo nos tópicos necessários.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 80
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: c5gDqlSTH2
+        meta:
+          annotationText: Inscreve-se no tópico da resposta do input reset.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 240
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 8w7lk5ojt1
+        meta:
+          annotationText: Inscreve-se no tópico da resposta do output set.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 340
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: s3Kg3NNv1J
+        meta:
+          annotationText: Inscreve-se no tópico da resposta do input status.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 540
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 0NQe3wt1Bt
+        meta:
+          annotationText: Inscreve-se no tópico da resposta do multiple output set.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 440
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: ios-api/v1/input/reset/response
+        meta:
+          category: trigger
+          description: ''
+          label: Input Reset Response
+          name: mqtt
+          uiId: ylwoY5Du3Z
+          x: 960
+          'y': 240
+        outputIds:
+          - - GcIlFwNBqV
+        type: mqttTopic
+      - config: {}
+        key: JwfUDWpbt7DEf1YC3cTHA
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: Rg2JOXfs5j
+          x: 100
+          'y': 160
+        outputIds:
+          - - bRW7Bti4D_
+        type: onBoot
+      - config: {}
+        key: ios-api/v1/output/set/response
+        meta:
+          category: trigger
+          description: ''
+          label: Output Set Response
+          name: mqtt
+          uiId: tGdct7xOpF
+          x: 1800
+          'y': 240
+        outputIds:
+          - - 0fqTkSIHWj
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-vCBPEbMMIIuY3JQEP5ALj
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"msg\":\r\n  {\r\n    \"ref_name\": \"OUT0\",\r\n    \"active\":true\r\n  }\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-vCBPEbMMIIuY3JQEP5ALj
+          x: 1240
+          'y': 240
+        outputIds:
+          - - vk3Rjh2vIz
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-Srgf0P9BX361F7YVjQdnX
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"msg\":\r\n  {\r\n    \"ref_name\": \"OUT0\",\r\n    \"active\":false\r\n  }\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-Srgf0P9BX361F7YVjQdnX
+          x: 1520
+          'y': 240
+        outputIds:
+          - - vk3Rjh2vIz
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-i5TECBBUKWI0i40YjqIFb
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"msg\":\r\n    {\r\n     \"ref_name\":\"DI1\"\r\n    }\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-i5TECBBUKWI0i40YjqIFb
+          x: 660
+          'y': 240
+        outputIds:
+          - - 7vNpb85F0S
+        type: virtualButton
+      - config: {}
+        key: ios-api/v1/output/set-multiple/response
+        meta:
+          category: trigger
+          description: ''
+          label: Output Set Multiple Response
+          name: mqtt
+          uiId: O4XmRkS1sx
+          x: 1820
+          'y': 1100
+        outputIds:
+          - - EzHosnUy8n
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-13bhP5jcIKk8brmzk41KS
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"msg\":\r\n  [\r\n    {\r\n      \"ref_name\": \"OUT0\",\r\n      \"active\":true\r\n    },\r\n    {\r\n      \"ref_name\": \"OUT1\",\r\n      \"active\":false\r\n    }\r\n  ]\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-13bhP5jcIKk8brmzk41KS
+          x: 1260
+          'y': 1100
+        outputIds:
+          - - akAzAvtUad
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-1Azd0Zxhp9fZrTFsam65I
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"msg\":\r\n  [\r\n    {\r\n      \"ref_name\": \"OUT0\",\r\n      \"active\":true\r\n    },\r\n    {\r\n      \"ref_name\": \"OUT1\",\r\n      \"active\":false\r\n    }\r\n  ]\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-1Azd0Zxhp9fZrTFsam65I
+          x: 1540
+          'y': 1100
+        outputIds:
+          - - akAzAvtUad
+        type: virtualButton
+      - config: {}
+        key: ios-api/v1/inputs/response
+        meta:
+          category: trigger
+          description: ''
+          label: Inputs Response
+          name: mqtt
+          uiId: iQaP33UGIg
+          x: 960
+          'y': 1100
+        outputIds:
+          - - hNDf5FqoOb
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-7gUic9DRIRXWxcTxytNjo
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: '{}'
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsIosDataManipulation~-7gUic9DRIRXWxcTxytNjo
+          x: 660
+          'y': 1100
+        outputIds:
+          - - vGto1BnFli
+        type: virtualButton
+version: 1

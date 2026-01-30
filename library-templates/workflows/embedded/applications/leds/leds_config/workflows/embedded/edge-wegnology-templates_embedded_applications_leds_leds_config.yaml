@@ -1,0 +1,983 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar a API relacionada ao acionamento e
+      monitoramento dos LED's.
+    exportHash: cee9be20d5a8165bd35f1ce59951d6e03183f1f1d867d64c9758e06fc7170b88
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\leds\leds_config
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/errors" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: u_Mfk1jQoL
+        meta:
+          category: output
+          description: ''
+          label: Errors Subscribe
+          name: mqtt
+          x: 40
+          'y': 240
+        outputIds:
+          - - A_3T8UGAzZ
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/user-leds/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: A_3T8UGAzZ
+        meta:
+          category: output
+          description: ''
+          label: User Leds Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 340
+        outputIds:
+          - - D0dCx1cmSW
+        type: MqttMessageNode
+      - config: {}
+        id: IrbYtqPyJq
+        meta:
+          annotationText: Inicializa se inscrevendo nos tópicos necessários.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 5p730jySbV
+        meta:
+          annotationText: Inscreve-se no tópico de erros dos LED's.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 220
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 5gzqZlGflz
+        meta:
+          annotationText: Inscreve-se no tópico de resposta de LED's disponíveis.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 320
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/toggle/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: D0dCx1cmSW
+        meta:
+          category: output
+          description: ''
+          label: Toggle Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 440
+        outputIds:
+          - - ylLzs06t8e
+        type: MqttMessageNode
+      - config: {}
+        id: bqIEAKKpfE
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da inverção do estado dos LED's.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 420
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/set/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: ylLzs06t8e
+        meta:
+          category: output
+          description: ''
+          label: Set Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 560
+        outputIds:
+          - - DCcw5dHMuY
+        type: MqttMessageNode
+      - config: {}
+        id: wYFtuQvCUp
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da configuração de set dos LED's.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 540
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/blink/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: DCcw5dHMuY
+        meta:
+          category: output
+          description: ''
+          label: Blink Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 680
+        outputIds:
+          - - _F4qi57Ef4
+        type: MqttMessageNode
+      - config: {}
+        id: 61rUa0N5MV
+        meta:
+          annotationText: >-
+            Inscreve-se no tópico de resposta da configuração de pisca dos
+            LED's.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 660
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "leds-api/v1/function/none/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: _F4qi57Ef4
+        meta:
+          category: output
+          description: ''
+          label: Function None Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 800
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: uEeLpmZbSo
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da desconfiguração dos LED's.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 780
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: XluNxEFcGE
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 620
+          'y': 320
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: LhXcYco0Q9
+        meta:
+          annotationText: Faz a requisição de LED's disponíveis para o usuário.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 860
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/user-leds
+        id: cwDJ8CWGQ9
+        meta:
+          category: output
+          description: ''
+          label: User Leds
+          name: mqtt
+          x: 880
+          'y': 320
+        outputIds:
+          - - 5c7EilNcle
+        type: MqttMessageNode
+      - config: {}
+        id: VkuPCzVEdi
+        meta:
+          annotationText: Escuta as publicações no tópico de erros dos LED's.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 600
+          'y': 100
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 5c7EilNcle
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 880
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: G4AGYn39af
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1160
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: OBHSY8CDSt
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1160
+          'y': 320
+        outputIds:
+          - - G4AGYn39af
+        type: JsonDecodeNode
+      - config: {}
+        id: 7ev3rvr9Cb
+        meta:
+          annotationText: >-
+            Escuta a requisição de LED's disponíveis.
+
+
+            - **data.data.message.user-leds** => LED's disponíveis para o
+            usuário utilizar.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1120
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: sZpDHMybsa
+        meta:
+          annotationText: >-
+            Faz a requisição da inversão de um ou mais LED's
+
+
+            - **payload** => Comando contendo as informações sobre o LED's a ser
+            invertido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1400
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data.json}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/toggle
+        id: 0fQiB6d1oJ
+        meta:
+          category: output
+          description: ''
+          label: Toggle
+          name: mqtt
+          x: 1440
+          'y': 420
+        outputIds:
+          - - B5wURWifv7
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: B5wURWifv7
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1440
+          'y': 520
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: LHOVdUrZEA
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1720
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: ijSvXI8_4v
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1720
+          'y': 320
+        outputIds:
+          - - LHOVdUrZEA
+        type: JsonDecodeNode
+      - config: {}
+        id: bhgrRV0iwD
+        meta:
+          annotationText: |-
+            Escuta a requisição da inversão de LED's.
+
+            - **data.data** => Retorna a situação do comando.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1680
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data.json
+          source: data
+        id: dzS_BkFVOf
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 1440
+          'y': 320
+        outputIds:
+          - - 0fQiB6d1oJ
+        type: JsonEncodeNode
+      - config: {}
+        id: gRJds0mcB7
+        meta:
+          annotationText: |-
+            O payload deve conter:
+            - **leds** => Objeto contendo os LED's.
+            - **leds.tag** => Nome do LED.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 1400
+          'y': 600
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: dhnbWZrGgO
+        meta:
+          annotationText: >
+            Faz a requisição para setar o estado de um ou mais LED's.
+
+
+            - **payload** => Comando contendo as informações sobre o LED's a ser
+            invertido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 560
+          'y': 760
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data.json}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/set
+        id: qUbuS78DkT
+        meta:
+          category: output
+          description: ''
+          label: Set
+          name: mqtt
+          x: 600
+          'y': 1140
+        outputIds:
+          - - 1rSp9rhdhY
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 1rSp9rhdhY
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 600
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: osxllv1k1r
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 880
+          'y': 1140
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: xpFzH3b1SF
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 880
+          'y': 1040
+        outputIds:
+          - - osxllv1k1r
+        type: JsonDecodeNode
+      - config: {}
+        id: 4xeiBykP5q
+        meta:
+          annotationText: |-
+            Escuta a requisição da inversão de set dos LED's.
+
+            - **data.data** => Retorna a situação do comando.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 840
+          'y': 760
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data.json
+          source: data
+        id: me6GtQtM1G
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 600
+          'y': 1040
+        outputIds:
+          - - qUbuS78DkT
+        type: JsonEncodeNode
+      - config: {}
+        id: RkoeESjprx
+        meta:
+          annotationText: |-
+            O payload deve conter:
+            - **leds** => Objeto contendo os LED's.
+            - **leds.tag** => Nome do LED.
+            - **leds.state** => Estado que será esperado do LED.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 560
+          'y': 1320
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: qkBY0323ct
+        meta:
+          annotationText: >
+            Faz a requisição para ativar o modo de pisca para o LED.
+
+
+            - **payload** => Comando contendo as informações sobre o LED's a ser
+            invertido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1120
+          'y': 760
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data.json}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/blink
+        id: cMl7XTCKL2
+        meta:
+          category: output
+          description: ''
+          label: Blink
+          name: mqtt
+          x: 1160
+          'y': 1140
+        outputIds:
+          - - nD2V1RF7YJ
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: nD2V1RF7YJ
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1160
+          'y': 1240
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 9J6DSz6yIU
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1440
+          'y': 1140
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: dYc7ftBo5z
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1440
+          'y': 1040
+        outputIds:
+          - - 9J6DSz6yIU
+        type: JsonDecodeNode
+      - config: {}
+        id: SATgGZ414C
+        meta:
+          annotationText: |-
+            Escuta a requisição do modo de pisca para o LED.
+
+            - **data.data** => Retorna a situação do comando.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1400
+          'y': 760
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data.json
+          source: data
+        id: _X4KSgiJMO
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 1160
+          'y': 1040
+        outputIds:
+          - - cMl7XTCKL2
+        type: JsonEncodeNode
+      - config: {}
+        id: M91MTrYevf
+        meta:
+          annotationText: >-
+            O payload deve conter:
+
+            - **leds** => Objeto contendo os LED's.
+
+            - **leds.tag** => Nome do LED.
+
+            - **leds.blinkInterval** => Intervalo de tempo entre ligado e
+            desligado (ms).
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 260
+          x: 1120
+          'y': 1320
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: ZHNsF9HzNV
+        meta:
+          annotationText: >
+            Faz a requisição para desabilitar todas as funções do LED.
+
+
+            - **payload** => Comando contendo as informações sobre o LED's a ser
+            desconfigurado.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 560
+          'y': 1540
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data.json}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/function/none
+        id: HTAZ6x00q4
+        meta:
+          category: output
+          description: ''
+          label: Function None
+          name: mqtt
+          x: 600
+          'y': 1920
+        outputIds:
+          - - zuNyl17l7O
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: zuNyl17l7O
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 600
+          'y': 2020
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: nd0aDOT68J
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 880
+          'y': 1920
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: QHaGydplfb
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 880
+          'y': 1820
+        outputIds:
+          - - nd0aDOT68J
+        type: JsonDecodeNode
+      - config: {}
+        id: pzd_X4EAkG
+        meta:
+          annotationText: |-
+            Escuta a requisição de desabilitar todas as funções do LED.
+
+            - **data.data** => Retorna a situação do comando.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 840
+          'y': 1540
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data.json
+          source: data
+        id: FIlbnxmwW7
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 600
+          'y': 1820
+        outputIds:
+          - - HTAZ6x00q4
+        type: JsonEncodeNode
+      - config: {}
+        id: cIPlucSdPn
+        meta:
+          annotationText: |-
+            O payload deve conter:
+            - **leds** => Objeto contendo os LED's.
+            - **leds.tag** => Nome do LED.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 560
+          'y': 2100
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: JwfUDWpbt7DEf1YC3cTHA
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: zTnEF8cWtH
+          x: 40
+          'y': 140
+        outputIds:
+          - - u_Mfk1jQoL
+        type: onBoot
+      - config: {}
+        key: leds-api/v1/errors
+        meta:
+          category: trigger
+          description: ''
+          label: Errors
+          name: mqtt
+          uiId: IXsvr5sz_t
+          x: 620
+          'y': 220
+        outputIds:
+          - - XluNxEFcGE
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-cZ_vA4_t92xf3ajE2gr96
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-cZ_vA4_t92xf3ajE2gr96
+          x: 880
+          'y': 220
+        outputIds:
+          - - cwDJ8CWGQ9
+        type: virtualButton
+      - config: {}
+        key: leds-api/v1/user-leds/response
+        meta:
+          category: trigger
+          description: ''
+          label: User Leds Response
+          name: mqtt
+          uiId: OOkgl3WaU4
+          x: 1160
+          'y': 220
+        outputIds:
+          - - OBHSY8CDSt
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-LPqWfBgYoNZyrOpcE2jcb
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"leds\":\r\n  [\r\n    {\"tag\":\"US2:red\"}\r\n  ]\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-LPqWfBgYoNZyrOpcE2jcb
+          x: 1440
+          'y': 220
+        outputIds:
+          - - dzS_BkFVOf
+        type: virtualButton
+      - config: {}
+        key: leds-api/v1/toggle/response
+        meta:
+          category: trigger
+          description: ''
+          label: Toggle Response
+          name: mqtt
+          uiId: H4XaZwMFX0
+          x: 1720
+          'y': 220
+        outputIds:
+          - - ijSvXI8_4v
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-inDSoakW25HZzC0397JTm
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"leds\":\r\n  [\r\n    {\r\n      \"tag\":\"US2:red\",\r\n      \"state\":\"on\"\r\n     }\r\n  ]\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-inDSoakW25HZzC0397JTm
+          x: 600
+          'y': 940
+        outputIds:
+          - - me6GtQtM1G
+        type: virtualButton
+      - config: {}
+        key: leds-api/v1/set/response
+        meta:
+          category: trigger
+          description: ''
+          label: Set Response
+          name: mqtt
+          uiId: KPq5LsdXQe
+          x: 880
+          'y': 940
+        outputIds:
+          - - xpFzH3b1SF
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-cYEVKdPFVhLihE0wZvs3H
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"leds\":\r\n  [\r\n    {\r\n      \"tag\":\"US2:red\",\r\n      \"blinkInterval\":100\r\n     }\r\n  ]\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-cYEVKdPFVhLihE0wZvs3H
+          x: 1160
+          'y': 940
+        outputIds:
+          - - _X4KSgiJMO
+        type: virtualButton
+      - config: {}
+        key: leds-api/v1/blink/response
+        meta:
+          category: trigger
+          description: ''
+          label: Blink Response
+          name: mqtt
+          uiId: YdBHc3fy46
+          x: 1440
+          'y': 940
+        outputIds:
+          - - dYc7ftBo5z
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-nZLHpw_OtPIZM12BUsf1d
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"leds\":\r\n  [\r\n    {\r\n      \"tag\":\"US2:red\"\r\n     }\r\n  ]\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsLedsLedsConfig~-nZLHpw_OtPIZM12BUsf1d
+          x: 600
+          'y': 1720
+        outputIds:
+          - - FIlbnxmwW7
+        type: virtualButton
+      - config: {}
+        key: leds-api/v1/function/none/response
+        meta:
+          category: trigger
+          description: ''
+          label: Function None Response
+          name: mqtt
+          uiId: lVa08_sIMz
+          x: 880
+          'y': 1720
+        outputIds:
+          - - QHaGydplfb
+        type: mqttTopic
+version: 1

@@ -1,0 +1,3050 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Este workflow realiza o armazenamento de mensagens dos períodos em que não
+      há conexão com o broker remoto.
+
+      A partir do momento que a conexão é reestabelecida, as mensagens são
+      extraídas do armazenamento e publicadas.
+
+
+      Para utilizá-lo, substitua o **Device State** do seu workflow por um bloco
+      MQTT com o tópico **persistence**.
+    exportHash: 4029f189486b1432bf263dee4154b2403e17dcf445840518ec8a958b6cb4af33
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesPersistence~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\persistence
+    nodes:
+      - config:
+          rules:
+            - destination: data
+              type: set
+              valueTemplate: '{ "vazio": "" }'
+              valueTemplateType: json
+        id: CFe36SqQv9
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 60
+          'y': 380
+        outputIds:
+          - - fkdfkFfxu5
+        type: MutateNode
+      - config:
+          functionName: sql_create_db
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+          outputs: []
+          resultPath: return
+        id: fkdfkFfxu5
+        meta:
+          category: data
+          description: ''
+          label: sql_create_db
+          name: registered-function
+          x: 60
+          'y': 460
+        outputIds:
+          - - 5VfbnyBjSy
+        type: RegisteredFunctionNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: >-
+                CREATE TABLE Received (id INTEGER PRIMARY KEY, data TEXT NOT
+                NULL, topic TEXT NOT NULL, api TEXT NOT NULL, deviceid TEXT NOT
+                NULL)
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.result
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: 5VfbnyBjSy
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 60
+          'y': 540
+        outputIds:
+          - - KsFVeWNGYI
+        type: RegisteredFunctionNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.delete
+              maxLength: '10240'
+              type: str
+          resultPath: return
+        id: cXdUmj3Hha
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 1820
+          'y': 1440
+        outputIds:
+          - - HXRdZhIFCD
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: 'DELETE FROM Received WHERE id IN ({{send.key}})'
+              valueTemplateType: string
+        id: u4fAeZNkvP
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 1820
+          'y': 1360
+        outputIds:
+          - - cXdUmj3Hha
+        type: MutateNode
+      - config:
+          destination: dec
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: Nb7KxJUyPD
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 500
+          'y': 220
+        outputIds:
+          - - X5kdJIUcCi
+        type: JsonDecodeNode
+      - config:
+          code: |-
+            use serde_json::{Result, Value};
+            let mut dec = json!("");
+
+            let mut pl = json!({});
+
+            if (payload["dec"].is_array()){
+              let Values = json!(payload["dec"]);
+              for x in 0..Values.as_array().unwrap().len(){
+                pl = json!({});
+                dec = json!(payload["dec"][x]);
+                if (json!(dec.get("time")).is_null()){
+                  let time = payload["time"].as_u64().unwrap();
+                  payload["dec"][x]["time"] = json!(time/1000);
+                }
+                if (json!(dec.get("id")).is_null()){
+                  if (json!(dec.get("topic")).is_null()){
+                    payload["dec"][x]["topic"] = json!("state");
+                  }
+                } else {
+                  if (json!(dec.get("topic")).is_null()){
+                    payload["dec"][x]["topic"] = json!("edge/*/eea/peripherals");
+                  }
+                }
+                //if (json!(dec.get("topic")).is_null()){
+                //  payload["dec"][x]["topic"] = json!("state");
+                //}
+                //if (dec["send"].to_string().len() < 8000){
+                //  payload["dec"][x]["api"] = json!("unknow");
+                //} else {
+                //  payload["dec"][x]["api"] =json!("modbus");
+                //}
+              }
+              payload["topic"] = json!(payload["dec"][0]["topic"]);
+              payload["array"] = json!(true);
+            } else {
+              dec = json!(payload["dec"]);
+              if (json!(dec.get("time")).is_null()){
+                let time = payload["time"].as_u64().unwrap();
+                payload["dec"]["time"] = json!(time/1000);
+              }
+              if (json!(dec.get("id")).is_null()){
+                if (json!(dec.get("topic")).is_null()){
+                  payload["dec"]["topic"] = json!("state");
+                }
+              } else {
+                if (json!(dec.get("topic")).is_null()){
+                  payload["dec"]["topic"] = json!("edge/*/eea/peripherals");
+                }
+              }
+              //if (json!(dec.get("topic")).is_null()){
+              //  payload["dec"]["topic"] = json!("state");
+              //}
+              //if (dec["send"].to_string().len() < 8000){
+              //  payload["dec"]["api"] = json!("unknow");
+              //} else {
+              //  payload["dec"]["api"] =json!("modbus");
+              //}
+              payload["topic"] = json!(payload["dec"]["topic"]);
+              payload["array"] = json!(false);
+            }
+
+            //if (json!(dec.get("api")).is_null()){
+            //  payload["dec"]["api"] = json!("unknow");
+            //}
+        id: X5kdJIUcCi
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 500
+          'y': 300
+        outputIds:
+          - - mnoZXNFABo
+        type: RustFunctionNode
+      - config:
+          expression: '{{isConnectedToWnology}}'
+        id: e9Os2zWExV
+        meta:
+          category: logic
+          description: ''
+          label: Is Connected?
+          name: conditional
+          x: 1580
+          'y': 220
+        outputIds:
+          - - HXRdZhIFCD
+          - - xfVVX9EcJq
+        type: ConditionalNode
+      - config: {}
+        id: LBALSrhtop
+        meta:
+          annotationText: Cria o banco de dados para armazenar mensagens.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 200
+          x: 60
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: c_Yuvb4trM
+        meta:
+          annotationText: >-
+            Aguarda o recebimento de mensagens, armazena no banco de dados
+            quando não houver conexão com o broker remoto.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 560
+          x: 380
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: pgQcOwyAoZ
+        meta:
+          annotationText: >-
+            Publica as mensagens armazenadas no banco de dados, quando houver
+            conexão com o broker remoto.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 420
+          x: 1580
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.id
+              maxLength: '25600'
+              type: str
+          resultPath: return
+        id: I_PCRjfgQj
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 1800
+          'y': 380
+        outputIds:
+          - - i1u2HbJFxw
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: 'SELECT DISTINCT topic, deviceId FROM Received'
+              valueTemplateType: string
+            - destination: data
+              type: set
+              valueTemplate: '{ "vazio": "" ,"key":"-1"}'
+              valueTemplateType: json
+            - destination: send
+              type: set
+              valueTemplate: '{ "array":[], "key": "-1" }'
+              valueTemplateType: json
+            - destination: travel
+              type: set
+              valueTemplate: >-
+                {"array":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],"state":[0,1,2,3,4]}
+              valueTemplateType: json
+        id: xfVVX9EcJq
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 1800
+          'y': 300
+        outputIds:
+          - - I_PCRjfgQj
+        type: MutateNode
+      - config:
+          destination: data.id
+          errorBehavior: throw
+          errorPath: ''
+          source: data.id
+        id: i1u2HbJFxw
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1800
+          'y': 460
+        outputIds:
+          - - 0iMgIx629H
+        type: JsonDecodeNode
+      - config:
+          expression: '{{data.id.[0].[0]}} && {{return}} == 0'
+        id: 0iMgIx629H
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1800
+          'y': 540
+        outputIds:
+          - - HXRdZhIFCD
+          - - q4ikF5FOiU
+        type: ConditionalNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: travel.array
+        id: X0fg6F30bO
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 1800
+          'y': 860
+        outputIds:
+          - - XB_TNRGn3S
+          - - zKCttuxnYC
+        type: LoopNode
+      - config:
+          loopNodeId: X0fg6F30bO
+          shouldBreak: false
+        id: ll461v7D7h
+        meta:
+          category: loop
+          description: ''
+          groupId: X0fg6F30bO
+          label: Next
+          name: loop-next
+          x: 240
+          'y': 780
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: >-
+                SELECT id, data, topic FROM Received WHERE topic LIKE
+                '{{data.id.[0].[0]}}' AND deviceId LIKE '{{data.id.[0].[1]}}'
+                AND api = 'modbus' AND id NOT IN (SELECT id FROM Received WHERE
+                id IN ({{data.key}})) ORDER BY ROWID ASC LIMIT 1
+              valueTemplateType: string
+            - destination: data.sql
+              type: set
+              valueTemplate: '[]'
+              valueTemplateType: string
+        id: zKCttuxnYC
+        meta:
+          category: logic
+          description: ''
+          groupId: X0fg6F30bO
+          label: Mutate
+          name: mutate
+          x: 240
+          'y': 280
+        outputIds:
+          - - XYUzE6FhuK
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.sql
+              maxLength: '25600'
+              type: str
+          resultPath: return
+        id: XYUzE6FhuK
+        meta:
+          category: data
+          description: ''
+          groupId: X0fg6F30bO
+          label: sql_query
+          name: registered-function
+          x: 240
+          'y': 360
+        outputIds:
+          - - GGgEGvT7ZQ
+        type: RegisteredFunctionNode
+      - config:
+          destArrayPath: data.result
+          rules:
+            - inputTemplate: '{{data.sql.[0]}}'
+              type: push
+          sourceArrayPath: data.result
+        id: kgGTnaR5Sp
+        meta:
+          category: logic
+          description: ''
+          groupId: X0fg6F30bO
+          label: Array
+          name: array
+          x: 320
+          'y': 600
+        outputIds:
+          - - JeMjn0Ul_6
+        type: ArrayNode
+      - config:
+          expression: '{{data.sql}} != "[]" && {{return}} == 0'
+        id: GGgEGvT7ZQ
+        meta:
+          category: logic
+          description: ''
+          groupId: X0fg6F30bO
+          label: Conditional
+          name: conditional
+          x: 240
+          'y': 440
+        outputIds:
+          - - ll461v7D7h
+          - - PneCC9OanN
+        type: ConditionalNode
+      - config:
+          destination: data.sql
+          errorBehavior: throw
+          errorPath: ''
+          source: data.sql
+        id: PneCC9OanN
+        meta:
+          category: logic
+          description: ''
+          groupId: X0fg6F30bO
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 320
+          'y': 520
+        outputIds:
+          - - kgGTnaR5Sp
+        type: JsonDecodeNode
+      - config:
+          rules:
+            - destination: data.key
+              type: set
+              valueTemplate: '{{data.key}},{{data.sql.[0].[0]}}'
+              valueTemplateType: string
+        id: JeMjn0Ul_6
+        meta:
+          category: logic
+          description: ''
+          groupId: X0fg6F30bO
+          label: Mutate
+          name: mutate
+          x: 320
+          'y': 680
+        outputIds:
+          - - ll461v7D7h
+        type: MutateNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: >-
+                SELECT id, data, topic FROM Received WHERE topic LIKE
+                '{{data.id.[0].[0]}}' AND deviceId LIKE '{{data.id.[0].[1]}}'
+                AND api = 'unknow' ORDER BY ROWID ASC LIMIT 1
+              valueTemplateType: string
+            - destination: data.result
+              type: set
+              valueTemplate: '[]'
+              valueTemplateType: string
+        id: q4ikF5FOiU
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 1920
+          'y': 620
+        outputIds:
+          - - KIno9QHAjo
+        type: MutateNode
+      - config:
+          expression: '{{return}} == 0 && {{data.result}} != "[]"'
+        id: F5EJjYmjDf
+        meta:
+          category: logic
+          description: ''
+          label: Any short messages?
+          name: conditional
+          x: 1920
+          'y': 780
+        outputIds:
+          - - X0fg6F30bO
+          - - YdFlEL7l3n
+        type: ConditionalNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.result
+              maxLength: '25600'
+              type: str
+          resultPath: return
+        id: KIno9QHAjo
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 1920
+          'y': 700
+        outputIds:
+          - - F5EJjYmjDf
+        type: RegisteredFunctionNode
+      - config:
+          expression: '{{data.result}} != "[]"'
+        id: XB_TNRGn3S
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1800
+          'y': 940
+        outputIds:
+          - - HXRdZhIFCD
+          - - _CI_M9cdTZ
+        type: ConditionalNode
+      - config:
+          messageTemplate: '{{data.blink}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/blink
+        id: zvfnemc3kK
+        meta:
+          category: output
+          description: ''
+          label: MQTT
+          name: mqtt
+          x: 1580
+          'y': 2260
+        outputIds:
+          - - cATyobIgiu
+        type: MqttMessageNode
+      - config:
+          code: |-
+            use serde_json::{Result, Value};
+
+            if (payload["isConnectedToWnology"] == json!(true)){
+              if (payload["leds"]["con"] != 1 && json!(payload["data"]["delete"]).is_null()){
+                payload["data"]["blink"]["leds"] = json!([{"tag": "US1:green","blinkInterval": 1250}]);
+                payload["data"]["set"]["leds"] = json!([{"tag": "US1:red"}]);
+                payload["leds"]["up"] = json!(0);
+                payload["leds"]["con"] = json!(1);
+                payload["leds"]["discon"] = json!(0);
+              } else if (payload["leds"]["up"] != 1 && payload["data"]["delete"] == ""){
+                payload["data"]["blink"]["leds"] = json!([{"tag": "US1:green","blinkInterval": 1000},{"ledTag": "US1:red","blinkInterval": 1000}]);
+                payload["leds"]["up"] = json!(1);
+                payload["leds"]["con"] = json!(0);
+                payload["leds"]["discon"] = json!(0);
+              }
+            } else {
+              if (payload["leds"]["discon"] != 1){
+                payload["data"]["blink"]["leds"] = json!([{"tag": "US1:red","blinkInterval": 1250}]);
+                payload["data"]["set"]["leds"] = json!([{"tag": "US1:green"}]);
+                payload["leds"]["up"] = json!(0);
+                payload["leds"]["con"] = json!(0);
+                payload["leds"]["discon"] = json!(1);
+              }
+            }
+        id: FXnvnAJdJy
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 1580
+          'y': 2020
+        outputIds:
+          - - I74ggTb1ai
+        type: RustFunctionNode
+      - config:
+          messageTemplate: '{{data.set}}'
+          resultPath: ''
+          topicTemplate: leds-api/v1/function/none
+        id: ruAR0C_Kxw
+        meta:
+          category: output
+          description: ''
+          label: MQTT
+          name: mqtt
+          x: 1680
+          'y': 2180
+        outputIds:
+          - - zvfnemc3kK
+        type: MqttMessageNode
+      - config:
+          expression: '{{data.set}}'
+        id: I74ggTb1ai
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1580
+          'y': 2100
+        outputIds:
+          - - dF9RLH95hQ
+          - - ruAR0C_Kxw
+        type: ConditionalNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: travel.state
+        id: YdFlEL7l3n
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 2040
+          'y': 900
+        outputIds:
+          - - _CI_M9cdTZ
+          - - ZVvPPuhskW
+        type: LoopNode
+      - config:
+          loopNodeId: YdFlEL7l3n
+          shouldBreak: false
+        id: Fg1ohjbhEK
+        meta:
+          category: loop
+          description: ''
+          groupId: YdFlEL7l3n
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 720
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: >-
+                SELECT id, data, topic FROM Received WHERE topic LIKE
+                '{{data.id.[0].[0]}}' AND deviceId LIKE '{{data.id.[0].[1]}}'
+                AND api = 'unknow' AND id NOT IN (SELECT id FROM Received WHERE
+                id IN ({{data.key}})) ORDER BY ROWID ASC LIMIT 20
+              valueTemplateType: string
+            - destination: data.sql
+              type: set
+              valueTemplate: '[]'
+              valueTemplateType: string
+        id: ZVvPPuhskW
+        meta:
+          category: logic
+          description: ''
+          groupId: YdFlEL7l3n
+          label: Mutate
+          name: mutate
+          x: 240
+          'y': 280
+        outputIds:
+          - - 6ScbMYL0cY
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.sql
+              maxLength: '25600'
+              type: str
+          resultPath: return
+        id: 6ScbMYL0cY
+        meta:
+          category: data
+          description: ''
+          groupId: YdFlEL7l3n
+          label: sql_query
+          name: registered-function
+          x: 240
+          'y': 360
+        outputIds:
+          - - 3mjFueDzLc
+        type: RegisteredFunctionNode
+      - config:
+          expression: '{{data.sql}} != "[]" && {{return}} == 0'
+        id: 3mjFueDzLc
+        meta:
+          category: logic
+          description: ''
+          groupId: YdFlEL7l3n
+          label: Conditional
+          name: conditional
+          x: 240
+          'y': 440
+        outputIds:
+          - - Fg1ohjbhEK
+          - - uFfLReAJEl
+        type: ConditionalNode
+      - config:
+          destination: data.sql
+          errorBehavior: throw
+          errorPath: ''
+          source: data.sql
+        id: uFfLReAJEl
+        meta:
+          category: logic
+          description: ''
+          groupId: YdFlEL7l3n
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 320
+          'y': 520
+        outputIds:
+          - - W3ql0_5p71
+        type: JsonDecodeNode
+      - config:
+          expression: '{{data.blink}}'
+        id: dF9RLH95hQ
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1480
+          'y': 2180
+        outputIds:
+          - []
+          - - zvfnemc3kK
+        type: ConditionalNode
+      - config:
+          currentItemPath: data.loopAppend
+          loopSourcePath: data.sql
+        id: W3ql0_5p71
+        meta:
+          category: logic
+          description: ''
+          groupId: YdFlEL7l3n
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 320
+          'y': 600
+        outputIds:
+          - - Fg1ohjbhEK
+          - - MWET9rrZDB
+        type: LoopNode
+      - config:
+          loopNodeId: W3ql0_5p71
+          shouldBreak: false
+        id: 1AvpD7wQYg
+        meta:
+          category: loop
+          description: ''
+          groupId: W3ql0_5p71
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 440
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          destArrayPath: data.result
+          rules:
+            - inputTemplate: '{{data.loopAppend.value}}'
+              type: push
+          sourceArrayPath: data.result
+        id: MWET9rrZDB
+        meta:
+          category: logic
+          description: ''
+          groupId: W3ql0_5p71
+          label: Array
+          name: array
+          x: 220
+          'y': 280
+        outputIds:
+          - - sNiph7UhEX
+        type: ArrayNode
+      - config:
+          rules:
+            - destination: data.key
+              type: set
+              valueTemplate: '{{data.key}},{{data.loopAppend.value.[0]}}'
+              valueTemplateType: string
+        id: sNiph7UhEX
+        meta:
+          category: logic
+          description: ''
+          groupId: W3ql0_5p71
+          label: Mutate
+          name: mutate
+          x: 220
+          'y': 360
+        outputIds:
+          - - 1AvpD7wQYg
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: 'CREATE TABLE Keys (id INTEGER PRIMARY KEY, json TEXT NOT NULL)'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: data.result
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: KsFVeWNGYI
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 60
+          'y': 620
+        outputIds:
+          - - W8HgaoyUc4
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: SELECT json FROM Keys WHERE id == 1
+              valueTemplateType: string
+            - destination: leds
+              type: set
+              valueTemplate: '[]'
+              valueTemplateType: string
+        id: HXRdZhIFCD
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 1580
+          'y': 1540
+        outputIds:
+          - - 1WECjUeCAF
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: ledsDB
+              maxLength: '25600'
+              type: str
+          resultPath: return
+        id: 1WECjUeCAF
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 1580
+          'y': 1620
+        outputIds:
+          - - BtH_iiheOm
+        type: RegisteredFunctionNode
+      - config:
+          expression: '{{return}} == 0 && {{ledsDB}} != "[]"'
+        id: BtH_iiheOm
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1580
+          'y': 1700
+        outputIds:
+          - - WYT3BKkl99
+          - - kDZm3eZ34A
+        type: ConditionalNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: 'INSERT OR REPLACE INTO Keys (id, json) VALUES (1,?1)'
+            - type: str
+              valueTemplate: '{{leds}}'
+          outputs:
+            - destinationPath: result
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: EmG5kxks4Z
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 1580
+          'y': 2500
+        outputIds: []
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: leds
+              type: set
+              valueTemplate: '{"con":0,"discon":0,"up":0}'
+              valueTemplateType: json
+        id: WYT3BKkl99
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 1480
+          'y': 1860
+        outputIds:
+          - - FXnvnAJdJy
+        type: MutateNode
+      - config:
+          destination: leds
+          source: leds
+        id: cATyobIgiu
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 1580
+          'y': 2340
+        outputIds:
+          - - M59r6DuRaq
+        type: JsonEncodeNode
+      - config:
+          functionName: compress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{leds}}'
+          outputs:
+            - destinationPath: leds
+              maxLength: '25600'
+              type: str
+          resultPath: compress
+        id: M59r6DuRaq
+        meta:
+          category: data
+          description: ''
+          label: Compress
+          name: registered-function
+          x: 1580
+          'y': 2420
+        outputIds:
+          - - EmG5kxks4Z
+        type: RegisteredFunctionNode
+      - config:
+          destination: leds
+          errorBehavior: throw
+          errorPath: ''
+          source: leds
+        id: hBPaktSb7A
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1680
+          'y': 1940
+        outputIds:
+          - - FXnvnAJdJy
+        type: JsonDecodeNode
+      - config:
+          functionName: decompress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{ledsDB.[0].[0]}}'
+          outputs:
+            - destinationPath: leds
+              maxLength: '25600'
+              type: str
+          resultPath: decode
+        id: tseUbuSVNY
+        meta:
+          category: data
+          description: ''
+          label: Registered Function
+          name: registered-function
+          x: 1680
+          'y': 1860
+        outputIds:
+          - - hBPaktSb7A
+        type: RegisteredFunctionNode
+      - config:
+          destination: ledsDB
+          errorBehavior: throw
+          errorPath: ''
+          source: ledsDB
+        id: kDZm3eZ34A
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1680
+          'y': 1780
+        outputIds:
+          - - tseUbuSVNY
+        type: JsonDecodeNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: 'INSERT OR REPLACE INTO Keys (id, json) VALUES (1,?1)'
+            - type: str
+              valueTemplate: '{{leds}}'
+          outputs:
+            - destinationPath: result
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: i3906qlImO
+        meta:
+          category: data
+          description: ''
+          label: sql_query
+          name: registered-function
+          x: 60
+          'y': 940
+        outputIds: []
+        type: RegisteredFunctionNode
+      - config:
+          destination: leds
+          source: leds
+        id: tHAgkVNptg
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 60
+          'y': 780
+        outputIds:
+          - - y1i3lBjzo4
+        type: JsonEncodeNode
+      - config:
+          functionName: compress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{leds}}'
+          outputs:
+            - destinationPath: leds
+              maxLength: '25600'
+              type: str
+          resultPath: compress
+        id: y1i3lBjzo4
+        meta:
+          category: data
+          description: ''
+          label: Compress
+          name: registered-function
+          x: 60
+          'y': 860
+        outputIds:
+          - - i3906qlImO
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: leds
+              type: set
+              valueTemplate: '{"con":0,"discon":0,"up":0}'
+              valueTemplateType: json
+        id: W8HgaoyUc4
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 60
+          'y': 700
+        outputIds:
+          - - tHAgkVNptg
+        type: MutateNode
+      - config:
+          messageTemplate: >-
+            [{"data":{{send.array}},"topic":"{{send.topic}}","id":"{{data.id.[0].[1]}}"}]
+          resultPath: ''
+          topicTemplate: '{{send.topic}}'
+        id: VfDGYlbGbs
+        meta:
+          category: output
+          description: ''
+          label: MQTT
+          name: mqtt
+          x: 1920
+          'y': 1260
+        outputIds:
+          - - u4fAeZNkvP
+        type: MqttMessageNode
+      - config:
+          expression: '{{send.topic}} == "state"'
+        id: HxuqOUw_sL
+        meta:
+          category: logic
+          description: ''
+          label: topic==state?
+          name: conditional
+          x: 1920
+          'y': 1100
+        outputIds:
+          - - j7_f6qLy1J
+          - - 5egrLx48qy
+        type: ConditionalNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: send.array
+          resultPath: ''
+          timeSourceType: payloadTime
+        id: 5egrLx48qy
+        meta:
+          category: output
+          description: ''
+          label: 'Device: State'
+          name: device-state
+          x: 2120
+          'y': 1260
+        outputIds:
+          - - u4fAeZNkvP
+        type: DeviceChangeStateNode
+      - config:
+          expression: '{{isConnectedToWnology}}'
+        id: nQu63cVmYj
+        meta:
+          category: logic
+          description: ''
+          label: Is Connected?
+          name: conditional
+          x: 500
+          'y': 620
+        outputIds:
+          - - FjpECXNxJd
+          - - R3RCb7SLC3
+        type: ConditionalNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: dec
+        id: UFO4DI5Ww9
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 320
+          groupStartY: 200
+          label: Store in DB
+          name: loop
+          x: 380
+          'y': 780
+        outputIds:
+          - []
+          - - lQeqU1Ei4d
+        type: LoopNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: SELECT json FROM Keys WHERE id == 3
+              valueTemplateType: string
+            - destination: sql
+              type: set
+              valueTemplate: '{ "vazio": "" }'
+              valueTemplateType: json
+        id: 8_BDGIKM4v
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Mutate
+          name: mutate
+          x: 300
+          'y': 440
+        outputIds:
+          - - ma6_0397gv
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{sql.vazio}}'
+          outputs:
+            - destinationPath: sql.db
+              maxLength: '1000'
+              type: str
+          resultPath: return
+        id: ma6_0397gv
+        meta:
+          category: data
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: DB LEN
+          name: registered-function
+          x: 300
+          'y': 520
+        outputIds:
+          - - u1yLqD4i3u
+        type: RegisteredFunctionNode
+      - config:
+          destination: sql.db
+          errorBehavior: throw
+          errorPath: ''
+          source: sql.db
+        id: Kg7NhhYyc9
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 400
+          'y': 680
+        outputIds:
+          - - YeheO87Zl5
+        type: JsonDecodeNode
+      - config:
+          expression: '{{sql.db.[0].[0]}} >= 1200000'
+        id: VGqzCUXRaX
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Conditional
+          name: conditional
+          x: 400
+          'y': 840
+        outputIds:
+          - - EZ18i0tJ8W
+          - - DGnNaRS553
+        type: ConditionalNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{sql.vazio}}'
+          outputs:
+            - destinationPath: sql.delete
+              maxLength: '10240'
+              type: str
+          resultPath: return
+        id: KzjoaaCT5U
+        meta:
+          category: data
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: DB DELETE
+          name: registered-function
+          x: 500
+          'y': 1000
+        outputIds:
+          - - QFs9_d1aHJ
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: >-
+                DELETE FROM Received WHERE id IN (SELECT id FROM Received ORDER
+                BY ROWID ASC LIMIT 1)
+              valueTemplateType: string
+        id: DGnNaRS553
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Mutate
+          name: mutate
+          x: 500
+          'y': 920
+        outputIds:
+          - - KzjoaaCT5U
+        type: MutateNode
+      - config:
+          expression: '{{return}} == 0 && {{sql.db}} != "[]"'
+        id: u1yLqD4i3u
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Conditional
+          name: conditional
+          x: 300
+          'y': 600
+        outputIds:
+          - - Yv9CDBNSKD
+          - - Kg7NhhYyc9
+        type: ConditionalNode
+      - config:
+          statements:
+            - expression: '{{sql.db.[0].[0]}} +1'
+              resultPath: qnt
+        id: EZ18i0tJ8W
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Math
+          name: math
+          x: 300
+          'y': 920
+        outputIds:
+          - - 4CRykKoJcK
+        type: MathNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: 'INSERT OR REPLACE INTO Keys (id, json) VALUES (3,?1)'
+              valueTemplateType: string
+        id: Qdiib32hf9
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Mutate
+          name: mutate
+          x: 200
+          'y': 1080
+        outputIds:
+          - - t8bsVBRBDJ
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{qnt}}'
+          outputs:
+            - destinationPath: sql.up
+              maxLength: '1000'
+              type: str
+          resultPath: return
+        id: t8bsVBRBDJ
+        meta:
+          category: data
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: LEN+1
+          name: registered-function
+          x: 200
+          'y': 1160
+        outputIds:
+          - - QFs9_d1aHJ
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: qnt
+              type: set
+              valueTemplate: '1'
+              valueTemplateType: json
+        id: Yv9CDBNSKD
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Mutate
+          name: mutate
+          x: 200
+          'y': 680
+        outputIds:
+          - - 4CRykKoJcK
+        type: MutateNode
+      - config:
+          destination: qnt
+          source: qnt
+        id: 4CRykKoJcK
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 200
+          'y': 1000
+        outputIds:
+          - - Qdiib32hf9
+        type: JsonEncodeNode
+      - config:
+          destination: 'sql.db.[0].[0]'
+          errorBehavior: throw
+          errorPath: ''
+          source: 'sql.db.[0].[0]'
+        id: YeheO87Zl5
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 400
+          'y': 760
+        outputIds:
+          - - VGqzCUXRaX
+        type: JsonDecodeNode
+      - config:
+          functionName: cache_count
+          inputs: []
+          outputs:
+            - destinationPath: working.count
+              type: u32
+          resultPath: working.rc
+        id: iqMiO3WBzZ
+        meta:
+          category: data
+          description: ''
+          label: 'Cache: Count'
+          name: registered-function
+          x: 1060
+          'y': 220
+        outputIds:
+          - - atArJfFu2l
+        type: RegisteredFunctionNode
+      - config:
+          currentItemPath: data.cacheResolve
+          loopSourcePath: working.count
+        id: atArJfFu2l
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Pop Cache
+          name: loop
+          x: 1060
+          'y': 300
+        outputIds:
+          - []
+          - - UYLiffKPV6
+        type: LoopNode
+      - config:
+          loopNodeId: atArJfFu2l
+          shouldBreak: false
+        id: nfu9T15wTJ
+        meta:
+          category: loop
+          description: ''
+          groupId: atArJfFu2l
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 520
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          messageTemplate: '{{stringDecompressed}}'
+          resultPath: ''
+          topicTemplate: persistence
+        id: g3Yk8KfGny
+        meta:
+          category: output
+          description: ''
+          groupId: atArJfFu2l
+          label: MQTT
+          name: mqtt
+          x: 220
+          'y': 440
+        outputIds:
+          - - nfu9T15wTJ
+        type: MqttMessageNode
+      - config:
+          functionName: cache_pop
+          inputs: []
+          outputs:
+            - destinationPath: working.key
+              maxLength: '64'
+              type: str
+            - destinationPath: working.value
+              maxLength: '16384'
+              type: str
+          resultPath: working.cachePop
+        id: UYLiffKPV6
+        meta:
+          category: data
+          description: ''
+          groupId: atArJfFu2l
+          label: 'Cache: Pop'
+          name: registered-function
+          x: 220
+          'y': 280
+        outputIds:
+          - - HNIovOmYGu
+        type: RegisteredFunctionNode
+      - config:
+          functionName: decompress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{working.value}}'
+          outputs:
+            - destinationPath: stringDecompressed
+              maxLength: '16384'
+              type: str
+          resultPath: workingSetCache
+        id: HNIovOmYGu
+        meta:
+          category: data
+          description: ''
+          groupId: atArJfFu2l
+          label: Decompress
+          name: registered-function
+          x: 220
+          'y': 360
+        outputIds:
+          - - g3Yk8KfGny
+        type: RegisteredFunctionNode
+      - config: {}
+        id: TWNQ8Ycd12
+        meta:
+          annotationText: >-
+            Move as mensagens do cache para o banco de dados após um aviso de
+            desconexão.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 400
+          x: 1060
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: data.result
+        id: _CI_M9cdTZ
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 1920
+          'y': 1020
+        outputIds:
+          - - HxuqOUw_sL
+          - - O76bLS8UNw
+        type: LoopNode
+      - config:
+          loopNodeId: _CI_M9cdTZ
+          shouldBreak: false
+        id: s87sofD76O
+        meta:
+          category: loop
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Next
+          name: loop-next
+          x: 340
+          'y': 1740
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          destination: 'loop.value.[1]'
+          errorBehavior: throw
+          errorPath: ''
+          source: 'loop.value.[1]'
+        id: YGcZwZ5cxc
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 240
+          'y': 360
+        outputIds:
+          - - 7DWP_g5rUY
+        type: JsonDecodeNode
+      - config:
+          destArrayPath: send.array
+          rules:
+            - inputTemplate: '{{loop.value.[1]}}'
+              type: push
+          sourceArrayPath: send.array
+        id: YAc_0Nt63H
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Array
+          name: array
+          x: 240
+          'y': 600
+        outputIds:
+          - - EfPNlejLjS
+        type: ArrayNode
+      - config:
+          rules:
+            - destination: send.topic
+              source: 'loop.value.[2]'
+              type: move
+            - destination: send.key
+              type: set
+              valueTemplate: '{{send.key}},{{loop.value.[0]}}'
+              valueTemplateType: string
+            - destination: cache
+              type: set
+              valueTemplate: >-
+                {"data":[{"data":{{loop.value.[1]}},"time":{{time}} } ],
+                "topic":"{{send.topic}}","id":"{{data.id.[0].[1]}}" }
+              valueTemplateType: json
+        id: In91TorU7_
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Mutate
+          name: mutate
+          x: 140
+          'y': 520
+        outputIds:
+          - - YAc_0Nt63H
+        type: MutateNode
+      - config:
+          functionName: decompress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{loop.value.[1]}}'
+          outputs:
+            - destinationPath: 'loop.value.[1]'
+              maxLength: '25600'
+              type: str
+          resultPath: decode
+        id: O76bLS8UNw
+        meta:
+          category: data
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Registered Function
+          name: registered-function
+          x: 240
+          'y': 280
+        outputIds:
+          - - YGcZwZ5cxc
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: SELECT json FROM Keys WHERE id == 3
+              valueTemplateType: string
+        id: V_0NGxMPG8
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Mutate
+          name: mutate
+          x: 340
+          'y': 940
+        outputIds:
+          - - CFQeq9OOLv
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{data.vazio}}'
+          outputs:
+            - destinationPath: sql.db
+              maxLength: '1000'
+              type: str
+          resultPath: return
+        id: CFQeq9OOLv
+        meta:
+          category: data
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: DB LEN
+          name: registered-function
+          x: 340
+          'y': 1020
+        outputIds:
+          - - 7Ow2PJ6vDT
+        type: RegisteredFunctionNode
+      - config:
+          destination: sql.db
+          errorBehavior: throw
+          errorPath: ''
+          source: sql.db
+        id: 4KoD8O60P8
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 440
+          'y': 1180
+        outputIds:
+          - - CN9owhDs_s
+        type: JsonDecodeNode
+      - config:
+          expression: '{{sql.db.[0].[0]}} > 0'
+        id: JaCbrGmyNr
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Conditional
+          name: conditional
+          x: 440
+          'y': 1340
+        outputIds:
+          - - HGvq3GSCfK
+          - - mbBHvH3dOi
+        type: ConditionalNode
+      - config:
+          expression: '{{return}} == 0 && {{sql.db}} != "[]"'
+        id: 7Ow2PJ6vDT
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Conditional
+          name: conditional
+          x: 340
+          'y': 1100
+        outputIds:
+          - - HGvq3GSCfK
+          - - 4KoD8O60P8
+        type: ConditionalNode
+      - config:
+          statements:
+            - expression: '{{sql.db.[0].[0]}} - {{loop.index}} - 1'
+              resultPath: qnt
+        id: mbBHvH3dOi
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Math
+          name: math
+          x: 500
+          'y': 1420
+        outputIds:
+          - - P52r_XJVL3
+        type: MathNode
+      - config:
+          rules:
+            - destination: working.query
+              type: set
+              valueTemplate: 'INSERT OR REPLACE INTO Keys (id, json) VALUES (3,?1)'
+              valueTemplateType: string
+        id: OYJ95HFq6e
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Mutate
+          name: mutate
+          x: 340
+          'y': 1580
+        outputIds:
+          - - sIDbwcsi_c
+        type: MutateNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: '{{working.query}}'
+            - type: str
+              valueTemplate: '{{qnt}}'
+          outputs:
+            - destinationPath: sql.up
+              maxLength: '1000'
+              type: str
+          resultPath: return
+        id: sIDbwcsi_c
+        meta:
+          category: data
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: LEN-N
+          name: registered-function
+          x: 340
+          'y': 1660
+        outputIds:
+          - - s87sofD76O
+        type: RegisteredFunctionNode
+      - config:
+          rules:
+            - destination: qnt
+              type: set
+              valueTemplate: '0'
+              valueTemplateType: json
+        id: HGvq3GSCfK
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Mutate
+          name: mutate
+          x: 260
+          'y': 1420
+        outputIds:
+          - - P52r_XJVL3
+        type: MutateNode
+      - config:
+          destination: qnt
+          source: qnt
+        id: P52r_XJVL3
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 340
+          'y': 1500
+        outputIds:
+          - - OYJ95HFq6e
+        type: JsonEncodeNode
+      - config:
+          destination: 'sql.db.[0].[0]'
+          errorBehavior: throw
+          errorPath: ''
+          source: 'sql.db.[0].[0]'
+        id: CN9owhDs_s
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 440
+          'y': 1260
+        outputIds:
+          - - JaCbrGmyNr
+        type: JsonDecodeNode
+      - config:
+          expression: '{{loop.last}}'
+        id: 4oM2m9anw8
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Conditional
+          name: conditional
+          x: 240
+          'y': 840
+        outputIds:
+          - - b_oFaEkRAj
+          - - V_0NGxMPG8
+        type: ConditionalNode
+      - config:
+          loopNodeId: _CI_M9cdTZ
+          shouldBreak: false
+        id: b_oFaEkRAj
+        meta:
+          category: loop
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Next
+          name: loop-next
+          x: 140
+          'y': 940
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          destination: cacheString
+          source: cache
+        id: EfPNlejLjS
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 240
+          'y': 680
+        outputIds:
+          - - QUHPHOx_JH
+        type: JsonEncodeNode
+      - config:
+          functionName: cache_insert_with_random_key
+          inputs:
+            - type: str
+              valueTemplate: '{{cacheString}}'
+            - type: u32
+              valueTemplate: '80'
+          outputs:
+            - destinationPath: cacheResult
+              maxLength: '256'
+              type: str
+          resultPath: workingSetCache
+        id: QUHPHOx_JH
+        meta:
+          category: data
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Insert ttl=80
+          name: registered-function
+          x: 240
+          'y': 760
+        outputIds:
+          - - 4oM2m9anw8
+        type: RegisteredFunctionNode
+      - config: {}
+        id: zLejit6MJb
+        meta:
+          annotationText: Filtra os tópicos que estão no banco de dados.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 2020
+          'y': 300
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: bXOCh9vWT_
+        meta:
+          annotationText: Verifica se há mensagens "pequenas".
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 2140
+          'y': 620
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: gwA9Uug4Pd
+        meta:
+          annotationText: >-
+            Extrai 10 mensagens por vez e coloca em um array até o limite de
+            100.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 2260
+          'y': 900
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: c86JRlH4FE
+        meta:
+          annotationText: |-
+            Processa mensagens "grandes".
+            Extrai 1 mensagem de cada vez até o limite de 20.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 260
+          x: 1480
+          'y': 860
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: loj4dXZxgo
+        meta:
+          annotationText: Descompacta e publica em **buckets**.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 200
+          x: 2120
+          'y': 1020
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 0bfTEXavkd
+        meta:
+          annotationText: |
+            Atualiza o LED **US1** de acordo com a operação:
+
+            - Pisca laranja = sincronizando dados antigos
+            - Pisca verde = conectado na plataforma, sincronizado
+            - Pisca vermelho = sem conexão com a plataforma
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 380
+          x: 1180
+          'y': 1540
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          rules:
+            - destination: cache
+              type: set
+              valueTemplate: '{{dec}}'
+              valueTemplateType: json
+        id: R3RCb7SLC3
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 620
+          'y': 700
+        outputIds:
+          - - OaaHRZ2cMo
+        type: MutateNode
+      - config:
+          destination: cacheString
+          source: cache
+        id: OaaHRZ2cMo
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 620
+          'y': 780
+        outputIds:
+          - - gLlOu4lgii
+        type: JsonEncodeNode
+      - config:
+          functionName: cache_insert_with_random_key
+          inputs:
+            - type: str
+              valueTemplate: '{{stringCompressed}}'
+            - type: u32
+              valueTemplate: '80'
+          outputs:
+            - destinationPath: cacheResult
+              maxLength: '256'
+              type: str
+          resultPath: workingSetCache
+        id: tEP2g5HPlF
+        meta:
+          category: data
+          description: ''
+          label: 'Cache: Insert'
+          name: registered-function
+          x: 620
+          'y': 940
+        outputIds:
+          - - wqPyC59ta9
+        type: RegisteredFunctionNode
+      - config:
+          functionName: compress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{cacheString}}'
+          outputs:
+            - destinationPath: stringCompressed
+              maxLength: '16384'
+              type: str
+          resultPath: workingSetCache
+        id: gLlOu4lgii
+        meta:
+          category: data
+          description: ''
+          label: Compress
+          name: registered-function
+          x: 620
+          'y': 860
+        outputIds:
+          - - tEP2g5HPlF
+        type: RegisteredFunctionNode
+      - config:
+          expression: '{{array}}'
+        id: mnoZXNFABo
+        meta:
+          category: logic
+          description: ''
+          label: Is Array?
+          name: conditional
+          x: 500
+          'y': 380
+        outputIds:
+          - - LRLvzPvIj5
+          - - Sr_dJX7PJE
+        type: ConditionalNode
+      - config:
+          destArrayPath: dec
+          rules:
+            - inputTemplate: '{{dec}}'
+              type: push
+          sourceArrayPath: dec
+        id: LRLvzPvIj5
+        meta:
+          category: logic
+          description: ''
+          label: Array
+          name: array
+          x: 380
+          'y': 460
+        outputIds:
+          - - Sr_dJX7PJE
+        type: ArrayNode
+      - config:
+          code: |
+            use serde_json::{Result, Value};
+            let mut dec = json!("");
+
+            let mut pl = json!({});
+
+            let Values = json!(payload["dec"]);
+            for x in 0..Values.as_array().unwrap().len(){
+              pl = json!({});
+              dec = json!(payload["dec"][x]);
+              if (dec["data"].to_string().len() < 2500){
+                payload["dec"][x]["api"] = json!("unknow");
+              } else {
+                payload["dec"][x]["api"] =json!("modbus");
+              }
+              if (json!(dec.get("id")).is_null()){
+                payload["dec"][x]["id"] = json!("null");
+              }
+              if !(json!(dec.get("data")).is_null()){
+                if !(payload["dec"][x]["data"].is_array()){
+                  pl = json!([{"data":dec["data"],"time":dec["time"]}]);
+                  payload["dec"][x]["data"] = json!(pl);
+                }
+              }
+            }
+        id: FjpECXNxJd
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 380
+          'y': 700
+        outputIds:
+          - - UFO4DI5Ww9
+        type: RustFunctionNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: dec
+        id: wUyc4d2u53
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 620
+          'y': 1100
+        outputIds:
+          - - fs_PzgWiJZ
+          - - GDT8wcGklN
+        type: LoopNode
+      - config:
+          loopNodeId: wUyc4d2u53
+          shouldBreak: false
+        id: 46Y6MOWMtB
+        meta:
+          category: loop
+          description: ''
+          groupId: wUyc4d2u53
+          label: Next
+          name: loop-next
+          x: 240
+          'y': 440
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          destArrayPath: state
+          rules:
+            - inputTemplate: '{{loop.value}}'
+              type: push
+          sourceArrayPath: state
+        id: B_VyHXsxU7
+        meta:
+          category: logic
+          description: ''
+          groupId: wUyc4d2u53
+          label: Array
+          name: array
+          x: 340
+          'y': 360
+        outputIds:
+          - - 46Y6MOWMtB
+        type: ArrayNode
+      - config:
+          expression: '{{loop.value.topic}} == "state"'
+        id: GDT8wcGklN
+        meta:
+          category: logic
+          description: ''
+          groupId: wUyc4d2u53
+          label: topic==state?
+          name: conditional
+          x: 240
+          'y': 280
+        outputIds:
+          - - Ghob0FNiq0
+          - - B_VyHXsxU7
+        type: ConditionalNode
+      - config:
+          expression: '{{state}} != undefined'
+        id: fs_PzgWiJZ
+        meta:
+          category: logic
+          description: ''
+          label: Device State ?
+          name: conditional
+          x: 620
+          'y': 1180
+        outputIds:
+          - - X6sRIrihQH
+          - - 2jd8QI0uIX
+        type: ConditionalNode
+      - config:
+          expression: '{{msg}} != undefined '
+        id: X6sRIrihQH
+        meta:
+          category: logic
+          description: ''
+          label: Other Device ?
+          name: conditional
+          x: 600
+          'y': 1340
+        outputIds:
+          - []
+          - - 9COeE_lcvR
+        type: ConditionalNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: state
+        id: 2jd8QI0uIX
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 720
+          'y': 1260
+        outputIds:
+          - - X6sRIrihQH
+          - - bj7X5YKZly
+        type: LoopNode
+      - config:
+          loopNodeId: 2jd8QI0uIX
+          shouldBreak: false
+        id: ni8OlLGWdN
+        meta:
+          category: loop
+          description: ''
+          groupId: 2jd8QI0uIX
+          label: Next
+          name: loop-next
+          x: 240
+          'y': 600
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: loop.value.data
+          resultPath: ''
+          timeSourcePath: loop.value.time
+          timeSourceType: payloadPath
+        id: z69elqQ4KM
+        meta:
+          category: output
+          description: ''
+          groupId: 2jd8QI0uIX
+          label: 'Device: State'
+          name: device-state
+          x: 240
+          'y': 520
+        outputIds:
+          - - ni8OlLGWdN
+        type: DeviceChangeStateNode
+      - config:
+          code: |-
+            use serde_json::{Result, Value};
+            let Values = json!(payload["dec"]);
+
+            for x in 0..Values.as_array().unwrap().len(){
+              if (json!(Values[x].get("topic")) != json!("state")){
+                payload["msg"][Values[x]["topic"].to_string().replace("\"","").to_string()] = json!([]);
+              }
+            }
+        id: wqPyC59ta9
+        meta:
+          category: logic
+          description: ''
+          label: Rust Function
+          name: rustFunction
+          x: 620
+          'y': 1020
+        outputIds:
+          - - wUyc4d2u53
+        type: RustFunctionNode
+      - config:
+          code: >-
+            use serde_json::{Result, Value};
+
+            //let Topic = json!(payload["loop"]["value"]["topic"]);
+
+            let mut pl = json!(payload["msg"]);
+
+
+            pl[payload["loop"]["value"]["topic"].to_string().replace("\"","").to_string()].as_array_mut().unwrap().push(json!(payload["loop"]["value"]));
+
+
+            payload["msg"] = json!(pl);
+        id: Ghob0FNiq0
+        meta:
+          category: logic
+          description: ''
+          groupId: wUyc4d2u53
+          label: Rust Function
+          name: rustFunction
+          x: 140
+          'y': 360
+        outputIds:
+          - - 46Y6MOWMtB
+        type: RustFunctionNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: msg
+        id: 9COeE_lcvR
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 720
+          'y': 1420
+        outputIds:
+          - []
+          - - irA3qjbTcu
+        type: LoopNode
+      - config:
+          loopNodeId: 9COeE_lcvR
+          shouldBreak: false
+        id: BJDanrvvAg
+        meta:
+          category: loop
+          description: ''
+          groupId: 9COeE_lcvR
+          label: Next
+          name: loop-next
+          x: 240
+          'y': 360
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          messageTemplate: '{{loop.value}}'
+          resultPath: ''
+          topicTemplate: '{{loop.key}}'
+        id: irA3qjbTcu
+        meta:
+          category: output
+          description: ''
+          groupId: 9COeE_lcvR
+          label: MQTT
+          name: mqtt
+          x: 240
+          'y': 280
+        outputIds:
+          - - BJDanrvvAg
+        type: MqttMessageNode
+      - config:
+          expression: '{{loop.value.data}} != undefined'
+        id: lQeqU1Ei4d
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: data in msg?
+          name: conditional
+          x: 300
+          'y': 280
+        outputIds:
+          - - YlPAnXUI8s
+          - - 8_BDGIKM4v
+        type: ConditionalNode
+      - config:
+          loopNodeId: UFO4DI5Ww9
+          shouldBreak: false
+        id: YlPAnXUI8s
+        meta:
+          category: loop
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Next
+          name: loop-next
+          x: 200
+          'y': 360
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          expression: '{{loop.value.[1].time}} != undefined'
+        id: 7DWP_g5rUY
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: time in msg?
+          name: conditional
+          x: 240
+          'y': 440
+        outputIds:
+          - - In91TorU7_
+          - - jM5t3oa0_Y
+        type: ConditionalNode
+      - config:
+          rules:
+            - destination: send.topic
+              source: 'loop.value.[2]'
+              type: move
+            - destination: send.key
+              type: set
+              valueTemplate: '{{send.key}},{{loop.value.[0]}}'
+              valueTemplateType: string
+            - destination: cache
+              type: set
+              valueTemplate: >-
+                {"data":[{"data":{{loop.value.[1]}},"time":{{loop.value.[1].time}}
+                } ], "topic":"{{send.topic}}","id":"{{data.id.[0].[1]}}" }
+              valueTemplateType: json
+        id: jM5t3oa0_Y
+        meta:
+          category: logic
+          description: ''
+          groupId: _CI_M9cdTZ
+          label: Mutate
+          name: mutate
+          x: 340
+          'y': 520
+        outputIds:
+          - - YAc_0Nt63H
+        type: MutateNode
+      - config:
+          expression: '{{data.id.[0].[1]}} != "null"'
+        id: j7_f6qLy1J
+        meta:
+          category: logic
+          description: ''
+          label: id != unkwnown?
+          name: conditional
+          x: 1840
+          'y': 1180
+        outputIds:
+          - - y4wQ1eheNl
+          - - VfDGYlbGbs
+        type: ConditionalNode
+      - config:
+          messageTemplate: '[{"data":{{send.array}},"topic":"{{send.topic}}"}]'
+          resultPath: ''
+          topicTemplate: '{{send.topic}}'
+        id: y4wQ1eheNl
+        meta:
+          category: output
+          description: ''
+          label: MQTT
+          name: mqtt
+          x: 1720
+          'y': 1260
+        outputIds:
+          - - u4fAeZNkvP
+        type: MqttMessageNode
+      - config:
+          currentItemPath: loopData
+          loopSourcePath: loop.value.data
+        id: QFs9_d1aHJ
+        meta:
+          category: logic
+          description: ''
+          groupId: UFO4DI5Ww9
+          groupStartX: 240
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 300
+          'y': 1240
+        outputIds:
+          - - Ymtw1dKiR4
+          - - odqz4NDkdU
+        type: LoopNode
+      - config:
+          loopNodeId: QFs9_d1aHJ
+          shouldBreak: false
+        id: Nqum8WGMui
+        meta:
+          category: loop
+          description: ''
+          groupId: QFs9_d1aHJ
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 600
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          loopNodeId: UFO4DI5Ww9
+          shouldBreak: false
+        id: Ymtw1dKiR4
+        meta:
+          category: loop
+          description: ''
+          groupId: UFO4DI5Ww9
+          label: Next
+          name: loop-next
+          x: 300
+          'y': 1320
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          code: >
+            use serde_json::{Result, Value};
+
+
+            let mut pl = json!(payload["loopData"]["value"]);
+
+
+            pl = json!({});
+
+            let dec = json!(payload["loopData"]["value"]);
+
+            if !(json!(dec.get("data")).is_null()){
+              if (json!(dec.get("time")).is_null()){
+                payload["loopData"]["value"]["time"] = json!(payload["loop"]["value"]["time"]);
+              }
+              //if !(payload["loopData"]["value"]["data"].is_array()){
+              //  pl = json!({"data":dec["data"],"time":dec["time"]});
+              //  payload["loopData"]["value"] = json!(pl);
+              //}
+            } else if (json!(dec.get("data")).is_null()){
+              if (json!(dec.get("time")).is_null()){
+                pl = json!({"data":dec,"time":json!(payload["loop"]["value"]["time"])});
+                payload["loopData"]["value"] = json!(pl);
+                //payload["loopData"]["value"]["time"] = json!(payload["loop"]["value"]["time"]);
+              } else {
+                pl = json!({"data":dec,"time":json!(payload["loopData"]["value"]["time"])});
+                payload["loopData"]["value"] = json!(pl);
+              }
+            }
+
+
+            //if (json!(dec.get("time")).is_null()){
+
+            //  payload["loopData"]["value"]["time"] =
+            json!(payload["loop"]["value"]["time"]);
+
+            //}
+        id: odqz4NDkdU
+        meta:
+          category: logic
+          description: ''
+          groupId: QFs9_d1aHJ
+          label: Rust Function
+          name: rustFunction
+          x: 220
+          'y': 280
+        outputIds:
+          - - hXwD8hs5o_
+        type: RustFunctionNode
+      - config:
+          functionName: sql_query
+          inputs:
+            - type: str
+              valueTemplate: Persistence
+            - type: str
+              valueTemplate: >-
+                INSERT INTO Received (data,topic,api,deviceid) VALUES
+                (?1,?2,?3,?4)
+            - type: str
+              valueTemplate: >-
+                {{dataDB}},{{loop.value.topic}},{{loop.value.api}},{{loop.value.id}}
+          outputs:
+            - destinationPath: result
+              maxLength: '1024'
+              type: str
+          resultPath: return
+        id: _Kdk2lXAgA
+        meta:
+          category: data
+          description: ''
+          groupId: QFs9_d1aHJ
+          label: INSERT INTO
+          name: registered-function
+          x: 220
+          'y': 520
+        outputIds:
+          - - Nqum8WGMui
+        type: RegisteredFunctionNode
+      - config:
+          destination: data
+          source: loopData.value
+        id: hXwD8hs5o_
+        meta:
+          category: logic
+          description: ''
+          groupId: QFs9_d1aHJ
+          label: 'JSON: Encode'
+          name: json-encode
+          x: 220
+          'y': 360
+        outputIds:
+          - - 6IYwHblcqz
+        type: JsonEncodeNode
+      - config:
+          functionName: compress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{data}}'
+          outputs:
+            - destinationPath: dataDB
+              maxLength: '25600'
+              type: str
+          resultPath: compress
+        id: 6IYwHblcqz
+        meta:
+          category: data
+          description: ''
+          groupId: QFs9_d1aHJ
+          label: COMPRESS STRING
+          name: registered-function
+          x: 220
+          'y': 440
+        outputIds:
+          - - _Kdk2lXAgA
+        type: RegisteredFunctionNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: 5aM97viBIQ
+        meta:
+          category: output
+          description: ''
+          label: MQTT
+          name: mqtt
+          x: 60
+          'y': 300
+        outputIds:
+          - - CFe36SqQv9
+        type: MqttMessageNode
+      - config:
+          rules:
+            - destination: data
+              type: set
+              valueTemplate: '{ "topic": "persistence/#" }'
+              valueTemplateType: json
+        id: mjv3x5ZLND
+        meta:
+          category: logic
+          description: ''
+          label: Mutate
+          name: mutate
+          x: 60
+          'y': 220
+        outputIds:
+          - - 5aM97viBIQ
+        type: MutateNode
+      - config:
+          code: |-
+            use serde_json::{Result, Value};
+            payload["array"] = json!(false);
+
+            if (payload["loop"]["value"]["data"].is_array()){
+              payload["array"] = json!(true);
+            }
+        id: bj7X5YKZly
+        meta:
+          category: logic
+          description: ''
+          groupId: 2jd8QI0uIX
+          label: Rust Function
+          name: rustFunction
+          x: 240
+          'y': 280
+        outputIds:
+          - - pTymATrKt8
+        type: RustFunctionNode
+      - config:
+          expression: '{{array}}'
+        id: pTymATrKt8
+        meta:
+          category: logic
+          description: ''
+          groupId: 2jd8QI0uIX
+          label: Is Array?
+          name: conditional
+          x: 240
+          'y': 360
+        outputIds:
+          - - z69elqQ4KM
+          - - R3lu96f5Fk
+        type: ConditionalNode
+      - config:
+          currentItemPath: loopData
+          loopSourcePath: loop.value.data
+        id: R3lu96f5Fk
+        meta:
+          category: logic
+          description: ''
+          groupId: 2jd8QI0uIX
+          groupStartX: 240
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 340
+          'y': 440
+        outputIds:
+          - - z69elqQ4KM
+          - - iFQxkh_RBm
+        type: LoopNode
+      - config:
+          loopNodeId: R3lu96f5Fk
+          shouldBreak: false
+        id: 8z1L88r7YT
+        meta:
+          category: loop
+          description: ''
+          groupId: R3lu96f5Fk
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 360
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          code: >
+            use serde_json::{Result, Value};
+
+
+            let mut pl = json!({});
+
+            let dec = json!(payload["loopData"]["value"]);
+
+            let index = payload["loopData"]["index"].as_u64().unwrap() as usize;
+
+
+            if !(json!(dec.get("data")).is_null()){
+              if (json!(dec.get("time")).is_null()){
+                payload["loop"]["value"]["data"][index]["time"] = json!(payload["loop"]["value"]["time"]);
+              }
+              //if !(payload["loopData"]["value"]["data"].is_array()){
+              //  pl = json!({"data":dec["data"],"time":dec["time"]});
+              //  payload["loopData"]["value"] = json!(pl);
+              //}
+            } else if (json!(dec.get("data")).is_null()){
+              if (json!(dec.get("time")).is_null()){
+                pl = json!({"data":dec,"time":json!(payload["loop"]["value"]["time"])});
+                payload["loop"]["value"]["data"][index] = json!(pl);
+                //payload["loopData"]["value"]["time"] = json!(payload["loop"]["value"]["time"]);
+              } else {
+                pl = json!({"data":dec,"time":json!(payload["loopData"]["value"]["time"])});
+                payload["loop"]["value"]["data"][index] = json!(pl);
+              }
+            }
+
+
+            //if (json!(dec.get("time")).is_null()){
+
+            //  payload["loopData"]["value"]["time"] =
+            json!(payload["loop"]["value"]["time"]);
+
+            //}
+        id: iFQxkh_RBm
+        meta:
+          category: logic
+          description: ''
+          groupId: R3lu96f5Fk
+          label: Rust Function
+          name: rustFunction
+          x: 220
+          'y': 280
+        outputIds:
+          - - 8z1L88r7YT
+        type: RustFunctionNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: dec
+        id: Sr_dJX7PJE
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 300
+          groupStartY: 200
+          label: Send in msg?
+          name: loop
+          x: 500
+          'y': 540
+        outputIds:
+          - - nQu63cVmYj
+          - - RGHVmaaCRb
+        type: LoopNode
+      - config:
+          expression: '{{loop.value.send}} != undefined'
+        id: RGHVmaaCRb
+        meta:
+          category: logic
+          description: ''
+          groupId: Sr_dJX7PJE
+          label: send in msg?
+          name: conditional
+          x: 280
+          'y': 280
+        outputIds:
+          - - pxvJk9fMNF
+          - - TrLWcfkPzT
+        type: ConditionalNode
+      - config:
+          loopNodeId: Sr_dJX7PJE
+          shouldBreak: false
+        id: pxvJk9fMNF
+        meta:
+          category: loop
+          description: ''
+          groupId: Sr_dJX7PJE
+          label: Next
+          name: loop-next
+          x: 280
+          'y': 520
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          rules:
+            - destination: loop.value.data
+              source: loop.value.send
+              type: move
+        id: TrLWcfkPzT
+        meta:
+          category: logic
+          description: ''
+          groupId: Sr_dJX7PJE
+          label: Mutate
+          name: mutate
+          x: 380
+          'y': 360
+        outputIds:
+          - - 1Dz33YbkOB
+        type: MutateNode
+      - config:
+          code: |
+            use serde_json::{Result, Value};
+
+            let index = payload["loop"]["index"].as_u64().unwrap() as usize;
+            payload["dec"][index] = json!(payload["loop"]["value"]);
+        id: 1Dz33YbkOB
+        meta:
+          category: logic
+          description: ''
+          groupId: Sr_dJX7PJE
+          label: Rust Function
+          name: rustFunction
+          x: 380
+          'y': 440
+        outputIds:
+          - - pxvJk9fMNF
+        type: RustFunctionNode
+    triggers:
+      - config: {}
+        key: qF4eGW5oFO4vNLi0sp8L3
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: zZJnvKsR8V
+          x: 60
+          'y': 140
+        outputIds:
+          - - mjv3x5ZLND
+        type: onBoot
+      - config:
+          seconds: 30
+        key: K2UdCtrzkbIsjG9M0NGHk
+        meta:
+          category: trigger
+          description: ''
+          label: 'Timer: 30s'
+          name: timer
+          timerTypeSelect: seconds
+          uiId: NYLKd64Jtr
+          x: 1580
+          'y': 140
+        outputIds:
+          - - e9Os2zWExV
+        type: timer
+      - config: {}
+        key: persistence
+        meta:
+          category: trigger
+          description: ''
+          label: MQTT
+          name: mqtt
+          uiId: 2vwG8DTqOT
+          x: 400
+          'y': 140
+        outputIds:
+          - - Nb7KxJUyPD
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesPersistence~-Yj5l96z4cW
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"query\": \"SELECT DISTINCT topic FROM Received\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesPersistence~-Yj5l96z4cW
+          x: 1800
+          'y': 200
+        outputIds:
+          - - xfVVX9EcJq
+        type: virtualButton
+      - config: {}
+        key: device_disconnected
+        meta:
+          category: trigger
+          description: ''
+          label: Disconnected
+          name: direct
+          uiId: JSYm1ldM5t
+          x: 1060
+          'y': 140
+        outputIds:
+          - - iqMiO3WBzZ
+        type: direct
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesPersistence~-u1_eDDpGin
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesPersistence~-u1_eDDpGin
+          x: 1280
+          'y': 140
+        outputIds:
+          - - iqMiO3WBzZ
+        type: virtualButton
+      - config: {}
+        key: persistence/state
+        meta:
+          category: trigger
+          description: ''
+          label: MQTT
+          name: mqtt
+          uiId: iWQYol24Kv
+          x: 600
+          'y': 140
+        outputIds:
+          - - Nb7KxJUyPD
+        type: mqttTopic
+version: 1

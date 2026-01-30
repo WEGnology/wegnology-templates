@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example demonstrates how to use the registered HTTP_Post function.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedFeaturesHttp~
+    name: Features Http
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

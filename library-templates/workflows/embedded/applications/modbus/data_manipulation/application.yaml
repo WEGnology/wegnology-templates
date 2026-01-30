@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example shows how to manipulate data from a device and also how to obtain the status of all devices.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedApplicationsModbusDataManipulation~
+    name: Modbus Data Manipulation
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

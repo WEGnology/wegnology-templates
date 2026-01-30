@@ -1,0 +1,144 @@
+resourceType: Flow
+resources:
+  - description: |
+      Esse exemplo demonstra como utilizar a função registrada HTTP_Post
+    exportHash: fddbef4c55469d06bfd07e09568673335edfb0b4b2ed2718a706cca9067451ea
+    flowClass: embedded
+    globals: []
+    id: ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesHttp~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\http
+    nodes:
+      - config:
+          functionName: http_post
+          inputs:
+            - type: str
+              valueTemplate: '{{data.header0}}'
+            - type: str
+              valueTemplate: '{{data.header1}}'
+            - type: str
+              valueTemplate: '{{data.header2}}'
+            - type: str
+              valueTemplate: '{{data.body}}'
+            - type: str
+              valueTemplate: '{{data.uri}}'
+          outputs:
+            - destinationPath: data.responseCode
+              type: u16
+            - destinationPath: data.responseContent
+              maxLength: '25000'
+              type: str
+          resultPath: data.returnCode
+        id: oZCQxk4_xH
+        meta:
+          category: data
+          description: ''
+          label: Http Post
+          name: registered-function
+          x: 140
+          'y': 520
+        outputIds:
+          - - BYRg6dtB96
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: BYRg6dtB96
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 140
+          'y': 640
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: FNsBAp31rr
+        meta:
+          annotationText: |-
+            Faz uma requisição *HTTP Post* simples em um domínio
+
+            - **data.header0** => Cabeçalho para incluir na requisição.
+            - **data.header1** => Cabeçalho para incluir na requisição.
+            - **data.header2** => Cabeçalho para incluir na requisição.
+            - **data.body** => Dados para enviar na requisição.
+            - **data.uri** => URI da requisição.
+            - **data.responseCode** => Código da reposta.
+            - **data.responseContent** => Resposta da requisição.
+          category: annotation
+          height: 360
+          label: Note
+          name: note
+          width: 260
+          x: 100
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: uVJqbMxqze
+        meta:
+          annotationText: |-
+            Possíveis retornos: 
+            * 0: sucesso na operação. 
+            * 100: URI inválida.
+            * 101: falha no envio
+            da requisição.
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+            * 103: falha ao processar resposta. 
+            * 104: caminho do arquivo para upload inválido.
+            * 105: falha ao ler o arquivo para upload
+          category: annotation
+          height: 320
+          label: Note
+          name: note
+          width: 280
+          x: 380
+          'y': 440
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 95N5ZZkhTT
+        meta:
+          annotationText: '- **data.returnCode** => Retorno da operação.'
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 160
+          x: 380
+          'y': 320
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: kbwQqgOYVu
+        meta:
+          annotationText: '**Obs: Utilize “@arquivo.extensão” para fazer upload de arquivos**'
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 100
+          'y': 760
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesHttp~-065_xFVAeAhykd_3S__67
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"header0\": \"Content-Type=application/x-www-form-urlencoded\",\r\n  \"header1\": \"\",\r\n  \"header2\": \"\",\r\n  \"body\": \"Teste=teste\",\r\n  \"uri\": \"https://postman-echo.com/post\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesHttp~-065_xFVAeAhykd_3S__67
+          x: 140
+          'y': 400
+        outputIds:
+          - - oZCQxk4_xH
+        type: virtualButton
+version: 1

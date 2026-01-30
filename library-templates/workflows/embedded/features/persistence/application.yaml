@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This workflow stores messages during periods when there is no connection to the remote broker. Once the connection is reestablished, the messages are retrieved from storage and published. To use it, replace the Device State in your workflow with an MQTT block using the persistence topic.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedFeaturesPersistence~
+    name: Features Persistence
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

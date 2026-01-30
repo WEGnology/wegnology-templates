@@ -1,0 +1,1193 @@
+resourceType: Flow
+resources:
+  - description: Esse exemplo mostra como utilizar as funções de bluetooth.
+    exportHash: 976e397f913b118eb5815668c2ee31f104073db7b4227e2fd92220ed01e97f1c
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~
+    minimumAgentVersion: 0.0.0
+    name: >-
+      edge-wegnology-templates\embedded\applications\ble\communication_with_devices
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/read/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: ptcq3qkkuv
+        meta:
+          category: output
+          description: ''
+          label: Read Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 240
+        outputIds:
+          - - 0RcBE3N61q
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/write/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: 0RcBE3N61q
+        meta:
+          category: output
+          description: ''
+          label: Write Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 340
+        outputIds:
+          - - TOGRzHCcDK
+        type: MqttMessageNode
+      - config: {}
+        id: 0QGiicoiHp
+        meta:
+          annotationText: Inicializa se inscrevendo nos tópicos necessários.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: aA43rx93JZ
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da leitura.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 220
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: LA0gTCET4k
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da escrita.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 320
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/notify/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: TOGRzHCcDK
+        meta:
+          category: output
+          description: ''
+          label: Notify Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 440
+        outputIds:
+          - - mD2yLurK28
+        type: MqttMessageNode
+      - config: {}
+        id: wxIaHBi7Ks
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da notificação.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 420
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/disconnect/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: mD2yLurK28
+        meta:
+          category: output
+          description: ''
+          label: Disconnect Response Subscribe
+          name: mqtt
+          x: 40
+          'y': 540
+        outputIds:
+          - - fZH0xeK4Zr
+        type: MqttMessageNode
+      - config: {}
+        id: HYJU1ueL5a
+        meta:
+          annotationText: Inscreve-se no tópico de resposta da desconexão forçada.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/nearby-devices/response"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: fZH0xeK4Zr
+        meta:
+          category: output
+          description: ''
+          label: Nearby Devices Response
+          name: mqtt
+          x: 40
+          'y': 640
+        outputIds:
+          - - NmespcXlBw
+        type: MqttMessageNode
+      - config: {}
+        id: z4OZrysaP8
+        meta:
+          annotationText: Inscreve-se no tópico de resposta de dispositivos próximos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 620
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ble-api/v1/read
+        id: R0KzqHFCfQ
+        meta:
+          category: output
+          description: ''
+          label: Read
+          name: mqtt
+          x: 560
+          'y': 320
+        outputIds:
+          - - dvfWjkpomY
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: dvfWjkpomY
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: Ns8EuWYW9u
+        meta:
+          annotationText: |-
+            Faz a leitura do valor atual de uma característica do dispositivo.
+
+            - **data** => Informações sobre o dispositivo a ser lido.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 520
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: Sjezr6UGmA
+        meta:
+          annotationText: |-
+            As informações necessárias para realizar a leitura são:
+
+            - **adress** => Endereço MAC do dispositivo.
+            - **service** => Identificador GATT do serviço.
+            - **characteristics** => Identificador GATT da característica.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 520
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 7UkF8WnRQM
+        meta:
+          annotationText: >-
+            Escuta o tópico referente a leitura de uma característica do
+            dispositivo.
+
+
+            - **data** => Informações sobre o dispositivo lido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 820
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 49iAmWzbqk
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 860
+          'y': 320
+        outputIds:
+          - - RRxk0kzwnR
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: RRxk0kzwnR
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 860
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 4Xiq6CV9DG
+        meta:
+          annotationText: >-
+            As informações que são apresentadas são:
+
+
+            - **meta.requester** => MQTT Client ID do solicitante.
+
+            - **meta.id** => ID da requisição.
+
+            - **meta.result** => Objeto contendo as informações sobre o
+            resultado.
+
+            - **adress** => Endereço MAC do dispositivo.
+
+            - **service** => Identificador GATT do serviço.
+
+            - **characteristics** => Identificador GATT da característica.
+
+            - **value** => Valor da característica em formato
+
+            *base64*.
+
+
+            **OBS:** Se o *result.code* for igual a 0, a solicitação foi um
+            sucesso.
+          category: annotation
+          height: 480
+          label: Note
+          name: note
+          width: 260
+          x: 820
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ble-api/v1/write
+        id: upQGWDvDGP
+        meta:
+          category: output
+          description: ''
+          label: Write
+          name: mqtt
+          x: 1200
+          'y': 320
+        outputIds:
+          - - i_ytxuqaiW
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: i_ytxuqaiW
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1200
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 0kM6nk2zQG
+        meta:
+          annotationText: >-
+            Faz a escrita de um novo valor para uma característica do
+            dispositivo.
+
+
+            - **data** => Informações sobre a característica a ser escrita.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1160
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: nMmTm5IYhN
+        meta:
+          annotationText: |-
+            As informações necessárias para realizar a leitura são:
+
+            - **adress** => Endereço MAC do dispositivo.
+            - **service** => Identificador GATT do serviço.
+            - **characteristics** => Identificador GATT da característica.
+            - **value** => Novo valor em string, em formato *base64*.
+          category: annotation
+          height: 280
+          label: Note
+          name: note
+          width: 260
+          x: 1160
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 85Rf0cd3Rp
+        meta:
+          annotationText: >-
+            Escuta o tópico referente a leitura de uma característica do
+            dispositivo.
+
+
+            - **data** => Informações sobre o dispositivo escrito.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1460
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: Liiz8QFf51
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1500
+          'y': 320
+        outputIds:
+          - - GLljqE7Cto
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: GLljqE7Cto
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1500
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: btbbIEGetK
+        meta:
+          annotationText: >-
+            As informações que são apresentadas são:
+
+
+            - **meta.requester** => MQTT Client ID do solicitante.
+
+            - **meta.id** => ID da requisição.
+
+            - **meta.result** => Objeto contendo as informações sobre o
+            resultado.
+
+            - **adress** => Endereço MAC do dispositivo.
+
+            - **service** => Identificador GATT do serviço.
+
+            - **characteristics** => Identificador GATT da característica.
+
+            - **value** => Valor da característica em formato
+
+            *base64*.
+
+
+            **OBS:** Se o *result.code* for igual a 0, a solicitação foi um
+            sucesso.
+          category: annotation
+          height: 480
+          label: Note
+          name: note
+          width: 260
+          x: 1460
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ble-api/v1/notify
+        id: GPgIQDl9aX
+        meta:
+          category: output
+          description: ''
+          label: Notify
+          name: mqtt
+          x: 1860
+          'y': 320
+        outputIds:
+          - - Erxxt9iHel
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: Erxxt9iHel
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1860
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: 0fGXh1uStv
+        meta:
+          annotationText: >-
+            Faz a solicitação da notificação para a alteração de valores de uma
+            característica no dispositivo.
+
+
+            - **data** => Informações sobre o dispositivo setado a notificação.
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 1820
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: JPLks_uyyF
+        meta:
+          annotationText: >-
+            As informações necessárias para realizar a leitura são:
+
+
+            - **adress** => Endereço MAC do dispositivo.
+
+            - **service** => Identificador GATT do serviço.
+
+            - **characteristics** => Identificador GATT da característica.
+
+            - **options** => Objeto contendo as opções da notificação.
+            (Opcional)
+
+            - **options.timeout** => Intervalo de monitoramento, em segundos.
+
+            - **options.count** => Limite de notificações recebidas.
+          category: annotation
+          height: 400
+          label: Note
+          name: note
+          width: 260
+          x: 1820
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: d3RpqkQcu8
+        meta:
+          annotationText: |-
+            Escuta a notificação, assim que for alterada a característica.
+
+            - **data** => Informações sobre o dispositivo lido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 2120
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: KoXcQDJ5Rd
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 2160
+          'y': 320
+        outputIds:
+          - - TS5_26ztra
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: TS5_26ztra
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 2160
+          'y': 420
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: GEuhMxy6PN
+        meta:
+          annotationText: >-
+            As informações que são apresentadas são:
+
+
+            - **meta.requester** => MQTT Client ID do solicitante.
+
+            - **meta.id** => ID da requisição.
+
+            - **meta.result** => Objeto contendo as informações sobre o
+            resultado.
+
+            - **adress** => Endereço MAC do dispositivo.
+
+            - **service** => Identificador GATT do serviço.
+
+            - **characteristics** => Identificador GATT da característica.
+
+            - **value** => Valor da característica em formato
+
+            *base64*.
+
+
+            **OBS:** O monitoramento continua ativo enquanto o atributo
+            meta.result não estiver presente na mensagem.
+          category: annotation
+          height: 520
+          label: Note
+          name: note
+          width: 260
+          x: 2120
+          'y': 520
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ble-api/v1/disconnect
+        id: qTnhUS2ydO
+        meta:
+          category: output
+          description: ''
+          label: Disconnect
+          name: mqtt
+          x: 560
+          'y': 1440
+        outputIds:
+          - - ga_l7bkkmz
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: ga_l7bkkmz
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 560
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: RrlZq1cYgD
+        meta:
+          annotationText: |-
+            Faz a solicitação da desconexão forçada de um dispositivo
+
+            - **data.adress** => Endereço MAC do dispositivo a ser desconectado.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 520
+          'y': 1160
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: HGpXFiDQ78
+        meta:
+          annotationText: |-
+            Escuta o tópico da desconexão forçada.
+
+            - **data** => Informações sobre o dispositivo lido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 820
+          'y': 1160
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 3buGeeLplw
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 860
+          'y': 1440
+        outputIds:
+          - - t4EaZGfXxD
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: t4EaZGfXxD
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 860
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: yNKr9ccQMW
+        meta:
+          annotationText: >-
+            As informações que são apresentadas são:
+
+
+            - **meta.requester** => MQTT Client ID do solicitante.
+
+            - **meta.id** => ID da requisição.
+
+            - **meta.result** => Objeto contendo as informações sobre o
+            resultado.
+
+            - **adress** => Endereço MAC do dispositivo.
+          category: annotation
+          height: 260
+          label: Note
+          name: note
+          width: 260
+          x: 820
+          'y': 1640
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: ble-api/v1/nearby-devices
+        id: BM32JI5dfs
+        meta:
+          category: output
+          description: ''
+          label: Nearby Devices
+          name: mqtt
+          x: 1200
+          'y': 1440
+        outputIds:
+          - - tiTiFa0HAf
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: tiTiFa0HAf
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1200
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: IBq2k8mC6A
+        meta:
+          annotationText: >-
+            Faz a solicitação de busca de dispositivos próximos. Essa ação
+            **PODE** ser impactada por outras funções, caso sejam executadas
+            simultaneamente.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 1160
+          'y': 1180
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: BcwOBjdiHy
+        meta:
+          annotationText: |-
+            Escuta o tópico de busca de dispositivos próximos.
+
+            - **data** => Informações sobre o dispositivo lido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1460
+          'y': 1160
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: XTirfxwnpi
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1500
+          'y': 1440
+        outputIds:
+          - - EdblE7PXfI
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: EdblE7PXfI
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1500
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: XmlhEoQFjo
+        meta:
+          annotationText: >-
+            As informações que são apresentadas são:
+
+
+            - **meta.elapsed** => Tempo em segundos entre a requisição e a
+            resposta.
+
+            - **meta.result** => Objeto contendo as informações sobre o
+            resultado.
+
+            - **devices** => Lista de dispositivos encontrados.
+
+            - **devices[].address** => Endereço MAC do dispositivo.
+
+            - **devices[].name** =>  Nome do dispositivo
+
+            - **devices[].connected** => Indica se o dispositivo está conectado.
+
+            - **devices[].rssi** => Nível de RSSI em dBm
+
+            - **devices[].tx_power** => Nível de potência.
+
+            - **devices[].manufacturing** => Dados do fabricante.
+          category: annotation
+          height: 520
+          label: Note
+          name: note
+          width: 260
+          x: 1460
+          'y': 1640
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/events"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: NmespcXlBw
+        meta:
+          category: output
+          description: ''
+          label: Events Subscribe
+          name: mqtt
+          x: 40
+          'y': 740
+        outputIds:
+          - - EpyYg5Ge3M
+        type: MqttMessageNode
+      - config: {}
+        id: kzLBXrdReD
+        meta:
+          annotationText: Inscreve-se no tópico de eventos de scan.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "ble-api/v1/statistics"}'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: EpyYg5Ge3M
+        meta:
+          category: output
+          description: ''
+          label: Statistics Subscribe
+          name: mqtt
+          x: 40
+          'y': 840
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: yyZLgkN3t2
+        meta:
+          annotationText: Inscreve-se no tópico de estatísticas periódicas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 240
+          'y': 820
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: upPoFVzM9B
+        meta:
+          annotationText: |-
+            Escuta o tópico sobre os eventos na API.
+
+            - **data** => Informações sobre o dispositivo lido.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1820
+          'y': 1160
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: xNrLTRFGcE
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1860
+          'y': 1440
+        outputIds:
+          - - wsaXD4_BfO
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: wsaXD4_BfO
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1860
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: dnzTpRo2GN
+        meta:
+          annotationText: |-
+            Escuta o tópico referente as estatísticas periódicas.
+
+            - **data.counters** => Informações sobre os contadores.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 2120
+          'y': 1160
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: ri2_HZQsE8
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 2160
+          'y': 1440
+        outputIds:
+          - - p1FBx_Z548
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: p1FBx_Z548
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 2160
+          'y': 1540
+        outputIds: []
+        type: DebugNode
+    triggers:
+      - config: {}
+        key: JwfUDWpbt7DEf1YC3cTHA
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: 7T5jvpniwF
+          x: 40
+          'y': 140
+        outputIds:
+          - - ptcq3qkkuv
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-PJWTdOaUHQCE_eHpkNwzd
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"adress\": \"x.x.x.x\",\r\n  \"service\": \"y.y.y.y\",\r\n  \"characteristics\": \"z.z.z.z\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-PJWTdOaUHQCE_eHpkNwzd
+          x: 560
+          'y': 220
+        outputIds:
+          - - R0KzqHFCfQ
+        type: virtualButton
+      - config: {}
+        key: ble-api/v1/read/response
+        meta:
+          category: trigger
+          description: ''
+          label: Read Response
+          name: mqtt
+          uiId: J9JUbJRjzv
+          x: 860
+          'y': 220
+        outputIds:
+          - - 49iAmWzbqk
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-VBioFlr_YmB6wyw5r6pQT
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"adress\": \"x.x.x.x\",\r\n  \"service\": \"y.y.y.y\",\r\n  \"characteristics\": \"z.z.z.z\",\r\n  \"value\": \"test\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-VBioFlr_YmB6wyw5r6pQT
+          x: 1200
+          'y': 220
+        outputIds:
+          - - upQGWDvDGP
+        type: virtualButton
+      - config: {}
+        key: ble-api/v1/write/response
+        meta:
+          category: trigger
+          description: ''
+          label: Write Response
+          name: mqtt
+          uiId: PM1jZ8FOIW
+          x: 1500
+          'y': 220
+        outputIds:
+          - - Liiz8QFf51
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-pmMGcmyZ5X2wfer4miRia
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"adress\": \"x.x.x.x\",\r\n  \"service\": \"y.y.y.y\",\r\n  \"characteristics\": \"z.z.z.z\",\r\n  \"options\":[\r\n    {\r\n      \"timeout\":10,\r\n      \"count\":10\r\n    }\r\n  ]\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-pmMGcmyZ5X2wfer4miRia
+          x: 1860
+          'y': 220
+        outputIds:
+          - - GPgIQDl9aX
+        type: virtualButton
+      - config: {}
+        key: ble-api/v1/notify/response
+        meta:
+          category: trigger
+          description: ''
+          label: Notify Response
+          name: mqtt
+          uiId: Fxv7V5HvtP
+          x: 2160
+          'y': 220
+        outputIds:
+          - - KoXcQDJ5Rd
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-XecCkZ0tbN6whkJ5mRIgt
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n  \"adress\": \"x.x.x.x\"\r\n}"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-XecCkZ0tbN6whkJ5mRIgt
+          x: 560
+          'y': 1340
+        outputIds:
+          - - qTnhUS2ydO
+        type: virtualButton
+      - config: {}
+        key: ble-api/v1/disconnect/response
+        meta:
+          category: trigger
+          description: ''
+          label: Disconnect Response
+          name: mqtt
+          uiId: ZxT8DA97gY
+          x: 860
+          'y': 1340
+        outputIds:
+          - - 3buGeeLplw
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-AASUyeMlOTxs5ZpwMuoCk
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsBleCommunicationWithDevices~-AASUyeMlOTxs5ZpwMuoCk
+          x: 1200
+          'y': 1340
+        outputIds:
+          - - BM32JI5dfs
+        type: virtualButton
+      - config: {}
+        key: ble-api/v1/nearby-devices/response
+        meta:
+          category: trigger
+          description: ''
+          label: Nearby Devices Response
+          name: mqtt
+          uiId: 0DJ4nBoEs8
+          x: 1500
+          'y': 1340
+        outputIds:
+          - - XTirfxwnpi
+        type: mqttTopic
+      - config: {}
+        key: ble-api/v1/events
+        meta:
+          category: trigger
+          description: ''
+          label: Events
+          name: mqtt
+          uiId: 78e1Akz6fl
+          x: 1860
+          'y': 1340
+        outputIds:
+          - - xNrLTRFGcE
+        type: mqttTopic
+      - config: {}
+        key: ble-api/v1/statistics
+        meta:
+          category: trigger
+          description: ''
+          label: Statistics
+          name: mqtt
+          uiId: DVu826GHyz
+          x: 2160
+          'y': 1340
+        outputIds:
+          - - ri2_HZQsE8
+        type: mqttTopic
+version: 1

@@ -1,0 +1,205 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Este workflow monitora e armazena a contagem de eventos de conexão /
+      desconexão entre o dispositivo e a plataforma.
+
+
+      Os eventos de conexão e desconexão são capturados através do ***Direct
+      Trigger***.
+    exportHash: a3c8c048365d7892d5954481945ca019ab1abb9d8b65cf9a8af38751c64816a2
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesDirectTrigger~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\direct_trigger
+    nodes:
+      - config:
+          level: info
+          message: Debug 0
+          property: ''
+        id: PiqOw4DwvA
+        meta:
+          category: debug
+          description: ''
+          label: Debug 0
+          name: debug
+          x: 60
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: info
+          message: Debug 1
+          property: ''
+        id: NAEPI9X_XJ
+        meta:
+          category: debug
+          description: ''
+          label: Debug 1
+          name: debug
+          x: 320
+          'y': 360
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: info
+          message: Debug 2
+          property: ''
+        id: U_zbvy4EoR
+        meta:
+          category: debug
+          description: ''
+          label: Debug 2
+          name: debug
+          x: 580
+          'y': 360
+        outputIds: []
+        type: DebugNode
+      - config:
+          keyName: deviceConnected
+          resultPath: ''
+          value: '1'
+          valueType: incr
+        id: eG9e9qxrh7
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 320
+          'y': 280
+        outputIds:
+          - - NAEPI9X_XJ
+        type: StoreValueNode
+      - config:
+          keyName: deviceDisconnected
+          resultPath: ''
+          value: '1'
+          valueType: incr
+        id: bi4rOoZ36E
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 580
+          'y': 280
+        outputIds:
+          - - U_zbvy4EoR
+        type: StoreValueNode
+      - config:
+          keyName: deviceConnected
+          resultPath: ''
+          value: '0'
+          valueType: number
+        id: WpdgucxIPn
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 60
+          'y': 280
+        outputIds:
+          - - HtTCbdGqwS
+        type: StoreValueNode
+      - config:
+          keyName: deviceDisconnected
+          resultPath: ''
+          value: '0'
+          valueType: number
+        id: HtTCbdGqwS
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 60
+          'y': 360
+        outputIds:
+          - - PiqOw4DwvA
+        type: StoreValueNode
+      - config: {}
+        id: _jeud9xX9H
+        meta:
+          annotationText: >
+            Inicializa as variáveis ***deviceConnected*** e
+            ***deviceDisconnected***.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 40
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: g_sbZbm1CR
+        meta:
+          annotationText: Incrementa o contador de conexões.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 300
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: M5zVJPJBte
+        meta:
+          annotationText: Incrementa o contador de desconexões.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 560
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: vFD5bgVX1WwIiajDMUtnE
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: v5Ubsfd4YD
+          x: 60
+          'y': 200
+        outputIds:
+          - - WpdgucxIPn
+        type: onBoot
+      - config: {}
+        key: device_connected
+        meta:
+          category: trigger
+          description: ''
+          label: device_connected
+          name: direct
+          uiId: nyNW1681QL
+          x: 320
+          'y': 200
+        outputIds:
+          - - eG9e9qxrh7
+        type: direct
+      - config: {}
+        key: device_disconnected
+        meta:
+          category: trigger
+          description: ''
+          label: device_disconnected
+          name: direct
+          uiId: 8HBXRi51Ar
+          x: 580
+          'y': 200
+        outputIds:
+          - - bi4rOoZ36E
+        type: direct
+version: 1

@@ -1,0 +1,273 @@
+resourceType: Flow
+resources:
+  - description: >
+      Esse exemplo demonstra como captar as mensagens publicadas por outros
+      dispositivos, com a diferença de fazer de forma genérica.
+    exportHash: 1c017e1be3cbeba7fc8212ddeca4d34bd5da3d0561e833cd4336bc34ad73bd46
+    flowClass: cloud
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedPeripheralsPublishingOnBehalfOfOtherDevices~
+    name: >-
+      edge-wegnology-templates\embedded\peripherals\publishing_on_behalf_of_other_devices
+    nodes:
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: fOC55OpsG5
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 100
+          'y': 360
+        outputIds:
+          - - 5Yk6v5j9pq
+        type: JsonDecodeNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: data
+          mapResultPath: ''
+          parallel: false
+        id: 5Yk6v5j9pq
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 340
+          groupStartY: 160
+          label: Loop
+          name: loop
+          x: 100
+          'y': 440
+        outputIds:
+          - - 5R1rHSV_wH
+          - - tUIA0cbVHB
+        type: LoopNode
+      - config:
+          loopNodeId: 5Yk6v5j9pq
+          mapValuePath: ''
+          shouldBreak: false
+        id: CHvuY9p19c
+        meta:
+          category: loop
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: Next
+          name: loop-next
+          x: 440
+          'y': 880
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          method: split
+          methodArgs:
+            - /
+          resultPath: topic
+          sourceData: '{{loop.value.topic}}'
+        id: 7HzH2bdJzG
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: String
+          name: string
+          x: 340
+          'y': 560
+        outputIds:
+          - - 1Brf0Q5IAd
+        type: StringNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 5R1rHSV_wH
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 100
+          'y': 520
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: U7fPQU1Fu7
+        meta:
+          annotationText: >-
+            As mensagens periódicas, on-change  e alarmes que chegam podem ser
+            tratadas e serem encaminhadas para seus respectivos dispositivos
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 200
+          x: 100
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          expression: '{{loop.value.id}} != undefined'
+        id: I3s52HM8eP
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: id in msg?
+          name: conditional
+          x: 440
+          'y': 480
+        outputIds:
+          - - 7HzH2bdJzG
+          - - i4gPO3zUEC
+        type: ConditionalNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: loop.value.data
+          deviceId: loop.value.id
+          deviceIdTemplateType: jsonPath
+          resultPath: ''
+          timeSourcePath: loop.value.time
+          timeSourceType: payloadPath
+        id: wwecgYCUmx
+        meta:
+          category: output
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: 'Device: State'
+          name: device-state
+          x: 540
+          'y': 800
+        outputIds:
+          - - CHvuY9p19c
+        type: DeviceChangeStateNode
+      - config:
+          expression: '{{loop.value.time}} != undefined'
+        id: i4gPO3zUEC
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: time in msg?
+          name: conditional
+          x: 440
+          'y': 720
+        outputIds:
+          - - 3TnGUzdF50
+          - - wwecgYCUmx
+        type: ConditionalNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: loop.value.data
+          deviceId: loop.value.id
+          deviceIdTemplateType: jsonPath
+          resultPath: ''
+          timeSourceType: payloadTime
+        id: 3TnGUzdF50
+        meta:
+          category: output
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: 'Device: State'
+          name: device-state
+          x: 340
+          'y': 800
+        outputIds:
+          - - CHvuY9p19c
+        type: DeviceChangeStateNode
+      - config:
+          rules:
+            - destination: loop.value.id
+              source: 'topic.[1]'
+              type: copy
+        id: 1Brf0Q5IAd
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: Mutate
+          name: mutate
+          x: 340
+          'y': 640
+        outputIds:
+          - - i4gPO3zUEC
+        type: MutateNode
+      - config:
+          expression: '{{loop.value.data}} != undefined'
+        id: tUIA0cbVHB
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: data in msg?
+          name: conditional
+          x: 340
+          'y': 240
+        outputIds:
+          - - C6zUa1dU7I
+          - - I3s52HM8eP
+        type: ConditionalNode
+      - config:
+          expression: '{{loop.value.send}} != undefined'
+        id: C6zUa1dU7I
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: send in msg?
+          name: conditional
+          x: 240
+          'y': 320
+        outputIds:
+          - - YIm5FEeDX3
+          - - bIwYa8SkIa
+        type: ConditionalNode
+      - config:
+          loopNodeId: 5Yk6v5j9pq
+          mapValuePath: ''
+          shouldBreak: false
+        id: YIm5FEeDX3
+        meta:
+          category: loop
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: Next
+          name: loop-next
+          x: 140
+          'y': 400
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          rules:
+            - destination: loop.value.data
+              source: loop.value.send
+              type: move
+        id: bIwYa8SkIa
+        meta:
+          category: logic
+          description: ''
+          groupId: 5Yk6v5j9pq
+          label: Mutate
+          name: mutate
+          x: 340
+          'y': 400
+        outputIds:
+          - - I3s52HM8eP
+        type: MutateNode
+    triggers:
+      - config: {}
+        key: edge/+/eea/peripherals
+        meta:
+          category: trigger
+          description: ''
+          label: MQTT
+          name: mqtt
+          uiId: PDNDt86bn2
+          x: 100
+          'y': 280
+        outputIds:
+          - - fOC55OpsG5
+        type: mqttTopic
+version: 1

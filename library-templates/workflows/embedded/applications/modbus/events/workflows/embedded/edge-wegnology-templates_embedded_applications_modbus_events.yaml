@@ -1,0 +1,777 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas aos eventos
+      do Modbus
+    exportHash: e1725420520f0fb507021639cbacde6b2802aa6dc776aa4c0e87f58690e4b4ed
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusEvents~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\modbus\events
+    nodes:
+      - config: {}
+        id: 1FO0gEVRBK
+        meta:
+          annotationText: Registra-se no tópico de atualizações periódicas.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 200
+          x: 300
+          'y': 280
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 9KWSRorp76
+        meta:
+          annotationText: Escuta as mensagens periódicas.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 740
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: DVlah3T7kO
+        meta:
+          annotationText: Registra-se no tópico de atualizações *on change*.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 380
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/periodic" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: 7jubJKXVjN
+        meta:
+          category: output
+          description: ''
+          label: Periodic Subscribe
+          name: mqtt
+          x: 60
+          'y': 300
+        outputIds:
+          - - PBWiMFrpps
+        type: MqttMessageNode
+      - config: {}
+        id: sAvZjzAmL_
+        meta:
+          annotationText: Registra-se no tópico de atualizações do modo alarme.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 300
+          'y': 580
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: zlLSJl5KWx
+        meta:
+          annotationText: >-
+            Registra-se no tópico de atualizações referentes aos erros
+            ocorridos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 200
+          x: 300
+          'y': 480
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: tspyGaIVs6
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1820
+          'y': 400
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: pW73aDY45D
+        meta:
+          annotationText: Escuta as mensagens *on-change*.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 1140
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: vemEbX5tgr
+        meta:
+          annotationText: Escuta as mensagens de alarme.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 1540
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 2KWtc209Z1
+        meta:
+          annotationText: Escuta as mensagens de erros.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 1800
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: FDi4rpSx3z
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1160
+          'y': 360
+        outputIds:
+          - - PzArkyGz1A
+        type: JsonDecodeNode
+      - config: {}
+        id: OR6t4sX7xL
+        meta:
+          annotationText: Decodificação do arquivo JSON.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 1380
+          'y': 340
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 6NbENVRd0v
+        meta:
+          annotationText: >-
+            **Atenção!** 
+
+
+            Para obter as mensagens do Modbus, é necessário que o dispositivo
+            com o workflow implatado esteja corretamente configurado!
+          category: annotation
+          height: 200
+          label: Note
+          name: note
+          width: 240
+          x: 300
+          'y': 80
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          currentItemPath: loop
+          loopSourcePath: data.data
+        id: PzArkyGz1A
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 200
+          label: Loop
+          name: loop
+          x: 1160
+          'y': 480
+        outputIds:
+          - - TJ0HGZVIB4
+          - - e2pmkITLXl
+        type: LoopNode
+      - config:
+          loopNodeId: PzArkyGz1A
+          shouldBreak: false
+        id: T_891eZdqq
+        meta:
+          category: loop
+          description: ''
+          groupId: PzArkyGz1A
+          label: Next
+          name: loop-next
+          x: 360
+          'y': 760
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          code: >-
+            use serde_json::{Result, Value};
+
+            let data = json!(payload["loop"]["value"]["registers"]);
+
+            let device =
+            json!(payload["loop"]["value"]["id"]).to_string().replace("\"","").to_string();
+
+            //let deviceSTR = device.to_string().replace("\"","").to_string();
+
+            let mut count = 0;
+
+            //payload["teste"] = json!(
+            json!(payload["loop"]).get("value").unwrap().as_object().unwrap().len()
+            );
+
+            if
+            (json!(json!(payload["loop"]["value"]).get("registers").unwrap()).as_object().unwrap().len()
+            != 0){
+              payload["read"] = json!("y");
+            } else {
+              payload["read"] = json!("n");
+            }
+
+            payload["device"] = json!({});
+
+
+            //payload["device"]["key"] = json!(payload["loop"]["key"]);
+
+            //payload["device"]["a"][count.to_string()] =
+            json!(data.as_object());
+
+            for (register, inf) in data.as_object().unwrap() {
+              //payload["device"]["b"][count.to_string()] = json!([register,inf]);
+              //payload["device"][device.clone()][count.to_string()+"Name"] = json!(register);
+              for (key, value) in data[register].as_object().unwrap() {
+                //payload["device"]["c"][count.to_string()] = json!([key,value]);
+                if (json!(payload["loop"]["value"]["id"]) == json!("")){
+                  match key.as_str() {
+                    "avg"=>payload["state"][register.to_string()+"Avg"] = json!(value),
+                    "last"=>payload["state"][register.to_string()+"Last"] = json!(value),
+                    "diff"=>payload["state"][register.to_string()+"Diff"] = json!(value),
+                    "max"=>payload["state"][register.to_string()+"Max"] = json!(value),
+                    "min"=>payload["state"][register.to_string()+"Min"] = json!(value),
+                    "alarm_high"=>payload["state"][register.to_string()+"AHigh"] = json!(value),
+                    "alarm_low"=>payload["state"][register.to_string()+"ALow"] = json!(value),
+                    _ => continue
+                  }
+                } else {
+                  match key.as_str() {
+                    "avg"=>payload["device"][register.to_string()+"Avg"] = json!(value),
+                    "last"=>payload["device"][register.to_string()+"Last"] = json!(value),
+                    "diff"=>payload["device"][register.to_string()+"Diff"] = json!(value),
+                    "max"=>payload["device"][register.to_string()+"Max"] = json!(value),
+                    "min"=>payload["device"][register.to_string()+"Min"] = json!(value),
+                    "alarm_high"=>payload["device"][register.to_string()+"AHigh"] = json!(value),
+                    "alarm_low"=>payload["device"][register.to_string()+"ALow"] = json!(value),
+                    _ => continue
+                  }
+                }
+              }
+              count = count + 1 ;
+            }
+
+
+
+            if (json!(payload["loop"]["value"]["id"]) == json!("")){
+              payload["topic"] = json!("state");
+            } else {
+              let mut first = String::from("edge/");
+              let devId = payload["loop"]["value"]["id"].to_string().replace("\"","").to_string();
+              first.push_str(devId.as_str());
+              let second = String::from("/eea/peripherals");
+              first.push_str(second.as_str());
+
+              payload["topic"] = json!(first);
+            }
+        id: e2pmkITLXl
+        meta:
+          category: logic
+          description: ''
+          groupId: PzArkyGz1A
+          label: Rust Function
+          name: rustFunction
+          x: 260
+          'y': 280
+        outputIds:
+          - - zBMoFCngAX
+        type: RustFunctionNode
+      - config:
+          expression: '{{read}} == "y"'
+        id: zBMoFCngAX
+        meta:
+          category: logic
+          description: ''
+          groupId: PzArkyGz1A
+          label: Conditional
+          name: conditional
+          x: 260
+          'y': 360
+        outputIds:
+          - - esv5iUUYb0
+          - - tpbvcdoMPj
+        type: ConditionalNode
+      - config:
+          destArrayPath: msg
+          rules:
+            - inputTemplate: '{{payload}}'
+              type: push
+          sourceArrayPath: msg
+        id: rS2epGek4q
+        meta:
+          category: logic
+          description: ''
+          groupId: PzArkyGz1A
+          label: Array
+          name: array
+          x: 260
+          'y': 680
+        outputIds:
+          - - T_891eZdqq
+        type: ArrayNode
+      - config:
+          rules:
+            - destination: payload
+              type: set
+              valueTemplate: >-
+                {"send": [ {"data":{{device}},"time":{{data.timestamp}} }
+                ],"topic":"{{topic}}"}
+              valueTemplateType: json
+        id: 5azcvHyEwI
+        meta:
+          category: logic
+          description: ''
+          groupId: PzArkyGz1A
+          label: Mutate
+          name: mutate
+          x: 260
+          'y': 600
+        outputIds:
+          - - rS2epGek4q
+        type: MutateNode
+      - config:
+          expression: '{{topic}} == "state"'
+        id: tpbvcdoMPj
+        meta:
+          category: logic
+          description: ''
+          groupId: PzArkyGz1A
+          label: Conditional
+          name: conditional
+          x: 360
+          'y': 480
+        outputIds:
+          - - 5azcvHyEwI
+          - - T_891eZdqq
+        type: ConditionalNode
+      - config:
+          loopNodeId: PzArkyGz1A
+          shouldBreak: false
+        id: esv5iUUYb0
+        meta:
+          category: loop
+          description: ''
+          groupId: PzArkyGz1A
+          label: Next
+          name: loop-next
+          x: 160
+          'y': 480
+        outputIds: []
+        type: LoopCapNode
+      - config: {}
+        id: PsVBE24oH9
+        meta:
+          annotationText: >-
+            Filtra as informações e adiciona um prefixo referente ao tipo de
+            informação
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 1380
+          'y': 480
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: state
+          resultPath: ''
+          timeSourcePath: data.timestamp
+          timeSourceType: payloadPath
+        id: NxPpkUG9rb
+        meta:
+          category: output
+          description: ''
+          label: 'Device: State'
+          name: device-state
+          x: 1280
+          'y': 740
+        outputIds:
+          - - U4g0f9ahzD
+        type: DeviceChangeStateNode
+      - config: {}
+        id: Eg1YNStiSB
+        meta:
+          annotationText: >-
+            Verifica se ainda existem informações para serem formatadas e em
+            seguida formata, caso não tenha, retorna *read* como *y*.
+
+
+            Também verifica se algum ID foi fornecido para a informação, caso
+            não seja, as informações serão publicadas diretamente no
+            dispositivo, do contrário, discrimina qual é o ID
+          category: annotation
+          groupId: PzArkyGz1A
+          height: 220
+          label: Note
+          name: note
+          width: 320
+          x: 500
+          'y': 200
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: R_Jc0fRclD
+        meta:
+          annotationText: Terminou?
+          category: annotation
+          groupId: PzArkyGz1A
+          height: 100
+          label: Note
+          name: note
+          width: 120
+          x: 120
+          'y': 340
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 0D14sDHCUJ
+        meta:
+          annotationText: É para ser publicado no próprio dispositivo?
+          category: annotation
+          groupId: PzArkyGz1A
+          height: 100
+          label: Note
+          name: note
+          width: 180
+          x: 560
+          'y': 460
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          expression: '{{state}} != undefined'
+        id: TJ0HGZVIB4
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1160
+          'y': 600
+        outputIds:
+          - - JyEzcvNL69
+          - - NxPpkUG9rb
+        type: ConditionalNode
+      - config: {}
+        id: CxKJbdLaoH
+        meta:
+          annotationText: Será publicado no dispositivo?
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 1380
+          'y': 600
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          expression: '{{msg}} != undefined'
+        id: JyEzcvNL69
+        meta:
+          category: logic
+          description: ''
+          label: Conditional
+          name: conditional
+          x: 1060
+          'y': 740
+        outputIds:
+          - - mRoAnC2Kmw
+          - - 6wHOdTqkRV
+        type: ConditionalNode
+      - config:
+          messageTemplate: '{{device}}'
+          resultPath: data.sendResult
+          topicTemplate: '{{payload.topic}}'
+        id: 6wHOdTqkRV
+        meta:
+          category: output
+          description: ''
+          label: Payload Topic
+          name: mqtt
+          x: 1160
+          'y': 940
+        outputIds:
+          - - 1lXC_GQ2uh
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 1lXC_GQ2uh
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1160
+          'y': 1040
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: mRoAnC2Kmw
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 940
+          'y': 940
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: bIC48QQASa
+        meta:
+          annotationText: A mensagem é valida?
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 880
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 8HyOIIl0gY
+        meta:
+          annotationText: Publica no dispositivo
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 1500
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 57Slcv5i2E
+        meta:
+          annotationText: Publica no tópico do periférico
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 1380
+          'y': 920
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: U4g0f9ahzD
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1280
+          'y': 840
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: Hh3hKURpFO
+        meta:
+          annotationText: >-
+            - **data.data.x** => Contém todas as informações recebidas dos
+            dispositivos, junto com os seus registradores.
+
+            - **status** => Todas as informações dos dispositivos a serem
+            publicadas no nome do gateway.
+
+            - **edge/x/eea/peripherals** => Informações do dispositivo a ser
+            publicado no próprio nome.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 300
+          x: 1680
+          'y': 680
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/onchange" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: PBWiMFrpps
+        meta:
+          category: output
+          description: ''
+          label: OnChange Subscribe
+          name: mqtt
+          x: 60
+          'y': 400
+        outputIds:
+          - - El281xGmYr
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/errors" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: El281xGmYr
+        meta:
+          category: output
+          description: ''
+          label: Errors Subscribe
+          name: mqtt
+          x: 60
+          'y': 500
+        outputIds:
+          - - OvEmewvYHC
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/alarms" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: OvEmewvYHC
+        meta:
+          category: output
+          description: ''
+          label: Alarms Subscribe
+          name: mqtt
+          x: 60
+          'y': 600
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: oAQDM7kvdu
+        meta:
+          annotationText: Inicializa registrando nos tópicos referentes ao modbus.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 260
+          x: 20
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: AYag_pOSlm
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1820
+          'y': 300
+        outputIds:
+          - - tspyGaIVs6
+        type: JsonDecodeNode
+    triggers:
+      - config: {}
+        key: modbus-api/v1/periodic
+        meta:
+          category: trigger
+          description: ''
+          label: Periodic
+          name: mqtt
+          uiId: CvEDA4zR44
+          x: 760
+          'y': 200
+        outputIds:
+          - - FDi4rpSx3z
+        type: mqttTopic
+      - config: {}
+        key: modbus-api/v1/onchange
+        meta:
+          category: trigger
+          description: ''
+          label: OnChange
+          name: mqtt
+          uiId: cJp5DLrodm
+          x: 1160
+          'y': 200
+        outputIds:
+          - - FDi4rpSx3z
+        type: mqttTopic
+      - config: {}
+        key: modbus-api/v1/alarms
+        meta:
+          category: trigger
+          description: ''
+          label: Alarms
+          name: mqtt
+          uiId: UeAAwQ_Az3
+          x: 1560
+          'y': 200
+        outputIds:
+          - - FDi4rpSx3z
+        type: mqttTopic
+      - config: {}
+        key: modbus-api/v1/errors
+        meta:
+          category: trigger
+          description: ''
+          label: Errors
+          name: mqtt
+          uiId: ZpBO78UpaT
+          x: 1820
+          'y': 200
+        outputIds:
+          - - AYag_pOSlm
+        type: mqttTopic
+      - config: {}
+        key: GrjYdSFT5nfoQBPKwWv4x
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: jiLMTqDBcl
+          x: 60
+          'y': 160
+        outputIds:
+          - - 7jubJKXVjN
+        type: onBoot
+version: 1

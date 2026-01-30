@@ -1,0 +1,333 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo demonstra como utilizar as funções relacionadas a compressões
+      e transformações de variáveis
+    exportHash: a540bccd5f3a6503b73b3ce9ed08fae1173242cf974912f86dbadcc0b3e676d1
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\features\compress_string_h64
+    nodes:
+      - config:
+          functionName: compress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{data.string}}'
+          outputs:
+            - destinationPath: data.compressed
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: foufpjgByi
+        meta:
+          category: data
+          description: ''
+          label: Compress String
+          name: registered-function
+          x: 60
+          'y': 400
+        outputIds:
+          - - 1Y35cKTi62
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: G3rE27pXFK
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 60
+          'y': 600
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: rWsQ9ay1YG
+        meta:
+          annotationText: |-
+            Faz a compressão de uma string com o conteudo de *exemplo*.
+
+            - **data.string** => Informação a ser comprimida.
+            - **data.compressed** => String compactada.
+            - **exemplo_key** => Chave que será armazenada a informação.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          functionName: decompress_string
+          inputs:
+            - type: str
+              valueTemplate: '{{data.compressed_var}}'
+          outputs:
+            - destinationPath: data.decompressed
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: Jrr5z9LqBX
+        meta:
+          category: data
+          description: ''
+          label: Decompress String
+          name: registered-function
+          x: 360
+          'y': 500
+        outputIds:
+          - - JpRcvV4NJ0
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: JpRcvV4NJ0
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 360
+          'y': 600
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: bvPlqMoOwF
+        meta:
+          annotationText: |-
+            Faz a descompressão da string comprimida no exemplo anterior.
+
+            - **exemplo_key** => Chave onde está armazenada a informação.
+            - **data.compressed_var** => Variável contendo a string comprimida.
+            - **data.decompressed** => Resultado da descompressão.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 320
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          keyName: exemplo_key
+          resultPath: ''
+          value: data.compressed
+          valueType: path
+        id: 1Y35cKTi62
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Set Value'
+          name: store-value
+          x: 60
+          'y': 500
+        outputIds:
+          - - G3rE27pXFK
+        type: StoreValueNode
+      - config:
+          defaultValue: none
+          defaultValueType: path
+          getAll: false
+          keyName: exemplo_key
+          valuePath: data.compressed_var
+        id: jTSDhWMftr
+        meta:
+          category: data
+          description: ''
+          label: 'Storage: Get Value'
+          name: get-value
+          x: 360
+          'y': 400
+        outputIds:
+          - - Jrr5z9LqBX
+        type: GetValueNode
+      - config:
+          functionName: hexstr_to_base64
+          inputs:
+            - type: str
+              valueTemplate: '{{data.hexstr}}'
+          outputs:
+            - destinationPath: data.base64
+              maxLength: '1024'
+              type: str
+          resultPath: data.returnCode
+        id: fgH8cLgTU3
+        meta:
+          category: data
+          description: ''
+          label: Hexstr to base64
+          name: registered-function
+          x: 660
+          'y': 400
+        outputIds:
+          - - tbyRa2UtaD
+        type: RegisteredFunctionNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: R7PirOGHZ6
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 660
+          'y': 600
+        outputIds: []
+        type: DebugNode
+      - config: {}
+        id: X_Bj11H6js
+        meta:
+          annotationText: |
+            Faz a conversão de um hexadecimal com o conteúdo de uma variável.
+
+            - **data.hexstr** => Variável em hexstring a ser convertida.
+            - **data.base64** => Resultado da operação em base64. 
+            - **data.output** => Resultado convertido para string.
+          category: annotation
+          height: 240
+          label: Note
+          name: note
+          width: 260
+          x: 620
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 2Cygniq7sJ
+        meta:
+          annotationText: |-
+            Possíveis retornos  de hexstr_to_base64:
+            * 0: sucesso na operação.
+            * 100: não é uma hexstring válida. 
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 220
+          x: 740
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: RHD6bLZnGa
+        meta:
+          annotationText: |-
+            Possíveis retornos  de decompress: 
+            * 0: sucesso na operação. 
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 220
+          x: 500
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: yMmMSCJEf9
+        meta:
+          annotationText: |
+            Possíveis retornos  de compress: 
+            *  0: sucesso na operação.
+            * 100: falha ao comprimir os dados. 
+            * 102: o tamanho do buffer fornecido para a saída é insuficiente.
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 220
+          x: 260
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 86Gcp_WRSi
+        meta:
+          annotationText: '- **data.returnCode** => Retorno da operação.'
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 220
+          x: 20
+          'y': 720
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          destination: data.output
+          source: data.base64
+          stringOutput: true
+        id: tbyRa2UtaD
+        meta:
+          category: logic
+          description: ''
+          label: 'Base64: Decode'
+          name: base64-decode
+          x: 660
+          'y': 500
+        outputIds:
+          - - R7PirOGHZ6
+        type: Base64DecodeNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-a_gPcTP1WzpF78kvP9cH5
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"string\":\"exemplo\"}\r\n\r\n    "
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-a_gPcTP1WzpF78kvP9cH5
+          x: 60
+          'y': 300
+        outputIds:
+          - - foufpjgByi
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-ektwiKvA28xKGtHiQibW7
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-ektwiKvA28xKGtHiQibW7
+          x: 360
+          'y': 300
+        outputIds:
+          - - jTSDhWMftr
+        type: virtualButton
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-ftZ2Bjk6OfdWxnCSQXkSS
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\"hexstr\": \"6578656d706c6f\"}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedFeaturesCompressStringH64~-ftZ2Bjk6OfdWxnCSQXkSS
+          x: 660
+          'y': 300
+        outputIds:
+          - - fgH8cLgTU3
+        type: virtualButton
+version: 1

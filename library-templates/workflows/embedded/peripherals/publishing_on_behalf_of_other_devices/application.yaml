@@ -1,0 +1,15 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: This example demonstrates how to capture messages published by other devices, with the difference of doing it in a generic way.
+    filesPath: ./files
+    globals: []
+    id: ~exportplaceholderid-application-libraryWorkflowsEmbeddedPeripheralsPublishingOnBehalfOfOtherDevices~
+    name: Peripherals Publishing On Behalf Of Other Devices
+    readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
+version: 1

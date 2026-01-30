@@ -1,0 +1,872 @@
+resourceType: Flow
+resources:
+  - description: >-
+      Esse exemplo mostra como realizar configurações, adições e remoções de
+      dipositivos através de requisições.
+    exportHash: dfc3fe70d47229afdaaf3a7dfcf92040a0bd0cef9c0dee30ededfa410caaa914
+    flowClass: embedded
+    globals: []
+    id: >-
+      ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~
+    minimumAgentVersion: 0.0.0
+    name: edge-wegnology-templates\embedded\applications\modbus\remote_config
+    nodes:
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/peripherals/get/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: GtNqpAmrv3
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Get Response Subscribe
+          name: mqtt
+          x: 80
+          'y': 280
+        outputIds:
+          - - tUDY3EaAR3
+        type: MqttMessageNode
+      - config:
+          messageTemplate: '{}'
+          resultPath: ''
+          topicTemplate: modbus-api/v1/peripherals/get
+        id: JsEno6d5uC
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Get
+          name: mqtt
+          x: 500
+          'y': 340
+        outputIds:
+          - - 7GcYzp4eNF
+        type: MqttMessageNode
+      - config: {}
+        id: ZbMBL1ZsDO
+        meta:
+          annotationText: Faz a requisição dos dispostivos configurados.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 480
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 7GcYzp4eNF
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 500
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: MJmpOLMJJB
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 780
+          'y': 540
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: QJo4KWDcmm
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 780
+          'y': 440
+        outputIds:
+          - - MJmpOLMJJB
+        type: JsonDecodeNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 7vxAss4AbN
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 780
+          'y': 340
+        outputIds:
+          - - QJo4KWDcmm
+        type: DebugNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: modbus-api/v1/peripherals/add
+        id: MQM8ZpsXNN
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Add
+          name: mqtt
+          x: 1080
+          'y': 340
+        outputIds:
+          - - cPcPAKH46n
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: cPcPAKH46n
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1080
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/peripherals/add/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: tUDY3EaAR3
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Add Response Subscribe
+          name: mqtt
+          x: 80
+          'y': 380
+        outputIds:
+          - - Oad89cXjQW
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: yLbVJvfh6E
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1380
+          'y': 440
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: wJIFtB21dG
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1380
+          'y': 340
+        outputIds:
+          - - yLbVJvfh6E
+        type: JsonDecodeNode
+      - config: {}
+        id: JZxasMHLN8
+        meta:
+          annotationText: >
+            Escuta as requisições sobre os dispositivos configurados.
+
+
+            - **data.data.message** => Mensagem contendo todos os dispositivos
+            configurados.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 740
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: F8AWjF28qN
+        meta:
+          annotationText: >-
+            Faz a requisição para a adição de um novo dispositivo.
+
+
+            - **payload** => Arquivo em JSON contendo todas as informações do
+            dispositivo.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1040
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: SPlkPNT3hV
+        meta:
+          annotationText: |
+            Escuta a requisição dos novos dispositivos.
+
+            - **data.data** => Contém o resultado do comando da adição.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1340
+          'y': 40
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data.dispositivo}}'
+          resultPath: ''
+          topicTemplate: modbus-api/v1/peripherals/remove
+        id: qnjpqFCojX
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Remove
+          name: mqtt
+          x: 520
+          'y': 960
+        outputIds:
+          - - WJY6z0VkMo
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: WJY6z0VkMo
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 1060
+        outputIds: []
+        type: DebugNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/peripherals/remove/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: Oad89cXjQW
+        meta:
+          category: output
+          description: ''
+          label: Peripherals Remove Response
+          name: mqtt
+          x: 80
+          'y': 480
+        outputIds:
+          - - pN6h0lR7yH
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 58Maeh7yJs
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 820
+          'y': 1060
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: oOptf6qtrG
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 820
+          'y': 960
+        outputIds:
+          - - 58Maeh7yJs
+        type: JsonDecodeNode
+      - config: {}
+        id: l9XH2HRLIl
+        meta:
+          annotationText: |-
+            Faz a requisição para a remoção de um dispositivo.
+
+            - **data.dipositivo** => Dispositivo que será removido.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 260
+          x: 480
+          'y': 680
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: Xixq9yT0tz
+        meta:
+          annotationText: |
+            Escuta a requisição da remoção dos dispositivos.
+
+            - **data.data** => Contém o resultado do comando da remoção.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 780
+          'y': 660
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: nMR4gQ2BJi
+        meta:
+          annotationText: Subscrição nos tópicos necessários.
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 220
+          x: 60
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 0qYTBavqsk
+        meta:
+          annotationText: Resposta dos dispositivos configurados.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 280
+          'y': 260
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: vahfdI2flp
+        meta:
+          annotationText: Resposta da adição de dispositivos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 280
+          'y': 360
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: IyajZVoJmy
+        meta:
+          annotationText: Resposta da remoção de dispositivos.
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 280
+          'y': 460
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/serial/setup/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: pN6h0lR7yH
+        meta:
+          category: output
+          description: ''
+          label: Serial Setup Response
+          name: mqtt
+          x: 80
+          'y': 580
+        outputIds:
+          - - UUyD9PnH4Y
+        type: MqttMessageNode
+      - config: {}
+        id: cSqZa809oT
+        meta:
+          annotationText: Resposta da alteração das configurações seriais
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 140
+          x: 280
+          'y': 560
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: modbus-api/v1/serial/setup
+        id: vRpnhFferd
+        meta:
+          category: output
+          description: ''
+          label: Serial Setup
+          name: mqtt
+          x: 1120
+          'y': 960
+        outputIds:
+          - - VCW_DhOwae
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: VCW_DhOwae
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1120
+          'y': 1060
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 9qPMNrb092
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 1420
+          'y': 1060
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: RaXDg2AxJi
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 1420
+          'y': 960
+        outputIds:
+          - - 9qPMNrb092
+        type: JsonDecodeNode
+      - config: {}
+        id: Jiux5EUTLu
+        meta:
+          annotationText: >-
+            Faz a requisição de alteração das configurações da serial.
+
+
+            - **payload** => Arquivo em JSON contendo todas as informações da
+            conexão
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1080
+          'y': 660
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: Q33mxcY6vf
+        meta:
+          annotationText: |
+            Escuta as alterações na serial.
+
+            - **data.data** => Contém o resultado do comando da alteração.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 1380
+          'y': 660
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          messageTemplate: '{{data}}'
+          resultPath: ''
+          topicTemplate: modbus-api/v1/runtime/setup
+        id: ZoK3U3cJU_
+        meta:
+          category: output
+          description: ''
+          label: Runtime Setup
+          name: mqtt
+          x: 520
+          'y': 1500
+        outputIds:
+          - - vMxNGcPi5O
+        type: MqttMessageNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: vMxNGcPi5O
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 520
+          'y': 1600
+        outputIds: []
+        type: DebugNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: ReewHfhaHW
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 820
+          'y': 1600
+        outputIds: []
+        type: DebugNode
+      - config:
+          destination: data
+          errorBehavior: throw
+          errorPath: ''
+          source: data
+        id: 3lY4tIFcWA
+        meta:
+          category: logic
+          description: ''
+          label: 'JSON: Decode'
+          name: json-decode
+          x: 820
+          'y': 1500
+        outputIds:
+          - - ReewHfhaHW
+        type: JsonDecodeNode
+      - config:
+          messageTemplate: '{ "topic": "modbus-api/v1/runtime/setup/response" }'
+          resultPath: ''
+          topicTemplate: eea-api/v1/subscribe
+        id: UUyD9PnH4Y
+        meta:
+          category: output
+          description: ''
+          label: Runtime Setup Response
+          name: mqtt
+          x: 80
+          'y': 700
+        outputIds: []
+        type: MqttMessageNode
+      - config: {}
+        id: egkzIdPCvZ
+        meta:
+          annotationText: Resposta das configurações do runtime
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 140
+          x: 280
+          'y': 680
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: Vf20qynaCg
+        meta:
+          annotationText: |-
+            - **endianess** => Ordem em que os bytes são armazenados.
+            - **id** => ID do dispositivo.
+            - **name** => Nome do dipositivo.
+            - **protocol** => Tipo de comunicação com o Gateway RTC ou TCP.
+            - **registers** => Variáveis do dispositivo.
+            - **unitId** => Id da porta serial
+          category: annotation
+          height: 220
+          label: Note
+          name: note
+          width: 260
+          x: 1640
+          'y': 260
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: QphsqI2KTJ
+        meta:
+          annotationText: |
+            - **interface** => Interface serial rs485 ou rs232.
+            - **path** => Caminho da porta serial no linux.
+            - **baud_rate** => Velocidade da comunicação serial.
+            - **data_bits** => Bits dos dados, ex "5", "6", "7", "8".
+            - **stop_bits** => Bits de parada, ex "1" ou "0"
+            - **parity** => Paridade (“E” => Even, “O” => Odd, “N” => None)
+          category: annotation
+          height: 280
+          label: Note
+          name: note
+          width: 320
+          x: 1680
+          'y': 840
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 2LJDZeaMan
+        meta:
+          annotationText: >-
+            Faz a requisição de alteração das configurações do runtime da
+            serial.
+
+
+            - **payload** => Arquivo em JSON contendo todas as informações da
+            conexão
+          category: annotation
+          height: 180
+          label: Note
+          name: note
+          width: 260
+          x: 480
+          'y': 1200
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: P_1oCuXADw
+        meta:
+          annotationText: |
+            Escuta a requisição das alterações do runtime da serial.
+
+            - **data.data** => Contém o resultado do comando da remoção.
+          category: annotation
+          height: 160
+          label: Note
+          name: note
+          width: 260
+          x: 780
+          'y': 1220
+        outputIds: []
+        type: AnnotationNode
+      - config: {}
+        id: 03SB4v_09o
+        meta:
+          annotationText: >+
+            - **report_period** => Intervalo da publicação das leituras
+            periódicas.
+
+            - **peripherals_limit** => Limite máximo de periféricos conectados.
+
+            - **polling_read_period** => Período de guarda (ms).
+
+            - **polling_check_period** =>  Tempo entre verificações do tempo de
+            publicação. (ms)
+
+            - **slave_connection_timeout** => Timeout de conexão com dispositivo
+            escravo.
+
+            - **onchange_pub_limit** => Limite de publicações on-change dentro
+
+            de um ciclo periódico.
+
+            - **onchange_guard_period** => Intervalo entre mensagens on-change.
+            (ms)
+
+          category: annotation
+          height: 320
+          label: Note
+          name: note
+          width: 360
+          x: 1080
+          'y': 1360
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-XMP8aGGlhgasUs3jDAit9
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: ''
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-XMP8aGGlhgasUs3jDAit9
+          x: 500
+          'y': 240
+        outputIds:
+          - - JsEno6d5uC
+        type: virtualButton
+      - config: {}
+        key: modbus-api/v1/peripherals/get/response
+        meta:
+          category: trigger
+          description: ''
+          label: Peripherals Get Response
+          name: mqtt
+          uiId: y_HeEm4DbB
+          x: 780
+          'y': 240
+        outputIds:
+          - - 7vxAss4AbN
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-a4gb739eW9_kjo60wG8_3
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "[\r\n{\r\n  \"name\": \"API_Test\",\r\n  \"id\": \"67efd1de83876974d1ee2280\",\r\n  \"protocol\": {\r\n    \"modbusTcp\": {\r\n      \"host\": \"192.168.2.11:502\"\r\n    }\r\n  },\r\n  \"registers\": [\r\n    {\r\n      \"address\": 9000,\r\n      \"function\": \"ir\",\r\n      \"name\": \"IR0ETH\",\r\n      \"dtype\": \"u16\",\r\n      \"scale\": 1,\r\n      \"events\": {\r\n        \"on_change\": 0.0\r\n      },\r\n      \"information\": {\r\n        \"max\": true,\r\n        \"min\": true,\r\n        \"avg\": true,\r\n        \"last\": true,\r\n        \"diff\": true\r\n      }\r\n    },\r\n    {\r\n      \"address\": 9001,\r\n      \"function\": \"ir\",\r\n      \"name\": \"IR1ETH\",\r\n      \"dtype\": \"u16\",\r\n      \"scale\": 1,\r\n      \"events\": {\r\n        \"alarms\": {\r\n          \"hys\": 1.0,\r\n          \"high\": 100.0,\r\n          \"low\": 20.0\r\n        }\r\n      },\r\n      \"information\": {\r\n        \"max\": false,\r\n        \"min\": false,\r\n        \"avg\": true,\r\n        \"last\": true,\r\n        \"diff\": false\r\n      }\r\n    },\r\n    {\r\n      \"address\": 900,\r\n      \"function\": \"ir\",\r\n      \"name\": \"IR1ETH\",\r\n      \"dtype\": \"u16\",\r\n      \"scale\": 1,\r\n      \"information\": {\r\n        \"max\": true,\r\n        \"min\": true,\r\n        \"avg\": true,\r\n        \"last\": false,\r\n        \"diff\": false\r\n      }\r\n    }\r\n  ],\r\n  \"endianess\": \"big\",\r\n  \"unitId\": 2\r\n}\r\n]"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-a4gb739eW9_kjo60wG8_3
+          x: 1080
+          'y': 240
+        outputIds:
+          - - MQM8ZpsXNN
+        type: virtualButton
+      - config: {}
+        key: modbus-api/v1/peripherals/add/response
+        meta:
+          category: trigger
+          description: ''
+          label: Peripherals Add Response
+          name: mqtt
+          uiId: MB4Qp0JBPW
+          x: 1380
+          'y': 240
+        outputIds:
+          - - wJIFtB21dG
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-u90iy1_R0xvaEJ5TCdYIG
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: '{"dispositivo" : ["API_Test"]}'
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-u90iy1_R0xvaEJ5TCdYIG
+          x: 520
+          'y': 860
+        outputIds:
+          - - qnjpqFCojX
+        type: virtualButton
+      - config: {}
+        key: modbus-api/v1/peripherals/remove/response
+        meta:
+          category: trigger
+          description: ''
+          label: Peripherals Remove Response
+          name: mqtt
+          uiId: XU2zHpE6l6
+          x: 820
+          'y': 860
+        outputIds:
+          - - oOptf6qtrG
+        type: mqttTopic
+      - config: {}
+        key: 736HfHwrelEITwgqsLy5p
+        meta:
+          category: trigger
+          description: ''
+          label: 'EEA: Init'
+          name: eeaInit
+          uiId: yM7UBDdf_r
+          x: 80
+          'y': 180
+        outputIds:
+          - - GtNqpAmrv3
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-tg6uBLy81pPFZsnUi_IkY
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "{\r\n\"interface\": \"rs485\",\r\n\"path\": \"/dev/ttyS4\",\r\n\"baud_rate\": 38400,\r\n\"data_bits\": \"5\",\r\n\"stop_bits\": \"1\",\r\n\"parity\": \"E\"\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-tg6uBLy81pPFZsnUi_IkY
+          x: 1120
+          'y': 860
+        outputIds:
+          - - vRpnhFferd
+        type: virtualButton
+      - config: {}
+        key: modbus-api/v1/serial/setup/response
+        meta:
+          category: trigger
+          description: ''
+          label: Serial Setup Response
+          name: mqtt
+          uiId: _rDQXDIJ16
+          x: 1420
+          'y': 860
+        outputIds:
+          - - RaXDg2AxJi
+        type: mqttTopic
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-LXp0oizUrMRxYIlw56gSo
+        meta:
+          category: trigger
+          description: ''
+          label: Virtual Button
+          name: virtualButton
+          payload: "\r\n{\r\n  \"report_period\": 20,\r\n  \"peripherals_limit\": 20,\r\n  \"polling_read_period\": 30,\r\n  \"polling_check_period\": 60,\r\n  \"slave_connection_timeout\": 5000,\r\n  \"onchange_pub_limit\": 10,\r\n  \"onchange_guard_period\": 60\r\n}\r\n"
+          uiId: >-
+            ~exportplaceholderid-flow-edgeWegnologyTemplatesEmbeddedApplicationsModbusRemoteConfig~-LXp0oizUrMRxYIlw56gSo
+          x: 520
+          'y': 1400
+        outputIds:
+          - - ZoK3U3cJU_
+        type: virtualButton
+      - config: {}
+        key: modbus-api/v1/runtime/setup/response
+        meta:
+          category: trigger
+          description: ''
+          label: Runtime Setup Response
+          name: mqtt
+          uiId: taMMiuShWg
+          x: 820
+          'y': 1400
+        outputIds:
+          - - 3lY4tIFcWA
+        type: mqttTopic
+version: 1
