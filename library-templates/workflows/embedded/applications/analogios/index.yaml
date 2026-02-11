@@ -1,6 +1,0 @@
-name: AIOS
-description: This category includes the AIOs API, which offers two primary functionalities - 
- devices management, event monitoring.The provided templates feature pre-built workflows
- that ensure the proper application of the API, ranging from subscribing to topics within
-  the API to effectively leveraging their capabilities.
-resourceTypes: null

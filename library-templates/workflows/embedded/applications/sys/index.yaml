@@ -1,6 +1,0 @@
-name: System
-description: This category includes the System API, which offers two primary functionalities: 
- status read and system configure.The provided templates feature pre-built workflows that
- ensure the proper application of the API, ranging from subscribing to topics within the API 
- to effectively leveraging their capabilities.
-resourceTypes: null
