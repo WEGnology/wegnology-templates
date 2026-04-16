@@ -10,7 +10,12 @@ resources:
         json: '"edge,table"'
         key: template-keywords
     id: ~exportplaceholderid-application-libraryWorkflowsEdgeComputeCreateTable~
-    name: Library / Workflows / Edge Compute / Create Table
+    name: Create Measurements Table
     privateFilesPath: ./privateFiles
     readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
 version: 1

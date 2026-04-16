@@ -11,7 +11,12 @@ resources:
         key: template-keywords
     id: >-
       ~exportplaceholderid-application-libraryWorkflowsEdgeComputeReadMeasurements~
-    name: Library / Workflows / Edge Compute / Read Measurements
+    name: Read Measurements
     privateFilesPath: ./privateFiles
     readmePath: ./README.md
+    imagePath: ./preview.png
+    authorName: WEGnology
+    authorUrl: https://docs.app.wnology.io
+    keywords:
+      - edge
 version: 1
