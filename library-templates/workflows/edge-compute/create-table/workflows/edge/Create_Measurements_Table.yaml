@@ -1,0 +1,102 @@
+resourceType: Flow
+resources:
+  - exportHash: 2ccf135caff1a4da1a10c2c9e4555ae49576b9783ba90a67c6ff0697bf71ccf5
+    flowClass: edge
+    globals: []
+    id: ~exportplaceholderid-flow-createMeasurementsTable~
+    minimumAgentVersion: 1.29.0
+    name: Create Measurements Table
+    nodes:
+      - config: {}
+        id: W2uITioeTc
+        meta:
+          annotationText: >-
+            **Database table creation routine**
+
+
+            When the device starts up or connects, the routine runs to create
+            the measurements table.
+          category: annotation
+          height: 140
+          label: Note
+          name: note
+          width: 600
+          x: 20
+          'y': 20
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          hostTemplate: ':memory:'
+          query: "CREATE TABLE IF NOT EXISTS[measures](\r\n    id INTEGER PRIMARY KEY,\r\n    timestamp INTEGER NOT NULL,\r\n    attribute TEXT DEFAULT NULL,\r\n    value REAL DEFAULT NULL\r\n);  "
+          resultPath: ''
+          systemTemplate: sqlite3
+        id: bIAdVELrbC
+        meta:
+          category: data
+          description: ''
+          label: Create measures
+          name: sql
+          x: 240
+          'y': 260
+        outputIds:
+          - - Sjo6vEpmkH
+        type: SqlNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: Sjo6vEpmkH
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 240
+          'y': 360
+        outputIds: []
+        type: DebugNode
+    triggers:
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-createMeasurementsTable~-llnMU9ojxIUVXEc77jgbC
+        meta:
+          category: trigger
+          description: ''
+          label: Startup
+          name: onBoot
+          uiId: udJheBYzyX
+          x: 240
+          'y': 140
+        outputIds:
+          - - bIAdVELrbC
+        type: onBoot
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-createMeasurementsTable~-sEqU1JWeiIqWBF6V2aVgv
+        meta:
+          category: trigger
+          description: ''
+          label: Connect
+          name: onConnect
+          uiId: jBQIEz7zPz
+          x: 40
+          'y': 140
+        outputIds:
+          - - bIAdVELrbC
+        type: onConnect
+      - config: {}
+        key: >-
+          ~exportplaceholderid-flow-createMeasurementsTable~-x7E664N_ANKYPgIVcNYf1
+        meta:
+          category: trigger
+          description: ''
+          label: Force Create
+          name: virtualButton
+          payload: ''
+          uiId: ImTiLM3G6g
+          x: 440
+          'y': 140
+        outputIds:
+          - - bIAdVELrbC
+        type: virtualButton
+version: 1

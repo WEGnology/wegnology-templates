@@ -1,0 +1,331 @@
+resourceType: Flow
+resources:
+  - exportHash: 417683359954343c6a8f23722989793c245bebf10b446a00c3ac44d82a474a80
+    flowClass: edge
+    globals: []
+    id: ~exportplaceholderid-flow-readMeasurements~
+    minimumAgentVersion: 1.29.0
+    name: Read Measurements
+    nodes:
+      - config: {}
+        id: wcVbcC3KOM
+        meta:
+          annotationText: |-
+            **Read Routine**
+
+            Executed every 30 seconds
+          category: annotation
+          height: 120
+          label: Note
+          name: note
+          width: 440
+          x: 120
+          'y': 60
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          findMethod: findByAnyTags
+          findMultiple: true
+          resultPath: wk.peripherals
+          sortDirection: asc
+          sortField: name
+          tags:
+            - keyTemplate: protocol
+              valueTemplate: modbus_tcp
+        id: XAV3UowBPU
+        meta:
+          category: data
+          description: ''
+          label: 'Peripheral: Get'
+          name: get-peripheral
+          x: 140
+          'y': 240
+        outputIds:
+          - - qOgPL17Cfs
+        type: GetPeripheralNode
+      - config:
+          scopePath: ''
+          script: |-
+            let attRead = [];
+
+            if(payload.wk.peripherals[0] !== undefined){
+                let attributes = payload.wk.peripherals[0].attributes;
+                for(let i in attributes){
+                    let obj = {};
+
+                    if(attributes[i].attributeTags.type !== undefined && attributes[i].attributeTags.type !== null) {
+                        obj["type"] = attributes[i].attributeTags.function;
+
+                        if(attributes[i].attributeTags.type.includes("32") || attributes[i].attributeTags.type.includes("float")) obj["length"] = 2;
+                        else obj["length"] = 1;
+
+                        obj["key"] = "t"+i;
+                    }
+                    if(attributes[i].attributeTags.address !== undefined && attributes[i].attributeTags.address !== null) obj["address"] = attributes[i].attributeTags.address;
+                    attRead.push(obj)   
+                }
+            } 
+
+            payload.wk.instructions = attRead;
+        id: qOgPL17Cfs
+        meta:
+          category: logic
+          description: ''
+          label: Function
+          name: function
+          x: 140
+          'y': 320
+        outputIds:
+          - - jatxjzRJnK
+        type: RawFunctionNode
+      - config:
+          currentItemPath: wk.peripherals
+          loopSourcePath: wk.peripherals
+          mapResultPath: ''
+          parallel: false
+        id: jatxjzRJnK
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 240
+          groupStartY: 80
+          label: Read Measures
+          name: loop
+          x: 140
+          'y': 400
+        outputIds:
+          - - I84uyxnURh
+          - - DsceXl1AXf
+        type: LoopNode
+      - config:
+          loopNodeId: jatxjzRJnK
+          mapValuePath: ''
+          shouldBreak: false
+        id: 6wulKirNwC
+        meta:
+          category: loop
+          description: ''
+          groupId: jatxjzRJnK
+          label: Next
+          name: loop-next
+          x: 220
+          'y': 760
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: I84uyxnURh
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 140
+          'y': 500
+        outputIds: []
+        type: DebugNode
+      - config:
+          areUnsignedInts: true
+          connectionTypeTemplate: tcp
+          destinationPath: wk.peripheral.result
+          endiannessTemplate: big
+          hostTemplate: '{{ wk.peripheral.value.tags.ip.[0] }}'
+          portTemplate: '{{ wk.peripheral.value.tags.port.[0] }}'
+          readInstructions: wk.instructions
+          readInstructionsType: payloadPath
+          timeoutTemplate: '400'
+          unitIdAllowZeros: true
+          unitIdTemplate: '{{ wk.peripheral.value.tags.unitId.[0] }}'
+        id: DsceXl1AXf
+        meta:
+          category: data
+          description: ''
+          groupId: jatxjzRJnK
+          label: 'Modbus: Read'
+          name: modbus-read
+          x: 240
+          'y': 160
+        outputIds:
+          - - eKx_FEGp_z
+        type: ModbusReadNode
+      - config:
+          expression: '{{ wk.peripheral.result.errors }} === undefined'
+        id: eKx_FEGp_z
+        meta:
+          category: logic
+          description: ''
+          groupId: jatxjzRJnK
+          label: Error?
+          name: conditional
+          x: 240
+          'y': 240
+        outputIds:
+          - - 6wulKirNwC
+          - - Joxp2FxLxA
+        type: ConditionalNode
+      - config:
+          scopePath: ''
+          script: |-
+            payload.wk.peripheral.mb = {};
+
+            if(payload.wk.peripherals[0] !== undefined){
+
+                let attributes = payload.wk.peripherals[0].attributes;
+                for(let i in attributes){
+                    if(attributes[i].attributeTags.type !== undefined && attributes[i].attributeTags.type !== null) {
+                        switch (attributes[i].attributeTags.type) {
+                            case "float":
+                                payload.wk.peripheral.mb[attributes[i].name] = (payload.wk.peripheral.result["t"+i][1] << 16) | payload.wk.peripheral.result["t"+i][0];
+                                break;
+
+                            case "unsigned_16":
+                                payload.wk.peripheral.mb[attributes[i].name] = payload.wk.peripheral.result["t"+i][0];
+                                break;
+
+                            case "unsigned_32":
+                                payload.wk.peripheral.mb[attributes[i].name] =  (payload.wk.peripheral.result["t"+i][1] << 16) | payload.wk.peripheral.result["t"+i][0];
+                                break;
+
+                            case "signed_16":
+                                if(payload.wk.peripheral.result["t"+i][0] > 32767){
+                                    payload.wk.peripheral.mb[attributes[i].name] = (payload.wk.peripheral.result["t"+i][0] - 65536);
+                                }
+                                break;
+
+                            case "signed_32":
+                                payload.wk.peripheral.mb[attributes[i].name] =  (((payload.wk.peripheral.result["t"+i][1] & 0xffff) << 16) | (payload.wk.peripheral.result["t"+i][0] & 0xffff));
+                                if (payload.wk.peripheral.mb[attributes[i].name] > 2147483647) {
+                                    const buf = Buffer.from(payload.wk.peripheral.mb[attributes[i].name]);
+                                    payload.wk.peripheral.mb[attributes[i].name] = buf.readInt32BE();
+                                }
+                                break;
+
+                            case "boolean":
+                                payload.wk.peripheral.mb[attributes[i].name] = (payload.wk.peripheral.result["t"+i][0] !== undefined && payload.wk.peripheral.result["t"+i][0] > 0) ? 1 : 0;
+                            default:
+                                payload.wk.peripheral.mb[attributes[i].name] = payload.wk.peripheral.result["t"+i][0];
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if(Object.keys(payload.wk.peripheral.mb).length > 0){
+                let sql = "INSERT INTO measures (attribute, value, timestamp) VALUES ";
+                let timestamp = Date.now();
+
+                for(let i in payload.wk.peripheral.mb){
+                    sql += `('${i}', ${payload.wk.peripheral.mb[i]}, ${timestamp}),`;
+                }
+                sql = sql.slice(0, -1);
+
+                payload.sql = sql;
+            }
+        id: Joxp2FxLxA
+        meta:
+          category: logic
+          description: ''
+          groupId: jatxjzRJnK
+          label: Function
+          name: function
+          x: 340
+          'y': 360
+        outputIds:
+          - - fZx70CgdnJ
+        type: RawFunctionNode
+      - config:
+          operation: unixTimestampSeconds
+          resultPath: wk.peripheral.timestamp
+        id: fZx70CgdnJ
+        meta:
+          category: logic
+          description: ''
+          groupId: jatxjzRJnK
+          label: Date/Time
+          name: date-time
+          x: 340
+          'y': 440
+        outputIds:
+          - - We2uPUaZmk
+        type: DateTimeNode
+      - config:
+          expression: '{{ sql }} !== undefined'
+        id: We2uPUaZmk
+        meta:
+          category: logic
+          description: ''
+          groupId: jatxjzRJnK
+          label: Error?
+          name: conditional
+          x: 340
+          'y': 520
+        outputIds:
+          - - 6wulKirNwC
+          - - Cx8kwTDIXQ
+        type: ConditionalNode
+      - config:
+          hostTemplate: ':memory:'
+          query: '{{sql}}'
+          resultPath: wk.peripheral.db
+          systemTemplate: sqlite3
+        id: Cx8kwTDIXQ
+        meta:
+          category: data
+          description: ''
+          groupId: jatxjzRJnK
+          label: SQL
+          name: sql
+          x: 420
+          'y': 640
+        outputIds:
+          - - 6wulKirNwC
+        type: SqlNode
+      - config: {}
+        id: a_84ueV2tC
+        meta:
+          annotationText: >-
+            Performs the reading and then formats the collected values to be
+            inserted into the database.
+          category: annotation
+          groupId: jatxjzRJnK
+          height: 120
+          label: Note
+          name: note
+          width: 260
+          x: 540
+          'y': 380
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config:
+          seconds: 30
+        key: ~exportplaceholderid-flow-readMeasurements~-zi5kegHr3jkBgv_6LrrlT
+        meta:
+          category: trigger
+          description: ''
+          label: Read
+          name: timer
+          timerTypeSelect: seconds
+          uiId: sVp7qzb9TA
+          x: 140
+          'y': 160
+        outputIds:
+          - - XAV3UowBPU
+        type: timer
+      - config: {}
+        key: ~exportplaceholderid-flow-readMeasurements~-3s1oVCNDyedalBZCvbVzZ
+        meta:
+          category: trigger
+          description: ''
+          label: Force Read
+          name: virtualButton
+          payload: ''
+          uiId: e4zvI3OngN
+          x: 340
+          'y': 160
+        outputIds:
+          - - XAV3UowBPU
+        type: virtualButton
+version: 1

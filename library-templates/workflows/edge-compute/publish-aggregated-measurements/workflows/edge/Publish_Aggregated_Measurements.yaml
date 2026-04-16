@@ -1,0 +1,273 @@
+resourceType: Flow
+resources:
+  - exportHash: bac871c8eba9f72989a8faa3ff63955f4915851ac612943f91523e199a8da8df
+    flowClass: edge
+    globals: []
+    id: ~exportplaceholderid-flow-publishAggregatedMeasurements~
+    minimumAgentVersion: 1.29.0
+    name: Publish Aggregated Measurements
+    nodes:
+      - config: {}
+        id: aGYb2ntj91
+        meta:
+          annotationText: |-
+            **Publish Routine** 
+
+            Executed every 5 minutes
+          category: annotation
+          height: 100
+          label: Note
+          name: note
+          width: 360
+          x: 20
+          'y': 0
+        outputIds: []
+        type: AnnotationNode
+      - config:
+          findMethod: findByAnyTags
+          findMultiple: true
+          resultPath: wk.peripherals
+          sortDirection: asc
+          sortField: name
+          tags:
+            - keyTemplate: protocol
+              valueTemplate: modbus_tcp
+        id: iLioaK9bJB
+        meta:
+          category: data
+          description: ''
+          label: 'Peripheral: Get'
+          name: get-peripheral
+          x: 20
+          'y': 240
+        outputIds:
+          - - 6gHFQFDlSQ
+        type: GetPeripheralNode
+      - config:
+          currentItemPath: wk.peripheral
+          loopSourcePath: wk.peripheral
+          mapResultPath: ''
+          parallel: false
+        id: 6gHFQFDlSQ
+        meta:
+          category: logic
+          description: ''
+          groupStartX: 260
+          groupStartY: 240
+          label: Send States
+          name: loop
+          x: 20
+          'y': 320
+        outputIds:
+          - - 3C2Adayda4
+          - - d_DjgL6_ZL
+        type: LoopNode
+      - config:
+          loopNodeId: 6gHFQFDlSQ
+          mapValuePath: ''
+          shouldBreak: false
+        id: Ua4a7OrF7Z
+        meta:
+          category: loop
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: Next
+          name: loop-next
+          x: 240
+          'y': 860
+        outputIds: []
+        type: LoopCapNode
+      - config:
+          level: verbose
+          message: ''
+          property: ''
+        id: 3C2Adayda4
+        meta:
+          category: debug
+          description: ''
+          label: Debug
+          name: debug
+          x: 20
+          'y': 400
+        outputIds: []
+        type: DebugNode
+      - config:
+          operation: unixTimestampMilliseconds
+          resultPath: wk.timestamp
+        id: 6i4yjKk_IR
+        meta:
+          category: logic
+          description: ''
+          label: Date/Time
+          name: date-time
+          x: 20
+          'y': 160
+        outputIds:
+          - - iLioaK9bJB
+        type: DateTimeNode
+      - config:
+          hostTemplate: ':memory:'
+          query: "SELECT attribute,value as inst, Max(value) as max, min(value) as min, avg(value) as avg FROM measures \r\nWHERE\r\n    timestamp >= ( {{wk.timestamp}} - 300000)\r\nGROUP BY attribute \r\nORDER BY timestamp desc"
+          resultPath: wk.peripheral.db
+          systemTemplate: sqlite3
+        id: d_DjgL6_ZL
+        meta:
+          category: data
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: Get measures
+          name: sql
+          x: 260
+          'y': 320
+        outputIds:
+          - - fG449oPPQj
+        type: SqlNode
+      - config:
+          expression: >-
+            {{ wk.peripheral.db.[0] }} !== "success" && {{
+            wk.peripheral.db.errors }} === undefined
+        id: fG449oPPQj
+        meta:
+          category: logic
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: Erros?
+          name: conditional
+          x: 260
+          'y': 400
+        outputIds:
+          - - Ua4a7OrF7Z
+          - - 5lHrlsZ5_y
+        type: ConditionalNode
+      - config:
+          scopePath: ''
+          script: |-
+            var arraySQL = payload.wk.peripheral.db;
+            let attributes = payload.wk.peripheral.value.attributes;
+            let state = {};
+
+            for(let att in arraySQL){
+                if(arraySQL[att] !== undefined){
+                    let index = attributes.findIndex(x => x.name === arraySQL[att].attribute);
+
+                    if(index !== -1){
+                        let aggregation = attributes[index].attributeTags.aggregation;
+
+                        if(aggregation !== undefined && arraySQL[att][aggregation] !== undefined) state[arraySQL[att].attribute] = arraySQL[att][aggregation];
+                    }
+                }
+            }
+            payload.attribute = state;
+        id: 5lHrlsZ5_y
+        meta:
+          category: logic
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: Function
+          name: function
+          x: 340
+          'y': 500
+        outputIds:
+          - - 4NvMKjZr7w
+        type: RawFunctionNode
+      - config:
+          expression: '{{length attribute}} > 0'
+        id: 4NvMKjZr7w
+        meta:
+          category: logic
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: Exist State?
+          name: conditional
+          x: 340
+          'y': 580
+        outputIds:
+          - - Ua4a7OrF7Z
+          - - vwD0MQBDFP
+        type: ConditionalNode
+      - config:
+          attrDataMethod: payloadPath
+          attrPayloadPath: attribute
+          deviceId: wk.peripheral.value.id
+          deviceIdTemplateType: jsonPath
+          resultPath: ''
+          timeSourcePath: wk.timestamp
+          timeSourceType: payloadPath
+        id: vwD0MQBDFP
+        meta:
+          category: output
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: 'Device: State'
+          name: device-state
+          x: 400
+          'y': 680
+        outputIds:
+          - - e4M10YNhkM
+        type: DeviceChangeStateNode
+      - config:
+          hostTemplate: ':memory:'
+          query: "DELETE FROM [measures]\r\nWHERE \r\n    timestamp < {{ wk.timestamp }}"
+          resultPath: ''
+          systemTemplate: sqlite3
+        id: e4M10YNhkM
+        meta:
+          category: data
+          description: ''
+          groupId: 6gHFQFDlSQ
+          label: SQL
+          name: sql
+          x: 400
+          'y': 760
+        outputIds:
+          - - Ua4a7OrF7Z
+        type: SqlNode
+      - config: {}
+        id: yIXnZ91lgY
+        meta:
+          annotationText: >-
+            Reads the measurements table and builds the object to send data to
+            the platform.
+          category: annotation
+          groupId: 6gHFQFDlSQ
+          height: 160
+          label: Note
+          name: note
+          width: 180
+          x: 40
+          'y': 260
+        outputIds: []
+        type: AnnotationNode
+    triggers:
+      - config:
+          cron: 0 */5 * * * *
+          tz: America/Sao_Paulo
+        key: >-
+          ~exportplaceholderid-flow-publishAggregatedMeasurements~-oxXDS5QAgkYztDyEGHwWu
+        meta:
+          category: trigger
+          description: ''
+          label: Publish
+          name: timer
+          timerTypeSelect: cron
+          uiId: n1RO3k1icl
+          x: 20
+          'y': 80
+        outputIds:
+          - - 6i4yjKk_IR
+        type: timer
+      - config: {}
+        key: ~exportplaceholderid-flow-publishAggregatedMeasurements~-9K62SztabE
+        meta:
+          category: trigger
+          description: ''
+          label: Force Pub
+          name: virtualButton
+          payload: ''
+          uiId: MQ6Qr4pxcH
+          x: 220
+          'y': 80
+        outputIds:
+          - - 6i4yjKk_IR
+        type: virtualButton
+version: 1

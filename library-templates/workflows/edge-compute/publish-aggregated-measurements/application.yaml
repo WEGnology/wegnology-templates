@@ -1,0 +1,17 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: >-
+      Template responsible for aggregating measurements and publishing the
+      processed values every 5 minutes.
+    filesPath: ./files
+    globals:
+      - cloudOnly: false
+        json: '"edge,publish"'
+        key: template-keywords
+    id: >-
+      ~exportplaceholderid-application-libraryWorkflowsEdgeComputePublishAggregatedMeasurements~
+    name: Library / Workflows / Edge Compute / Publish Aggregated Measurements
+    privateFilesPath: ./privateFiles
+    readmePath: ./README.md
+version: 1

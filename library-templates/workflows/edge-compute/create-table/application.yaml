@@ -1,0 +1,16 @@
+resourceType: Application
+resources:
+  - blobUrlTTL: 86400
+    description: >-
+      Template responsible for ensuring the creation of the measurements table
+      during device initialization or reconnection.
+    filesPath: ./files
+    globals:
+      - cloudOnly: false
+        json: '"edge,table"'
+        key: template-keywords
+    id: ~exportplaceholderid-application-libraryWorkflowsEdgeComputeCreateTable~
+    name: Library / Workflows / Edge Compute / Create Table
+    privateFilesPath: ./privateFiles
+    readmePath: ./README.md
+version: 1
