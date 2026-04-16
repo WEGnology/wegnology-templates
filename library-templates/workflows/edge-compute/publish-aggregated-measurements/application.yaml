@@ -5,10 +5,7 @@ resources:
       Template responsible for aggregating measurements and publishing the
       processed values every 5 minutes.
     filesPath: ./files
-    globals:
-      - cloudOnly: false
-        json: '"edge,publish"'
-        key: template-keywords
+    globals: []
     id: >-
       ~exportplaceholderid-application-libraryWorkflowsEdgeComputePublishAggregatedMeasurements~
     name: Publish Aggregated Measurements

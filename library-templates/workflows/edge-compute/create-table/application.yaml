@@ -5,10 +5,7 @@ resources:
       Template responsible for ensuring the creation of the measurements table
       during device initialization or reconnection.
     filesPath: ./files
-    globals:
-      - cloudOnly: false
-        json: '"edge,table"'
-        key: template-keywords
+    globals: []
     id: ~exportplaceholderid-application-libraryWorkflowsEdgeComputeCreateTable~
     name: Create Measurements Table
     privateFilesPath: ./privateFiles

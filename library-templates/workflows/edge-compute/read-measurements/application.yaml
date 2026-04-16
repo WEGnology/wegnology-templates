@@ -5,10 +5,7 @@ resources:
       Template responsible for reading measurements from an Edge Compute device
       every 30 seconds.
     filesPath: ./files
-    globals:
-      - cloudOnly: false
-        json: '"edge,read"'
-        key: template-keywords
+    globals: []
     id: >-
       ~exportplaceholderid-application-libraryWorkflowsEdgeComputeReadMeasurements~
     name: Read Measurements
