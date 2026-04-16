@@ -15,7 +15,6 @@ This template assumes you have an Edge Compute device that is connected to the W
 
 If you are new to Edge Compute, we recommend starting with the [Edge Compute Walkthrough](https://~exportplaceholderid-docs-url~/edge-compute/gateway-edge-agent/walkthrough/) before working with this template.
 
-
 ## How It Works
 
 Every 30 seconds, the workflow:
@@ -34,6 +33,6 @@ Every 30 seconds, the workflow:
 
 ## License
 
-Copyright &copy; 2022 WEGnology.
+Copyright © 2022 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.

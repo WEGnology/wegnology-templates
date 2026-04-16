@@ -5,8 +5,8 @@ Ensures the measurements table is created during device initialization or reconn
 ## Dependencies
 
 This template assumes you have an Edge Compute device that is connected to the WEGnology Broker and is currently running Edge workflows.
-If you are new to Edge Compute, we recommend starting with the [Edge Compute Walkthrough](https://~exportplaceholderid-docs-url~/edge-compute/gateway-edge-agent/walkthrough/) before working with this template.
 
+If you are new to Edge Compute, we recommend starting with the [Edge Compute Walkthrough](https://~exportplaceholderid-docs-url~/edge-compute/gateway-edge-agent/walkthrough/) before working with this template.
 
 ## Table Creation Routine
 
@@ -33,6 +33,6 @@ On success, the database is ready to receive measurement data.
 
 ## Licenca
 
-Copyright © 2022 WEGnology.
+Copyright © 2022 WEGnology. All rights reserved.
 
 Licensed under the [MIT](https://github.com/WEGnology/wegnology-templates/blob/master/LICENSE.txt) license.
